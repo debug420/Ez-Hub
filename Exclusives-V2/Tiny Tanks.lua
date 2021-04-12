@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------
 
--- Universal Script
+-- Tiny Tanks Script
 
 local ezlib;
 if _G.CachedEzLib then
@@ -127,8 +127,7 @@ spawn(function()
             for i, v in pairs(game.Players:GetPlayers()) do
                 if workspace.Tanks:FindFirstChild("Tank-"..v.Name) then
                     if v.TeamColor == game.Players.LocalPlayer.TeamColor then
-                        local Tank = workspace.Tanks:FindFirstChild("Tank-"..v.Name)
-                        game:GetService("ReplicatedStorage").Remotes.FireAbility:FireServer(Tank, "Absorb", Tank.Base.Position, Vector3.new(Tank.Base.Position.X-70,Tank.Base.Position.Y,Tank.Base.Position.Z-70))
+                        game:GetService("ReplicatedStorage").Remotes.FireAbility:FireServer(GetTank(), "Absorb", Tank.Base.Position, Vector3.new(Tank.Base.Position.X-70,Tank.Base.Position.Y,Tank.Base.Position.Z-70))
                     end
                 end
             end
