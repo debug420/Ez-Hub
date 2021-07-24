@@ -8,7 +8,7 @@
     "createespmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/CreateESPModule.lua",
     "exclusivesmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/ExclusiveV1.json",
     "exclusivesv2module": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/ExclusivesV2.json",
-    "repostedmenu": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/RepostedModule.json",
+    "repostedmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/RepostedModule.json",
     "encryption": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/Encryption.lua",
     "discord": "https://discord.gg/tuWcU7Q"
 }
