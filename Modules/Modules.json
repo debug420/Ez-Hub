@@ -1,6 +1,6 @@
 {
     "ezlib": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/EzLib.lua",
-    "launcherdata": "https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Main",
+    "launcherdata": "https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/dev/Main",
     "lexermodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/LexerModule.lua",
     "aimbotmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/AimbotModule.lua",
     "createaimbotmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/CreateAimbotModule.lua",
