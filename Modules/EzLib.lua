@@ -1,235 +1,226 @@
----------------------------------------------------------------------
+local ezlib = {};
 
--- Essential Vars
+------------------------------------------------------------------------------
+-- Stores the functions and variables essential for the UI to work.
 
-local lib = {}
-local navdebounce = true
-local opentabdebounce = true
+local coreVars = {};	-- Stores essential vars
+local coreFuncs = {};	-- Stores essential funcs
+local coreGUIFuncs = {};	-- Stores functions that create the actual GUI
 
-local colors = {
+------------------------------------------------------------------------------
+-- coreVars definitions
+
+coreVars.navDebounce = true;
+coreVars.usingSlider = false;
+coreVars.elementX = 300;
+coreVars.sliderUsed = nil;
+
+-- Used for keybind ui.
+coreVars.awaitingInput = nil;	-- Stores the keybind that is requesting input from the user.
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+	if coreVars.awaitingInput then
+		coreVars.awaitingInput.button.Text = input.KeyCode.Name;
+		coreVars.awaitingInput = nil;
+	end
+end)
+
+coreVars.colors = {
 	Primary = Color3.fromRGB(41, 53, 68),
 	Secondary = Color3.fromRGB(35, 47, 62),
 	Tertiary = Color3.fromRGB(28, 41, 56),
 	Quaternary = Color3.fromRGB(18, 98, 159)
-}
+};
 
-local tabs = {};
-local activeframe;
-local draggingslider = {};
-local togglekeybind = Enum.KeyCode.RightShift;
+------------------------------------------------------------------------------
+-- Corefuncs definitions
 
----------------------------------------------------------------------
-
--- Core functions
-
-local function OpenTabLib(frame)
-	-- Closing of unwanted tabs
-	if activeframe == frame then return; end
-	activeframe:TweenPosition(activeframe.Position + UDim2.new(2,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true)
-	wait(0.3)
-	activeframe.Position = UDim2.new(0.5,0,2,0)
-
-	-- Opening of desired tab
-	frame.Position = UDim2.new(0.5,0,2,0)
-	frame:TweenPosition(UDim2.new(0.5,0,0.5,17), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true)
-end
-
-local function IsUsingSliderLib()
-	for i,v in pairs(draggingslider) do
-		if v then
-			return v;
+coreFuncs.addInstance = function(instance, properties)
+	if instance and type(properties) == "table" then
+		local ins = Instance.new(tostring(instance));
+		for i,v in pairs(properties or {}) do
+			ins[i] = v;
 		end
+		return ins;
+	else
+		error("Invalid input for addInstance function.");
 	end
-	return false;
 end
 
-local function DragifyLib(MainFrame)
+coreFuncs.roundify = function(element, radius)
+	coreFuncs.addInstance("UICorner", {
+		CornerRadius =  radius and UDim.new(0, radius) or UDim.new(0,4),
+		Parent = element
+	});
+end
 
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
+coreFuncs.isUsingSlider = function()
+	return coreVars.usingSlider;
+end
+
+coreFuncs.dragifyLib = function(mainFrame)
+	local dragging;
+	local dragInput;
+	local dragStart;
+	local startPos;
 
 	local function update(input)
-		if IsUsingSliderLib() then return; end
-		Delta = input.Position - dragStart
-		Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-		game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(.25), {Position = Position}):Play()
+		if coreFuncs.isUsingSlider() then return end
+		Delta = input.Position - dragStart;
+		Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y);
+		game:GetService("TweenService"):Create(mainFrame, TweenInfo.new(.25), {Position = Position}):Play();
 	end
 
-	MainFrame.InputBegan:Connect(function(input)
-		if IsUsingSliderLib() then return; end
+	mainFrame.InputBegan:Connect(function(input)
+		if coreFuncs.isUsingSlider() then return end
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = MainFrame.Position
+			dragging = true;
+			dragStart = input.Position;
+			startPos = mainFrame.Position;
 
 			input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
+					dragging = false;
 				end
 			end)
 		end
 	end)
 
-	MainFrame.InputChanged:Connect(function(input)
-		if IsUsingSliderLib() then return; end
+	mainFrame.InputChanged:Connect(function(input)
+		if coreFuncs.isUsingSlider() then return end
 		if (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-			dragInput = input
+			dragInput = input;
 		end
 	end)
 
 	game:GetService("UserInputService").InputChanged:Connect(function(input)
 		if input == dragInput and dragging then
-			update(input)
+			update(input);
 		end
 	end)
 end
 
-local function addInstance(instance, properties)
-	if instance and type(properties) == "table" then
-		local ins = Instance.new(tostring(instance))
-		for i,v in pairs(properties or {}) do
-			ins[i] = v
-		end
-		return ins;
-	else
-		error("Invalid input for addInstance function.")
-	end
-end
+coreFuncs.handleNavLib = function(frame, nav, close, activeFrame)
+	if coreVars.navDebounce then
+		coreVars.navDebounce = false;
 
-local function handlenavLib(frame, nav, close)
-	if navdebounce then
-		navdebounce = false
-
-		spawn(function()
+		coroutine.wrap(function()
 			if frame.Position ~= UDim2.new(-0.5, 0, 0.108, 0) then
-				frame:TweenPosition(UDim2.new(-0.5, 0, 0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)	-- Hide
-				if not activeframe then return; end
-				activeframe:TweenPosition(activeframe.Position - UDim2.new(0.32,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+				frame:TweenPosition(UDim2.new(-0.5, 0, 0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);	-- Hide
+				if not activeFrame then return end
+				activeFrame:TweenPosition(activeFrame.Position - UDim2.new(0,frame.Size.X.Offset + 20,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
 			else
-				frame:TweenPosition(UDim2.new(0, 0,0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)		-- Show
-				if not activeframe then return; end
-				activeframe:TweenPosition(activeframe.Position + UDim2.new(0.32,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+				frame:TweenPosition(UDim2.new(0, 0,0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);		-- Show
+				if not activeFrame then return end
+				activeFrame:TweenPosition(activeFrame.Position + UDim2.new(0,frame.Size.X.Offset + 20,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
 			end
-		end)
+		end)();
 
 		if nav.Visible then
 
 			for i = 1, 10 do
-				game:GetService("RunService").RenderStepped:Wait()
-				nav.Rotation = nav.Rotation - 20
+				game:GetService("RunService").RenderStepped:Wait();
+				nav.Rotation = nav.Rotation - 20;
 			end
-			nav.Visible = false
-			close.Rotation = nav.Rotation
-			close.Visible = true
+			nav.Visible = false;
+			close.Rotation = nav.Rotation;
+			close.Visible = true;
 			for i = 1, 8 do
-				game:GetService("RunService").RenderStepped:Wait()
-				close.Rotation = close.Rotation - 20
+				game:GetService("RunService").RenderStepped:Wait();
+				close.Rotation = close.Rotation - 20;
 			end
 
 		else
 
 			for i = 1, 8 do
-				game:GetService("RunService").RenderStepped:Wait()
-				close.Rotation = close.Rotation + 20
+				game:GetService("RunService").RenderStepped:Wait();
+				close.Rotation = close.Rotation + 20;
 			end
-			nav.Visible = true
-			nav.Rotation = close.Rotation
-			close.Visible = false
+			nav.Visible = true;
+			nav.Rotation = close.Rotation;
+			close.Visible = false;
 			for i = 1,10 do
-				game:GetService("RunService").RenderStepped:Wait()
-				nav.Rotation = nav.Rotation + 20
+				game:GetService("RunService").RenderStepped:Wait();
+				nav.Rotation = nav.Rotation + 20;
 			end
 
 		end
 
-		navdebounce = true
+		coreVars.navDebounce = true;
 	end
 end
 
-local function ApplyFrameResizingLib(scrollingframe)
-	local calc = scrollingframe:FindFirstChild("UIGridLayout") or scrollingframe:FindFirstChild("UIListLayout") or nil;
+coreFuncs.applyFrameResizingLib = function(scrollingframe)
+	local calc = scrollingframe:FindFirstChild("UIGridLayout") or scrollingframe:FindFirstChild("UIListLayout");
 	local function update()
 		pcall(function()
-			local cS = calc.AbsoluteContentSize
-			scrollingframe.CanvasSize = UDim2.new(0,scrollingframe.Size.X,0,cS.Y + 30)
+			local cS = calc.AbsoluteContentSize;
+			scrollingframe.CanvasSize = UDim2.new(0,scrollingframe.Size.X,0,cS.Y + 30);
 		end)
 	end
-	calc.Changed:Connect(update)
-	update()
+	calc.Changed:Connect(update);
+	update();
 end
 
-local function roundify(element, radius)
-	assert(element, "nigga u forgot element in roundify")
-	addInstance("UICorner", {
-		CornerRadius = radius or UDim.new(0,4),
-		Parent = element
-	})
-end
+------------------------------------------------------------------------------
+-- coreGUIFuncs definitions
 
----------------------------------------------------------------------
+coreGUIFuncs.newCreateGUI = function(name, pos, parent, colors)
 
--- Starter Lib Functions
-
-function lib:NewLib(Name, pos)
-	pos = pos or UDim2.new(0.5, 0, 0.5, 0)
-	Name = tostring(Name) or "Ez Hub"
-	local parent = addInstance("ScreenGui", {
-		["Parent"] = game.CoreGui,
+	local screenGui = coreFuncs.addInstance("ScreenGui", {
+		["Parent"] = parent,
 		["Name"] = "EzExc"
 	});
 
-	game:GetService("UserInputService").InputBegan:Connect(function(input)
-		if input.KeyCode == togglekeybind then
-			parent.Enabled = not parent.Enabled
-		end
-	end)
-
-	local window = addInstance("Frame", {
+	local window = coreFuncs.addInstance("Frame", {
 		["Position"] = pos,
 		["Name"] = "MainFrame",
 		["AnchorPoint"] = Vector2.new(0.5, 0.5),
-		["Size"] = UDim2.new(0, 300, 0, 230),
+		["Size"] = UDim2.new(0, 350, 0, 270),
 		["ClipsDescendants"] = true,
 		["BorderSizePixel"] = 0,
 		["BackgroundColor3"] = colors.Primary,
-		["Parent"] = parent
+		["Parent"] = screenGui
 	});
-	DragifyLib(window)
-	roundify(window)
-	local topframe = addInstance("Frame", {
+
+	coreFuncs.dragifyLib(window);
+	coreFuncs.roundify(window);
+
+	local topFrame = coreFuncs.addInstance("Frame", {
 		["Name"] = "TopFrame",
 		["BackgroundColor3"] = colors.Tertiary,
 		["BorderSizePixel"] = 0,
-		["Size"] = UDim2.new(0, 300, 0, 34),
+		["Size"] = UDim2.new(1, 0, 0, 34),
 		["ZIndex"] = 3,
 		["Parent"] = window
 	});
-	roundify(topframe)
-	addInstance("Frame", {
-		Size = UDim2.new(1, 0, 0, 4),
-		AnchorPoint = Vector2.new(0, 1),
-		Position = UDim2.new(0, 0, 1, 0),
-		BackgroundColor3 = colors.Tertiary,
-		ZIndex = 4,
-		BorderSizePixel = 0,
-		Parent = topframe
+
+	coreFuncs.roundify(topFrame);
+
+	coreFuncs.addInstance("Frame", {
+		["Size"] = UDim2.new(1, 0, 0, 4),
+		["AnchorPoint"] = Vector2.new(0, 1),
+		["Position"] = UDim2.new(0, 0, 1, 0),
+		["BackgroundColor3"] = colors.Tertiary,
+		["ZIndex"] = 4,
+		["BorderSizePixel"] = 0,
+		["Parent"] = topFrame
 	})
-	addInstance("TextLabel", {
+
+	coreFuncs.addInstance("TextLabel", {
 		["Name"] = "UIName",
 		["BackgroundTransparency"] = 1,
 		["TextColor3"] = Color3.fromRGB(255,255,255),
 		["AnchorPoint"] = Vector2.new(1,0.5),
 		["Position"] = UDim2.new(1,-10,0.5,0),
-		["Text"] = Name,
+		["Text"] = name,
 		["Size"] = UDim2.new(0, 200, 0, 30),
 		["TextWrapped"] = true,
 		["ZIndex"] = 3,
 		["TextXAlignment"] = Enum.TextXAlignment.Right,
-		["Parent"] = topframe
+		["Parent"] = topFrame
 	});
-	local closenav = addInstance("ImageButton", {
+
+	local closeNav = coreFuncs.addInstance("ImageButton", {
 		["Name"] = "CloseNavButton",
 		["AnchorPoint"] = Vector2.new(0.5, 0.5),
 		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
@@ -240,9 +231,10 @@ function lib:NewLib(Name, pos)
 		["Visible"] = false,
 		["ZIndex"] = 4,
 		["Image"] = "http://www.roblox.com/asset/?id=5969992570",
-		["Parent"] = topframe
+		["Parent"] = topFrame
 	});
-	local opennav = addInstance("ImageButton", {
+
+	local openNav = coreFuncs.addInstance("ImageButton", {
 		["Name"] = "NavButton",
 		["AnchorPoint"] = Vector2.new(0.5, 0.5),
 		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
@@ -252,662 +244,1161 @@ function lib:NewLib(Name, pos)
 		["Size"] = UDim2.new(0, 28, 0, 28),
 		["ZIndex"] = 4,
 		["Image"] = "http://www.roblox.com/asset/?id=5942241281",
-		["Parent"] = topframe
-	});    
-	local navframe = addInstance("ScrollingFrame", {
+		["Parent"] = topFrame
+	});
+
+	local navFrame = coreFuncs.addInstance("ScrollingFrame", {
 		["Name"] = "NavFrame",
 		["Active"] = true,
 		["BackgroundColor3"] = colors.Tertiary,
 		["BorderSizePixel"] = 0,
 		["Position"] = UDim2.new(-0.5, 0, 0.108000003, 0),
-		["Size"] = UDim2.new(0, 100, 0, 281),
+		["ScrollBarThickness"] = 0,
+		["Size"] = UDim2.new(0, 130, 1, -34),
 		["ZIndex"] = 2,
 		["CanvasSize"] = UDim2.new(0, 0, 0, 0),
 		["Parent"] = window
 	});
-	addInstance("UIGridLayout", {
+
+	coreFuncs.addInstance("UIGridLayout", {
 		["HorizontalAlignment"] = Enum.HorizontalAlignment.Center,
 		["SortOrder"] = Enum.SortOrder.LayoutOrder,
 		["CellPadding"] = UDim2.new(0, 5, 0, 7),
-		["CellSize"] = UDim2.new(0, 75, 0, 25),
-		["Parent"] = navframe
+		["CellSize"] = UDim2.new(0, 95, 0, 25),
+		["Parent"] = navFrame
 	});
-	addInstance("UIPadding", {
+
+	coreFuncs.addInstance("UIPadding", {
 		["PaddingBottom"] = UDim.new(0, 15),
 		["PaddingTop"] = UDim.new(0, 20),
-		["Parent"] = navframe
+		["Parent"] = navFrame
 	});
 
-	opennav.MouseButton1Click:Connect(function() handlenavLib(navframe, opennav, closenav) end)
-	closenav.MouseButton1Click:Connect(function() handlenavLib(navframe, opennav, closenav) end)
+	coreFuncs.applyFrameResizingLib(navFrame);
+	return ({["opennav"] = openNav, ["closenav"] = closeNav, ["navframe"] = navFrame, ["screengui"] = screenGui, ["window"] = window});
 
-	return parent;
 end
 
-function lib:CreateNotice(Title, desc, callback)
+coreGUIFuncs.newTab = function(libInstance, name, colors)
 
-	local Notice = addInstance("ScreenGui", {
-		Name = "Notice",
-		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
-		Parent = game.CoreGui
-	})
-
-	local Frame = addInstance("Frame", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Primary,
-		BorderSizePixel = 0,
-		Position = UDim2.new(0.5, 0, 0.5, 0),
-		Size = UDim2.new(0, 327, 0, 204),
-		Parent = Notice
-	})
-
-	local TopFrame = addInstance("Frame", {
-		Name = "TopFrame",
-		BackgroundColor3 = colors.Tertiary,
-		BorderSizePixel = 0,
-		Size = UDim2.new(1, 0, 0, 35),
-		Parent = Frame
-	})
-
-	local TextLabel = addInstance("TextLabel", {
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 15, 0, 0),
-		Size = UDim2.new(0.800000012, 0, 1, 0),
-		Font = Enum.Font.SourceSans,
-		Text = Title or "Notice",
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 19.000,
-		TextXAlignment = Enum.TextXAlignment.Left,
-		Parent = TopFrame
-	})
-
-	local TextLabel_2 = addInstance("TextLabel", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0.5, 0, 0.5, 5),
-		Size = UDim2.new(1, -30, 1, -120),
-		Font = Enum.Font.SourceSans,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 16.000,
-		TextYAlignment = Enum.TextYAlignment.Top,
-		TextWrapped = true,
-		Text = desc or "Bruh you forgot to put desc",
-		Parent = Frame
-	})
-
-	local TextButton = addInstance("TextButton", {
-		BackgroundColor3 = colors.Tertiary,
-		Position = UDim2.new(0.516819537, 0, 0.799019575, 0),
-		Size = UDim2.new(0, 143, 0, 31),
-		Font = Enum.Font.SourceSans,
-		Text = "Yes",
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 16.000,
-		Parent = Frame
-	})
-
-	local TextButton_2 = addInstance("TextButton", {
-		BackgroundColor3 = colors.Tertiary,
-		Position = UDim2.new(0.0458715595, 0, 0.799019575, 0),
-		Size = UDim2.new(0, 143, 0, 31),
-		Font = Enum.Font.SourceSans,
-		Text = "No",
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 16.000,
-		Parent = Frame
-	})
-
-	local clicked = false
-	TextButton.MouseButton1Click:Connect(function()
-		clicked = true
-		Notice:Destroy()
-		callback(TextButton.Text)
-	end)
-	TextButton_2.MouseButton1Click:Connect(function()
-		clicked = true
-		Notice:Destroy()
-		callback(TextButton_2.Text)
-	end)
-
-	repeat wait() until clicked
-end
-
-function lib:NewSection(libins, value)
-	if libins:IsA("ScreenGui") and libins:FindFirstChild("MainFrame") and libins.MainFrame.TopFrame then
-		local button = addInstance("TextButton", {
-			["Text"] = tostring(value),
-			["Name"] = tostring(value),
-			["BorderSizePixel"] = 0,
-			["BackgroundColor3"] = colors.Primary,
-			["TextColor3"] = Color3.fromRGB(255,255,255),
-			["ZIndex"] = 3,
-			["Parent"] = libins.MainFrame.NavFrame
-		});
-		local blueline = addInstance("Frame", {
-			BackgroundColor3 = colors.Quaternary,
-			Size = UDim2.new(0, 2, 1, 0),
-			ZIndex = 4,
-			Parent = button
-		});
-		addInstance("UICorner", {
-			CornerRadius = UDim.new(0, 8),
-			Parent = blueline
-		})
-		local window = addInstance("ScrollingFrame", {
-			["Name"] = tostring(value),
-			["BorderSizePixel"] = 0,
-			["BackgroundTransparency"] = 1,
-			["AnchorPoint"] = Vector2.new(0.5,0.5),
-			["Position"] = UDim2.new(0.5,0,2,0),
-			["Size"] = UDim2.new(1, 0, 1, -34),
-			["ScrollBarImageColor3"] = Color3.fromRGB(93, 93, 93),
-			["Parent"] = libins.MainFrame
-		});
-		addInstance("UIListLayout", {
-			["HorizontalAlignment"] = Enum.HorizontalAlignment.Center,
-			["SortOrder"] = Enum.SortOrder.LayoutOrder,
-			["Padding"] = UDim.new(0, 7),
-			["Parent"] = window
-		});
-		addInstance("UIPadding", {
-			["PaddingBottom"] = UDim.new(0, 15),
-			["PaddingTop"] = UDim.new(0, 10),
-			["Parent"] = window
-		});
-		table.insert(tabs, 1, window)
-		button.MouseButton1Click:Connect(function()
-			if not opentabdebounce then return end
-			opentabdebounce = false
-			OpenTabLib(window);
-			handlenavLib(libins.MainFrame.NavFrame, libins.MainFrame.TopFrame.NavButton, libins.MainFrame.TopFrame.CloseNavButton)
-			activeframe = window;
-			opentabdebounce = true
-		end)
-		ApplyFrameResizingLib(window)
-		return window;
-	else error("Invalid arg supplied to NewSection.") end
-end
-
-function lib:SetActive(section)
-	section.Position = UDim2.new(0.5,0,0.5,17)
-	activeframe = section;
-end
-
-function lib:SetToggleKeybind(keybind)
-	togglekeybind = keybind
-end
-
----------------------------------------------------------------------
-
--- Asset Functions
-
-function lib:NewButton(section, value, func)
-
-	local button = addInstance("TextButton", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Secondary,
-		BorderSizePixel = 0,
-		Size = UDim2.new(0, 250, 0, 35),
-		Font = Enum.Font.SourceSans,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		Text = value,
-		Parent = section
+	local button = coreFuncs.addInstance("TextButton", {
+		["Text"] = tostring(name),
+		["Name"] = tostring(name),
+		["BorderSizePixel"] = 0,
+		["BackgroundColor3"] = colors.Primary,
+		["TextColor3"] = Color3.fromRGB(255,255,255),
+		["ZIndex"] = 3,
+		["Parent"] = libInstance.MainFrame.NavFrame
 	});
 
-	roundify(button)
+	local blueLine = coreFuncs.addInstance("Frame", {
+		["BackgroundColor3"] = colors.Quaternary,
+		["Size"] = UDim2.new(0, 2, 1, 0),
+		["ZIndex"] = 4,
+		["Parent"] = button
+	});
 
-	button.MouseButton1Click:Connect(function()
-		spawn(function()
-			pcall(function() func() end)
-		end)
-	end)
+	coreFuncs.roundify(blueLine, 8);
 
-	return button;
+	local window = coreFuncs.addInstance("ScrollingFrame", {
+		["Name"] = tostring(name),
+		["BorderSizePixel"] = 0,
+		["BackgroundTransparency"] = 1,
+		["AnchorPoint"] = Vector2.new(0.5,0.5),
+		["Position"] = UDim2.new(0.5,0,2,0),
+		["Size"] = UDim2.new(1, 0, 1, -34),
+		["ScrollBarImageColor3"] = colors.Tertiary,
+		["Parent"] = libInstance.MainFrame
+	});
+
+	coreFuncs.addInstance("UIListLayout", {
+		["HorizontalAlignment"] = Enum.HorizontalAlignment.Center,
+		["SortOrder"] = Enum.SortOrder.LayoutOrder,
+		["Padding"] = UDim.new(0, 7),
+		["Parent"] = window
+	});
+
+	coreFuncs.addInstance("UIPadding", {
+		["PaddingBottom"] = UDim.new(0, 15),
+		["PaddingTop"] = UDim.new(0, 10),
+		["Parent"] = window
+	});
+	
+	coreFuncs.applyFrameResizingLib(window);
+	return ({["window"] = window, ["button"] = button});
 
 end
 
-function lib:NewCheckBox(section, value, status, func)
+coreGUIFuncs.newButton = function(tabWindow, name, colors)
 
-	local frame = addInstance("Frame", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Secondary,
-		BorderSizePixel = 0,
-		Size = UDim2.new(0, 250, 0, 35),
-		Parent = section
+	local button = coreFuncs.addInstance("TextButton", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Secondary,
+		["BorderSizePixel"] = 0,
+		["Size"] = UDim2.new(0, coreVars.elementX, 0, 35),
+		["Font"] = Enum.Font.SourceSans,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["Text"] = name,
+		["Parent"] = tabWindow
 	});
 
-	roundify(frame)
+	coreFuncs.roundify(button);
+	return ({["button"] = button});
 
-	addInstance("TextLabel", {
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 15, 0, 0),
-		Size = UDim2.new(0, 153, 0, 35),
-		Font = Enum.Font.SourceSans,
-		Text = value,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		TextXAlignment = Enum.TextXAlignment.Left,
-		Parent = frame
+end
+
+coreGUIFuncs.newCheckbox = function(tabWindow, name, state, colors)
+
+	local frame = coreFuncs.addInstance("Frame", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Secondary,
+		["BorderSizePixel"] = 0,
+		["Size"] = UDim2.new(0, coreVars.elementX, 0, 35),
+		["Parent"] = tabWindow
 	});
 
-	local toggle = addInstance("TextButton", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = Color3.fromRGB(149, 0, 0),
-		BorderSizePixel = 0,
-		Position = UDim2.new(0.930000007, 0, 0.5, 0),
-		Size = UDim2.new(0, 20, 0, 20),
-		AutoButtonColor = false,
-		Font = Enum.Font.SourceSans,
-		Text = "",
-		TextColor3 = Color3.fromRGB(255, 0, 0),
-		TextSize = 14.000,
-		Parent = frame
-	});
-	roundify(toggle)
+	coreFuncs.roundify(frame);
 
-	local state = status
+	coreFuncs.addInstance("TextLabel", {
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 15, 0, 0),
+		["Size"] = UDim2.new(0, 153, 0, 35),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextXAlignment"] = Enum.TextXAlignment.Left,
+		["Parent"] = frame
+	});
+
+	local toggle = coreFuncs.addInstance("TextButton", {
+		["AnchorPoint"] = Vector2.new(1, 0.5),
+		["BackgroundColor3"] = Color3.fromRGB(149, 0, 0),
+		["BorderSizePixel"] = 0,
+		["Position"] = UDim2.new(1, -10, 0.5, 0),
+		["Size"] = UDim2.new(0, 20, 0, 20),
+		["AutoButtonColor"] = false,
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = "",
+		["TextColor3"] = Color3.fromRGB(255, 0, 0),
+		["TextSize"] = 14.000,
+		["Parent"] = frame
+	});
+
+	coreFuncs.roundify(toggle);
 	if state then
-		toggle.BackgroundColor3 = Color3.fromRGB(0, 149, 74)
+		toggle.BackgroundColor3 = Color3.fromRGB(0, 149, 74);
 	end
-	toggle.MouseButton1Click:Connect(function()
-		state = not state;
-		if state then
-			game:GetService("TweenService"):Create(toggle, TweenInfo.new(0.4), {BackgroundColor3 = Color3.fromRGB(0, 149, 74)}):Play()
-		else
-			game:GetService("TweenService"):Create(toggle, TweenInfo.new(0.4), {BackgroundColor3 = Color3.fromRGB(149, 0, 0)}):Play()
-		end
-		spawn(function()
-			pcall(function()
-				func(state)
-			end)
-		end)
-	end)
-
-	return toggle;
+	return ({["toggle"] = toggle, ["frame"] = frame});
 
 end
 
-function lib:NewTextBox(section, value, status, func)
-
-	local frame = addInstance("Frame", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Secondary,
-		BorderSizePixel = 0,
-		Size = UDim2.new(0, 250, 0, 35),
-		Parent = section
-	});
-
-	roundify(frame)
-	
-	addInstance("TextLabel", {
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 15, 0, 0),
-		Size = UDim2.new(0, 116, 0, 35),
-		Font = Enum.Font.SourceSans,
-		Text = value or "",
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		TextXAlignment = Enum.TextXAlignment.Left,
-		Parent = frame
-	});
-	
-	local textbox = addInstance("TextBox", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Primary,
-		BorderSizePixel = 0,
-		Position = UDim2.new(0.791999996, 0, 0.5, 0),
-		Size = UDim2.new(0, 88, 0, 21),
-		Font = Enum.Font.SourceSans,
-		PlaceholderText = "Click to type...",
-		Text = status or "",
-		TextColor3 = Color3.fromRGB(255,255,255),
-		TextSize = 13.000,
-		Parent = frame
-	});
-
-	textbox:GetPropertyChangedSignal("Text"):Connect(function()
-		spawn(function()
-			pcall(function() func(textbox.Text) end)
-		end)
-	end)
-
-	return textbox;
-
-end
-
-function lib:NewSlider(section, value, default, min, max, func)
+coreGUIFuncs.newSlider = function(tabWindow, name, default, min, max, colors)
 	
 	default = math.floor(math.clamp(default, min, max) or min + 0.5)
 
-	local Frame = addInstance("Frame", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Secondary,
-		BorderSizePixel = 0,
-		Size = UDim2.new(0, 250, 0, 62),
-		Parent = section
-	});
-	roundify(Frame)
-	local SliderFrame = addInstance("Frame", {
-		BackgroundColor3 = colors.Primary,
-		Position = UDim2.new(0.0599999987, 0, 0.677419364, 0),
-		Size = UDim2.new(0, 223, 0, 4),
-		Parent = Frame
-	});
-	local Indicator = addInstance("Frame", {
-		Name = "Indicator",
-		AnchorPoint = Vector2.new(0, 0.5),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		Position = UDim2.new(0, 0, 0.5, 0),
-		Size = UDim2.new(0, 12, 0, 12),
-		Parent = SliderFrame
-	});
-	local IndicatorTrail = addInstance("Frame", {
-		Name = "Indicator",
-		AnchorPoint = Vector2.new(0, 0.5),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		Position = UDim2.new(0, 0, 0.5, 0),
-		Size = UDim2.new(0, 0, 1, 0),
-		BorderSizePixel = 0,
-		Parent = SliderFrame
-	});
-	addInstance("TextLabel", {
-		Name = "Value",
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 15, 0, 0),
-		Size = UDim2.new(0, 153, 0, 35),
-		Font = Enum.Font.SourceSans,
-		Text = value,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		TextXAlignment = Enum.TextXAlignment.Left,
-		Parent = Frame
-	});
-	local ValueDisplay = addInstance("TextLabel", {
-		Name = "ValueDisplayer",
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 190, 0, 0),
-		Size = UDim2.new(0, 48, 0, 35),
-		Font = Enum.Font.SourceSans,
-		Text = 0,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		TextWrapped = true,
-		TextXAlignment = Enum.TextXAlignment.Right,
-		Parent = Frame
-	});
-	addInstance("UICorner", {
-		CornerRadius = UDim.new(0,8),
-		Parent = Indicator
-	});
-	addInstance("UICorner", {
-		CornerRadius = UDim.new(0,8),
-		Parent = IndicatorTrail
-	});
-	addInstance("UICorner", {
-		CornerRadius = UDim.new(0,8),
-		Parent = SliderFrame
+	local frame = coreFuncs.addInstance("Frame", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Secondary,
+		["BorderSizePixel"] = 0,
+		["Size"] = UDim2.new(0, coreVars.elementX, 0, 62),
+		["Parent"] = tabWindow
 	});
 
-	ValueDisplay.Text = default
-	Indicator.Position = UDim2.new((default - min)/(max - min), 0, 0.5, 0)
-	IndicatorTrail.Size = UDim2.new((default - min)/(max - min), 0, 0.5, 0)
+	coreFuncs.roundify(frame);
 
-	local function slide(input, ind, trail)
-		local pos = UDim2.new(math.clamp((input.Position.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1), 0, 0.5, 0)
-		ind:TweenPosition(pos, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-		trail:TweenSize(pos, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-		local s = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
-		spawn(function()
-			pcall(function()
-				ValueDisplay.Text = tostring(s)
-				func(s)
-			end)
-		end)
-	end
+	local sliderFrame = coreFuncs.addInstance("Frame", {
+		["BackgroundColor3"] = colors.Primary,
+		["Position"] = UDim2.new(0, 15, 0.677419364, 0),
+		["Size"] = UDim2.new(1, -31, 0, 4),
+		["Parent"] = frame
+	});
 
-	Indicator.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			slide(input, Indicator, IndicatorTrail)
-			draggingslider[Indicator] = true
-		end
-	end)
+	local indicator = coreFuncs.addInstance("Frame", {
+		["Name"] = "Indicator",
+		["AnchorPoint"] = Vector2.new(0, 0.5),
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["Position"] = UDim2.new(0, 0, 0.5, 0),
+		["Size"] = UDim2.new(0, 12, 0, 12),
+		["Parent"] = sliderFrame
+	});
 
-	Indicator.InputEnded:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			draggingslider[Indicator] = false
-		end
-	end)
+	local indicatorTrail = coreFuncs.addInstance("Frame", {
+		["Name"] = "Indicator",
+		["AnchorPoint"] = Vector2.new(0, 0.5),
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["Position"] = UDim2.new(0, 0, 0.5, 0),
+		["Size"] = UDim2.new(0, 0, 1, 0),
+		["BorderSizePixel"] = 0,
+		["Parent"] = sliderFrame
+	});
 
-	game:GetService("UserInputService").InputChanged:Connect(function(input)
-		if draggingslider[Indicator] and input.UserInputType == Enum.UserInputType.MouseMovement then
-			slide(input, Indicator, IndicatorTrail)		
-		end
-	end)
+	coreFuncs.addInstance("TextLabel", {
+		["Name"] = "Value",
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 15, 0, 0),
+		["Size"] = UDim2.new(0, 153, 0, 35),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextXAlignment"] = Enum.TextXAlignment.Left,
+		["Parent"] = frame
+	});
+
+	local valueDisplay = coreFuncs.addInstance("TextLabel", {
+		["Name"] = "ValueDisplayer",
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["AnchorPoint"] = Vector2.new(1, 0);
+		["Position"] = UDim2.new(1, -15, 0, 0),
+		["Size"] = UDim2.new(0, 48, 0, 35),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = 0,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextWrapped"] = true,
+		["TextXAlignment"] = Enum.TextXAlignment.Right,
+		["Parent"] = frame
+	});
+
+	coreFuncs.roundify(indicator, 8);
+	coreFuncs.roundify(indicatorTrail, 8);
+	coreFuncs.roundify(sliderFrame, 8);
+
+	valueDisplay.Text = default;
+	indicator.Position = UDim2.new((default - min)/(max - min), 0, 0.5, 0);
+	indicatorTrail.Size = UDim2.new((default - min)/(max - min), 0, 0.5, 0);
+	return ({["indicator"] = indicator, ["indicatortrail"] = indicatorTrail, ["valuedisplay"] = valueDisplay, ["sliderframe"] = sliderFrame});
 
 end
 
-function lib:NewKeyBind(section, value, status, func)
-	local awaitinginput = false
+coreGUIFuncs.newKeybind = function(tabWindow, name, state, colors)
 
-	local frame = addInstance("Frame", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Secondary,
-		BorderSizePixel = 0,
-		Size = UDim2.new(0, 250, 0, 35),
-		Parent = section
+	local frame = coreFuncs.addInstance("Frame", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Secondary,
+		["BorderSizePixel"] = 0,
+		["Size"] = UDim2.new(0, coreVars.elementX, 0, 35),
+		["Parent"] = tabWindow
 	});
 
-	addInstance("TextLabel", {
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 15, 0, 0),
-		Size = UDim2.new(0, 153, 0, 35),
-		Font = Enum.Font.SourceSans,
-		Text = value,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		TextXAlignment = Enum.TextXAlignment.Left,
-		Parent = frame
+	local textLabel = coreFuncs.addInstance("TextLabel", {
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 15, 0, 0),
+		["Size"] = UDim2.new(0, 153, 0, 35),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextXAlignment"] = Enum.TextXAlignment.Left,
+		["Parent"] = frame
 	});
 
-	local button = addInstance("TextButton", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Primary,
-		BorderSizePixel = 0,
-		Position = UDim2.new(0.792500019, 0, 0.5, 0),
-		Size = UDim2.new(0, 87, 0, 20),
-		AutoButtonColor = false,
-		Font = Enum.Font.SourceSans,
-		Text = status.Name,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		Parent = frame
+	local button = coreFuncs.addInstance("TextButton", {
+		["AnchorPoint"] = Vector2.new(1, 0.5),
+		["BackgroundColor3"] = colors.Primary,
+		["BorderSizePixel"] = 0,
+		["Position"] = UDim2.new(1, -10, 0.5, 0),
+		["Size"] = UDim2.new(0, 87, 0, 20),
+		["AutoButtonColor"] = false,
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = state.Name,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["Parent"] = frame
 	});
 
-	button.MouseButton1Click:Connect(function()
-		awaitinginput = true
-		button.Text = "..."
-	end)
+	return ({["textlabel"] = textLabel, ["button"] = button, ["frame"] = frame});
 
-	game:GetService("UserInputService").InputBegan:Connect(function(input)
-		if awaitinginput then
-			button.Text = input.KeyCode.Name
-			spawn(function()
-				pcall(function()
-					func(input)
-				end)
-			end)
-			awaitinginput = false
-		end
-	end)
 end
 
-function lib:NewDiv(section)
-	local spacebox = addInstance("Frame", {
-		Name = "SpaceBox",
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 0, 0.10204082, 0),
-		Size = UDim2.new(1, 0, 0, 25),
-		Parent = section
-	});
-	local div = addInstance("TextLabel", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = colors.Tertiary,
-		Position = UDim2.new(0.5, 0, 0.5, 0),
-		Size = UDim2.new(0, 260, 0, 5),
-		Font = Enum.Font.SourceSans,
-		Text = "",
-		TextColor3 = Color3.fromRGB(0, 0, 0),
-		TextSize = 14.000,
-		Parent = spacebox
-	});
-	addInstance("UICorner", {
-		CornerRadius = UDim.new(0,15),
-		Parent = div
-	});
-end
+coreGUIFuncs.newTextbox = function(tabWindow, name, state, colors)
 
-function lib:NewDesc(section, value)
-	local spacebox = addInstance("Frame", {
-		Name = "SpaceBox",
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 0, 0.10204082, 0),
-		Size = UDim2.new(1, 0, 0, 35),
-		Parent = section
+	local frame = coreFuncs.addInstance("Frame", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Secondary,
+		["BorderSizePixel"] = 0,
+		["Size"] = UDim2.new(0, coreVars.elementX, 0, 35),
+		["Parent"] = tabWindow
 	});
-	addInstance("TextLabel", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0.5, 5, 0.5, 0),
-		Size = UDim2.new(0, 249, 0, 31),
-		Font = Enum.Font.SourceSans,
-		Text = value or "Description",
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 14.000,
-		TextXAlignment = Enum.TextXAlignment.Left,
-		Parent = spacebox
-	});
-end
 
-function lib:NewTitle(section, value)
-	local spacebox = addInstance("Frame", {
-		Name = "SpaceBox",
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0, 0, 0.10204082, 0),
-		Size = UDim2.new(1, 0, 0, 23),
-		Parent = section
-	});
-	addInstance("TextLabel", {
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		Position = UDim2.new(0.5, 5, 0.5, 0),
-		Size = UDim2.new(0, 249, 1, 0),
-		Font = Enum.Font.SourceSans,
-		Text = value or "Title",
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextSize = 18.000,  
-		TextXAlignment = Enum.TextXAlignment.Left,
-		Parent = spacebox
-	});
-end
-
-function lib:NewNotif(TitleC, DescC, DelayS)
-
-	if game.CoreGui:FindFirstChild("EzNotif") then
-		game.CoreGui:FindFirstChild("EzNotif").MainFrame:TweenSize(UDim2.new(0, 0, 0, 117), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-		game.CoreGui:FindFirstChild("EzNotif").MainFrame.ContentFrame.DescLabel.Text = ""
-		game.CoreGui:FindFirstChild("EzNotif").MainFrame.TopFrame.TitleLabel.Text = ""
-		wait(0.5)
-		game.CoreGui:FindFirstChild("EzNotif"):Destroy()
-	end
+	coreFuncs.roundify(frame);
 	
-	local ScreenGui = {
-		ScreenGui = Instance.new("ScreenGui"),
-		MainFrame = Instance.new("Frame"),
-		TopFrame = Instance.new("Frame"),
-		TitleLabel = Instance.new("TextLabel"),
-		ContentFrame = Instance.new("Frame"),
-		DescLabel = Instance.new("TextLabel"),
+	coreFuncs.addInstance("TextLabel", {
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 15, 0, 0),
+		["Size"] = UDim2.new(0, 116, 0, 35),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name or "",
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextXAlignment"] = Enum.TextXAlignment.Left,
+		["Parent"] = frame
+	});
+	
+	local textbox = coreFuncs.addInstance("TextBox", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Primary,
+		["BorderSizePixel"] = 0,
+		["Position"] = UDim2.new(0.791999996, 0, 0.5, 0),
+		["Size"] = UDim2.new(0, 88, 0, 21),
+		["Font"] = Enum.Font.SourceSans,
+		["PlaceholderText"] = "Click to type...",
+		["Text"] = state or "",
+		["TextColor3"] = Color3.fromRGB(255,255,255),
+		["TextSize"] = 13.000,
+		["Parent"] = frame
+	});
+
+	return ({["textbox"] = textbox, ["frame"] = frame});
+
+end
+
+coreGUIFuncs.newDiv = function(tabWindow, colors)
+	
+	local spacebox = coreFuncs.addInstance("Frame", {
+		["Name"] = "SpaceBox",
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 0, 0.10204082, 0),
+		["Size"] = UDim2.new(1, 0, 0, 25),
+		["Parent"] = tabWindow
+	});
+
+	local div = coreFuncs.addInstance("TextLabel", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Tertiary,
+		["Position"] = UDim2.new(0.5, 0, 0.5, 0),
+		["Size"] = UDim2.new(0, coreVars.elementX + 10, 0, 5),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = "",
+		["TextColor3"] = Color3.fromRGB(0, 0, 0),
+		["TextSize"] = 14.000,
+		["Parent"] = spacebox
+	});
+
+	coreFuncs.roundify(div, 15);
+
+	return ({["spacebox"] = spacebox});
+
+end
+
+coreGUIFuncs.newDesc = function(tabWindow, name)
+
+	local spacebox = coreFuncs.addInstance("Frame", {
+		["Name"] = "SpaceBox",
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 0, 0.10204082, 0),
+		["Size"] = UDim2.new(1, 0, 0, 35),
+		["Parent"] = tabWindow
+	});
+
+	coreFuncs.addInstance("TextLabel", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0.5, 5, 0.5, 0),
+		["Size"] = UDim2.new(0, coreVars.elementX, 0, 31),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name or "Description",
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextXAlignment"] = Enum.TextXAlignment.Left,
+		["Parent"] = spacebox
+	});
+
+	return ({["spacebox"] = spacebox});
+
+end
+
+coreGUIFuncs.newTitle = function(tabWindow, name)
+	
+	local spacebox = coreFuncs.addInstance("Frame", {
+		["Name"] = "SpaceBox",
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 0, 0.10204082, 0),
+		["Size"] = UDim2.new(1, 0, 0, 23),
+		["Parent"] = tabWindow
+	});
+
+	coreFuncs.addInstance("TextLabel", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0.5, 5, 0.5, 0),
+		["Size"] = UDim2.new(0, coreVars.elementX, 1, 0),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name or "Title",
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 18.000,  
+		["TextXAlignment"] = Enum.TextXAlignment.Left,
+		["Parent"] = spacebox
+	});
+
+	return ({["spacebox"] = spacebox});
+
+end
+
+coreGUIFuncs.newNotifText = function(longText, text, parent)
+
+	local frame = coreFuncs.addInstance("Frame", {
+		["Parent"] = parent,
+		["AnchorPoint"] = Vector2.new(0, 1),
+		["BackgroundColor3"] = Color3.fromRGB(41, 53, 68),
+		["Position"] = UDim2.new(0, -210, 1, -10),	-- Hidden position (when shown it should be 0, 10, 1, -10)
+		["Size"] = UDim2.new(0, 200, 0, longText and 90 or 40)
+	});
+	
+	coreFuncs.roundify(frame, 4);
+	
+	local textLabel = coreFuncs.addInstance("TextLabel", {
+		["Parent"] = frame,
+		["AnchorPoint"] = Vector2.new(0.5, 0),
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0.5, 0, 0, 0),
+		["Size"] = UDim2.new(1, -20, 1, 0),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = text,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextWrapped"] = true
+	});
+
+	return ({["frame"] = frame, ["textlabel"] = textLabel});
+
+end
+
+coreGUIFuncs.newNotifButton = function(text, buttonLT, buttonRT, parent)
+
+	local frame = coreFuncs.addInstance("Frame", {
+		["Parent"] = parent,
+		["AnchorPoint"] = Vector2.new(0, 1),
+		["BackgroundColor3"] = Color3.fromRGB(41, 53, 68),
+		["Position"] = UDim2.new(0, -210, 1, -10),	-- Hidden position (when shown it should be 0, 10, 1, -10)
+		["Size"] = UDim2.new(0, 200, 0, 90)
+	});
+	
+	coreFuncs.roundify(frame, 4);
+	
+	local textLabel = coreFuncs.addInstance("TextLabel", {
+		["Parent"] = frame,
+		["AnchorPoint"] = Vector2.new(0.5, 0),
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0.5, 0, 0, 8),
+		["Size"] = UDim2.new(1, -20, 0, 45),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = text,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextWrapped"] = true
+	});
+
+	local buttonL = coreFuncs.addInstance("TextButton", {
+		["Name"] = "ButtonL",
+		["Parent"] = frame,
+		["AnchorPoint"] = Vector2.new(0, 0.5),
+		["BackgroundColor3"] = Color3.fromRGB(35, 47, 62),
+		["Position"] = UDim2.new(0, 10, 1, -25),
+		["Size"] = UDim2.new(0.5, -13, 0.5, -20),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = buttonLT or "Yes",
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000
+	});
+
+	local buttonR = coreFuncs.addInstance("TextButton", {
+		["Name"] = "ButtonL",
+		["Parent"] = frame,
+		["AnchorPoint"] = Vector2.new(1, 0.5),
+		["BackgroundColor3"] = Color3.fromRGB(35, 47, 62),
+		["Position"] = UDim2.new(1, -10, 1, -25),
+		["Size"] = UDim2.new(0.5, -13, 0.5, -20),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = buttonRT or "Yes",
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000
+	});
+
+	coreFuncs.roundify(buttonL);
+	coreFuncs.roundify(buttonR);
+	return ({["frame"] = frame, ["textlabel"] = textLabel, ["buttonl"] = buttonL, ["buttonr"] = buttonR});
+
+end
+
+------------------------------------------------------------------------------
+-- "Template" like class for interactable elements (ex. button, slider, checkbox)
+
+local interactableElements = {};
+interactableElements.new = function()
+	local self = {};
+
+	-- Not sure why you would want to use this but I made it available
+	self.changeCallback = function(callback)
+		error("Pure Virtual Function");
+	end
+
+	-- Fires callback associated with the element
+	self.fireCallback = function(...)
+		error("Pure Virtual Function");
+	end
+
+	-- Changes text description of each element
+	self.changeText = function(text)
+		error("Pure Virtual Function");
+	end
+
+	-- NOTE: THE BELOW TWO FUNCTIONS MAY BE CONFUSING.
+	-- YOU CAN REMEMBER IT THIS WAY. ANY API CALLS THAT REQUIRE
+	-- YOU TO PASS IN AN ELEMENT, YOU WILL HAVE TO USE getMainInstance
+	-- GETINSTANCE IS NOT USED FOR ANYTHING IN THE API. IT'S SIMPLY SOMETHING
+	-- YOU CAN USE TO EDIT YOUR GUI EXTENSIVELY
+
+	-- Returns the main instance that holds an array
+	-- of locations of essential instances. Use this for API calls
+	-- such as manually calling gui.openTab(tab.getMainInstance())
+	self.getMainInstance = function()
+		error("Pure Virtual Function");
+	end
+
+	-- Returns the most relevant parent instance in case you want to make any manual adjustments
+	-- Make sure that you know what it is returning as it is different for each element
+	-- Also make sure that you know how the hierarchy of the instance works before
+	-- accessing any of its children
+	self.getInstance = function()
+		error("Pure Virtual Function");
+	end
+
+	-- I personally don't recommend using this function
+	-- Avoid it as much as you can as it will cause errors if you
+	-- attempt to call one of it's functions again later down your code
+	-- treat it like how you would treat raw pointers in cpp as an example
+	-- so if you do use it, be cautious with it.
+	self.delete = function()
+		error("Pure Virtual Function");
+	end
+
+	-----------------------------------------
+	-- State related methods
+
+	-- Returns state of a valid element
+	-- does not work on buttons.
+	self.getState = function() error("getState not defined for element") end;
+	
+	-- This method will not fire the callback function
+	-- If you want to fire callback, checkbox.fireCallback() after
+	-- changing state.
+	self.setState = function() error("setState not defined for element") end;
+
+	return self;
+end
+
+------------------------------------------------------------------------------
+-- ezlib.enum
+
+ezlib.enum = {
+	notifType = {
+		text = 0,
+		longText = 1,
+		buttons = 2
+	},
+	button = {
+		left = 0,
+		right = 1
 	}
+};
 
-	ScreenGui.ScreenGui.Parent = game.CoreGui
-	ScreenGui.ScreenGui.Name = "EzNotif"
-	ScreenGui.ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+------------------------------------------------------------------------------
+-- ezlib.create and newNotification Class
 
-	ScreenGui.MainFrame.Name = "MainFrame"
-	ScreenGui.MainFrame.Parent = ScreenGui.ScreenGui
-	ScreenGui.MainFrame.AnchorPoint = Vector2.new(0, 0.5)
-	ScreenGui.MainFrame.BackgroundColor3 = colors.Primary
-	ScreenGui.MainFrame.BorderSizePixel = 0
-	ScreenGui.MainFrame.Position = UDim2.new(0, 20, 1, -80)
-	ScreenGui.MainFrame.Size = UDim2.new(0, 0, 0, 117)
+coreVars.activeNotification = nil;
+coreVars.notificationHolder = Instance.new("ScreenGui", game.CoreGui);
+ezlib.newNotif = function(notifType, text, buttonLT, buttonRT, buttonLC, buttonRC)
+	local notif = {};
+	notif.notifType = notifType;
+	local notifInstance;
 
-	ScreenGui.TopFrame.Name = "TopFrame"
-	ScreenGui.TopFrame.Parent = ScreenGui.MainFrame
-	ScreenGui.TopFrame.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
-	ScreenGui.TopFrame.BorderSizePixel = 0
-	ScreenGui.TopFrame.Size = UDim2.new(1, 0, 0, 35)
+	if notif.notifType == ezlib.enum.notifType.text then
+		notifInstance = coreGUIFuncs.newNotifText(false, text, coreVars.notificationHolder);
+	elseif notif.notifType == ezlib.enum.notifType.longText then
+		notifInstance = coreGUIFuncs.newNotifText(true, text, coreVars.notificationHolder);
+	elseif notif.notifType == ezlib.enum.notifType.buttons then
+		notif.callbackL = buttonLC or function() end;
+		notif.callbackR = buttonRC or function() end;
+		notifInstance = coreGUIFuncs.newNotifButton(text, buttonLT, buttonRT, coreVars.notificationHolder);
+		notifInstance.buttonl.MouseButton1Click:Connect(function()
+			notif.buttonLeftClicked:Fire();
+			notif.buttonClicked:Fire();
+			notif.fireCallback(ezlib.enum.button.left);
+		end)
+		notifInstance.buttonr.MouseButton1Click:Connect(function() 
+			notif.buttonRightClicked:Fire();
+			notif.buttonClicked:Fire();
+			notif.fireCallback(ezlib.enum.button.right);
+		end)
+	else
+		error("Invalid parameter for newNotification");
+	end
 
-	ScreenGui.TitleLabel.Name = "TitleLabel"
-	ScreenGui.TitleLabel.Parent = ScreenGui.TopFrame
-	ScreenGui.TitleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ScreenGui.TitleLabel.BackgroundTransparency = 1.000
-	ScreenGui.TitleLabel.Size = UDim2.new(1, 0, 1, 0)
-	ScreenGui.TitleLabel.Font = Enum.Font.SourceSans
-	ScreenGui.TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-	ScreenGui.TitleLabel.TextSize = 14.000
-	ScreenGui.TitleLabel.TextWrapped = true
+	notif.fireCallback = function(button)
+		if button == ezlib.enum.button.left then
+			notif.callbackL();
+		elseif button == ezlib.enum.button.right then
+			notif.callbackR();
+		end
+	end
 
-	ScreenGui.ContentFrame.Name = "ContentFrame"
-	ScreenGui.ContentFrame.Parent = ScreenGui.MainFrame
-	ScreenGui.ContentFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ScreenGui.ContentFrame.BackgroundTransparency = 1.000
-	ScreenGui.ContentFrame.Position = UDim2.new(0, 0, 0.299145311, 0)
-	ScreenGui.ContentFrame.Size = UDim2.new(1, 0, 0.854700863, -18)
+	notif.changeCallback = function(button, callback)
+		if button == ezlib.enum.button.left then
+			notif.buttonLC = callback;
+		elseif button == ezlib.enum.button.right then
+			notif.buttonRC = callback;
+		end
+	end
 
-	ScreenGui.DescLabel.Name = "DescLabel"
-	ScreenGui.DescLabel.Parent = ScreenGui.ContentFrame
-	ScreenGui.DescLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ScreenGui.DescLabel.BackgroundTransparency = 1.000
-	ScreenGui.DescLabel.Size = UDim2.new(1, -10, 1, 0)
-	ScreenGui.DescLabel.Font = Enum.Font.SourceSans
-	ScreenGui.DescLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-	ScreenGui.DescLabel.TextSize = 14.000
-	ScreenGui.DescLabel.TextWrapped = true
-	
-	ScreenGui.DescLabel.Text = ""
-	ScreenGui.TitleLabel.Text = ""
-	
-	spawn(function()
-		wait(0.2)
-		ScreenGui.MainFrame:TweenSize(UDim2.new(0, 193, 0, 117), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-		wait(0.3)
-		ScreenGui.DescLabel.Text = DescC
-		ScreenGui.TitleLabel.Text = TitleC or "Ez Hub"
-		wait((DelayS or  5) + 0.2)
-		ScreenGui.MainFrame:TweenSize(UDim2.new(0, 0, 0, 117), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-		ScreenGui.DescLabel.Text = ""
-		ScreenGui.TitleLabel.Text = ""
-		wait(0.5)
-		ScreenGui.ScreenGui:Destroy()
-	end)
+	notif.show = function()
+		local continueFunc = false;
 
+		if coreVars.activeNotification then
+			coreVars.activeNotification.hide();
+		end
+
+		coreVars.activeNotification = notif;
+		notifInstance.frame:TweenPosition(UDim2.new(0, 10, 1, -10), nil, nil, nil, true, function()
+			continueFunc = true;
+		end);
+		repeat wait() until continueFunc;
+	end
+
+	notif.hide = function()
+		local continueFunc = false;
+		coreVars.activeNotification = nil;
+
+		notifInstance.frame:TweenPosition(UDim2.new(0, -210, 1, -10), nil, nil, nil, true, function()
+			continueFunc = true;
+		end);
+		repeat wait() until continueFunc;
+	end
+
+	local playDebounce = true;
+	notif.play = function(delay)
+		if not playDebounce then return false end
+		playDebounce = false;
+
+		notif.show();
+		wait(delay or 5);
+		notif.hide();
+
+		playDebounce = true;
+		return notif;	-- This is so that you can do something like ezlib.newNotif(...).play().delete();
+	end
+
+	-- play on seperate thread won't return instance after it finishes because
+	-- of how threads work (common sense)
+	-- To do the notif.play().delete() strategy, you can wrap
+	-- notif.play().delete() in a seperate thread yourself instead of using the one below
+	notif.playOnSeperateThread = function(delay)
+		coroutine.wrap(function() notif.play(delay) end)();
+	end
+
+	-- I recommend that you just make a new notification container for every
+	-- Notification that you require to make it more clean
+	-- This function is only included to provide the user with more flexibility
+	notif.changeText = function(text)
+		notifInstance.textlabel.Text = text;
+	end
+
+	notif.delete = function()
+		notifInstance.frame:Destroy();
+	end
+
+	-- Event handling for notif.buttonClicked - Only applies to ezlib.enum.notifType.buttons
+	notif.buttonRightClicked = Instance.new("BindableEvent");
+	notif.buttonLeftClicked = Instance.new("BindableEvent");
+	notif.buttonClicked = Instance.new("BindableEvent");
+
+	return notif;
 end
 
----------------------------------------------------------------------
+ezlib.create = function(name, parent, pos, theme, gameID)
+	local create = {};
 
--- Return
+	-- Format parameters so no errors occcur.
+	name = name or "Ez Hub";
+	parent = parent or game.CoreGui;
+	pos = pos or UDim2.new(0.5, 0, 0.5, 0);
+	theme = theme or coreVars.colors;	-- themes. For coloring the gui differently
 
-return lib;
+	if gameID ~= game.PlaceId then
+		local continueAnyway;
+		local notif = ezlib.newNotif(ezlib.enum.notifType.buttons, "Incompatible game for GUI. Continue anyway?", "Yes", "No",
+			function() continueAnyway = true; end,
+			function() continueAnyway = false; end);
+
+		notif.show();
+		notif.buttonClicked:Wait();
+		notif.hide();
+
+		if not continueAnyway then return end
+	end
+	
+	-- Storing states of the GUI
+	local tabs = {};	-- tab container. Holds all tab objects
+	local activeTab;	-- keeps track of the tab that is open
+	local keybind = Enum.KeyCode.RightShift;	-- the keybind that toggles the gui
+
+	-- Create main GUI and handle events
+	local mainGUI = coreGUIFuncs.newCreateGUI(name, pos, parent, theme);
+	mainGUI.opennav.MouseButton1Click:Connect(function() coreFuncs.handleNavLib(mainGUI.navframe, mainGUI.opennav, mainGUI.closenav, activeTab) end)
+	mainGUI.closenav.MouseButton1Click:Connect(function() coreFuncs.handleNavLib(mainGUI.navframe, mainGUI.opennav, mainGUI.closenav, activeTab) end)
+
+	-- For toggling
+	game:GetService("UserInputService").InputBegan:Connect(function(input)
+		if input.KeyCode == keybind then
+			mainGUI.screengui.Enabled = not mainGUI.screengui.Enabled;
+		end
+	end)
+
+	-- Creates new tab
+	create.newTab = function(name)
+		local tab = {};
+		tab.name = name;
+
+		local tabInstance = coreGUIFuncs.newTab(mainGUI.screengui, name, theme);
+		table.insert(tabs, 1, tabInstance.window)
+		tabInstance.button.MouseButton1Click:Connect(function()
+			create.openTab(tabInstance);
+		end)
+
+		tab.newButton = function(name, callback)
+			local button = interactableElements.new();
+			button.callback = callback;
+
+			local buttonInstance = coreGUIFuncs.newButton(tabInstance.window, name, theme);
+			buttonInstance.button.MouseButton1Click:Connect(function() button.fireCallback() end);
+
+			button.changeCallback = function(callback)
+				button.callback = callback;
+			end
+
+			button.fireCallback = function(...)
+				button.callback(...);
+			end
+			
+			button.changeText = function(text)
+				button.button.Text = text or "Button";
+			end
+
+			button.getMainInstance = function()
+				return buttonInstance;
+			end
+
+			button.getInstance = function()
+				return button.button;
+			end
+
+			button.delete = function()
+				button.getInstance():Destroy();
+			end
+
+			return button;
+		end
+
+		tab.newSlider = function(name, state, min, max, callback)
+			local slider = interactableElements.new();
+			slider.min = min;
+			slider.max = max;
+			slider.callback = callback;
+			slider.state = state;
+
+			local sliderInstance = coreGUIFuncs.newSlider(tabInstance.window, name, state, min, max, theme);
+			sliderInstance.indicator.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					coreVars.usingSlider = true;
+					coreVars.sliderUsed = sliderInstance;
+				end
+			end)
+			sliderInstance.indicator.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					coreVars.usingSlider = false;
+					coreVars.sliderUsed = nil;
+				end
+			end)
+		
+			game:GetService("UserInputService").InputChanged:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseMovement and coreVars.sliderUsed == sliderInstance then
+					local pos = UDim2.new(math.clamp((input.Position.X - sliderInstance.sliderframe.AbsolutePosition.X) / sliderInstance.sliderframe.AbsoluteSize.X, 0, 1), 0, 0.5, 0);
+					sliderInstance.indicator:TweenPosition(pos, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true);
+					sliderInstance.indicatortrail:TweenSize(pos, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true);
+					slider.state = math.floor(((pos.X.Scale * max) / max) * (max - min) + min);
+					sliderInstance.valuedisplay.Text = tostring(slider.state);
+					coroutine.wrap(function()
+						pcall(function()
+							slider.fireCallback(slider.state);
+						end)
+					end)();
+				end
+			end)
+
+			slider.changeCallback = function(callback)
+				slider.callback = callback;
+			end
+			
+			slider.fireCallback = function(...)
+				slider.callback(...);
+			end
+
+			slider.changeText = function(text)
+				sliderInstance.sliderframe.Parent.TextLabel = text;
+			end
+
+			slider.getMainInstance = function()
+				return sliderInstance;
+			end
+
+			slider.getInstance = function()
+				return sliderInstance.sliderframe.Parent;
+			end
+
+			slider.delete = function()
+				slider.getInstance():Delete();
+			end
+
+			-----------------------------------------
+			-- State related methods
+
+			slider.getState = function()
+				return slider.state;
+			end
+
+			slider.setState = function(state)
+				slider.state = state;
+				sliderInstance.indicator.Position = UDim2.new((state - min)/(max - min), 0, 0.5, 0);
+				sliderInstance.indicatortrail.Size = UDim2.new((state - min)/(max - min), 0, 0.5, 0);
+			end
+
+			return slider;
+		end
+
+		tab.newCheckbox = function(name, state, callback)
+			local checkbox = interactableElements.new();
+			checkbox.callback = callback;
+			checkbox.state = state;
+
+			local checkboxInstance = coreGUIFuncs.newCheckbox(tabInstance.window, name, state, theme);
+			checkboxInstance.toggle.MouseButton1Click:Connect(function()
+				checkbox.setState(not checkbox.state);
+				checkbox.fireCallback(checkbox.state);
+			end)
+
+			checkbox.changeCallback = function(callback)
+				checkbox.callback = callback;
+			end
+
+			checkbox.fireCallback = function(...)
+				checkbox.callback(...);
+			end
+
+			checkbox.changeText = function(text)
+				checkboxInstance.frame.TextLabel.Text = text;
+			end
+
+			checkbox.getMainInstance = function()
+				return checkboxInstance;
+			end
+
+			checkbox.getInstance = function()
+				return checkboxInstance.frame;
+			end
+
+			checkbox.delete = function()
+				checkbox.getInstance():Destroy();
+			end
+
+			-----------------------------------------
+			-- State related methods
+
+			checkbox.getState = function()
+				return checkbox.state;
+			end
+
+			checkbox.setState = function(state)
+				if state then
+					game:GetService("TweenService"):Create(checkboxInstance.toggle, TweenInfo.new(0.4), {BackgroundColor3 = Color3.fromRGB(0, 149, 74)}):Play();
+				else
+					game:GetService("TweenService"):Create(checkboxInstance.toggle, TweenInfo.new(0.4), {BackgroundColor3 = Color3.fromRGB(149, 0, 0)}):Play();
+				end
+				checkbox.state = state;
+			end
+
+			return checkbox;
+		end
+
+		tab.newTextbox = function(name, state, callback)
+			local textbox = interactableElements.new();
+			textbox.callback = callback;
+			textbox.state = state;
+
+			local textboxInstance = coreGUIFuncs.newTextbox(tabInstance.window, name, state, theme);
+			textboxInstance.textbox:GetPropertyChangedSignal("Text"):Connect(function()
+				textbox.state = textboxInstance.textbox.Text;
+				textbox.fireCallback(textboxInstance.textbox.Text);
+			end)
+
+			textbox.changeCallback = function(callback)
+				textbox.callback = callback;
+			end
+
+			textbox.fireCallback = function(...)
+				textbox.callback(...);
+			end
+
+			textbox.changeText = function(text)
+				textboxInstance.textbox.Text = text;
+			end
+
+			textbox.getMainInstance = function()
+				return textboxInstance;
+			end
+
+			textbox.getInstance = function()
+				return textboxInstance.frame;
+			end
+
+			textbox.delete = function()
+				textbox.getInstance():Destroy();
+			end
+			
+			-----------------------------------------
+			-- State related methods
+
+			textbox.getState = function()
+				return textbox.state;
+			end
+
+			textbox.setState = function(text)
+				textbox.changeText(text);
+			end
+
+			return textbox;
+		end
+
+		tab.newKeybind = function(name, state, callback)
+			local keybind = interactableElements.new();
+			keybind.callback = callback;
+			keybind.state = state or Enum.KeyCode.A;			
+
+			local keybindInstance = coreGUIFuncs.newKeybind(tabInstance.window, name, state, theme);
+			local keybindDebounce = true;
+			keybindInstance.button.MouseButton1Click:Connect(function()
+				if not keybindDebounce then return end
+				keybindDebounce = false;
+				coreVars.awaitingInput = keybindInstance;
+				keybindInstance.button.Text = "Press key";
+				repeat wait() until not coreVars.awaitingInput;
+				keybind.state = Enum.KeyCode[keybindInstance.button.Text];
+				keybind.fireCallback(Enum.KeyCode[keybindInstance.button.Text]);
+				keybindDebounce = true;
+			end)
+
+			keybind.changeCallback = function(callback)
+				keybind.callback = callback;
+			end
+
+			keybind.fireCallback = function(...)
+				keybind.callback(...);
+			end
+
+			keybind.changeText = function(text)
+				keybindInstance.textlabel.Text = text;
+			end
+
+			keybind.getMainInstance = function()
+				return keybindInstance;
+			end
+
+			keybind.getInstance = function()
+				return keybindInstance.frame;
+			end
+
+			keybind.delete = function()
+				keybind.getInstance():Destroy();
+			end
+
+			-----------------------------------------
+			-- State related methods
+
+			keybind.getState = function()
+				return keybind.state;
+			end
+
+			keybind.setState = function(state)
+				keybindInstance.button.Text = state.Name;
+			end
+
+			return keybind;
+		end
+
+		tab.newTitle = function(name)
+			local title = {};
+
+			local titleInstance = coreGUIFuncs.newTitle(tabInstance.window, name);
+			
+			title.changeText = function(text)
+				titleInstance.spacebox.TextLabel.Text = text;
+			end
+
+			title.getMainInstance = function()
+				return titleInstance;
+			end
+
+			title.getInstance = function()
+				return titleInstance.spacebox;
+			end
+
+			title.delete = function()
+				title.getInstance():Destroy();
+			end
+
+			return title;
+		end
+
+		tab.newDiv = function()
+			local div = {};
+
+			local divInstance = coreGUIFuncs.newDiv(tabInstance.window, theme);
+
+			div.getMainInstance = function()
+				return divInstance;
+			end
+
+			div.getInstance = function()
+				return divInstance.spacebox;
+			end
+
+			div.delete = function()
+				div.getInstance():Destroy();
+			end
+
+			return div;
+		end
+
+		tab.newDesc = function(name)
+			local desc = {};
+
+			local descInstance = coreGUIFuncs.newDesc(tabInstance.window, name);
+			
+			desc.changeText = function(text)
+				descInstance.spacebox.TextLabel.Text = text;
+			end
+
+			desc.getMainInstance = function()
+				return descInstance;
+			end
+
+			desc.getInstance = function()
+				return descInstance.spacebox;
+			end
+
+			desc.delete = function()
+				desc.getInstance():Destroy();
+			end
+
+			return desc;
+		end
+
+		tab.getMainInstance = function()
+			return tabInstance;
+		end
+
+		tab.getInstance = function()
+			return tabInstance.window;
+		end
+
+		tab.delete = function()
+			tab.getInstance():Destroy();
+			tab.getMainInstance().button:Destroy();
+		end
+
+		return tab;
+	end
+
+	-- gets tab based on name
+	create.getTab = function(tabName)
+		for i,v in pairs(tabs) do
+			if v.name == tabName then
+				return v;
+			end
+		end
+	end
+
+	-- opens specific tab. Use create.getTab to get the tab instance if you havn't saved it in a local var
+	local openTabDebounce = true;
+	create.openTab = function(tabInstance)
+		if not openTabDebounce then return end
+		openTabDebounce = false;
+
+		-- Checks if current window is not the same as what the requested open tab is
+		-- If so, it will continue. If not, it will just close the nav bar as the 
+		-- requested tab is already open
+		if activeTab ~= tabInstance.window or not activeTab then 
+			-- Closing of unwanted tabs
+			if activeTab then
+				activeTab:TweenPosition(activeTab.Position + UDim2.new(2,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true);
+				wait(.3);
+				activeTab.Position = UDim2.new(0.5,0,2,0);
+			end
+
+			-- Opening of desired tab
+			tabInstance.window.Position = UDim2.new(0.5,0,2,0);
+			tabInstance.window:TweenPosition(UDim2.new(0.5,0,0.5,17), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true);
+		end
+
+		-- Close nav frame if its open so that the user can navigate on the tab
+		if mainGUI.navframe.Position ~= UDim2.new(-0.5, 0, 0.108, 0) then
+			coreFuncs.handleNavLib(mainGUI.navframe, mainGUI.opennav, mainGUI.closenav, activeTab);
+		end
+
+		activeTab = tabInstance.window;
+		openTabDebounce = true;
+	end
+
+	-- Changes keybind to toggle gui
+	create.changeKeybind = function(keyCode)
+		if keyCode:IsA("InputObject") then
+			keybind = keyCode;
+		end
+	end
+
+	-- Closes the entire instance - (deletes all entities)
+	create.close = function()
+		mainGUI.screengui:Destroy();
+	end
+
+	create.getMainInstance = function()
+		return mainGUI;
+	end
+
+	create.getInstance = function()
+		return mainGUI.screengui;
+	end
+
+	create.delete = function()
+		create.getInstance():Destroy();
+	end
+
+	return create;
+end
+
+------------------------------------------------------------------------------
+
+return ezlib;
