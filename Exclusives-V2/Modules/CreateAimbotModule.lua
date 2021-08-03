@@ -1,6 +1,6 @@
 return {
     newAimbotTab = function(mainGUIInstance)
-        local aimbotModule = loadstring(_G["EzHubModules"]["aimbotmodule"])()
+        local aimbotModule = loadstring(_G["EzHubModules"]["aimbotmodule"])();
         local tab = mainGUIInstance.newTab("Aimbot");
         tab.newTitle("Aimbot");
         tab.newDiv();
@@ -22,14 +22,14 @@ return {
         end)
     
         tab.NewSlider("Radius", aimbotModule.radius, 10, 400, function(val)
-            aimbotModule.radius = val
+            aimbotModule.radius = val;
         end)
     
         tab.newCheckbox("Show FOV", aimbotModule.showfov, function(state)
-            aimbotModule.showfov = state
+            aimbotModule.showfov = state;
         end)
     
-        tab.newDiv()
+        tab.newDiv();
     
         tab.newCheckbox("Right-mouse", aimbotModule.rightmouse, function(state)
             aimbotModule.rightmouse = state;
