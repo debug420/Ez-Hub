@@ -21,7 +21,7 @@ return {
             aimbotModule.wallcheck = state;
         end)
     
-        tab.NewSlider("Radius", aimbotModule.radius, 10, 400, function(val)
+        tab.newSlider("Radius", aimbotModule.radius, 10, 400, function(val)
             aimbotModule.radius = val;
         end)
     
