@@ -6,6 +6,7 @@
     "createaimbotmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/CreateAimbotModule.lua",
     "espmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/ESPModule.lua",
     "createespmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/CreateESPModule.lua",
+    "createuniversalmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/CreateUniversalModule.lua",
     "exclusivesmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/ExclusiveV1.json",
     "exclusivesv2module": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/ExclusivesV2.json",
     "repostedmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/RepostedModule.json",
