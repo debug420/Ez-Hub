@@ -1684,8 +1684,4 @@ end
 
 ------------------------------------------------------------------------------
 
-local mainGUI = ezlib.create("Test Ez Lib");
-loadstring(_G["EzHubModules"]["createaimbotmodule"])().newAimbotTab(mainGUI);
-loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
-
---return ezlib;
+return ezlib;
