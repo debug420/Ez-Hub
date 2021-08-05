@@ -874,8 +874,7 @@ interactableElements.new = function()
 	-- YOU CAN USE TO EDIT YOUR GUI EXTENSIVELY
 
 	-- Returns the main instance that holds an array
-	-- of locations of essential instances. Use this for API calls
-	-- such as manually calling gui.openTab(tab.getMainInstance())
+	-- of locations of essential instances. No real use for this for the user
 	self.getMainInstance = function()
 		error("Pure Virtual Function");
 	end
@@ -1099,7 +1098,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 		local tabInstance = coreGUIFuncs.newTab(mainGUI.screengui, name, theme);
 		table.insert(tabs, 1, tab)
 		tabInstance.button.MouseButton1Click:Connect(function()
-			create.openTab(tabInstance);
+			create.openTab(tab);
 		end)
 
 		tab.newButton = function(name, callback)
