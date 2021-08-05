@@ -517,6 +517,116 @@ coreGUIFuncs.newKeybind = function(tabWindow, name, state, colors)
 
 end
 
+coreGUIFuncs.newDropdown = function(tabWindow, dropdownContainer, name, colors, mainGUI)
+
+	local frame = coreFuncs.addInstance("Frame", {
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Secondary,
+		["BorderSizePixel"] = 0,
+		["Size"] = UDim2.new(0, coreVars.elementX, 0, 35),
+		["Parent"] = tabWindow
+	});
+
+	coreFuncs.addInstance("TextLabel", {
+		["BackgroundColor3"] = Color3.fromRGB(255, 255, 255),
+		["BackgroundTransparency"] = 1.000,
+		["Position"] = UDim2.new(0, 15, 0, 0),
+		["Size"] = UDim2.new(0, 153, 0, 35),
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["TextXAlignment"] = Enum.TextXAlignment.Left,
+		["Parent"] = frame
+	});
+
+	local toggle = coreFuncs.addInstance("TextButton", {
+		["AnchorPoint"] = Vector2.new(1, 0.5),
+		["BackgroundColor3"] = colors.Primary,
+		["BorderSizePixel"] = 0,
+		["Position"] = UDim2.new(1, -10, 0.5, 0),
+		["Size"] = UDim2.new(0, 87, 0, 20),
+		["AutoButtonColor"] = false,
+		["Font"] = Enum.Font.SourceSans,
+		["Text"] = name,
+		["TextColor3"] = Color3.fromRGB(255, 255, 255),
+		["TextSize"] = 14.000,
+		["Parent"] = frame
+	});
+
+	-------------------------------------
+	-- Actual dropdown instance
+
+	local mainFrame = coreFuncs.addInstance("Frame", {
+		["Size"] = UDim2.new(0, 168, 0, 0),	-- Y is mainGUI.window.Size.Y.Offset when open
+		["Position"] = UDim2.new(0.335396051, 0, 0.367346942, 0),
+		["BorderSizePixel"] = 0,
+		["Visible"] = false,
+		["BackgroundColor3"] = colors.Primary,
+		["ClipsDescendants"] = true;
+		["Parent"] = dropdownContainer
+	});
+
+    coreFuncs.roundify(mainFrame);
+
+	local topFrame = coreFuncs.addInstance("Frame", {
+		["Name"] = "TopFrame",
+		["BackgroundColor3"] = colors.Tertiary,
+		["BorderSizePixel"] = 0,
+		["Size"] = UDim2.new(1, 0, 0, 34),
+		["ZIndex"] = 3,
+		["Parent"] = mainFrame
+	})
+
+	coreFuncs.addInstance("TextLabel", {
+		["Name"] = "UIName",
+		["BackgroundTransparency"] = 1,
+		["TextColor3"] = Color3.fromRGB(255,255,255),
+		["AnchorPoint"] = Vector2.new(0.5,0.5),
+		["Position"] = UDim2.new(0.5,0,0.5,0),
+		["Text"] = name,
+		["Size"] = UDim2.new(0, 200, 0, 30),
+		["TextWrapped"] = true,
+		["ZIndex"] = 3,
+		["Parent"] = topFrame
+	});
+
+	coreFuncs.roundify(mainFrame, 4);
+
+	local mainScrollingFrame = coreFuncs.addInstance("ScrollingFrame", {
+		["Name"] = "MainScrollingFrame",
+		["Parent"] = mainFrame,
+		["Active"] = true,
+		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["BackgroundColor3"] = colors.Primary,
+		["BackgroundTransparency"] = 1.000,
+		["BorderSizePixel"] = 0,
+		["Position"] = UDim2.new(0.5, 0, 0.5, 20),
+		["Size"] = UDim2.new(1, -10, 1, -50),
+		["ScrollBarThickness"] = 0,
+		["ScrollBarImageColor3"] = Color3.fromRGB(colors.Tertiary.R + 5, colors.Tertiary.G + 5, colors.Tertiary.B + 5),
+		["VerticalScrollBarPosition"] = Enum.VerticalScrollBarPosition.Left,
+	});
+
+	coreFuncs.addInstance("UIPadding", {
+		["Parent"] = mainScrollingFrame,
+		["PaddingBottom"] = UDim.new(0, 10),
+		["PaddingLeft"] = UDim.new(0, 5),
+		["PaddingTop"] = UDim.new(0, 5)
+	});
+
+	coreFuncs.addInstance("UIListLayout", {
+		["Parent"] = mainScrollingFrame,
+		["HorizontalAlignment"] = Enum.HorizontalAlignment.Center,
+		["SortOrder"] = Enum.SortOrder.LayoutOrder,
+		["Padding"] = UDim.new(0, 4)
+	});
+
+	coreFuncs.applyFrameResizingLib(mainScrollingFrame);
+	return ({["mainframe"] = mainFrame, ["mainscrollingframe"] = mainScrollingFrame, ["toggle"] = toggle, ["frame"] = frame});
+
+end
+
 coreGUIFuncs.newTextbox = function(tabWindow, name, state, colors)
 
 	local frame = coreFuncs.addInstance("Frame", {
@@ -647,12 +757,12 @@ coreGUIFuncs.newTitle = function(tabWindow, name)
 
 end
 
-coreGUIFuncs.newNotifText = function(longText, text, parent)
+coreGUIFuncs.newNotifText = function(longText, text, parent, colors)
 
 	local frame = coreFuncs.addInstance("Frame", {
 		["Parent"] = parent,
 		["AnchorPoint"] = Vector2.new(0, 1),
-		["BackgroundColor3"] = Color3.fromRGB(41, 53, 68),
+		["BackgroundColor3"] = colors.Primary,
 		["Position"] = UDim2.new(0, -210, 1, -10),	-- Hidden position (when shown it should be 0, 10, 1, -10)
 		["Size"] = UDim2.new(0, 200, 0, longText and 90 or 40)
 	});
@@ -677,12 +787,12 @@ coreGUIFuncs.newNotifText = function(longText, text, parent)
 
 end
 
-coreGUIFuncs.newNotifButton = function(text, buttonLT, buttonRT, parent)
+coreGUIFuncs.newNotifButton = function(text, buttonLT, buttonRT, parent, colors)
 
 	local frame = coreFuncs.addInstance("Frame", {
 		["Parent"] = parent,
 		["AnchorPoint"] = Vector2.new(0, 1),
-		["BackgroundColor3"] = Color3.fromRGB(41, 53, 68),
+		["BackgroundColor3"] = colors.Primary,
 		["Position"] = UDim2.new(0, -210, 1, -10),	-- Hidden position (when shown it should be 0, 10, 1, -10)
 		["Size"] = UDim2.new(0, 200, 0, 90)
 	});
@@ -707,7 +817,7 @@ coreGUIFuncs.newNotifButton = function(text, buttonLT, buttonRT, parent)
 		["Name"] = "ButtonL",
 		["Parent"] = frame,
 		["AnchorPoint"] = Vector2.new(0, 0.5),
-		["BackgroundColor3"] = Color3.fromRGB(35, 47, 62),
+		["BackgroundColor3"] = colors.Secondary,
 		["Position"] = UDim2.new(0, 10, 1, -25),
 		["Size"] = UDim2.new(0.5, -13, 0.5, -20),
 		["Font"] = Enum.Font.SourceSans,
@@ -720,7 +830,7 @@ coreGUIFuncs.newNotifButton = function(text, buttonLT, buttonRT, parent)
 		["Name"] = "ButtonL",
 		["Parent"] = frame,
 		["AnchorPoint"] = Vector2.new(1, 0.5),
-		["BackgroundColor3"] = Color3.fromRGB(35, 47, 62),
+		["BackgroundColor3"] = colors.Secondary,
 		["Position"] = UDim2.new(1, -10, 1, -25),
 		["Size"] = UDim2.new(0.5, -13, 0.5, -20),
 		["Font"] = Enum.Font.SourceSans,
@@ -814,6 +924,14 @@ ezlib.enum = {
 	button = {
 		left = 0,
 		right = 1
+	},
+	theme = {
+		default = {
+			Primary = Color3.fromRGB(41, 53, 68),
+			Secondary = Color3.fromRGB(35, 47, 62),
+			Tertiary = Color3.fromRGB(28, 41, 56),
+			Quaternary = Color3.fromRGB(18, 98, 159)
+		}
 	}
 };
 
@@ -822,19 +940,21 @@ ezlib.enum = {
 
 coreVars.activeNotification = nil;
 coreVars.notificationHolder = Instance.new("ScreenGui", game.CoreGui);
-ezlib.newNotif = function(notifType, text, buttonLT, buttonRT, buttonLC, buttonRC)
+ezlib.newNotif = function(notifType, text, buttonLT, buttonRT, buttonLC, buttonRC, theme)
 	local notif = {};
 	notif.notifType = notifType;
 	local notifInstance;
 
+	theme = theme or coreVars.colors;
+
 	if notif.notifType == ezlib.enum.notifType.text then
-		notifInstance = coreGUIFuncs.newNotifText(false, text, coreVars.notificationHolder);
+		notifInstance = coreGUIFuncs.newNotifText(false, text, coreVars.notificationHolder, theme);
 	elseif notif.notifType == ezlib.enum.notifType.longText then
-		notifInstance = coreGUIFuncs.newNotifText(true, text, coreVars.notificationHolder);
+		notifInstance = coreGUIFuncs.newNotifText(true, text, coreVars.notificationHolder, theme);
 	elseif notif.notifType == ezlib.enum.notifType.buttons then
 		notif.callbackL = buttonLC or function() end;
 		notif.callbackR = buttonRC or function() end;
-		notifInstance = coreGUIFuncs.newNotifButton(text, buttonLT, buttonRT, coreVars.notificationHolder);
+		notifInstance = coreGUIFuncs.newNotifButton(text, buttonLT, buttonRT, coreVars.notificationHolder, theme);
 		notifInstance.buttonl.MouseButton1Click:Connect(function()
 			notif.buttonLeftClicked:Fire();
 			notif.buttonClicked:Fire();
@@ -938,14 +1058,14 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 	pos = pos or UDim2.new(0.5, 0, 0.5, 0);
 	theme = theme or coreVars.colors;	-- themes. For coloring the gui differently
 
-	if gameID ~= game.PlaceId then
+	if gameID and gameID ~= game.PlaceId then
 		local continueAnyway;
 		local notif = ezlib.newNotif(ezlib.enum.notifType.buttons, "Incompatible game for GUI. Continue anyway?", "Yes", "No",
 			function() continueAnyway = true; end,
 			function() continueAnyway = false; end);
 
 		notif.show();
-		notif.buttonClicked:Wait();
+		notif.buttonClicked.Event:Wait();
 		notif.hide();
 
 		if not continueAnyway then return end
@@ -955,6 +1075,9 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 	local tabs = {};	-- tab container. Holds all tab objects
 	local activeTab;	-- keeps track of the tab that is open
 	local keybind = Enum.KeyCode.RightShift;	-- the keybind that toggles the gui
+	local dropdownContainer = Instance.new("ScreenGui", game.CoreGui);
+	local activeDropdown;
+	local dropdownDebounce = true;
 
 	-- Create main GUI and handle events
 	local mainGUI = coreGUIFuncs.newCreateGUI(name, pos, parent, theme);
@@ -974,7 +1097,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 		tab.name = name;
 
 		local tabInstance = coreGUIFuncs.newTab(mainGUI.screengui, name, theme);
-		table.insert(tabs, 1, tabInstance.window)
+		table.insert(tabs, 1, tab)
 		tabInstance.button.MouseButton1Click:Connect(function()
 			create.openTab(tabInstance);
 		end)
@@ -1003,7 +1126,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			end
 
 			button.getInstance = function()
-				return button.button;
+				return buttonInstance.button;
 			end
 
 			button.delete = function()
@@ -1070,7 +1193,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			end
 
 			slider.delete = function()
-				slider.getInstance():Delete();
+				slider.getInstance():Destroy();
 			end
 
 			-----------------------------------------
@@ -1143,6 +1266,165 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			return checkbox;
 		end
 
+		tab.newDropdown = function(name, data, state, callback, closeAfterButtonPress)
+			local dropdown = interactableElements.new();
+			dropdown.callback = callback;
+			dropdown.data = data;
+			dropdown.state = state;
+			dropdown.isOpen = false;
+
+			if closeAfterButtonPress == nil then closeAfterButtonPress = false end
+
+			local dropdownInstance = coreGUIFuncs.newDropdown(tabInstance.window, dropdownContainer, name, theme, mainGUI);
+			dropdownInstance.toggle.Text = dropdown.state;
+
+			local function handleDropdownTransparency(transparencyLevel)
+				for i,v in pairs(dropdown.getMainInstance().mainframe:GetChildren()) do
+					if v:IsA("GuiObject") then 
+						game:GetService("TweenService"):Create(v, TweenInfo.new(0.25), {BackgroundTransparency = transparencyLevel}):Play();
+						if pcall(function() local _ = v.Text end) then
+							print("Niggabakasidnjaisnhid")
+							game:GetService("TweenService"):Create(v, TweenInfo.new(0.25), {TextTransparency = transparencyLevel}):Play();
+						end
+					end
+				end
+			end
+
+			-- Only clears out the gui elements.
+			-- Does not actually clear out the dropdown.data
+			local function clearData()
+				for i,v in pairs(dropdownInstance.mainscrollingframe:GetChildren()) do
+					if v:IsA("TextButton") then
+						v:Destroy();
+					end
+				end
+			end
+			
+			-- Same with this function. Does not overwrite dropdown.data
+			-- Only takes care of GUI elements
+			local function updateData()
+				clearData();
+				for i,v in pairs(data) do
+					local btn = coreFuncs.addInstance("TextButton", {
+						["Parent"] = dropdownInstance.mainscrollingframe,
+						["BackgroundColor3"] = theme.Secondary,
+						["BorderSizePixel"] = 0,
+						["Size"] = UDim2.new(1, -20, 0, 30),
+						["Font"] = Enum.Font.SourceSans,
+						["TextColor3"] = Color3.fromRGB(255, 255, 255),
+						["Text"] = v,
+						["TextSize"] = 14.000
+					})
+					btn.MouseButton1Click:Connect(function()
+						dropdownInstance.toggle.Text = btn.Text;
+						dropdown.fireCallback(btn.Text);
+						if closeAfterButtonPress then dropdown.hideDropdown() end;
+					end)
+				end
+			end
+			updateData();
+			
+			dropdownInstance.toggle.MouseButton1Click:Connect(function()
+				
+				if not dropdownDebounce then return end
+				dropdownDebounce = false;
+
+				if dropdown.isOpen then
+					dropdown.hideDropdown();
+				else
+					dropdown.showDropdown();
+				end
+
+				dropdownDebounce = true;
+
+			end)
+				
+
+			dropdown.showDropdown = function()
+
+				-- Close all other open dropdows
+				if activeDropdown and activeDropdown ~= dropdown then
+					activeDropdown.hideDropdown();
+				end
+
+				dropdown.getMainInstance().mainframe.Visible = true;
+				-- Add a connection that will be update the position of the drop down menu so that it is
+				-- next to main panel at all times
+				dropdown.movementConnection = game:GetService("RunService").RenderStepped:Connect(function()
+					local position = mainGUI.window.Position + UDim2.new(0, (mainGUI.window.Size.X.Offset / 2) + 5, 0, -(mainGUI.window.Size.Y.Offset / 2));
+					dropdownInstance.mainframe.Position = position;
+				end)
+
+				-- Animation that opens the dropdown
+				handleDropdownTransparency(1);
+				local tweenDone = false;
+				dropdown.getMainInstance().mainframe:TweenSize(UDim2.new(0, 168, 0, mainGUI.window.Size.Y.Offset), nil, Enum.EasingStyle.Linear, 0.5, true, function()
+			        tweenDone = true;
+				end);
+				repeat wait() until tweenDone;
+				handleDropdownTransparency(0);
+
+				dropdown.isOpen = true;
+				activeDropdown = dropdown;
+			
+			end
+
+			dropdown.hideDropdown = function()
+
+				handleDropdownTransparency(1);
+				local tweenDone = false;
+				dropdown.getMainInstance().mainframe:TweenSize(UDim2.new(0, 168, 0, 0), nil, Enum.EasingStyle.Linear, 0.5, true, function()
+					tweenDone = true;
+				end);
+				repeat wait() until tweenDone;
+
+				dropdown.getMainInstance().mainframe.Visible = false;
+				if dropdown.movementConnection then dropdown.movementConnection:Disconnect(); end
+				dropdown.isOpen = false;
+
+				if activeDropdown == dropdown then
+					activeDropdown = nil;
+				end
+
+			end
+
+			dropdown.changeCallback = function(callback)
+				dropdown.callback = callback;
+			end
+
+			dropdown.fireCallback = function(...)
+				dropdown.callback(...);
+			end
+
+			dropdown.changeText = function(text)
+				dropdownInstance.mainframe.Name.Text = text;
+			end
+
+			dropdown.changeState = function(state)
+				dropdown.state = state;
+				updateData();
+			end
+
+			dropdown.getState = function()
+				return dropdown.state;
+			end
+
+			dropdown.getMainInstance = function()
+				return dropdownInstance;
+			end
+
+			dropdown.getInstance = function()
+				return ({dropdownInstance.frame, dropdownInstance.mainframe});
+			end
+
+			dropdown.delete = function()
+				dropdown.getInstance()[1]:Destroy();
+				dropdown.getInstance()[2]:Destroy();
+			end
+
+			return dropdown;
+		end
+
 		tab.newTextbox = function(name, state, callback)
 			local textbox = interactableElements.new();
 			textbox.callback = callback;
@@ -1206,7 +1488,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 				keybindInstance.button.Text = "Press key";
 				repeat wait() until not coreVars.awaitingInput;
 				keybind.state = Enum.KeyCode[keybindInstance.button.Text];
-				keybind.fireCallback(Enum.KeyCode[keybindInstance.button.Text]);
+				keybind.fireCallback(keybind.state);
 				keybindDebounce = true;
 			end)
 
@@ -1344,6 +1626,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 	-- opens specific tab. Use create.getTab to get the tab instance if you havn't saved it in a local var
 	local openTabDebounce = true;
 	create.openTab = function(tabInstance)
+		tabInstance = tabInstance.getMainInstance();
 		if not openTabDebounce then return end
 		openTabDebounce = false;
 
@@ -1401,4 +1684,8 @@ end
 
 ------------------------------------------------------------------------------
 
-return ezlib;
+local mainGUI = ezlib.create("Test Ez Lib");
+loadstring(_G["EzHubModules"]["createaimbotmodule"])().newAimbotTab(mainGUI);
+loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
+
+--return ezlib;
