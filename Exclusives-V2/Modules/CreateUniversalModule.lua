@@ -41,6 +41,16 @@ oldNamecall = hookmetamethod(game, "__namecall", function(...)
     return oldNamecall(...);
 end)
 
+local whitelistedParts = {
+    "Head",
+    "Torso",
+    "Left Leg",
+    "Right Leg",
+    "UpperTorso",
+    "LowerTorso",
+    "HumanoidRootPart"
+};
+
 game:GetService("RunService").RenderStepped:Connect(function()
     if settings.noclip then
 	    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11);
@@ -59,16 +69,6 @@ game:GetService("UserInputService").JumpRequest:Connect(function()
         client.Character.Humanoid:ChangeState("Jumping");
     end
 end)
-
-local whitelistedParts = {
-    "Head",
-    "Torso",
-    "Left Leg",
-    "Right Leg",
-    "UpperTorso",
-    "LowerTorso",
-    "HumanoidRootPart"
-};
 
 local function toggleFling(state)
     settings.flingEnabled = state;
