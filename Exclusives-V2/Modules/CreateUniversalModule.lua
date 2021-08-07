@@ -1,7 +1,8 @@
 local settings = {
     noclip = false,
     infJumpEnabled = false,
-    flingPower = 500
+    flingPower = 500,
+    flingEnabled = false
 };
 
 local players = game:GetService("Players");
@@ -44,6 +45,13 @@ game:GetService("RunService").RenderStepped:Connect(function()
     if settings.noclip then
 	    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11);
     end
+    if settings.flingEnabled then
+        for i,v in pairs(client.Character:GetChildren()) do
+            if table.find(whitelistedParts, v.Name) then
+                v.CanCollide = false;
+            end
+        end
+    end
 end)
 
 game:GetService("UserInputService").JumpRequest:Connect(function()
@@ -63,12 +71,7 @@ local whitelistedParts = {
 };
 
 local function toggleFling(state)
-    for i,v in pairs(client.Character:GetChildren()) do
-        if table.find(whitelistedParts, v.Name) then
-            v.CanCollide = not state;
-        end
-    end
-
+    settings.flingEnabled = state;
     if state and client.Character and client.Character.HumanoidRootPart then
         local thrust = Instance.new("BodyThrust", client.Character.HumanoidRootPart);
         thrust.Force = Vector3.new(settings.flingPower, 0, settings.flingPower);
@@ -76,6 +79,7 @@ local function toggleFling(state)
     else
         if client.Character.HumanoidRootPart:FindFirstChild("BodyThrust") then
             client.Character.HumanoidRootPart.BodyThrust:Destroy();
+            client.Character.HumanoidRootPart.AssemblyAngularVelocity = Vector3.new(0,0,0);
         end
     end
 end
@@ -106,6 +110,8 @@ return {
         tab.newCheckbox("Inf Jump", false, function(state)
             settings.infJumpEnabled = state;
         end)
+
+        tab.newDiv();
 
         tab.newCheckbox("Fling", false, function(state)
             toggleFling(state);
