@@ -1265,7 +1265,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			return checkbox;
 		end
 
-		tab.newDropdown = function(name, data, state, callback, closeAfterButtonPress)
+		tab.newDropdown = function(name, state, data, callback, closeAfterButtonPress)
 			local dropdown = interactableElements.new();
 			dropdown.callback = callback;
 			dropdown.data = data;
@@ -1399,9 +1399,17 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 				dropdownInstance.mainframe.Name.Text = text;
 			end
 
-			dropdown.changeState = function(state)
-				dropdown.state = state;
+			dropdown.changeData = function(data)
+				dropdown.data = data;
 				updateData();
+			end
+
+			dropdown.getData = function()
+				return dropdown.data;
+			end
+
+			dropdown.changeState = function(state)
+				dropdownInstance.toggle.Text = dropdown.state;
 			end
 
 			dropdown.getState = function()
