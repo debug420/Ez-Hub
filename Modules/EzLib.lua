@@ -536,6 +536,7 @@ coreGUIFuncs.newDropdown = function(tabWindow, dropdownContainer, name, colors, 
 		["Text"] = name,
 		["TextColor3"] = Color3.fromRGB(255, 255, 255),
 		["TextSize"] = 14.000,
+		["TextWrapped"] = true,
 		["TextXAlignment"] = Enum.TextXAlignment.Left,
 		["Parent"] = frame
 	});
@@ -1266,9 +1267,31 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 		end
 
 		tab.newDropdown = function(name, state, data, callback, closeAfterButtonPress)
+			-- This section checks to see if data is an array or a vector (dictionary)
+			-- If it is a vec, it will count the i-th value only
+			local isVector = (function()
+				local i = 0;
+				for i,v in pairs(data) do
+					i = i + 1;
+					if data[i] == nil then return true end
+				end
+				return false;
+			end)()
+
 			local dropdown = interactableElements.new();
 			dropdown.callback = callback;
-			dropdown.data = data;
+
+			-- Makes sure that data is always a regular array.
+			-- A vector will mess things up
+			dropdown.data = isVector and
+			(function()
+				local t = {};
+				for i,v in pairs(data) do
+					table.insert(t, 1, i);
+				end
+				return t;
+			end) or data;
+
 			dropdown.state = state;
 			dropdown.isOpen = false;
 
@@ -1277,6 +1300,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			local dropdownInstance = coreGUIFuncs.newDropdown(tabInstance.window, dropdownContainer, name, theme, mainGUI);
 			dropdownInstance.toggle.Text = dropdown.state;
 
+			-- For a nice effect when the dropdown opens and closes
 			local function handleDropdownTransparency(transparencyLevel)
 				for i,v in pairs(dropdown.getMainInstance().mainframe:GetChildren()) do
 					if v:IsA("GuiObject") then 
@@ -1315,7 +1339,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 						["TextSize"] = 14.000
 					})
 					btn.MouseButton1Click:Connect(function()
-						dropdownInstance.toggle.Text = btn.Text;
+						dropdown.changeState(btn.Text);
 						dropdown.fireCallback(btn.Text);
 						if closeAfterButtonPress then dropdown.hideDropdown() end;
 					end)
@@ -1409,6 +1433,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			end
 
 			dropdown.changeState = function(state)
+				dropdown.state = state;
 				dropdownInstance.toggle.Text = dropdown.state;
 			end
 
