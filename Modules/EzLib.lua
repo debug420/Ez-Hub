@@ -1295,7 +1295,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			dropdown.state = state;
 			dropdown.isOpen = false;
 
-			if closeAfterButtonPress == nil then closeAfterButtonPress = false end
+			if closeAfterButtonPress == nil then closeAfterButtonPress = true end
 
 			local dropdownInstance = coreGUIFuncs.newDropdown(tabInstance.window, dropdownContainer, name, theme, mainGUI);
 			dropdownInstance.toggle.Text = dropdown.state;
