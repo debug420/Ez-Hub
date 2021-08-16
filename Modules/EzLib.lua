@@ -1290,7 +1290,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 					table.insert(t, 1, i);
 				end
 				return t;
-			end) or data;
+			end)() or data;
 
 			dropdown.state = state;
 			dropdown.isOpen = false;
@@ -1306,7 +1306,6 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 					if v:IsA("GuiObject") then 
 						game:GetService("TweenService"):Create(v, TweenInfo.new(0.25), {BackgroundTransparency = transparencyLevel}):Play();
 						if pcall(function() local _ = v.Text end) then
-							print("Niggabakasidnjaisnhid")
 							game:GetService("TweenService"):Create(v, TweenInfo.new(0.25), {TextTransparency = transparencyLevel}):Play();
 						end
 					end
