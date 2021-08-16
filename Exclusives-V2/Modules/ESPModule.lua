@@ -1,6 +1,6 @@
 local espConfig = {
     -- Toggle
-    enabled = false,
+    enabled = true,
     -- ESP Elements
     tracer = true,
     headdot = true,
@@ -107,7 +107,7 @@ drawESP = function(player)
                     
                 -- Tracer
                 if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tracer and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tracer then
-                    local tracer = espmem[player].Tracer;
+                    local tracer = espmem[player].Tracer; if not tracer then return end;
                     tracer.Thickness = 1;
                     tracer.From = getTracerPoint();
                     tracer.To = point;
