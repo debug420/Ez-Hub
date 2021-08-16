@@ -73,7 +73,7 @@ return {
             espModule.headdotfilled = state;
         end)
         
-        tab.newSlider("Headdot Scale", espModule.HeaddotScale * 2, 1, 10, function(val)
+        tab.newSlider("Headdot Scale", espModule.headdotscale * 2, 1, 10, function(val)
             espModule.headdotscale = val / 2;
         end)
     end
