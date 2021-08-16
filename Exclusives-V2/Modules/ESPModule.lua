@@ -106,7 +106,7 @@ drawESP = function(player)
                 local point = getVector3D(player.Head.Position)[1];
                     
                 -- Tracer
-                if getVector3D(player.Head.Position)[2] and espConfig.Enabled and espConfig.tracer and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tracer then
+                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tracer and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tracer then
                     local tracer = espmem[player].Tracer;
                     tracer.Thickness = 1;
                     tracer.From = getTracerPoint();
@@ -127,12 +127,12 @@ drawESP = function(player)
                 local headcframe = player.Head.CFrame;
 
                 -- Calculate CFrame
-                local tl = headcframe * CFrame.new(-(espConfig.XOffset), espConfig.YOffsetAboveHead, 0);
-                local tr = headcframe * CFrame.new(espConfig.XOffset, espConfig.YOffsetAboveHead, 0);
-                local bl = headcframe * CFrame.new(-(espConfig.XOffset),-(espConfig.YOffsetBelowHead),0);
-                local br = headcframe * CFrame.new(espConfig.XOffset,-(espConfig.YOffsetBelowHead),0);
+                local tl = headcframe * CFrame.new(-(espConfig.xoffset), espConfig.yoffsetabovehead, 0);
+                local tr = headcframe * CFrame.new(espConfig.xoffset, espConfig.yoffsetabovehead, 0);
+                local bl = headcframe * CFrame.new(-(espConfig.xoffset),-(espConfig.yoffsetbelowhead),0);
+                local br = headcframe * CFrame.new(espConfig.xoffset,-(espConfig.yoffsetbelowhead),0);
             
-                if getVector3D(player.Head.Position)[2] and espConfig.Enabled and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Up and espmem[player].Down and espmem[player].Right and espmem[player].Left then
+                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Up and espmem[player].Down and espmem[player].Right and espmem[player].Left then
 
                     -- Top Line
                     espmem[player].Up.From = getVector3D(tl.p)[1];
@@ -177,15 +177,15 @@ drawESP = function(player)
                 end
 
                 -- Head Dot
-                if getVector3D(player.Head.Position)[2] and espConfig.Enabled and espConfig.headdot and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Headdot then
+                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.headdot and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Headdot then
                     espmem[player].Headdot.Position = point;
-                    espmem[player].Headdot.Filled = espConfig.HeaddotFilled;
+                    espmem[player].Headdot.Filled = espConfig.headdotfilled;
                     espmem[player].Headdot.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
                     espmem[player].Headdot.NumSides = 50;
                     espmem[player].Headdot.Thickness = 1;
 
                     -- Head dot radius
-                    local Scale = player.Head.Size.Y / espConfig.HeaddotScale;
+                    local Scale = player.Head.Size.Y / espConfig.headdotscale;
                     local Top = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, Scale, 0)).Position);
                     local Bottom = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, -Scale, 0)).Position);
                     espmem[player].Headdot.Radius = (Top - Bottom).y;
@@ -203,9 +203,9 @@ drawESP = function(player)
                 
                 -- Tag
             
-                if getVector3D(player.Head.Position)[2] and espConfig.Enabled and espConfig.tag and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tag then
+                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tag and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tag then
 
-                    local ScreenPositionUpper = workspace.CurrentCamera:WorldToViewportPoint((player.HumanoidRootPart:GetRenderCFrame() * CFrame.new(0, player.Head.Size.Y + player.HumanoidRootPart.Size.Y + (espConfig.TagOffset - 200 / 25), 0)).Position);
+                    local ScreenPositionUpper = workspace.CurrentCamera:WorldToViewportPoint((player.HumanoidRootPart:GetRenderCFrame() * CFrame.new(0, player.Head.Size.Y + player.HumanoidRootPart.Size.Y + (espConfig.tagoffset - 200 / 25), 0)).Position);
                     if espmem[player].Tag.Font and Drawing and Drawing.Fonts then
                         espmem[player].Tag.Font = Drawing.Fonts.Monospace;
                     end
