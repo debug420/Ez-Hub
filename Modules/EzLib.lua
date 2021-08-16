@@ -1269,21 +1269,21 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 		tab.newDropdown = function(name, state, data, callback, closeAfterButtonPress)
 			-- This section checks to see if data is an array or a vector (dictionary)
 			-- If it is a vec, it will count the i-th value only
-			local isVector = (function()
+			local isVector = function(data)
 				local i = 0;
 				for i,v in pairs(data) do
 					i = i + 1;
 					if data[i] == nil then return true end
 				end
 				return false;
-			end)()
+			end
 
 			local dropdown = interactableElements.new();
 			dropdown.callback = callback;
 
 			-- Makes sure that data is always a regular array.
 			-- A vector will mess things up
-			dropdown.data = isVector and
+			dropdown.data = isVector(data) and
 			(function()
 				local t = {};
 				for i,v in pairs(data) do
@@ -1423,7 +1423,14 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			end
 
 			dropdown.changeData = function(data)
-				dropdown.data = data;
+				dropdown.data = isVector(data) and
+				(function()
+					local t = {};
+					for i,v in pairs(data) do
+						table.insert(t, 1, i);
+					end
+					return t;
+				end)() or data;
 				updateData();
 			end
 
