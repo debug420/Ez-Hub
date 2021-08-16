@@ -1327,7 +1327,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			-- Only takes care of GUI elements
 			local function updateData()
 				clearData();
-				for i,v in pairs(data) do
+				for i,v in pairs(dropdown.data) do
 					local btn = coreFuncs.addInstance("TextButton", {
 						["Parent"] = dropdownInstance.mainscrollingframe,
 						["BackgroundColor3"] = theme.Secondary,
