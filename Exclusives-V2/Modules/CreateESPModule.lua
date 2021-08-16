@@ -6,7 +6,7 @@ return {
         tab.newDiv();
 
         tab.newCheckbox("Enabled", espModule.Enabled, function(state)
-            espModule.Enabled = state;
+            espModule.enabled = state;
         end)
         
         tab.newDiv();
@@ -70,11 +70,11 @@ return {
         tab.newTitle("Headdot Settings");
         
         tab.newCheckbox("Headdot Filled", espModule.HeaddotFilled, function(state)
-            espModule.HeaddotFilled = state;
+            espModule.headdotfilled = state;
         end)
         
         tab.newSlider("Headdot Scale", espModule.HeaddotScale * 2, 1, 10, function(val)
-            espModule.HeaddotScale = val / 2;
+            espModule.headdotscale = val / 2;
         end)
     end
 }
