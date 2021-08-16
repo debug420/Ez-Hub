@@ -1326,7 +1326,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			-- Only takes care of GUI elements
 			local function updateData()
 				clearData();
-				for i,v in pairs(dropdown.data) do
+				for _,v in pairs(dropdown.data) do
 					local btn = coreFuncs.addInstance("TextButton", {
 						["Parent"] = dropdownInstance.mainscrollingframe,
 						["BackgroundColor3"] = theme.Secondary,
@@ -1334,7 +1334,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 						["Size"] = UDim2.new(1, -20, 0, 30),
 						["Font"] = Enum.Font.SourceSans,
 						["TextColor3"] = Color3.fromRGB(255, 255, 255),
-						["Text"] = v,
+						["Text"] = tostring(v),
 						["TextSize"] = 14.000
 					})
 					btn.MouseButton1Click:Connect(function()
