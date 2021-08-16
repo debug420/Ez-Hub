@@ -1,3 +1,4 @@
+
 return {
     init = function(callback)
         local moduleLinks = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/"..
@@ -15,7 +16,7 @@ return {
         _G["EzHubModules"] = {};
         for i, v in pairs(moduleLinks) do
             moduleIndex = moduleIndex + 1;
-            callback(moduleIndex, moduleNumber);
+            callback(moduleIndex, moduleNumber, i);
             local moduleStringData = game:HttpGet(v);
             _G["EzHubModules"][i] = moduleStringData;
         end
