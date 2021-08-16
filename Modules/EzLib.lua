@@ -1271,7 +1271,7 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 			-- If it is a vec, it will count the i-th value only
 			local isVector = function(data)
 				local i = 0;
-				for i,v in pairs(data) do
+				for _,v in pairs(data) do
 					i = i + 1;
 					if data[i] == nil then return true end
 				end
