@@ -1,3 +1,10 @@
+-- Ezlib
+
+local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
+
+----------------------------------------------------------------------
+-- Misc Tab funcs and vars
+
 local settings = {
     noclip = false,
     infJumpEnabled = false,
@@ -55,6 +62,9 @@ game:GetService("RunService").RenderStepped:Connect(function()
     if settings.noclip then
 	    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11);
     end
+end)
+
+game:GetService("RunService").Stepped:Connect(function()
     if settings.flingEnabled then
         for i,v in pairs(client.Character:GetChildren()) do
             if table.find(whitelistedParts, v.Name) then
@@ -84,6 +94,34 @@ local function toggleFling(state)
     end
 end
 
+----------------------------------------------------------------------
+-- Teleport Funcs and vars
+
+local chosenTeleportMethod = 0; -- 0 is instant, 1 is tween. Could not be bothered implementing enum system.
+local tweenTime = 1;
+
+local playersChanged = Instance.new("BindableEvent");
+game:GetService("Players").PlayerAdded:Connect(function() playersChanged:Fire(); end)
+game:GetService("Players").PlayerRemoving:Connect(function() playersChanged:Fire(); end)
+
+local function teleport(cframe)
+    local char = game:GetService("Players").LocalPlayer.Character;
+    if not char then return end;
+
+    if chosenTeleportMethod == 0 then
+        char.HumanoidRootPart.CFrame = cframe;
+    elseif chosenTeleportMethod == 1 then
+        game:GetService("TweenService"):Create(char.HumanoidRootPart, TweenInfo.new(tweenTime), {CFrame = cframe}):Play();
+    end
+end
+
+local function teleportToPlayer(playerInstance)
+    if not playerInstance.Parent == game:GetService("Players") then return end
+    pcall(teleport, playerInstance.Character:FindFirstChild("HumanoidRootPart").CFrame);
+end
+
+----------------------------------------------------------------------
+
 return {
     newUniversalTab = function(mainGUIInstance)
         local tab = mainGUIInstance.newTab("Misc");
@@ -102,9 +140,9 @@ return {
 
         tab.newCheckbox("Noclip", false, function(state)
             settings.noclip = state;
-            coroutine.wrap(function() 
+            coroutine.wrap(function()
                 ezlib.newNotif(ezlib.enum.notifType.text, state and "Enabled noclip" or "Disabled noclip").play().delete();
-            end)()
+            end)();
         end)
 
         tab.newCheckbox("Inf Jump", false, function(state)
@@ -143,6 +181,69 @@ return {
         tab.newSlider("FOV", 70, 1, 120, function(state)
             workspace.Camera.FieldOfView = state;
         end)
+
+    end,
+
+    newTeleportTab = function(mainGUIInstance)
+        local tab = mainGUIInstance.newTab("Teleport");
+        tab.newTitle("Teleport");
+        tab.newDiv();
+
+        tab.newDropdown("Teleport Method", "Instant TP", {"Instant TP", "Tween TP"}, function(state)
+            chosenTeleportMethod = state == "Instant TP" and 0 or 1;
+        end)
+
+        tab.newDiv();
+        
+        local playerTeleportDropdown = tab.newDropdown("Player Teleport", game:GetService("Players").LocalPlayer.Name,
+        game:GetService("Players"):GetPlayers(), function(state)
+            pcall(function() teleportToPlayer(game:GetService("Players")[state]) end);
+        end)
+
+        playersChanged.Event:Connect(function()
+            playerTeleportDropdown.changeData(game:GetService("Players"):GetPlayers());
+            playerTeleportDropdown.changeState("Select...");
+        end)
+
+        tab.newButton("TP to random", function()
+            teleportToPlayer(game:GetService("Players"):GetPlayers()[math.random(#game:GetService("Players"):GetPlayers())]);
+        end)
+
+        tab.newDiv();
+        tab.newTitle("Waypoint System");
+        tab.newDiv();
+
+        local selectedWaypoint = nil;
+        local waypoints = {};
+
+        local waypointDropdown = tab.newDropdown("Select waypoint", "Select...", waypoints, function(state)
+            selectedWaypoint = state;
+        end);
+
+        tab.newButton("TP to waypoint", function()
+            if not pcall(function() teleport(waypoints[selectedWaypoint]); end) then
+                coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.text, "No waypoint selected...").play().delete(); end);
+            end
+        end)
+
+        tab.newDiv();
+
+        -- Blank callback as I will just use waypointNameInput.getState
+        local waypointNameInput = tab.newTextbox("Waypoint Name", "Waypoint", function(state) end)
+
+        tab.newButton("Make waypoint", function()
+            print("Pressed")
+            if waypoints[waypointNameInput.getState()] then
+                coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.text, "Waypoint name unavailable").play().delete(); end);
+                print("returning")
+                return end
+            waypoints[waypointNameInput.getState()] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame;
+            waypointDropdown.changeData(waypoints);
+            waypointDropdown.changeState(waypointNameInput.getState());
+            print("done")
+            coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.longText, "Created waypoint at current user position. Use waypoint selector to teleport.").play().delete(); end);
+            print("done2")
+        end);
 
     end
 }
