@@ -83,7 +83,7 @@ end)
 weaponModTab.newCheckbox("Wallbang", false, function(state)
     wallbangEnabled = state;
     coroutine.wrap(function()
-        ezlib.newNotif(ezlib.enum.text, (state or "Enabled" and "Disabled").." wallbang successfully.").play().delete();
+        ezlib.newNotif(ezlib.enum.notifType.text, (state or "Enabled" and "Disabled").." wallbang successfully.").play().delete();
     end)();
 end)
 
