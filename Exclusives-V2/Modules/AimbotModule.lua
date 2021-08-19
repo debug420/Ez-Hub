@@ -25,7 +25,7 @@ do
 	local aim = false;
 
 	local function getMousePos()
-		return inputService:GetMouseLocation() + Vector2.new(0, 36);
+		return inputService:GetMouseLocation() - Vector2.new(0, 36);
 	end
 
 	_G.Circle = Drawing.new("Circle");
