@@ -3,7 +3,7 @@
 -- Arsenal Script
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
-local mainGUI = ezlib.create("Universal", nil, nil, nil, 286090429);
+local mainGUI = ezlib.create("Arsenal", nil, nil, nil, 286090429);
 
 ----------------------------------------------------------------------
 
