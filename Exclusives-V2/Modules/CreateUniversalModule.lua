@@ -222,7 +222,7 @@ return {
 
         tab.newButton("TP to waypoint", function()
             if not pcall(function() teleport(waypoints[selectedWaypoint]); end) then
-                coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.text, "No waypoint selected...").play().delete(); end);
+                coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.text, "No waypoint selected...").play().delete(); end)();
             end
         end)
 
@@ -232,17 +232,13 @@ return {
         local waypointNameInput = tab.newTextbox("Waypoint Name", "Waypoint", function(state) end)
 
         tab.newButton("Make waypoint", function()
-            print("Pressed")
             if waypoints[waypointNameInput.getState()] then
-                coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.text, "Waypoint name unavailable").play().delete(); end);
-                print("returning")
+                coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.text, "Waypoint name unavailable").play().delete(); end)();
                 return end
             waypoints[waypointNameInput.getState()] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame;
             waypointDropdown.changeData(waypoints);
             waypointDropdown.changeState(waypointNameInput.getState());
-            print("done")
-            coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.longText, "Created waypoint at current user position. Use waypoint selector to teleport.").play().delete(); end);
-            print("done2")
+            coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.longText, "Created waypoint at current user position. Use waypoint selector to teleport.").play().delete(); end)();
         end);
 
     end
