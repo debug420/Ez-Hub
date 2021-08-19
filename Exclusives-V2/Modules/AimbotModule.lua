@@ -24,8 +24,8 @@ do
 	local inputService = game:GetService("UserInputService");
 	local aim = false;
 
-	local function getMouse()
-		return inputService:GetMouseLocation() + Vector2.new(0, 36)
+	local function getMousePos()
+		return inputService:GetMouseLocation() + Vector2.new(0, 36);
 	end
 
 	_G.Circle = Drawing.new("Circle");
@@ -33,7 +33,7 @@ do
 	_G.Circle.NumSides = 20;
 	_G.Circle.Color = Color3.fromRGB(255,0,0);
 	_G.Circle.Thickness = 1;
-	_G.Circle.Position = getMouse();
+	_G.Circle.Position = getMousePos();
 	--_G.Circle.Position = Vector2.new(workspace.CurrentCamera.ViewportSize.X/2, workspace.CurrentCamera.ViewportSize.Y/2);
 	
 	inputService.InputBegan:Connect(function(key)
@@ -80,7 +80,7 @@ do
 	end
 
 	local function getClosestToCursor()
-		local mousePos = getMouse();
+		local mousePos = getMousePos();
 		local radius = aimbotSettings.radius;
 		local closest = math.huge;
 		local target = nil;
@@ -106,7 +106,7 @@ do
 	end
 
 	_G.ezhubaimbot = game:GetService("RunService").RenderStepped:Connect(function()
-		_G.Circle.Position = getMouse();
+		_G.Circle.Position = getMousePos();
 		if aimbotSettings.enabled and aimbotSettings.showfov then
 			_G.Circle.Visible = true;
 		else
@@ -126,7 +126,7 @@ do
 					return worldToScreen(target.Character.HumanoidRootPart.Position);
 				end
 			end)();
-			mousemoverel((aimAt.X - getMouse().X), (aimAt.Y - getMouse().Y));
+			mousemoverel((aimAt.X - getMousePos().X), (aimAt.Y - getMousePos().Y));
 		end
 	end)
 end
