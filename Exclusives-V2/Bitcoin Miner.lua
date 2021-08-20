@@ -1,98 +1,97 @@
 ----------------------------------------------------------------------
 
--- Universal Script
+-- Bitcoin Miner Script (The game, not an actual miner lmao)
 
-local ezlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/EzLib.lua"))()
-
-local DontLoad = false
-if game.PlaceId ~= 2629642516 then
-    ezlib:CreateNotice("Failed GameID Check", "The following exclusive that has been executed is not designed for the following game. This could cause the script to misfunction and break. Proceed anyway?", function(response)
-        if response ~= "Yes" then
-            DontLoad = true
-        end
-    end)
-end
-if DontLoad then return end
-
-local Main = ezlib:NewLib("Bitcoin Miner")
+local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
+local mainGUI = ezlib.create("Bitcoin Miner", nil, nil, nil, 2629642516);
 
 ----------------------------------------------------------------------
 
 -- Initialize Sections
 
-local MainSection = ezlib:NewSection(Main, "Main")
-local TeleportSection = ezlib:NewSection(Main, "Teleports")
-local BuySection = ezlib:NewSection(Main, "GPU Shop")
+local mainTab = mainGUI.newTab("Main");
+local teleportTab = mainGUI.newTab("Teleports");
+local buyTab = mainGUI.newTab("GPU Shop");
 
 ----------------------------------------------------------------------
 
 -- Main Section
 
-ezlib:NewTitle(MainSection, "Main Cheats")
-ezlib:NewDiv(MainSection)
+mainTab.newTitle("Main Cheats");
+mainTab.newDiv();
 
-local autoexchange = false
+local autoExchange = false;
 
-coroutine.resume(coroutine.create(function()
+coroutine.wrap(function()
     while true do
-        local p = workspace["Region_ExChang1"].Display.Part.SurfaceGui.Frame.Graph.Grp["11"].AbsoluteSize.Y
+        local price = tonumber(({string.gsub(workspace["Region_ExChang1"].Display.Part.SurfaceGui.Frame.Csh.Value.Text, " Cash", "")})[1]);
         wait(5)
-        if workspace["Region_ExChang1"].Display.Part.SurfaceGui.Frame.Graph.Grp["11"].AbsoluteSize.Y > p and autoexchange then
-            game:GetService("ReplicatedStorage").Events.ExchangeMoney:FireServer(true)
+        -- Makes sure to sell when the price goes higher. Of course, not the best method but the easiest to implement
+        local newPrice = tonumber(({string.gsub(workspace["Region_ExChang1"].Display.Part.SurfaceGui.Frame.Csh.Value.Text, " Cash", "")})[1]);
+        if newPrice > price
+        and autoExchange then
+            game:GetService("ReplicatedStorage").Events.ExchangeMoney:FireServer(true);
         end
     end
-end))
+end)();
 
-local antiafk = true
-local vu = game:GetService("VirtualUser")
+local antiAFK = true;
 game:GetService("Players").LocalPlayer.Idled:connect(function()
-    if not antiafk then return end;
-    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-    wait(1)
-    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    if not antiAFK then return end;
+    game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame);
+    wait(1);
+    game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame);
 end)
 
-ezlib:NewCheckBox(MainSection, "Auto Exchange", autoexchange, function(state)
-    autoexchange = state;
+mainTab.newCheckbox("Auto Exchange", autoExchange, function(state)
+    autoExchange = state;
 end)
 
-ezlib:NewCheckBox(MainSection, "Anti-AFK", antiafk, function(state)
-    antiafk = state;
+mainTab.newCheckbox("Anti-AFK", antiAFK, function(state)
+    antiAFK = state;
 end)
 
-ezlib:NewButton(MainSection, "Save Plot", function()
+-- Most of these functions were going to be used for
+-- an autobuild system. I later decided that I can not be
+-- bothered doing it and instead invested my time in something else
+-- The functions are implemented so if you want to continue the legacy feel free
+
+mainTab.newButton("Save Plot", function()
     for i,v in pairs(getgc()) do
         if type(v) == "function" and getfenv(v).script and getfenv(v).script.Name:lower() == "build" then
-            if #(debug.getconstants(v)) == 30 and debug.getconstant(v, 30) == "FireServer" then v() end
-            ezlib:NewNotif(nil, "Saved plot")
+            if #(debug.getconstants(v)) == 30 and debug.getconstant(v, 30) == "FireServer" then v(); end
+            coroutine.wrap(function()
+                ezlib.newNotif(ezlib.enum.notifType.text, "Saved plot").play().delete();
+            end)();
+            return;
         end
     end
 end)
 
 local function getPlayerObjects(p)
-    if not p then p = game.Players.LocalPlayer end
-    return workspace.Buildings[p.Name]:GetChildren()
+    if not p then p = game.Players.LocalPlayer; end
+    return workspace.Buildings[p.Name]:GetChildren();
 end
 
 local function getBuildingCost(t)
     local totalCost = 0;
     for i,v in pairs(t) do
-        local p = v:FindFirstChild("Price") or v:FindFirstChild("SPrice")
-        totalCost = totalCost + p.Value
+        local p = v:FindFirstChild("Price") or v:FindFirstChild("SPrice");
+        totalCost = totalCost + p.Value;
     end
     return totalCost;
 end
 
-ezlib:NewButton(MainSection, "Get Plot Cost", function()
-    ezlib:NewNotif(nil, "Your plot is worth "..getBuildingCost(getPlayerObjects()))
+mainTab.newButton("Get Plot Cost", function()
+    ezlib.newNotif(ezlib.enum.notifType.text, "Your plot is worth "..getBuildingCost(getPlayerObjects())).play().delete();
 end)
 
 ----------------------------------------------------------------------
 
 -- Teleport Section
 
-ezlib:NewTitle(TeleportSection, "Teleports")
-ezlib:NewDiv(TeleportSection)
+teleportTab.newTitle("Teleports");
+teleportTab.newDiv();
 
 local function getTeleports()
     local t = {};
@@ -103,8 +102,8 @@ local function getTeleports()
 end
 
 for i,v in pairs(getTeleports()) do
-    ezlib:NewButton(TeleportSection, i, function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v
+    teleportTab.newButton(i, function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v;
     end)
 end
 
@@ -112,37 +111,38 @@ end
 
 -- buy Section
 
-ezlib:NewTitle(BuySection, "GPU Shop")
-ezlib:NewDiv(BuySection)
+buyTab.newTitle("GPU Shop");
+buyTab.newDiv();
 
-local gpuOptions = {}
+local gpuOptions = {};
 for i,v in pairs(workspace.Region_shop.Shows:GetChildren()) do
     if v:IsA("Model") and tonumber(v.Name) then
-        local m = v:FindFirstChildOfClass("Model")
-        local bps = m:FindFirstChild("bps")
-        if not bps then bps = 0.00004 else bps = bps.Value end
-
+        local m = v:FindFirstChildOfClass("Model");
+        local bps = m:FindFirstChild("bps");
+        if not bps then bps = 0.00004 else bps = bps.Value; end
         gpuOptions[m.Name] = {m.Price.Value, bps, v.Name};
-        
     end
 end
 
 for i,v in pairs(gpuOptions) do
-    ezlib:NewDesc(BuySection, i.." Price: "..tostring(v[1]).." BPS:"..v[2])
-    ezlib:NewButton(BuySection, "Buy", function()
-        local oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(210.618622, 4.87277555, 74.0331802)
-        game:GetService("ReplicatedStorage").Events.BuyCard:FireServer(i, workspace.Region_shop.Shows[v[3]])
-        ezlib:NewNotif(nil, "Sent purchase request for "..i)
-        wait(.5)
+    buyTab.newDesc(i.." Price: "..tostring(v[1]).." BPS:"..v[2]);
+    buyTab.newButton("Buy", function()
+        local oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(210.618622, 4.87277555, 74.0331802);
+        wait();
+        game:GetService("ReplicatedStorage").Events.BuyCard:FireServer(i, workspace.Region_shop.Shows[v[3]]);
+        coroutine.wrap(function() 
+            ezlib.newNotif(ezlib.enum.notifType.longText, "Sent purchase request for "..i).play().delete();
+        end)();
+        wait(.5);
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos;
     end)
-    ezlib:NewDiv(BuySection)
+    buyTab.newDiv();
 end
 
 ----------------------------------------------------------------------
 
 -- Active
 
-ezlib:SetActive(MainSection);
+mainGUI.openTab(mainTab);
 
