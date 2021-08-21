@@ -1,6 +1,7 @@
 return {
-    newAimbotTab = function(mainGUIInstance)
+    newAimbotTab = function(mainGUIInstance, aimAtCallback)
         local aimbotModule = loadstring(_G["EzHubModules"]["aimbotmodule"])();
+        aimbotModule.aimAtCallback = aimAtCallback;
         local tab = mainGUIInstance.newTab("Aimbot");
         tab.newTitle("Aimbot");
         tab.newDiv();
@@ -38,5 +39,6 @@ return {
         tab.newKeybind("Keybind", aimbotModule.keybind, function(i)
             aimbotModule.keybind = i.KeyCode;
         end)
+        return aimbotModule;
     end
 }
