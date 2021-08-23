@@ -67,12 +67,11 @@ aimbotSettings.getClosestToCursor = function(aimbotSettings)
 		if aimbotSettings.matchesFreeForAllConditions(aimbotSettings, v) then
 			if v and v.Character and v.Character:FindFirstChild("Head") and v ~= game.Players.LocalPlayer then
 				local point, onScreen = aimbotSettings.worldToScreen(aimbotSettings, v.Character.Head.Position);
-				local clientChar = client.Character;
 				if onScreen and aimbotSettings.notObstructing(aimbotSettings, v.Character.Head.Position, {
-					clientChar,
+					client.Character,
 					v.Character
 				}) then
-					local distance = (Vector2.new(point.X, point.Y) - mousePos).magnitude
+					local distance = point.Z;
 					if distance < math.min(radius, closest) then
 						closest = distance;
 						target = v;
