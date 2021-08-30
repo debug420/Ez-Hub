@@ -5,7 +5,7 @@ return {
         tab.newTitle("ESP Engine V4");
         tab.newDiv();
 
-        tab.newCheckbox("Enabled", espModule.Enabled, function(state)
+        tab.newCheckbox("Enabled", espModule.enabled, function(state)
             espModule.enabled = state;
         end)
         
@@ -69,7 +69,7 @@ return {
         tab.newDiv();
         tab.newTitle("Headdot Settings");
         
-        tab.newCheckbox("Headdot Filled", espModule.HeaddotFilled, function(state)
+        tab.newCheckbox("Headdot Filled", espModule.headdotfilled, function(state)
             espModule.headdotfilled = state;
         end)
         
