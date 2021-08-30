@@ -45,13 +45,14 @@ end
 
 aimbotSettings.notObstructing = function(aimbotSettings, destination, ignore)
 	if aimbotSettings.wallcheck then
-		local origin = workspace.CurrentCamera.CFrame.p;
-		local checkRay = Ray.new(origin, destination - origin);
-		local hit = workspace:FindPartOnRayWithIgnoreList(checkRay, ignore);
-		return hit == nil;
-	else
-		return true;
+		local parts = workspace.CurrentCamera:GetPartsObscuringTarget({destination}, ignore);
+		for i,v in pairs(parts) do
+			if v:IsA("BasePart") and v.Transparency <= 2.5 then
+				return false;
+			end
+		end
 	end
+	return true;
 end
 
 aimbotSettings.worldToScreen = function(aimbotSettings, pos)
@@ -69,9 +70,10 @@ aimbotSettings.getClosestToCursor = function(aimbotSettings)
 				local point, onScreen = aimbotSettings.worldToScreen(aimbotSettings, v.Character.Head.Position);
 				if onScreen and aimbotSettings.notObstructing(aimbotSettings, v.Character.Head.Position, {
 					client.Character,
-					v.Character
+					v.Character,
+                    workspace.CurrentCamera
 				}) then
-					local distance = point.Z;
+					local distance = (Vector2.new(point.X, point.Y) - mousePos).magnitude;
 					if distance < math.min(radius, closest) then
 						closest = distance;
 						target = v;
