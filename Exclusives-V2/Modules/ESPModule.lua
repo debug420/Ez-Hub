@@ -66,7 +66,7 @@ local function getTracerPoint()
 end
 
 local function checkTeam(player)
-    if espConfig.teamcheck then
+    if espConfig.teamcheck and player and player.Parent then
         return game:GetService("Players"):FindFirstChild(player.Name).Team ~= game:GetService("Players").LocalPlayer.Team;
     else
         return true;
@@ -245,7 +245,7 @@ end
 
 ----------------------------------------------------------------------
 
-for _, player in next, game:GetService("Players"):GetPlayers() do
+for _, player in pairs(game:GetService("Players"):GetPlayers()) do
     if player.Name ~= game.Players.LocalPlayer.Name then
         drawESP(player.Character);
         player.CharacterAdded:Connect(function()
