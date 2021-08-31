@@ -137,7 +137,7 @@ _G.ezhubaimbot = game:GetService("RunService").RenderStepped:Connect(function()
 		local aimAt, visible = aimbotSettings.aimAtCallback(aimbotSettings, target);
 		if aimAt and aimAt.X and aimAt.Y then
 			mousemoverel((aimAt.X - aimbotSettings.getMousePos(aimbotSettings).X) / aimbotSettings.smoothness,
-			(aimAt.Y - aimbotSettings.getMousePos(aimbotSettings).Y) / aimbotSettings.smoothness + 36);
+			(aimAt.Y - aimbotSettings.getMousePos(aimbotSettings).Y) / aimbotSettings.smoothness - 36);
 		end
 	end
 
