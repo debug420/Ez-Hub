@@ -1,7 +1,7 @@
 
 local espConfig = {
     -- Toggle
-    enabled = true,
+    enabled = false,
     -- ESP Elements
     tracer = true,
     headdot = true,
