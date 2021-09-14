@@ -56,7 +56,7 @@ aimbotSettings.notObstructing = function(aimbotSettings, destination, ignore)
 end
 
 aimbotSettings.worldToScreen = function(aimbotSettings, pos)
-	return workspace.CurrentCamera:WorldToViewportPoint(pos);
+	return workspace.CurrentCamera:WorldToScreenPoint(pos);
 end
 
 aimbotSettings.getClosestToCursor = function(aimbotSettings)
