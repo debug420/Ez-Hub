@@ -27,7 +27,7 @@ end))
 ----------------------------------------------------------------------
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
-local mainGUI = ezlib.create("Phantom Forces");
+local mainGUI = ezlib.create("Phantom Forces", nil, nil, nil, 292439477);
 local misc = mainGUI.newTab("Misc");
 
 ----------------------------------------------------------------------
