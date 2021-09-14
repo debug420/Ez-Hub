@@ -2,7 +2,7 @@
 -- Bubble Gum Sim Script
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
-local mainGUI = ezlib.create("Bubble Gum Simulator", nil, nil, nil, 251264357201);
+local mainGUI = ezlib.create("Bubble Gum Simulator", nil, nil, nil, 2512643572);
 local autofarm = mainGUI.newTab("Autofarm");
 local teleport = mainGUI.newTab("Teleport");
 
