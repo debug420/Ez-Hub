@@ -1,7 +1,9 @@
 return {
-    newAimbotTab = function(mainGUIInstance, aimAtCallback)
-        local aimbotModule = loadstring(_G["EzHubModules"]["aimbotmodule"])();
-        aimbotModule.aimAtCallback = aimAtCallback;
+    newAimbotTab = function(mainGUIInstance, moduleData)
+        local aimbotModule = moduleData and
+        (type(moduleData) == "function" and moduleData() or loadstring(moduleData)())
+        or loadstring(_G["EzHubModules"]["aimbotmodule"])();    -- default
+
         local tab = mainGUIInstance.newTab("Aimbot");
         tab.newTitle("Aimbot");
         tab.newDiv();
