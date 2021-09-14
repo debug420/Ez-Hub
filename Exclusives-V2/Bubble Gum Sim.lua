@@ -44,7 +44,7 @@ end
 -- If requried functions are not found then exit out to avoid errors
 if not network or not blowfunc then
     warn("Could not find network or blowfunc");
-    ezlib.newNotif(ezlib.enum.notifType.long,
+    ezlib.newNotif(ezlib.enum.notifType.longText,
     "Major Script Error", "The script could not find network and blow function memory address. You may have executed the script too early. Script aborting.").play().delete();
     return;
 end
