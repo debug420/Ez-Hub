@@ -9,11 +9,11 @@ local teleport = mainGUI.newTab("Teleport");
 ----------------------------------------------------------------------
 
 -- Get Modules
-local guiservice = require(game.Players.LocalPlayer.PlayerGui.ScreenGui.ClientScript.Modules.GuiService)
-local inputservice = require(game.Players.LocalPlayer.PlayerGui.ScreenGui.ClientScript.Modules.InputService)
-local gumm = require(game:GetService("ReplicatedStorage").Assets.Modules.ItemDataService.GumModule)
-local worldm = require(game:GetService("ReplicatedStorage").Assets.Modules.ItemDataService.WorldModule)
-local worlds = require(game.Players.LocalPlayer.PlayerGui.ScreenGui.ClientScript.Modules.WorldService)
+local guiservice = require(game.Players.LocalPlayer.PlayerGui.ScreenGui.ClientScript.Modules.GuiService);
+local inputservice = require(game.Players.LocalPlayer.PlayerGui.ScreenGui.ClientScript.Modules.InputService);
+local gumm = require(game:GetService("ReplicatedStorage").Assets.Modules.ItemDataService.GumModule);
+local worldm = require(game:GetService("ReplicatedStorage").Assets.Modules.ItemDataService.WorldModule);
+local worlds = require(game.Players.LocalPlayer.PlayerGui.ScreenGui.ClientScript.Modules.WorldService);
 
 --guiservice:CutsceneFade(false)
 --guiservice:SetOverlay(false)
@@ -34,7 +34,7 @@ local network;
 local blowfunc;
 for i,v in pairs(getgc(true)) do
     if type(v) == "table" and rawget(v, "Break") and rawget(v, "BreakAll") then
-        blowfunc = rawget(v, "new")
+        blowfunc = rawget(v, "new");
     end
     if type(v) == "table" and rawget(v, "Bind") and rawget(v, "FireServer") then
         network = v;
@@ -43,15 +43,15 @@ end
 
 -- If requried functions are not found then exit out to avoid errors
 if not network or not blowfunc then
-    warn("Could not find network or blowfunc")
+    warn("Could not find network or blowfunc");
     ezlib.newNotif(ezlib.enum.notifType.long,
     "Major Script Error", "The script could not find network and blow function memory address. You may have executed the script too early. Script aborting.").play().delete();
-    return
+    return;
 end
 
 -- Maniupulate gamepass ownership by first copying original values
 local cachedOwnedPasses = network:Call("GetOwnedPasses");
-local modifiedtbl = {}
+local modifiedTable = {};
 for i,v in pairs(cachedOwnedPasses) do
     -- and manipulating the one needed to be true
     if i == "Quantum Gum" then
@@ -64,10 +64,10 @@ end
 -- return the maniupulated table that we made
 local oldNamecall;
 oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
-    local m = getnamecallmethod()
-    local args = {...}
+    local m = getnamecallmethod();
+    local args = {...};
     if self == network and tostring(m) == "Call" and args[1] == "GetOwnedPasses" then
-        return modifiedtbl;
+        return modifiedTable;
     end
     return oldNamecall(self, ...);
 end)
@@ -84,8 +84,8 @@ local function tweenplayer(cframe)
 
     isTweening = true;
 
-    local tweenInfo = TweenInfo.new(((cframe.p - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)/30)
-    local tweenPlayer = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, 
+    local tweenInfo = TweenInfo.new(((cframe.p - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude) / 30);
+    local tweenPlayer = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,
     tweenInfo, {CFrame = cframe});
     tweenPlayer:Play();
     tweenPlayer.Completed:Wait(); wait(.5);
@@ -168,9 +168,9 @@ coroutine.resume(coroutine.create(function()
             if game.Players.LocalPlayer:DistanceFromCharacter(Vector3.new(70.4115906, 44.6981506, -238.785828)) < 100 then
                 takeToSpawn();
             end
-            local n = nearestCoin()
+            local n = nearestCoin();
             if n and not n:IsA("Model") then
-                tweenplayer(n.CFrame)
+                tweenplayer(n.CFrame);
             end
         end
 
@@ -181,7 +181,7 @@ coroutine.resume(coroutine.create(function()
     while wait() do
 
         if autoBlow and not isBubbleFull() then
-            blow()
+            blow();
         end
 
     end
