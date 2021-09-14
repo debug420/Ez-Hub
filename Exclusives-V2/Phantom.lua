@@ -1,3 +1,11 @@
+-- Phantom Forces Script
+
+local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
+local mainGUI = ezlib.create("Phantom Forces", nil, nil, nil, 292439477);
+local misc = mainGUI.newTab("Misc");
+
+----------------------------------------------------------------------
+
 for i,v in pairs(getgc(true)) do
 	if type(v) == "table" and rawget(v, "getbodyparts") then
 		_G.getBodyparts = v.getbodyparts;
@@ -23,12 +31,6 @@ coroutine.resume(coroutine.create(function()
 		end
     end
 end))
-
-----------------------------------------------------------------------
-
-local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
-local mainGUI = ezlib.create("Phantom Forces", nil, nil, nil, 292439477);
-local misc = mainGUI.newTab("Misc");
 
 ----------------------------------------------------------------------
 -- Aimbot module
