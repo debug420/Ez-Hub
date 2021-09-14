@@ -1,6 +1,9 @@
 return {
-    newESPTab = function(mainGUIInstance)
-        local espModule = loadstring(_G["EzHubModules"]["espmodule"])();
+    newESPTab = function(mainGUIInstance, moduleData)
+        local espModule = moduleData and
+        (type(moduleData) == "function" and moduleData() or loadstring(moduleData)())
+        or loadstring(_G["EzHubModules"]["espmodule"])();    -- default
+
         local tab = mainGUIInstance.newTab("ESP");
         tab.newTitle("ESP Engine V4");
         tab.newDiv();
