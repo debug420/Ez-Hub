@@ -5,6 +5,7 @@ local mainGUI = ezlib.create("Redwood Prison", nil, nil, nil, 402122991);
 local main = mainGUI.newTab("Main");
 loadstring(_G["EzHubModules"]["createuniversalmodule"])().newUniversalTab(mainGUI);
 loadstring(_G["EzHubModules"]["createaimbotmodule"])().newAimbotTab(mainGUI);
+loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
 loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI);
 local teleport = mainGUI.getTab("Teleport");
 local rage = mainGUI.newTab("Rage");
