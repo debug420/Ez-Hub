@@ -8,6 +8,9 @@ local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
 local settings = {
     noclip = false,
     infJumpEnabled = false,
+    loopApply = false,
+    desiredSpeed = nil,
+    desiredJump = nil,
     flingPower = 500,
     flingEnabled = false
 };
@@ -61,6 +64,10 @@ local whitelistedParts = {
 game:GetService("RunService").RenderStepped:Connect(function()
     if settings.noclip then
 	    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11);
+    end
+    if settings.loopApply then
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = settings.desiredJump;
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = settings.desiredSpeed;
     end
 end)
 
@@ -128,12 +135,18 @@ return {
         tab.newTitle("Misc");
         tab.newDiv();
 
+        tab.newCheckbox("Loop Apply", false, function(state)
+            settings.loopApply = state;
+        end)
+
         tab.newSlider("Walkspeed", 0, 0, 100, function(state)
             client.Character.Humanoid.WalkSpeed = state;
+            settings.desiredSpeed = state;
         end);
 
         tab.newSlider("JumpPower", 0, 0, 100, function(state)
             client.Character.Humanoid.JumpPower = state;
+            settings.desiredJump = state;
         end)
 
         tab.newDiv();
