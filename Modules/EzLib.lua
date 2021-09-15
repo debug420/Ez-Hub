@@ -168,7 +168,7 @@ coreGUIFuncs.newCreateGUI = function(name, pos, parent, colors)
 
 	local screenGui = coreFuncs.addInstance("ScreenGui", {
 		["Parent"] = parent,
-		["Name"] = "EzExc"
+		["Name"] = "EzLib"
 	});
 
 	local window = coreFuncs.addInstance("Frame", {
@@ -654,10 +654,10 @@ coreGUIFuncs.newTextbox = function(tabWindow, name, state, colors)
 	});
 	
 	local textbox = coreFuncs.addInstance("TextBox", {
-		["AnchorPoint"] = Vector2.new(0.5, 0.5),
+		["AnchorPoint"] = Vector2.new(1, 0.5),
 		["BackgroundColor3"] = colors.Primary,
 		["BorderSizePixel"] = 0,
-		["Position"] = UDim2.new(0.791999996, 0, 0.5, 0),
+		["Position"] = UDim2.new(1, -10, 0.5, 0),
 		["Size"] = UDim2.new(0, 88, 0, 21),
 		["Font"] = Enum.Font.SourceSans,
 		["PlaceholderText"] = "Click to type...",
@@ -1049,7 +1049,7 @@ ezlib.newNotif = function(notifType, text, buttonLT, buttonRT, buttonLC, buttonR
 	return notif;
 end
 
-ezlib.create = function(name, parent, pos, theme, gameID)
+ezlib.create = function(name, parent, pos, theme, gameID, deleteOldGUI)
 	local create = {};
 
 	-- Format parameters so no errors occcur.
@@ -1057,6 +1057,15 @@ ezlib.create = function(name, parent, pos, theme, gameID)
 	parent = parent or game.CoreGui;
 	pos = pos or UDim2.new(0.5, 0, 0.5, 0);
 	theme = theme or coreVars.colors;	-- themes. For coloring the gui differently
+	if deleteOldGUI == nil then deleteOldGUI = true; end
+	if deleteOldGUI then
+		if game.CoreGui:FindFirstChild("EzLib") then
+			game.CoreGui.EzLib:Destroy();
+		end
+		if game.Players.LocalPlayer.PlayerGui:FindFirstChild("EzLib") then
+			game.Players.LocalPlayer.PlayerGui.EzLib:Destroy();
+		end
+	end
 
 	if gameID and gameID ~= game.PlaceId then
 		local continueAnyway;
