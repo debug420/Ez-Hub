@@ -2,7 +2,6 @@
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
 local mainGUI = ezlib.create("Phantom Forces", nil, nil, nil, 292439477);
-local misc = mainGUI.newTab("Misc");
 
 ----------------------------------------------------------------------
 
@@ -375,6 +374,7 @@ end);
 ----------------------------------------------------------------------
 -- Misc
 
+local misc = mainGUI.newTab("Misc");
 misc.newCheckbox("Update Radar", true, function(state)
     for i, v in pairs(getgc(true)) do
         if type(v) == "table" and rawget(v, "radar") and rawget(v, "killfeed") then
