@@ -39,7 +39,7 @@ return {
         end)
     
         tab.newKeybind("Keybind", aimbotModule.keybind, function(i)
-            aimbotModule.keybind = i.KeyCode;
+            aimbotModule.keybind = i.Name;
         end)
         return aimbotModule;
     end
