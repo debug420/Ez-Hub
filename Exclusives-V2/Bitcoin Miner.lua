@@ -1,16 +1,17 @@
-----------------------------------------------------------------------
 
 -- Bitcoin Miner Script (The game, not an actual miner lmao)
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
 local mainGUI = ezlib.create("Bitcoin Miner", nil, nil, nil, 2629642516);
-
-----------------------------------------------------------------------
-
--- Initialize Sections
-
 local mainTab = mainGUI.newTab("Main");
-local teleportTab = mainGUI.newTab("Teleports");
+loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI, (function()
+    local t = {};
+    for i,v in pairs(workspace.Teleports:GetChildren()) do
+        t[v.Name:sub(4)] = v.CFrame;
+    end
+    return t;
+end)());
+
 local buyTab = mainGUI.newTab("GPU Shop");
 
 ----------------------------------------------------------------------
@@ -85,27 +86,6 @@ end
 mainTab.newButton("Get Plot Cost", function()
     ezlib.newNotif(ezlib.enum.notifType.text, "Your plot is worth "..getBuildingCost(getPlayerObjects())).play().delete();
 end)
-
-----------------------------------------------------------------------
-
--- Teleport Section
-
-teleportTab.newTitle("Teleports");
-teleportTab.newDiv();
-
-local function getTeleports()
-    local t = {};
-    for i,v in pairs(workspace.Teleports:GetChildren()) do
-        t[v.Name:sub(4)] = v.CFrame;
-    end
-    return t;
-end
-
-for i,v in pairs(getTeleports()) do
-    teleportTab.newButton(i, function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v;
-    end)
-end
 
 ----------------------------------------------------------------------
 
