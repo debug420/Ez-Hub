@@ -1059,11 +1059,13 @@ ezlib.create = function(name, parent, pos, theme, gameID, deleteOldGUI)
 	theme = theme or coreVars.colors;	-- themes. For coloring the gui differently
 	if deleteOldGUI == nil then deleteOldGUI = true; end
 	if deleteOldGUI then
-		if game.CoreGui:FindFirstChild("EzLib") then
-			game.CoreGui.EzLib:Destroy();
+		for i,v in pairs(game.CoreGui:GetChildren()) do
+			if v.Name == "EzLib" then v:Destroy(); end
+			if v.Name == "dropdownContainer" then v:Destroy(); end
 		end
-		if game.Players.LocalPlayer.PlayerGui:FindFirstChild("EzLib") then
-			game.Players.LocalPlayer.PlayerGui.EzLib:Destroy();
+		for i,v in pairs(game.Players.LocalPlayer.PlayerGui:GetChildren()) do
+			if v.Name == "EzLib" then v:Destroy(); end
+			if v.Name == "dropdownContainer" then v:Destroy(); end
 		end
 	end
 
@@ -1085,6 +1087,7 @@ ezlib.create = function(name, parent, pos, theme, gameID, deleteOldGUI)
 	local activeTab;	-- keeps track of the tab that is open
 	local keybind = Enum.KeyCode.RightShift;	-- the keybind that toggles the gui
 	local dropdownContainer = Instance.new("ScreenGui", game.CoreGui);
+	dropdownContainer.Name = "dropdownContainer";
 	local activeDropdown;
 	local dropdownDebounce = true;
 
