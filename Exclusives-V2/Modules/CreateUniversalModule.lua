@@ -197,7 +197,8 @@ return {
 
     end,
 
-    newTeleportTab = function(mainGUIInstance)
+    -- premadeTeleportDictionary is for premade teleports. It is supplied with a vector/dictionary
+    newTeleportTab = function(mainGUIInstance, premadeTeleportDictionary)
         local tab = mainGUIInstance.newTab("Teleport");
         tab.newTitle("Teleport");
         tab.newDiv();
@@ -205,6 +206,14 @@ return {
         tab.newDropdown("Teleport Method", "Instant TP", {"Instant TP", "Tween TP"}, function(state)
             chosenTeleportMethod = state == "Instant TP" and 0 or 1;
         end)
+
+        if premadeTeleportDictionary then
+            tab.newDiv();
+            tab.newTitle("Pre-made Teleports");
+            tab.newDropdown("Pre-made Teleports", "Select...", premadeTeleportDictionary, function(state)
+                if premadeTeleportDictionary[state] then teleport(premadeTeleportDictionary[state]); end
+            end)
+        end
 
         tab.newDiv();
         
