@@ -1763,12 +1763,14 @@ bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
 
 local function applyFrameResizing(scrollingframe)
 	pcall(function()
-		local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
-		scrollingframe.CanvasSize = UDim2.new(0,scrollingframe.Size.X,0,cS.Y + 30);
-		scrollingframe.UIGridLayout.Changed:Connect(function()
-			scrollingframe.CanvasSize = UDim2.new(0,scrollingframe.Size.X,0,cS.Y + 30);
-		end)
-	end)	
+		local function update()
+			local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
+			scrollingframe.CanvasSize = UDim2.new(0, scrollingframe.Size.X, 0, cS.Y + 30);
+		end
+		scrollingframe.ChildAdded:Connect(update);
+		scrollingframe.ChildRemoved:Connect(update);
+		update();
+	end)
 end
 
 applyFrameResizing(EzHub.ExclusivesFrame.AnimFrame1);
