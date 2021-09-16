@@ -6,8 +6,17 @@ local main = mainGUI.newTab("Main");
 loadstring(_G["EzHubModules"]["createuniversalmodule"])().newUniversalTab(mainGUI);
 loadstring(_G["EzHubModules"]["createaimbotmodule"])().newAimbotTab(mainGUI);
 loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
-loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI);
-local teleport = mainGUI.getTab("Teleport");
+loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI, {
+	["Prison Entrance"] = CFrame.new(128.391846, 4, -165.008377),
+	["Heli-Pad"] = CFrame.new(261.763123, 6.91001606, 112.712425),
+	["Basketball Court"] = CFrame.new(243.292923, 4.32000971, -80.9519501),
+	["Police Garage"] = CFrame.new(12.1939754, 5, -355.293945),
+	["Cafe"] = CFrame.new(-0.0495917872, 4, -113.983582),
+	["Fake ID Spawn"] = CFrame.new(-425.097961, -23.9986668, -518.573669),
+	["Gaurd Room"] = CFrame.new(113.882286, 4, 8.74197102),
+	["Fugitives Base"] = CFrame.new(-617.956909, -24.7896214, -329.70224),
+	["Prison Cells"] = CFrame.new(-14, 4, 20)
+});
 local rage = mainGUI.newTab("Rage");
 
 ----------------------------------------------------------------------
@@ -103,49 +112,6 @@ end)
 main.newButton("Police", function()
 	workspace.resources.RemoteFunction:InvokeServer("requestTeam", "police");
 end)
-
-----------------------------------------------------------------------
--- Teleport Section
-
-local function teleportPlayer(cords)
-	local coordinate = string.split(cords, ",");
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
-	CFrame.new(tonumber(coordinate[1]), tonumber(coordinate[2]), tonumber(coordinate[3]));
-end
-
-teleport.newDiv();
-teleport.newTitle("Pre-made Teleports");
-teleport.newDropdown("Pre-made Teleports", "Prison Entrance", {
-	"Prison Entrance",
-	"Heli-Pad",
-	"Basketball Court",
-	"Police Garage",
-	"Cafe",
-	"Fake ID Spawn",
-	"Gaurd Room",
-	"Fugitives Base",
-	"Prison Cells"
-}, function(state)
-	if state == "Prison Entrance" then
-		teleportPlayer("128.391846, 4, -165.008377");
-	elseif state == "Heli-Pad" then
-		teleportPlayer("261.763123, 6.91001606, 112.712425");
-	elseif state == "Basketball Court" then
-		teleportPlayer("243.292923, 4.32000971, -80.9519501");
-	elseif state == "Police Garage" then
-		teleportPlayer("12.1939754, 5, -355.293945");
-	elseif state == "Cafe" then
-		teleportPlayer("-0.0495917872, 4, -113.983582");
-	elseif state == "Fake ID Spawn" then
-		teleportPlayer("-425.097961, -23.9986668, -518.573669");
-	elseif state == "Gaurd Room" then
-		teleportPlayer("113.882286, 4, 8.74197102");
-	elseif state == "Fugitives Base" then
-		teleportPlayer("-617.956909, -24.7896214, -329.70224");
-	elseif state == "Prison Cells" then
-		teleportPlayer("-14, 4, 20");
-	end
-end);
 
 ----------------------------------------------------------------------
 -- Rage Section
