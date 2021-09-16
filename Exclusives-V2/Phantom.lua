@@ -259,7 +259,7 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 						espmem[player].Headdot.Position = point;
 						espmem[player].Headdot.Filled = espConfig.headdotfilled;
 						espmem[player].Headdot.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
-						espmem[player].Headdot.NumSides = 50;
+						espmem[player].Headdot.NumSides = 20;
 						espmem[player].Headdot.Thickness = 1;
 
 						-- Head dot radius
