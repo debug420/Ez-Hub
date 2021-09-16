@@ -3,8 +3,17 @@
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
 local mainGUI = ezlib.create("Saber Sim", nil, nil, nil, 3823781113);
 local main = mainGUI.newTab("Main");
-loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI);
-local teleport = mainGUI.getTab("Teleport");
+loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI, {
+    ["Shop"] = CFrame.new(475.177917, 183.950592, 68.667984),
+    ["Daily Rewards"] = CFrame.new(491.230225, 183.537842, 121.609573),
+    ["Sell Area"] = CFrame.new(521.237305, 183.537842, 142.017639),
+    ["Upgrade Skill"] = CFrame.new(553.974792, 183.537842, 140.078659),
+    ["Boss Ring"] = CFrame.new(364.134155, 185.674408, 168.704376),
+    ["Construction Site"] = CFrame.new(583.555115, 210.413422, -195.103607),
+    ["Crown Shop"] = CFrame.new(725.772156, 183.787842, 169.91925),
+    ["Volcano"] = CFrame.new(705.309326, 170.944824, 460.842804),
+    ["Island Portal"] = CFrame.new(530.833862, 185.689117, -37.1283569)
+});
 loadstring(_G["EzHubModules"]["createuniversalmodule"])().newUniversalTab(mainGUI);
 
 ----------------------------------------------------------------------
@@ -160,27 +169,6 @@ end)
 
 main.newCheckbox("Unlimited Jump", false, function(state)
     maxJump = state;
-end)
-
-----------------------------------------------------------------------
--- Teleport Section
-
-local teleportList = {
-    ["Shop"] = CFrame.new(475.177917, 183.950592, 68.667984),
-    ["Daily Rewards"] = CFrame.new(491.230225, 183.537842, 121.609573),
-    ["Sell Area"] = CFrame.new(521.237305, 183.537842, 142.017639),
-    ["Upgrade Skill"] = CFrame.new(553.974792, 183.537842, 140.078659),
-    ["Boss Ring"] = CFrame.new(364.134155, 185.674408, 168.704376),
-    ["Construction Site"] = CFrame.new(583.555115, 210.413422, -195.103607),
-    ["Crown Shop"] = CFrame.new(725.772156, 183.787842, 169.91925),
-    ["Volcano"] = CFrame.new(705.309326, 170.944824, 460.842804),
-    ["Island Portal"] = CFrame.new(530.833862, 185.689117, -37.1283569)
-}
-
-teleport.newDiv();
-teleport.newTitle("Pre-made Teleports");
-teleport.newDropdown("Pre-made Teleports", "Shop", teleportList, function(state)
-    if teleportList[state] then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = teleportList[state]; end
 end)
 
 ----------------------------------------------------------------------
