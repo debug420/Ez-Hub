@@ -69,9 +69,9 @@ aimbotSettings.aimAtCallback = function(aimbotSettings, target)
 	if target and target.Character:FindFirstChild("Head") 
     and target.Character:FindFirstChild("HumanoidRootPart") then
         if aimbotSettings.headshot then
-            return aimbotSettings.worldToScreen(aimbotSettings, target.Character.Head.Position + Vector3.new(0, 2));	-- A little bit of lazy bullet drop compensation
+            return aimbotSettings.worldToScreen(aimbotSettings, target.Character.Head.Position);
         else
-            return aimbotSettings.worldToScreen(aimbotSettings, target.Character.HumanoidRootPart.Position + Vector3.new(0, 1));
+            return aimbotSettings.worldToScreen(aimbotSettings, target.Character.HumanoidRootPart.Position + Vector3.new(0, 1));	-- A little bit of lazy bullet drop compensation
         end
     end
 end
