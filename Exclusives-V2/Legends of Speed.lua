@@ -143,23 +143,32 @@ end)
 teleport.newTitle("Teleports");
 teleport.newDiv();
 
+local crystalTeleports = {};
+local rewardChestTeleports = {};
+
 for i,v in pairs(workspace.mapCrystalsFolder:GetChildren()) do
     if string.find(v.Name, "Crystal") and v:IsA("Model") then
-        teleport.newButton(v.Name, function()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.guiPart.CFrame;
-        end)
+        crystalTeleports[v.Name] = v.guiPart.CFrame;
     end
 end
-
-teleport.newDiv();
 
 for i,v in pairs(workspace.rewardChests:GetChildren()) do
     if v.Name == "rewardChest" and v:IsA("Model") then
-        teleport.newButton("Reward Chest "..i, function()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.PrimaryPart.CFrame;
-        end)
+        rewardChestTeleports["Reward Chest "..i] = v.PrimaryPart.CFrame;
     end
 end
+
+teleport.newDropdown("Crystal Teleports", "Select", crystalTeleports, function(state)
+    if crystalTeleports[state] then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = crystalTeleports[state];
+    end
+end)
+
+teleport.newDropdown("Chest Teleports", "Select", rewardChestTeleports, function(state)
+    if rewardChestTeleports[state] then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = rewardChestTeleports[state];
+    end
+end)
 
 ----------------------------------------------------------------------
 
