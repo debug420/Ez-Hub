@@ -997,6 +997,7 @@ ezlib.newNotif = function(notifType, text, buttonLT, buttonRT, buttonLC, buttonR
 			continueFunc = true;
 		end);
 		repeat wait() until continueFunc;
+		return notif;
 	end
 
 	notif.hide = function()
@@ -1007,6 +1008,7 @@ ezlib.newNotif = function(notifType, text, buttonLT, buttonRT, buttonLC, buttonR
 			continueFunc = true;
 		end);
 		repeat wait() until continueFunc;
+		return notif;
 	end
 
 	local playDebounce = true;
@@ -1527,7 +1529,7 @@ ezlib.create = function(name, parent, pos, theme, gameID, deleteOldGUI)
 		tab.newKeybind = function(name, state, callback)
 			local keybind = interactableElements.new();
 			keybind.callback = callback;
-			keybind.state = state or Enum.KeyCode.A;			
+			keybind.state = state or Enum.KeyCode.A;		
 
 			local keybindInstance = coreGUIFuncs.newKeybind(tabInstance.window, name, state, theme);
 			local keybindDebounce = true;
@@ -1536,7 +1538,7 @@ ezlib.create = function(name, parent, pos, theme, gameID, deleteOldGUI)
 				keybindDebounce = false;
 				coreVars.awaitingInput = keybindInstance;
 				keybindInstance.button.Text = "Press key";
-				repeat wait() until not coreVars.awaitingInput;
+				repeat wait() until not coreVars.awaitingInput and keybindInstance.button.Text ~= "Press Key";
 				keybind.state = Enum.KeyCode[keybindInstance.button.Text];
 				keybind.fireCallback(keybind.state);
 				keybindDebounce = true;
