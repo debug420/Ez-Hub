@@ -7,8 +7,17 @@ loadstring(_G["EzHubModules"]["createuniversalmodule"])().newUniversalTab(mainGU
 loadstring(_G["EzHubModules"]["createaimbotmodule"])().newAimbotTab(mainGUI);
 local gun = mainGUI.newTab("Guns");
 loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
-loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI);
-local teleport = mainGUI.getTab("Teleport");
+loadstring(_G["EzHubModules"]["createuniversalmodule"])().newTeleportTab(mainGUI, {
+	["Prison Entrance"] = CFrame.new(474.655701, 98.1900101, 2250.36841),
+	["Gaurd Room"] = CFrame.new(798.664368, 99.9900055, 2264.11157),
+	["Criminal Base"] = CFrame.new(-942.058838, 94.1287842, 2056.36914),
+	["Yard"] = CFrame.new(767.570129, 97.9999466, 2461.25659),
+	["Prison Cells"] = CFrame.new(916.622131, 99.9899902, 2465.79858),
+	["Cafe"] = CFrame.new(960.83783, 99.9899597, 2340.33911),
+	["Main Tower"] = CFrame.new(823.287292, 130.039948, 2587.73975),
+	["Kitchen"] = CFrame.new(941.972778, 99.9899597, 2222.83716),
+	["Prison Garage"] = CFrame.new(614.918396, 98.2000275, 2512.02368)
+});
 
 ----------------------------------------------------------------------
 -- Main Section
@@ -83,51 +92,6 @@ end)
 gun.newButton("Give Riot Shield", function()
 	workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Riot Shield"].ITEMPICKUP);
 end)
-
-----------------------------------------------------------------------
-
--- Teleport Section
-
-teleport.newDiv();
-teleport.newTitle("Pre-made Teleports");
-
-local function teleportPlayer(cords)
-	local coordinate = string.split(cords, ",");
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
-	CFrame.new(tonumber(coordinate[1]), tonumber(coordinate[2]), tonumber(coordinate[3]));
-end
-
-teleport.newDropdown("Pre-made Teleports", "Prison Entrance", {
-	"Prison Entrance",
-	"Gaurd Room",
-	"Criminal Base",
-	"Yard",
-	"Prison Cells",
-	"Cafe",
-	"Main Tower",
-	"Kitchen",
-	"Prison Garage"
-}, function(state)
-	if state == "Prison Entrance" then
-		teleportPlayer("474.655701, 98.1900101, 2250.36841");
-	elseif state == "Gaurd Room" then
-		teleportPlayer("798.664368, 99.9900055, 2264.11157");
-	elseif state == "Criminal Base" then
-		teleportPlayer("-942.058838, 94.1287842, 2056.36914");
-	elseif state == "Yard" then
-		teleportPlayer("767.570129, 97.9999466, 2461.25659");
-	elseif state == "Prison Cells" then
-		teleportPlayer("916.622131, 99.9899902, 2465.79858");
-	elseif state == "Cafe" then
-		teleportPlayer("960.83783, 99.9899597, 2340.33911");
-	elseif state == "Main Tower" then
-		teleportPlayer("823.287292, 130.039948, 2587.73975");
-	elseif state == "Kitchen" then
-		teleportPlayer("941.972778, 99.9899597, 2222.83716");
-	elseif state == "Prison Garage" then
-		teleportPlayer("614.918396, 98.2000275, 2512.02368");
-	end
-end);
 
 ----------------------------------------------------------------------
 
