@@ -1,47 +1,46 @@
-return function(ezlib, section)
+return {
+    newAimbotTab = function(mainGUIInstance, moduleData)
+        local aimbotModule = moduleData and
+        (type(moduleData) == "function" and moduleData() or loadstring(moduleData)())
+        or loadstring(_G["EzHubModules"]["aimbotmodule"])();    -- default
 
-    ezlib:NewTitle(section, "Aimbot")
-    ezlib:NewDiv(section)
+        local tab = mainGUIInstance.newTab("Aimbot");
+        tab.newTitle("Aimbot");
+        tab.newDiv();
 
-    local aimbotsettings;
-    if _G.AimbotModule then
-        aimbotsettings = loadstring(_G.AimbotModule)()
-    else
-        aimbotsettings = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/AimbotModule.lua"))()
+        tab.newCheckbox("Enabled", aimbotModule.enabled, function(state)
+            aimbotModule.enabled = state;
+        end)
+
+        tab.newCheckbox("Free For All", aimbotModule.freeforall, function(state)
+            aimbotModule.freeforall = state;
+        end)
+    
+        tab.newCheckbox("Headshot Only", aimbotModule.headshot, function(state)
+            aimbotModule.headshot = state;
+        end)
+    
+        tab.newCheckbox("WallCheck", aimbotModule.wallcheck, function(state)
+            aimbotModule.wallcheck = state;
+        end)
+    
+        tab.newSlider("Radius", aimbotModule.radius, 10, 400, function(val)
+            aimbotModule.radius = val;
+        end)
+    
+        tab.newCheckbox("Show FOV", aimbotModule.showfov, function(state)
+            aimbotModule.showfov = state;
+        end)
+    
+        tab.newDiv();
+    
+        tab.newCheckbox("Right-mouse", aimbotModule.rightmouse, function(state)
+            aimbotModule.rightmouse = state;
+        end)
+    
+        tab.newKeybind("Keybind", aimbotModule.keybind, function(i)
+            aimbotModule.keybind = i.Name;
+        end)
+        return aimbotModule;
     end
-
-    ezlib:NewCheckBox(section, "Enabled", aimbotsettings.enabled, function(state)
-        aimbotsettings.enabled = state;
-    end)
-
-    ezlib:NewCheckBox(section, "Free For All", aimbotsettings.freeforall, function(state)
-        aimbotsettings.freeforall = state;
-    end)
-
-    ezlib:NewCheckBox(section, "Headshot Only", aimbotsettings.headshot, function(state)
-        aimbotsettings.headshot = state;
-    end)
-
-    ezlib:NewCheckBox(section, "WallCheck", aimbotsettings.wallcheck, function(state)
-        aimbotsettings.wallcheck = state;
-    end)
-
-    ezlib:NewSlider(section, "Radius", aimbotsettings.radius, 10, 400, function(val)
-        aimbotsettings.radius = val
-    end)
-
-    ezlib:NewCheckBox(section, "Show FOV", aimbotsettings.showfov, function(state)
-        aimbotsettings.showfov = state
-    end)
-
-    ezlib:NewDiv(section)
-
-    ezlib:NewCheckBox(section, "Right-mouse", aimbotsettings.rightmouse, function(state)
-        aimbotsettings.rightmouse = state;
-    end)
-
-    ezlib:NewKeyBind(section, "Keybind", aimbotsettings.keybind, function(i)
-        aimbotsettings.keybind = i.KeyCode;
-    end)
-
-end
+}

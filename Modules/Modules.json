@@ -1,13 +1,14 @@
 {
-    "ezlib": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/EzLib.lua",
-    "launcherdata": "https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Main",
-    "lexermodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/LexerModule.lua",
-    "aimbotmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/AimbotModule.lua",
-    "createaimbotmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/CreateAimbotModule.lua",
-    "espmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/ESPModule.lua",
-    "createespmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/CreateESPModule.lua",
-    "exclusivesmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/ExclusiveV1.json",
-    "exclusivesv2module": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/ExclusivesV2.json",
-    "repostedmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/RepostedModule.json",
-    "logger": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/Logger.lua"
+    "ezlib": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/EzLib.lua",
+    "launcherdata": "https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/dev/Main",
+    "lexermodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/LexerModule.lua",
+    "aimbotmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/AimbotModule.lua",
+    "createaimbotmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/CreateAimbotModule.lua",
+    "espmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/ESPModule.lua",
+    "createespmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/CreateESPModule.lua",
+    "createuniversalmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Modules/CreateUniversalModule.lua",
+    "exclusivesmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/ExclusiveV1.json",
+    "exclusivesv2module": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/ExclusivesV2.json",
+    "repostedmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/RepostedModule.json",
+    "logger": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Modules/Logger.lua"
 }

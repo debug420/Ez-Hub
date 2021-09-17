@@ -2,138 +2,99 @@
 
 -- Arsenal Script
 
-local ezlib;
-if _G.CachedEzLib then
-	ezlib = loadstring(_G.CachedEzLib)()
-else
-	ezlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/EzLib.lua"))()
-end
-
-local DontLoad = false
-if game.PlaceId ~= 286090429 then
-    ezlib:CreateNotice("Failed GameID Check", "The following exclusive that has been executed is not designed for the following game. This could cause the script to misfunction and break. Proceed anyway?", function(response)
-        if response ~= "Yes" then
-            DontLoad = true
-        end
-    end)
-end
-if DontLoad then return end
-
-local MainArsenal = ezlib:NewLib("Arsenal")
+local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
+local mainGUI = ezlib.create("Arsenal", nil, nil, nil, 286090429);
 
 ----------------------------------------------------------------------
 
 -- Initialize Sections
 
-local AimbotSection = ezlib:NewSection(MainArsenal, "Aimbot")
-local ESPSection = ezlib:NewSection(MainArsenal, "ESP")
-local GunSection = ezlib:NewSection(MainArsenal, "Gun Mods")
-
-----------------------------------------------------------------------
-
--- Aimbot Section
-
-if _G.CreateAimbotModule then
-	loadstring(_G.CreateAimbotModule)()(ezlib, AimbotSection)
-else
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/CreateAimbotModule.lua"))()(ezlib, AimbotSection)
-end
-
-----------------------------------------------------------------------
-
--- ESP Section
-
-if _G.CreateESPModule then
-	loadstring(_G.CreateESPModule)()(ezlib, ESPSection)
-else
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Modules/CreateESPModule.lua"))()(ezlib, ESPSection)
-end
+loadstring(_G["EzHubModules"]["createaimbotmodule"])().newAimbotTab(mainGUI);
+loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
+local weaponModTab = mainGUI.newTab("Gun Mods");
 
 ----------------------------------------------------------------------
 
 -- Gun Section
 
-ezlib:NewTitle(GunSection, "Gun Mods")
-ezlib:NewDiv(GunSection)
+weaponModTab.newTitle("Gun Mods");
+weaponModTab.newDiv();
 
-local InfAmmoVar = false
-local NoRecoilVar = false
-local AutomaticModeVar = false
-local NoSpreadVar = false
-local FireRateVar = false
+if syn then
 
-local FuncEnv, UInv;
-for i,v in pairs(getgc(true)) do
-    if type(v) == 'table' and rawget(v,'updateInventory') and rawget(v,'firebullet') then
-        FuncEnv = getfenv(v.firebullet)
-        UInv = v.updateInventory
+    local infAmmo = false;
+    local noRecoil = false;
+    local automaticMode = false;
+    local noSpread = false;
+    local fireRate = false;
+
+    local funcEnv, updateInventory;
+    for i,v in pairs(getgc(true)) do
+        if type(v) == 'table' and rawget(v,'updateInventory') and rawget(v,'firebullet') then
+            funcEnv = getfenv(v.firebullet);
+            updateInventory = v.updateInventory;
+        end
     end
+
+    -- Namecall metamethod in charge of wallbang
+    local oldNamecall, wallbangEnabled;
+    oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
+        if tostring(getnamecallmethod()) == "FindPartOnRayWithIgnoreList" then
+            if wallbangEnabled then table.insert(({...})[2], workspace.Map); end
+        end
+        return oldNamecall(self, ...);
+    end)
+
+    game:GetService("RunService").Stepped:Connect(function()
+        if fireRate then
+            funcEnv.DISABLED = false;
+            funcEnv.DISABLED2 = false;
+        end
+        if noRecoil then
+            funcEnv.recoil = 0;
+        end
+        if infAmmo then
+            debug.setupvalue(updateInventory, 3, 70);
+        end
+        if automaticMode then
+            funcEnv.mode = 'automatic';
+        end
+        if noSpread then
+            funcEnv.currentspread = 0;
+            funcEnv.spreadmodifier = 0;
+        end
+    end)
+
+    weaponModTab.newCheckbox("No Recoil", noRecoil, function(state)
+        noRecoil = state;
+    end)
+
+    weaponModTab.newCheckbox("Automatic", automaticMode, function(state)
+        automaticMode = state;
+    end)
+
+    weaponModTab.newCheckbox("No Spread", noSpread, function(state)
+        noSpread = state;
+    end)
+
+    weaponModTab.newCheckbox("Fire Rate", fireRate, function(state)
+        fireRate = state;
+    end)
+
+    -- Toggles wallbang
+    weaponModTab.newCheckbox("Wallbang", false, function(state)
+        wallbangEnabled = state;
+        coroutine.wrap(function()
+            ezlib.newNotif(ezlib.enum.notifType.text, (state or "Enabled" and "Disabled").." wallbang successfully.").play().delete();
+        end)();
+    end)
+else
+    weaponModTab.newDesc("Your exploit does not support gun mods.");
 end
-
-game:GetService("RunService").Stepped:Connect(function()
-    if FireRateVar then
-        FuncEnv.DISABLED = false
-        FuncEnv.DISABLED2 = false
-    end
-    if NoRecoilVar then
-        FuncEnv.recoil = 0
-    end
-    if InfAmmoVar then
-        debug.setupvalue(UInv, 3, 70)
-    end
-    if AutomaticModeVar then
-        FuncEnv.mode = 'automatic'
-    end
-    if NoSpreadVar then
-        FuncEnv.currentspread = 0
-        FuncEnv.spreadmodifier = 0
-    end
-end)
-
-ezlib:NewCheckBox(GunSection, "No Recoil", NoRecoilVar, function(state)
-	NoRecoilVar = state
-end)	
-
-ezlib:NewCheckBox(GunSection, "Automatic", AutomaticModeVar, function(state)
-	AutomaticModeVar = state
-end)
-
-ezlib:NewCheckBox(GunSection, "No Spread", NoSpreadVar, function(state)
-	NoSpreadVar = state
-end)
-
-ezlib:NewCheckBox(GunSection, "Fire Rate", FireRateVar, function(state)
-	FireRateVar = state
-end)
-
-local gm = getrawmetatable(game);
-local wallbangenabled = false;
-local oldn = gm.__namecall;
-setreadonly(gm, false);
-
-gm.__namecall = newcclosure(function(self, ...)
-    local arg = {...};
-    if tostring(getnamecallmethod()) == "FindPartOnRayWithIgnoreList" then
-        if wallbangenabled then table.insert(arg[2], workspace.Map); end
-    end
-    return oldn(self, ...);
-end)
-
-setreadonly(gm, true);
-
--- Toggles wallbang
-ezlib:NewCheckBox(GunSection, "Wallbang", false, function(state)
-    wallbangenabled = state
-    if state then
-        ezlib:NewNotif(nil, "Enabled wallbang successfully.")
-    else
-        ezlib:NewNotif(nil, "Disabled wallbang successfully.")
-    end
-end)
 
 ----------------------------------------------------------------------
 
 -- Active
 
-ezlib:SetActive(AimbotSection);
+mainGUI.openTab(mainGUI.getTab("Aimbot"));
 

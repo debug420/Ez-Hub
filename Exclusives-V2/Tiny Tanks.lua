@@ -1,45 +1,22 @@
-----------------------------------------------------------------------
 
 -- Tiny Tanks Script
 
-local ezlib;
-if _G.CachedEzLib then
-	ezlib = loadstring(_G.CachedEzLib)()
-else
-	ezlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/EzLib.lua"))()
-end
-
-local DontLoad = false
-if game.PlaceId ~= 204990346 then
-    ezlib:CreateNotice("Failed GameID Check", "The following exclusive that has been executed is not designed for the following game. This could cause the script to misfunction and break. Proceed anyway?", function(response)
-        if response ~= "Yes" then
-            DontLoad = true
-        end
-    end)
-end
-if DontLoad then return end
-
-local MainTinyTanks = ezlib:NewLib("Tiny Tanks")
+local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
+local mainGUI = ezlib.create("Tiny Tanks", nil, nil, nil, 204990346);
+local main = mainGUI.newTab("Main");
+local misc = mainGUI.newTab("Misc");
 
 ----------------------------------------------------------------------
+-- Main Section
 
--- Initialize Sections
+main.newTitle("Main");
+main.newDiv();
 
-local MainSection = ezlib:NewSection(MainTinyTanks, "Main")
-local MiscSection = ezlib:NewSection(MainTinyTanks, "Misc")
-
-----------------------------------------------------------------------
-
--- Local Section
-
-ezlib:NewTitle(MainSection, "Main")
-ezlib:NewDiv(MainSection)
-
-local function GetTank()
+local function getTank()
     return workspace.Tanks:FindFirstChild("Tank-"..game:GetService("Players").LocalPlayer.Name);
-end 
+end
 
-local TankSettings = {
+local tankSettings = {
     MoveSpeed = 100,
     RotationSpeed = 500,
     LoadedShots = 500,
@@ -48,114 +25,120 @@ local TankSettings = {
     AbilityCooldown = 0.05
 }
 
-local TankMods = false
+local tankMods = false;
 
-local function UpdateConfig()
-    if TankMods == false then return end;
+local function updateConfig()
+    if tankMods == false then return end;
     pcall(function()
-        for i,v in pairs(TankSettings) do
-            GetTank().Settings[i].Value = v;
+        for i,v in pairs(tankSettings) do
+            getTank().Settings[i].Value = v;
         end
     end)
 end
 
-spawn(function()
-    while wait(1) do
-        UpdateConfig()
+local oldNamecall;
+oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
+    if tostring(self) == "LeftSpawn" and tostring(getnamecallmethod()) == "FireServer" then
+       updateConfig();
     end
+    return oldNamecall(self, ...);
 end)
 
-ezlib:NewCheckBox(MainSection, "Enabled", false, function(state)
-    TankMods = state;
+main.newCheckbox("Enabled", false, function(state)
+    tankMods = state;
 end)
 
-ezlib:NewDiv(MainSection)
-ezlib:NewTitle(MainSection, "Speed Mods")
+main.newDiv();
+main.newTitle("Speed Mods");
 
-ezlib:NewSlider(MainSection, "Move Speed", TankSettings.MoveSpeed, 1, 300, function(val)
-    TankSettings.MoveSpeed = val;
+main.newSlider("Move Speed", tankSettings.MoveSpeed, 1, 300, function(val)
+    tankSettings.MoveSpeed = val;
+    updateConfig();
 end)
 
-ezlib:NewSlider(MainSection, "Rotation Speed", TankSettings.RotationSpeed, 1, 500, function(val)
-    TankSettings.RotationSpeed = val;
+main.newSlider("Rotation Speed", tankSettings.RotationSpeed, 1, 500, function(val)
+    tankSettings.RotationSpeed = val;
+    updateConfig();
 end)
 
-ezlib:NewDiv(MainSection)
-ezlib:NewTitle(MainSection, "Fire Mods")
+main.newDiv();
+main.newTitle("Fire Mods");
 
-ezlib:NewCheckBox(MainSection, "0 Reload Time", true, function(state)
+main.newCheckbox("0 Reload Time", true, function(state)
     if state then
-        TankSettings.ReloadTime = 0
+        tankSettings.ReloadTime = 0;
     else
-        TankSettings.ReloadTime = 1
+        tankSettings.ReloadTime = 1;
     end
+    updateConfig();
 end)
 
-ezlib:NewSlider(MainSection, "Loaded Shots", TankSettings.LoadedShots, 1, 500, function(val)
-    TankSettings.LoadedShots = val;
+main.newSlider("Loaded Shots", tankSettings.LoadedShots, 1, 500, function(val)
+    tankSettings.LoadedShots = val;
+    updateConfig();
 end)
 
-ezlib:NewCheckBox(MainSection, "Max Fire-Rate", true, function(state)
+main.newCheckbox("Max Fire-Rate", true, function(state)
     if state then
-        TankSettings.MaxFireRate = 0.05
+        tankSettings.MaxFireRate = 0.05;
     else
-        TankSettings.MaxFireRate = 0.2
+        tankSettings.MaxFireRate = 0.2;
     end
+    updateConfig();
 end)
 
-ezlib:NewDiv(MainSection)
-ezlib:NewTitle(MainSection, "Other")
+main.newDiv();
+main.newTitle("Other");
 
-ezlib:NewCheckBox(MainSection, "Ability Cooldown", true, function(state)
+main.newCheckbox("Ability Cooldown", true, function(state)
     if state then
-        TankSettings.AbilityCooldown = 0.05
+        tankSettings.AbilityCooldown = 0.05;
     else
-        TankSettings.AbilityCooldown = 20
+        tankSettings.AbilityCooldown = 20;
     end
+    updateConfig();
 end)
 
 ----------------------------------------------------------------------
-
 -- Misc Section
 
-local ff = false
-local ais = false
+local ff = false;
+local ais = false;
 
-spawn(function()
+coroutine.resume(coroutine.create(function()
     while wait() do
         if ff then
             for i, v in pairs(game.Players:GetPlayers()) do
                 if workspace.Tanks:FindFirstChild("Tank-"..v.Name) then
                     if v.TeamColor == game.Players.LocalPlayer.TeamColor then
-                        game:GetService("ReplicatedStorage").Remotes.FireAbility:FireServer(GetTank(), "Absorb", Tank.Base.Position, Vector3.new(Tank.Base.Position.X-70,Tank.Base.Position.Y,Tank.Base.Position.Z-70))
+                        game:GetService("ReplicatedStorage").Remotes.FireAbility:FireServer(getTank(), "Absorb", Tank.Base.Position, Vector3.new(Tank.Base.Position.X-70,Tank.Base.Position.Y,Tank.Base.Position.Z-70))
                     end
                 end
             end
         end
     end
-end)
+end));
 
-spawn(function()
+coroutine.resume(coroutine.create(function()
     while wait() do
         if ais then
-            if GetTank() then
-                GetTank().Settings.AllowedInSpawn.Value = true
+            if getTank() then
+                getTank().Settings.AllowedInSpawn.Value = true;
             end
         end
     end
+end))
+
+misc.newCheckbox("Force-Field", false, function(state)
+    ff = state;
 end)
 
-ezlib:NewCheckBox(MiscSection, "Force-Field", false, function(state)
-    ff = state
-end)
-
-ezlib:NewCheckBox(MiscSection, "Allow In Spawn", false, function(state)
-    ais = state
+misc.newCheckbox("Allow In Spawn", false, function(state)
+    ais = state;
 end)
 
 ----------------------------------------------------------------------
-
 -- Active
 
-ezlib:SetActive(MainSection);
+mainGUI.openTab(main);
 
