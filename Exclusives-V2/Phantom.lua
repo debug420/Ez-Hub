@@ -267,7 +267,7 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 						local Top = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, Scale, 0)).Position);
 						local Bottom = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, -Scale, 0)).Position);
 						espmem[player].Headdot.Radius = math.abs((Top - Bottom).y); -- Synapse gets absolute value by default by exploits like KRNL and Scriptware don't
-                    -- Causing the circle to not be rendered if radius is a negative value (which makes sense)
+                    				-- Causing the circle to not be rendered if radius is a negative value (which makes sense)
 
 						espmem[player].Headdot.Visible = true;
 					elseif espmem[player].Headdot then
