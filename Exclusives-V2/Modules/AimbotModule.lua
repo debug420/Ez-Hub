@@ -13,7 +13,7 @@ local aimbotSettings = {
 	headshot = true,
 	rightmouse = true,
 	keybind = Enum.KeyCode.E,
-	smoothness = 1
+	smoothness = 2
 }
 
 local players = game:GetService("Players");
@@ -101,7 +101,7 @@ _G.Circle.Radius = 150;
 _G.Circle.NumSides = 20;
 _G.Circle.Color = Color3.fromRGB(255,0,0);
 _G.Circle.Thickness = 1;
-_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings);
+_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings) + Vector2.new(0, 36);
 
 inputService.InputBegan:Connect(function(key)
 	if aimbotSettings.rightmouse and key.UserInputType == Enum.UserInputType.MouseButton2 then
@@ -120,7 +120,7 @@ inputService.InputEnded:Connect(function(key)
 end)
 
 _G.ezhubaimbot = game:GetService("RunService").RenderStepped:Connect(function()
-	_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings);
+	_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings) + Vector2.new(0, 36);
 	if aimbotSettings.enabled and aimbotSettings.showfov then
 		_G.Circle.Visible = true;
 	else
