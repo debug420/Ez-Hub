@@ -35,7 +35,6 @@ end))
 -- Aimbot module
 
 local aimbotSettings = loadstring(_G["EzHubModules"]["createaimbotmodule"])().newAimbotTab(mainGUI);
-aimbotSettings.smoothness = 2;
 aimbotSettings.getClosestToCursor = function(aimbotSettings)
     local mousePos = aimbotSettings.getMousePos(aimbotSettings);
 	local radius = aimbotSettings.radius;
@@ -267,7 +266,7 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 						local Top = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, Scale, 0)).Position);
 						local Bottom = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, -Scale, 0)).Position);
 						espmem[player].Headdot.Radius = math.abs((Top - Bottom).y); -- Synapse gets absolute value by default by exploits like KRNL and Scriptware don't
-                    				-- Causing the circle to not be rendered if radius is a negative value (which makes sense)
+                    	-- Causing the circle to not be rendered if radius is a negative value (which makes sense)
 
 						espmem[player].Headdot.Visible = true;
 					elseif espmem[player].Headdot then
@@ -294,7 +293,7 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 						espmem[player].Tag.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
 						espmem[player].Tag.Outline = true;
 						espmem[player].Tag.Position = Vector2.new(ScreenPositionUpper.X, ScreenPositionUpper.Y) - Vector2.new(0, espmem[player].Tag.TextBounds.Y);
-						espmem[player].Tag.Text = (player.Name or "Unknown").." | ["..math.floor(getVector3D(player.Head.Position)[3]).."]";
+						espmem[player].Tag.Text = (_G.getPlayerInstanceFromCharacter(player).Name or "Unknown").." | ["..math.floor(getVector3D(player.Head.Position)[3]).."]";
 					elseif espmem[player].Tag then
 						if not pcall(function()
 							espmem[player].Tag.Visible = false;
