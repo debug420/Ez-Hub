@@ -27,6 +27,10 @@ return {
         tab.newSlider("Radius", aimbotModule.radius, 10, 400, function(val)
             aimbotModule.radius = val;
         end)
+
+        tab.newSlider("Smoothness", aimbotModule.smoothness, 1, 3, function(state)
+            aimbotModule.smoothness = state;
+        end)
     
         tab.newCheckbox("Show FOV", aimbotModule.showfov, function(state)
             aimbotModule.showfov = state;
