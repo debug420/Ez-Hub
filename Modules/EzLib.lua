@@ -67,7 +67,7 @@ coreFuncs.dragifyLib = function(mainFrame)
 		if coreFuncs.isUsingSlider() then return end
 		Delta = input.Position - dragStart;
 		Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y);
-		game:GetService("TweenService"):Create(mainFrame, TweenInfo.new(.25), {Position = Position}):Play();
+		game:GetService("TweenService"):Create(mainFrame, TweenInfo.new(.15), {Position = Position}):Play();
 	end
 
 	mainFrame.InputBegan:Connect(function(input)
