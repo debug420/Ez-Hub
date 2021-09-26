@@ -4,6 +4,7 @@ Welcome to the repository of Ez Hub. This repository contains all Ez Hub version
 Note that older versions most likely don't work. The newest version is always guaranteed to work. Ez Hub is open source. Please use this as a way to learn.
 Got any questions/problems?
 Join our discord: https://discord.gg/tuWcU7Q
+Changelog and Docs: https://app.archbee.io/public/PTplYowLy93mKanJeS7F9/qxmDPajUw89sP9HbZuWnt
 
 You can find more information on Ez Hub in the following website:
 http://ezind.atwebpages.com
