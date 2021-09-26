@@ -85,6 +85,25 @@ return {
             espModule.headdotscale = val / 2;
         end)
 
+        tab.newDiv();
+        tab.newTitle("Offset Settings");
+
+        tab.newSlider("X Box Size", espModule.xoffset * 10, 10, 30, function(state)
+            espModule.xoffset = state / 10;
+        end)
+
+        tab.newSlider("Y Offset Above Origin", espModule.yoffsetaboveorigin * 10, 5, 50, function(state)
+            espModule.yoffsetaboveorigin = state / 10;
+        end)
+
+        tab.newSlider("Y Offset Below Origin", espModule.yoffsetbeloworigin * 10, 5, 50, function(state)
+            espModule.yoffsetbeloworigin = state / 10;
+        end)
+
+        tab.newSlider("Tag Offset", espModule.tagoffset * 10, 10, 100, function(state)
+            espModule.tagoffset = state / 10;
+        end)
+
         return espModule;
 
     end

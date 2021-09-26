@@ -16,8 +16,8 @@ local espConfig = {
     teamcolor = true,
     -- ESP offsets
     xoffset = 2,
-    yoffsetabovehead = 3,
-    yoffsetbelowhead = 3.5,
+    yoffsetaboveorigin = 3,
+    yoffsetbeloworigin = 3.5,
     tagoffset = 8,
     -- Headdot Settings
     headdotfilled = false,
@@ -127,15 +127,21 @@ drawESP = function(player)
                 end
 
                 -- ESP Box
-                local espBoxOriginCFrame = (player:FindFirstChild("Torso") or player:FindFirstChild("Head") or player:FindFirstChild("HumanoidRootPart"))
-                .CFrame:ToWorldSpace();
+                local espBoxOriginCFrame;
+                if player:FindFirstChild("Torso") then espBoxOriginCFrame = player:FindFirstChild("Torso").CFrame:ToWorldSpace();
+                elseif player:FindFirstChild("LowerTorso") and player:FindFirstChild("UpperTorso") then
+                    espBoxOriginCFrame = CFrame.new(((player:FindFirstChild("LowerTorso").Position) + (player:FindFirstChild("UpperTorso").Position)) / 2):ToWorldSpace();
+                elseif player:FindFirstChild("Head") then espBoxOriginCFrame = player:FindFirstChild("Head").CFrame:ToWorldSpace();
+                else
+                    espBoxOriginCFrame = player:FindFirstChild("HumanoidRootPart").CFrame:ToWorldSpace();
+                end
 
                 -- Calculate CFrame
                 -- Variables stand for the corresponding box corner - tl = top left
-                local tl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), espConfig.yoffsetabovehead, 0);
-                local tr = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, espConfig.yoffsetabovehead, 0);
-                local bl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), -(espConfig.yoffsetbelowhead),0);
-                local br = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, -(espConfig.yoffsetbelowhead),0);
+                local tl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), espConfig.yoffsetaboveorigin, 0);
+                local tr = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, espConfig.yoffsetaboveorigin, 0);
+                local bl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), -(espConfig.yoffsetbeloworigin), 0);
+                local br = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, -(espConfig.yoffsetbeloworigin), 0);
             
                 if espConfig.getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.renderrange > espConfig.getVector3D(player.Head.Position)[3] and espConfig.checkTeam(player) and espmem[player].Up and espmem[player].Down and espmem[player].Right and espmem[player].Left then
 
