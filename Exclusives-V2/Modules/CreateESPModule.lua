@@ -1,5 +1,10 @@
 return {
     newESPTab = function(mainGUIInstance, moduleData)
+
+        -- The below checks if a custom moduleData has been provided.
+        -- If so, it will check if it is a function, if so it will run it and work with its return values
+        -- If not, it will loadstring it (assuming it is a string)
+        -- If moduleData has not been provided, it will loadstring default
         local espModule = moduleData and
         (type(moduleData) == "function" and moduleData() or loadstring(moduleData)())
         or loadstring(_G["EzHubModules"]["espmodule"])();    -- default
@@ -79,5 +84,27 @@ return {
         tab.newSlider("Headdot Scale", espModule.headdotscale * 2, 1, 10, function(val)
             espModule.headdotscale = val / 2;
         end)
+
+        tab.newDiv();
+        tab.newTitle("Offset Settings");
+
+        tab.newSlider("X Box Size", espModule.xoffset * 10, 10, 30, function(state)
+            espModule.xoffset = state / 10;
+        end)
+
+        tab.newSlider("Y Offset Above Origin", espModule.yoffsetaboveorigin * 10, 5, 50, function(state)
+            espModule.yoffsetaboveorigin = state / 10;
+        end)
+
+        tab.newSlider("Y Offset Below Origin", espModule.yoffsetbeloworigin * 10, 5, 50, function(state)
+            espModule.yoffsetbeloworigin = state / 10;
+        end)
+
+        tab.newSlider("Tag Offset", espModule.tagoffset * 10, 0, 100, function(state)
+            espModule.tagoffset = state / 10;
+        end)
+
+        return espModule;
+
     end
 }

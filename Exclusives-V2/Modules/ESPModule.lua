@@ -15,9 +15,9 @@ local espConfig = {
     setcolor = {255, 255, 255},
     teamcolor = true,
     -- ESP offsets
-    xoffset = 2.8,
-    yoffsetabovehead = 1.5,
-    yoffsetbelowhead = 5.5,
+    xoffset = 2,
+    yoffsetaboveorigin = 3,
+    yoffsetbeloworigin = 3.5,
     tagoffset = 8,
     -- Headdot Settings
     headdotfilled = false,
@@ -29,27 +29,30 @@ local espmem = {};
 local conmem = {};
 
 ----------------------------------------------------------------------
+-- The reason that certain functions are stored in espConfig is because certain games may require specific modifications to functions
+-- This is so that I don't have to copy and paste the entire ESP module code for each game that requires minor changes
 
-local function getVector3D(vector3)
+espConfig.getVector3D = function(vector3)
     local vector, onScreen = workspace.CurrentCamera:WorldToViewportPoint(vector3);
     return {Vector2.new(vector.X, vector.Y), onScreen, vector.Z};
 end
 
-local rainbowcs;
+espConfig.rainbowcs = nil;
 coroutine.wrap(function()
     while wait() do
         local i = 0;
         repeat
             i = i + (0.001 * espConfig.rainbowspeed);
-            rainbowcs = Color3.fromHSV(i,1,1);  --creates a color using i
+            espConfig.rainbowcs = Color3.fromHSV(i,1,1);  --creates a color using i
             wait();
         until i >= 1;
     end
-end)()
-local function getESPColor(playerinstance)
+end)();
+
+espConfig.getESPColor = function(playerinstance)
     if not playerinstance then return Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255) end 
     if espConfig.rainbowcolor then
-        return rainbowcs or Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255);
+        return espConfig.rainbowcs or Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255);
     elseif espConfig.teamcolor then
         return playerinstance.TeamColor.Color or Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255);
     elseif espConfig.setcolor then
@@ -57,7 +60,7 @@ local function getESPColor(playerinstance)
     end
 end
 
-local function getTracerPoint()
+espConfig.getTracerPoint = function()
     if espConfig.locktocursor then
         return Vector2.new(game.Players.LocalPlayer:GetMouse().X, game.Players.LocalPlayer:GetMouse().Y) + Vector2.new(0, 36);
     else
@@ -65,7 +68,7 @@ local function getTracerPoint()
     end
 end
 
-local function checkTeam(player)
+espConfig.checkTeam = function(player)
     if espConfig.teamcheck and player and player.Parent then
         return game:GetService("Players"):FindFirstChild(player.Name).Team ~= game:GetService("Players").LocalPlayer.Team;
     else
@@ -103,15 +106,15 @@ drawESP = function(player)
             conmem[player] = game:GetService("RunService").RenderStepped:Connect(function()
                 
                 -- Initiate Variables
-                local point = getVector3D(player.Head.Position)[1];
+                local point = espConfig.getVector3D(player.Head.Position)[1];
                     
                 -- Tracer
-                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tracer and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tracer then
+                if espConfig.getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tracer and espConfig.renderrange > espConfig.getVector3D(player.Head.Position)[3] and espConfig.checkTeam(player) and espmem[player].Tracer then
                     local tracer = espmem[player].Tracer; if not tracer then return end;
                     tracer.Thickness = 1;
-                    tracer.From = getTracerPoint();
+                    tracer.From = espConfig.getTracerPoint();
                     tracer.To = point;
-                    tracer.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                    tracer.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
                     tracer.Visible = true;
                 elseif espmem[player].Tracer then
                     if not pcall(function()
@@ -124,39 +127,47 @@ drawESP = function(player)
                 end
 
                 -- ESP Box
-                local headcframe = player.Head.CFrame;
+                local espBoxOriginCFrame;
+                if player:FindFirstChild("Torso") then espBoxOriginCFrame = player:FindFirstChild("Torso").CFrame:ToWorldSpace();
+                elseif player:FindFirstChild("LowerTorso") and player:FindFirstChild("UpperTorso") then
+                    espBoxOriginCFrame = CFrame.new(((player:FindFirstChild("LowerTorso").Position) + (player:FindFirstChild("UpperTorso").Position)) / 2):ToWorldSpace();
+                elseif player:FindFirstChild("Head") then espBoxOriginCFrame = player:FindFirstChild("Head").CFrame:ToWorldSpace();
+                else
+                    espBoxOriginCFrame = player:FindFirstChild("HumanoidRootPart").CFrame:ToWorldSpace();
+                end
 
                 -- Calculate CFrame
-                local tl = headcframe * CFrame.new(-(espConfig.xoffset), espConfig.yoffsetabovehead, 0);
-                local tr = headcframe * CFrame.new(espConfig.xoffset, espConfig.yoffsetabovehead, 0);
-                local bl = headcframe * CFrame.new(-(espConfig.xoffset),-(espConfig.yoffsetbelowhead),0);
-                local br = headcframe * CFrame.new(espConfig.xoffset,-(espConfig.yoffsetbelowhead),0);
+                -- Variables stand for the corresponding box corner - tl = top left
+                local tl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), espConfig.yoffsetaboveorigin, 0);
+                local tr = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, espConfig.yoffsetaboveorigin, 0);
+                local bl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), -(espConfig.yoffsetbeloworigin), 0);
+                local br = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, -(espConfig.yoffsetbeloworigin), 0);
             
-                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Up and espmem[player].Down and espmem[player].Right and espmem[player].Left then
+                if espConfig.getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.renderrange > espConfig.getVector3D(player.Head.Position)[3] and espConfig.checkTeam(player) and espmem[player].Up and espmem[player].Down and espmem[player].Right and espmem[player].Left then
 
                     -- Top Line
-                    espmem[player].Up.From = getVector3D(tl.p)[1];
-                    espmem[player].Up.To = getVector3D(tr.p)[1];
+                    espmem[player].Up.From = espConfig.getVector3D(tl.p)[1];
+                    espmem[player].Up.To = espConfig.getVector3D(tr.p)[1];
                     espmem[player].Up.Thickness = 1;
-                    espmem[player].Up.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                    espmem[player].Up.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
 
                     -- Left Line
-                    espmem[player].Left.From = getVector3D(tl.p)[1];
-                    espmem[player].Left.To = getVector3D(bl.p)[1];
+                    espmem[player].Left.From = espConfig.getVector3D(tl.p)[1];
+                    espmem[player].Left.To = espConfig.getVector3D(bl.p)[1];
                     espmem[player].Left.Thickness = 1;
-                    espmem[player].Left.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                    espmem[player].Left.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
 
                     -- Right Line
-                    espmem[player].Right.From = getVector3D(tr.p)[1];
-                    espmem[player].Right.To = getVector3D(br.p)[1];
+                    espmem[player].Right.From = espConfig.getVector3D(tr.p)[1];
+                    espmem[player].Right.To = espConfig.getVector3D(br.p)[1];
                     espmem[player].Right.Thickness = 1;
-                    espmem[player].Right.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                    espmem[player].Right.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
 
                     -- Bottom Line
-                    espmem[player].Down.From = getVector3D(bl.p)[1];
-                    espmem[player].Down.To = getVector3D(br.p)[1];
+                    espmem[player].Down.From = espConfig.getVector3D(bl.p)[1];
+                    espmem[player].Down.To = espConfig.getVector3D(br.p)[1];
                     espmem[player].Down.Thickness = 1;
-                    espmem[player].Down.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                    espmem[player].Down.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
 
                     espmem[player].Down.Visible = true;
                     espmem[player].Right.Visible = true;
@@ -177,17 +188,17 @@ drawESP = function(player)
                 end
 
                 -- Head Dot
-                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.headdot and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Headdot then
+                if espConfig.getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.headdot and espConfig.renderrange > espConfig.getVector3D(player.Head.Position)[3] and espConfig.checkTeam(player) and espmem[player].Headdot then
                     espmem[player].Headdot.Position = point;
                     espmem[player].Headdot.Filled = espConfig.headdotfilled;
-                    espmem[player].Headdot.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                    espmem[player].Headdot.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
                     espmem[player].Headdot.NumSides = 30;
                     espmem[player].Headdot.Thickness = 1;
 
                     -- Head dot radius
                     local Scale = player.Head.Size.Y / espConfig.headdotscale;
-                    local Top = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, Scale, 0)).Position);
-                    local Bottom = workspace.CurrentCamera:WorldToViewportPoint((headcframe * CFrame.new(0, -Scale, 0)).Position);
+                    local Top = workspace.CurrentCamera:WorldToViewportPoint((player.Head.CFrame * CFrame.new(0, Scale, 0)).Position);
+                    local Bottom = workspace.CurrentCamera:WorldToViewportPoint((player.Head.CFrame * CFrame.new(0, -Scale, 0)).Position);
                     espmem[player].Headdot.Radius = math.abs((Top - Bottom).y); -- Synapse gets absolute value by default by exploits like KRNL and Scriptware don't
                     -- Causing the circle to not be rendered if radius is a negative value (which makes sense)
 
@@ -204,7 +215,7 @@ drawESP = function(player)
                 
                 -- Tag
             
-                if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tag and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tag then
+                if espConfig.getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tag and espConfig.renderrange > espConfig.getVector3D(player.Head.Position)[3] and espConfig.checkTeam(player) and espmem[player].Tag then
 
                     local ScreenPositionUpper = workspace.CurrentCamera:WorldToViewportPoint((player.HumanoidRootPart:GetRenderCFrame() * CFrame.new(0, player.Head.Size.Y + player.HumanoidRootPart.Size.Y + (espConfig.tagoffset - 200 / 25), 0)).Position);
                     if espmem[player].Tag.Font and Drawing and Drawing.Fonts then
@@ -213,10 +224,10 @@ drawESP = function(player)
 
                     espmem[player].Tag.Visible = true;
                     espmem[player].Tag.Center = true;
-                    espmem[player].Tag.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                    espmem[player].Tag.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
                     espmem[player].Tag.Outline = true;
                     espmem[player].Tag.Position = Vector2.new(ScreenPositionUpper.X, ScreenPositionUpper.Y) - Vector2.new(0, espmem[player].Tag.TextBounds.Y);
-                    espmem[player].Tag.Text = (player.Name or "Unknown").." | ["..math.floor(getVector3D(player.Head.Position)[3]).."]";
+                    espmem[player].Tag.Text = (player.Name or "Unknown").." | ["..math.floor(espConfig.getVector3D(player.Head.Position)[3]).."]";
                 elseif espmem[player].Tag then
                     if not pcall(function()
                         espmem[player].Tag.Visible = false;
