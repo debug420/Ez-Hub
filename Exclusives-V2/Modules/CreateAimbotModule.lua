@@ -1,5 +1,10 @@
 return {
     newAimbotTab = function(mainGUIInstance, moduleData)
+
+        -- The below checks if a custom moduleData has been provided.
+        -- If so, it will check if it is a function, if so it will run it and work with its return values
+        -- If not, it will loadstring it (assuming it is a string)
+        -- If moduleData has not been provided, it will loadstring default
         local aimbotModule = moduleData and
         (type(moduleData) == "function" and moduleData() or loadstring(moduleData)())
         or loadstring(_G["EzHubModules"]["aimbotmodule"])();    -- default
@@ -45,6 +50,8 @@ return {
         tab.newKeybind("Keybind", aimbotModule.keybind, function(i)
             aimbotModule.keybind = i.Name;
         end)
+
         return aimbotModule;
+        
     end
 }
