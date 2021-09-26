@@ -77,6 +77,17 @@ end
 ----------------------------------------------------------------------
 -- ESP module
 
+--[[
+	Universal ESP and Normal ESP differences:
+	- Default Settings - Modified so that it makes sense in Phantom Forces
+	- getESPColor - Modified so that it makes sense in Phantom Forces
+	- checkTeam - Modified so that it works with Phantom Forces (player.Parent folder determines Team instead of player.Team)
+	- Added initial checks at the beginning of drawESP - Modified to minimize errors in Phantom Forces
+	- Tag.Text - Modified so that it makes sense in Phantom Forces
+	- waiting until the player leaves has extra checks - Modified to minimize errors in Phantom Forces
+	- drawESP calling loop - Modified so that it works with Phantom Forces
+]]
+
 loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function()
 	
 	local espConfig = {
