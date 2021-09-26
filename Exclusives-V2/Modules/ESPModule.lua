@@ -127,7 +127,8 @@ drawESP = function(player)
                 end
 
                 -- ESP Box
-                local espBoxOriginCFrame = player.HumanoidRootPart.CFrame;
+                local espBoxOriginCFrame = (player:FindFirstChild("Torso") or player:FindFirstChild("Head") or player:FindFirstChild("HumanoidRootPart"))
+                .CFrame:ToWorldSpace();
 
                 -- Calculate CFrame
                 -- Variables stand for the corresponding box corner - tl = top left
