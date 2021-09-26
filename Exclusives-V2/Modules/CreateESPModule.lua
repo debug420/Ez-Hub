@@ -100,7 +100,7 @@ return {
             espModule.yoffsetbeloworigin = state / 10;
         end)
 
-        tab.newSlider("Tag Offset", espModule.tagoffset * 10, 10, 100, function(state)
+        tab.newSlider("Tag Offset", espModule.tagoffset * 10, 0, 100, function(state)
             espModule.tagoffset = state / 10;
         end)
 
