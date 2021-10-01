@@ -169,13 +169,22 @@ local EzHub = {
 	UICorner_34 = Instance.new("UICorner"),
 	SavedContainers = Instance.new("Folder"),
 	GameContainer = Instance.new("Frame"),
-	Frame_22 = Instance.new("ImageLabel"),
-	GameName_3 = Instance.new("TextLabel"),
-	ImageLabel_7 = Instance.new("ImageLabel"),
+	Frame_22 = Instance.new("Frame"),
 	Trigger_3 = Instance.new("TextButton"),
+	ImageLabel_7 = Instance.new("ImageLabel"),
 	ExecutedLabel = Instance.new("TextLabel"),
+	GameName_3 = Instance.new("TextLabel"),
+	UICorner_35 = Instance.new("UICorner"),
 	MessageContainer = Instance.new("TextLabel"),
 	RemoveContainer = Instance.new("TextButton"),
+	GoldGameContainer = Instance.new("Frame"),
+	Frame_23 = Instance.new("Frame"),
+	UIGradient = Instance.new("UIGradient"),
+	Trigger_4 = Instance.new("TextButton"),
+	ImageLabel_8 = Instance.new("ImageLabel"),
+	ExecutedLabel_2 = Instance.new("TextLabel"),
+	GameName_4 = Instance.new("TextLabel"),
+	UICorner_36 = Instance.new("UICorner")
 }
 
 -----------------------------------------------
@@ -738,7 +747,7 @@ do
 	EzHub.TextLabel_8.Position = UDim2.new(0.367984951, 0, 0.145299152, 0)
 	EzHub.TextLabel_8.Size = UDim2.new(0, 239, 0, 83)
 	EzHub.TextLabel_8.Font = Enum.Font.SourceSans
-	EzHub.TextLabel_8.Text = "Hello playerName, Thank you for using Ez Hub"
+	EzHub.TextLabel_8.Text = "Hello happygeneral2015, Thank you for using Ez Hub"
 	EzHub.TextLabel_8.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.TextLabel_8.TextSize = 16.000
 	EzHub.TextLabel_8.TextWrapped = true
@@ -1474,42 +1483,17 @@ do
 	EzHub.GameContainer.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
 	EzHub.GameContainer.BackgroundTransparency = 1.000
 	EzHub.GameContainer.BorderSizePixel = 0
-	EzHub.GameContainer.Position = UDim2.new(-0.765458405, 0, 0.0249110311, 0)
+	EzHub.GameContainer.Position = UDim2.new(0.764999986, 0, 0.0250000004, 0)
 	EzHub.GameContainer.Size = UDim2.new(0, 100, 0, 100)
+	EzHub.GameContainer.Visible = false
 
-	EzHub.Frame_22.Name = "Frame"
 	EzHub.Frame_22.Parent = EzHub.GameContainer
 	EzHub.Frame_22.AnchorPoint = Vector2.new(0.5, 0.5)
-	EzHub.Frame_22.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.Frame_22.BackgroundTransparency = 1.000
+	EzHub.Frame_22.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.Frame_22.BorderSizePixel = 0
 	EzHub.Frame_22.ClipsDescendants = true
 	EzHub.Frame_22.Position = UDim2.new(0.5, 0, 0.5, 0)
 	EzHub.Frame_22.Size = UDim2.new(1, 0, 1, 0)
-	EzHub.Frame_22.Image = "rbxassetid://3570695787"
-	EzHub.Frame_22.ImageColor3 = Color3.fromRGB(35, 47, 62)
-	EzHub.Frame_22.ScaleType = Enum.ScaleType.Slice
-	EzHub.Frame_22.SliceCenter = Rect.new(100, 100, 100, 100)
-	EzHub.Frame_22.SliceScale = 0.040
-
-	EzHub.GameName_3.Name = "GameName"
-	EzHub.GameName_3.Parent = EzHub.Frame_22
-	EzHub.GameName_3.AnchorPoint = Vector2.new(0.5, 0)
-	EzHub.GameName_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.GameName_3.BackgroundTransparency = 1.000
-	EzHub.GameName_3.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
-	EzHub.GameName_3.Size = UDim2.new(0, 75, 0, 31)
-	EzHub.GameName_3.Font = Enum.Font.SourceSans
-	EzHub.GameName_3.Text = "Redwood Prison GUI"
-	EzHub.GameName_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.GameName_3.TextSize = 13.000
-	EzHub.GameName_3.TextWrapped = true
-
-	EzHub.ImageLabel_7.Parent = EzHub.Frame_22
-	EzHub.ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.ImageLabel_7.BackgroundTransparency = 1.000
-	EzHub.ImageLabel_7.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
-	EzHub.ImageLabel_7.Size = UDim2.new(0, 72, 0, 54)
-	EzHub.ImageLabel_7.Image = "rbxassetid://4030893123"
 
 	EzHub.Trigger_3.Name = "Trigger"
 	EzHub.Trigger_3.Parent = EzHub.Frame_22
@@ -1522,6 +1506,14 @@ do
 	EzHub.Trigger_3.TextSize = 14.000
 	EzHub.Trigger_3.TextTransparency = 1.000
 
+	EzHub.ImageLabel_7.Parent = EzHub.Frame_22
+	EzHub.ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ImageLabel_7.BackgroundTransparency = 1.000
+	EzHub.ImageLabel_7.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
+	EzHub.ImageLabel_7.Size = UDim2.new(0, 72, 0, 54)
+	EzHub.ImageLabel_7.ZIndex = 2
+	EzHub.ImageLabel_7.Image = "rbxassetid://4030893123"
+
 	EzHub.ExecutedLabel.Name = "ExecutedLabel"
 	EzHub.ExecutedLabel.Parent = EzHub.Frame_22
 	EzHub.ExecutedLabel.AnchorPoint = Vector2.new(0.5, 1)
@@ -1530,11 +1522,29 @@ do
 	EzHub.ExecutedLabel.BorderSizePixel = 0
 	EzHub.ExecutedLabel.Position = UDim2.new(0.5, 0, 2, 0)
 	EzHub.ExecutedLabel.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.ExecutedLabel.ZIndex = 3
 	EzHub.ExecutedLabel.Font = Enum.Font.Ubuntu
 	EzHub.ExecutedLabel.Text = "<b>Executed Script!</b>"
 	EzHub.ExecutedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ExecutedLabel.TextSize = 16.000
 	EzHub.ExecutedLabel.TextWrapped = true
+
+	EzHub.GameName_3.Name = "GameName"
+	EzHub.GameName_3.Parent = EzHub.Frame_22
+	EzHub.GameName_3.AnchorPoint = Vector2.new(0.5, 0)
+	EzHub.GameName_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.GameName_3.BackgroundTransparency = 1.000
+	EzHub.GameName_3.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
+	EzHub.GameName_3.Size = UDim2.new(0, 75, 0, 31)
+	EzHub.GameName_3.ZIndex = 2
+	EzHub.GameName_3.Font = Enum.Font.SourceSans
+	EzHub.GameName_3.Text = "Redwood Prison GUI"
+	EzHub.GameName_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.GameName_3.TextSize = 13.000
+	EzHub.GameName_3.TextWrapped = true
+
+	EzHub.UICorner_35.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_35.Parent = EzHub.Frame_22
 
 	EzHub.MessageContainer.Name = "MessageContainer"
 	EzHub.MessageContainer.Parent = EzHub.SavedContainers
@@ -1559,6 +1569,78 @@ do
 	EzHub.RemoveContainer.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.RemoveContainer.TextSize = 14.000
 
+	EzHub.GoldGameContainer.Name = "GoldGameContainer"
+	EzHub.GoldGameContainer.Parent = EzHub.SavedContainers
+	EzHub.GoldGameContainer.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.GoldGameContainer.BackgroundTransparency = 1.000
+	EzHub.GoldGameContainer.BorderSizePixel = 0
+	EzHub.GoldGameContainer.Position = UDim2.new(0.764999986, 0, 0.200000003, 0)
+	EzHub.GoldGameContainer.Size = UDim2.new(0, 100, 0, 100)
+	EzHub.GoldGameContainer.Visible = false
+
+	EzHub.Frame_23.Parent = EzHub.GoldGameContainer
+	EzHub.Frame_23.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.Frame_23.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Frame_23.BorderSizePixel = 0
+	EzHub.Frame_23.ClipsDescendants = true
+	EzHub.Frame_23.Position = UDim2.new(0.5, 0, 0.5, 0)
+	EzHub.Frame_23.Size = UDim2.new(1, 0, 1, 0)
+
+	EzHub.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(222, 179, 6)), ColorSequenceKeypoint.new(0.00, Color3.fromRGB(222, 179, 6)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(241, 241, 4)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(222, 179, 6))}
+	EzHub.UIGradient.Rotation = 45
+	EzHub.UIGradient.Parent = EzHub.Frame_23
+
+	EzHub.Trigger_4.Name = "Trigger"
+	EzHub.Trigger_4.Parent = EzHub.Frame_23
+	EzHub.Trigger_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Trigger_4.BackgroundTransparency = 1.000
+	EzHub.Trigger_4.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.Trigger_4.Font = Enum.Font.SourceSans
+	EzHub.Trigger_4.Text = ""
+	EzHub.Trigger_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+	EzHub.Trigger_4.TextSize = 14.000
+	EzHub.Trigger_4.TextTransparency = 1.000
+
+	EzHub.ImageLabel_8.Parent = EzHub.Frame_23
+	EzHub.ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ImageLabel_8.BackgroundTransparency = 1.000
+	EzHub.ImageLabel_8.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
+	EzHub.ImageLabel_8.Size = UDim2.new(0, 72, 0, 54)
+	EzHub.ImageLabel_8.ZIndex = 2
+	EzHub.ImageLabel_8.Image = "rbxassetid://4030893123"
+
+	EzHub.ExecutedLabel_2.Name = "ExecutedLabel"
+	EzHub.ExecutedLabel_2.Parent = EzHub.Frame_23
+	EzHub.ExecutedLabel_2.AnchorPoint = Vector2.new(0.5, 1)
+	EzHub.ExecutedLabel_2.BackgroundColor3 = Color3.fromRGB(57, 198, 55)
+	EzHub.ExecutedLabel_2.BackgroundTransparency = 0.450
+	EzHub.ExecutedLabel_2.BorderSizePixel = 0
+	EzHub.ExecutedLabel_2.Position = UDim2.new(0.5, 0, 2, 0)
+	EzHub.ExecutedLabel_2.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.ExecutedLabel_2.ZIndex = 3
+	EzHub.ExecutedLabel_2.Font = Enum.Font.Ubuntu
+	EzHub.ExecutedLabel_2.Text = "<b>Executed Script!</b>"
+	EzHub.ExecutedLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ExecutedLabel_2.TextSize = 16.000
+	EzHub.ExecutedLabel_2.TextWrapped = true
+
+	EzHub.GameName_4.Name = "GameName"
+	EzHub.GameName_4.Parent = EzHub.Frame_23
+	EzHub.GameName_4.AnchorPoint = Vector2.new(0.5, 0)
+	EzHub.GameName_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.GameName_4.BackgroundTransparency = 1.000
+	EzHub.GameName_4.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
+	EzHub.GameName_4.Size = UDim2.new(0, 75, 0, 31)
+	EzHub.GameName_4.ZIndex = 2
+	EzHub.GameName_4.Font = Enum.Font.SourceSans
+	EzHub.GameName_4.Text = "Redwood Prison GUI"
+	EzHub.GameName_4.TextColor3 = Color3.fromRGB(28, 41, 56)
+	EzHub.GameName_4.TextSize = 13.000
+	EzHub.GameName_4.TextWrapped = true
+
+	EzHub.UICorner_36.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_36.Parent = EzHub.Frame_23
+
 end
 
 -------------------------------------------------------------------------------------------------
@@ -1576,13 +1658,8 @@ EzHub.EditorFrame.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 
 -- Tab positioning, container and handling
 
-local tabOpened = Instance.new("BindableEvent");
-local activeTab;
-tabOpened.Event:Connect(function(tab)
-	activeTab = tab;
-end)
-
 local tabs = {EzHub.LoadingFrame, EzHub.HomeFrame, EzHub.ExclusivesFrame, EzHub.RepostedFrame, EzHub.CreditsFrame, EzHub.LocalLibFrame, EzHub.ExclusivesV2Frame, EzHub.ADDFrame, EzHub.REMOVEFrame};
+
 for i,v in pairs(tabs) do
 	if v == EzHub.LoadingFrame then
 		v.Position = UDim2.new(0, 0, 0.1, 0);
@@ -1592,15 +1669,24 @@ for i,v in pairs(tabs) do
 	v.Visible = true;
 end
 
+local function getActiveFrame()
+	for i,v in pairs(tabs) do
+		if v.Position == UDim2.new(0, 0, 0.1, 0) or v.Position == UDim2.new(0.27,0,0.1,0) then
+			return v;
+		end
+	end
+end
+
 local function openTab(tabInstance)
-
-	tabOpened:Fire(tabInstance);
-
+	
 	-- Closing Of All Other Tabs
-	if activeTab ~= tabInstance then
-		v:TweenPosition(v.Position + UDim2.new(1, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true);
-		wait(0.3);
-		v.Position = UDim2.new(0, 0, 1, 0);
+	for i,v in pairs(tabs) do
+		if v.Position == UDim2.new(0, 0, 0.1, 0) or v.Position == UDim2.new(0.27, 0, 0.1, 0) and v ~= tabInstance then
+			v:TweenPosition(v.Position + UDim2.new(1, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true);
+			wait(0.3);
+			v.Position = UDim2.new(0,0,1,0);
+			break;
+		end
 	end
 	
 	-- Open Requested Tab
@@ -1628,6 +1714,14 @@ local function applyContainerSelectAnimation(con)
 	end)
 end
 
+local function tweenGradient(gradient)
+	
+	gradient.Offset = Vector2.new(-2, 0);
+	local tween = game:GetService("TweenService"):Create(gradient, TweenInfo.new(2.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Offset = Vector2.new(2, 0)});
+	tween:Play(); tween.Completed:Wait();
+	
+end
+
 local function addScript(configs)
 	if not configs then
 		configs = {
@@ -1647,16 +1741,12 @@ local function addScript(configs)
 		-- Animate UI Gradient for a shiny effect
 		coroutine.wrap(function()
 			while wait() do
-				while activeTab == configs.parent and wait() do
-						
-					local gradient = mainContainer.Frame.UIGradient;
-					for i = 0, 1, 0.001 do
-						gradient.Offset = Vector2.new(i, 0);
-						game:GetService("RunService").RenderStepped:Wait();
-					end
-					gradient.Offset = Vector2.new(0, 0);
-
+				-- configs.parent is equal to the scrolling frame, not the "active frame"
+				while getActiveFrame() == configs.parent.Parent and wait() do
+					mainContainer.Frame.UIGradient.Enabled = true;
+					tweenGradient(mainContainer.Frame.UIGradient);
 				end
+				mainContainer.Frame.UIGradient.Enabled = false;
 			end
 		end)();
 
@@ -1708,10 +1798,10 @@ local function handleNavBtn()
 		local navslidethread = coroutine.create(function()
 			if EzHub.NavFrame.Position ~= UDim2.new(-0.5, 0, 0.108, 0) then
 				EzHub.NavFrame:TweenPosition(UDim2.new(-0.5, 0, 0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true);	-- Hide
-				activeTab:TweenPosition(activeTab.Position - UDim2.new(0.27,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
+				getActiveFrame():TweenPosition(getActiveFrame().Position - UDim2.new(0.27,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
 			else
 				EzHub.NavFrame:TweenPosition(UDim2.new(0, 0,0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true);		-- Show
-				activeTab:TweenPosition(activeTab.Position + UDim2.new(0.27,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
+				getActiveFrame():TweenPosition(getActiveFrame().Position + UDim2.new(0.27,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
 			end
 		end)
 		coroutine.resume(navslidethread);
@@ -1821,6 +1911,8 @@ local function functionaliseSearchBar(instance, section)
 				end
 			end
 		end
+
+		section.CanvasPosition = Vector2.new(0, 0);	-- bringing scrolling frame back to the top
 	end)
 end
 
@@ -2019,7 +2111,7 @@ local function updateRemoveScriptFrame()
 			rcontainer.Text = i;
 			rcontainer.MouseButton1Click:Connect(function()
 				selectedToDelete = rcontainer.Text;
-				for i,v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
+				for i, v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
 					if v.Name == "RemoveContainer" then
 						v.BorderSizePixel = 0;
 					end
