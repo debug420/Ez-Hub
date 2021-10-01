@@ -1,14 +1,62 @@
 {
-    "Universal": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Universal.lua",
-    "Prison Life": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Prison%20Life.lua",
-    "Tiny Tanks": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Tiny%20Tanks.lua",
-    "Arsenal": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Arsenal.lua",
-    "Saber Sim":"https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/SaberSim.lua",
-    "Phantom Forces":"https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Phantom.lua",
-    "Legends Of Speed":"https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Legends%20of%20Speed.lua",
-    "TOH": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/TOH.lua",
-    "MM2": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/MM2.lua",
-    "Redwood Prison": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/RedwoodPrison.lua",
-    "Bitcoin Miner": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Bitcoin%20Miner.lua",
-    "Bubble Gum Simulator": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Bubble%20Gum%20Sim.lua"
+    "Prison Life": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Prison%20Life.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Arsenal": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Arsenal.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Bubble Gum Simulator": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Bubble%20Gum%20Sim.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Redwood Prison": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/RedwoodPrison.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "MM2": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/MM2.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Phantom Forces": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Phantom.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Universal": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Universal.lua",
+        "info": "No info is currently available on the following script",
+        "type": "gold"
+    },
+    "Legends Of Speed": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Legends%20of%20Speed.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Bitcoin Miner": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Bitcoin%20Miner.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Saber Sim": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/SaberSim.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "TOH": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/TOH.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Tiny Tanks": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Tiny%20Tanks.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    }
 }
