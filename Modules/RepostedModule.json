@@ -1,176 +1,857 @@
 {
-    "Car Crushers 2 GUI": "https://pastebin.com/raw/UmkD1gyr",
-    "Legends of Speed GUI": "https://pastebin.com/raw/aWA8FZ72",
-    "Auratus X": "https://pastebin.com/raw/SGztxD4k",
-    "KAT GUI": "https://raw.githubusercontent.com/mememasterboi/a-lot-of-scripts/master/Output%20(6).lua",
-    "SuperPower Training Sim": "https://raw.githubusercontent.com/yogurtsss/Practice-Projects-/main/SPFSRemake",
-    "Shark Evoloution GUI": "https://raw.githubusercontent.com/HimikoToga1474/Ahegao-Hub/master/Main.Lua",
-    "Blox Hunt GUI": "https://pastebin.com/raw/XYTFU1VF",
-    "Flee The Facility GUI": "https://pastebin.com/raw/mFnVACZ1",
-    "Banana Eats GUI": "https://gist.githubusercontent.com/NovaVanity/131e258977e50e1ec0184c72818b8bfd/raw",
-    "Ice Breaker GUI": "https://pastebin.com/raw/uAMRxU2M",
-    "The Dropper GUI": "https://pastebin.com/raw/YeE1VDNq",
-    "Walk on Walls": "https://pastebin.com/raw/wenWrJCL",
-    "Reviz Admin": "https://pastebin.com/raw/KNUzQPYS",
-    "Timer GUI": "https://pastebin.com/raw/uu4HkJG1",
-    "Wild West GUI": "https://thisstuff.xyz/Api/WOAHSCRIPTS/1257821635-9356095531/oOAfkpCWzDWsn4CjuLZLZOs3vCf4rgUMhXaJd32VyHSs2tojOCTUKINNTbAuTTCGFrYTyMeBDEIfdo7C0Sp5EnCyxN80pHf5jpqk2xU7f1LAcx2Nt1cZe",
-    "Chat System Messages": "https://pastebin.com/raw/1eRAY7eC",
-    "FE Trolling GUI": "https://pastebin.com/raw/RNWgaqCE",
-    "Dungeon Quest GUI": "https://pastebin.com/raw/F5vSFHZt",
-    "Universal Aimbot": "https://raw.githubusercontent.com/Herrtt/AimHot-v8/master/Main.lua",
-    "Build A Boat GUI": "https://startsploiting.weebly.com/uploads/1/3/1/5/131560940/obfuscated_93d91a9_build_a_boat_for_treasure_free_simple_gui.txt",
-    "SharkBite GUI": "https://pastebin.com/raw/1vQxrjQT",
-    "Recoil GUI": "https://pastebin.com/raw/7Wm65yEj",
-    "Zombie Rush GUI": "https://pastebin.com/raw/cHmscXYK",
-    "A Bizzare Day GUI": "https://raw.githubusercontent.com/Moddi69/Script/master/ABizarreHackRe",
-    "Tower of Hell GUI": "https://pastebin.com/raw/k1F9xvs3",
-    "Skywars GUI": "https://pastebin.com/raw/RF4Mr1i7",
-    "Dig it GUI": "https://pastebin.com/raw/ZNA5nYQM",
-    "PentaHub": "https://raw.githubusercontent.com/pentagotherpes/officalpentahaxx/master/Pentahaxx.lua",
-    "Prison Life Sound Spam": "https://pastebin.com/raw/e8Haktbz",
-    "Shaltix's Hub": "https://raw.githubusercontent.com/Altix-dev/Shaltix-s-Hub/master/Hub.lua",
-    "Jailed Hax (Jailbreak)": "https://raw.githubusercontent.com/JailedMist/JailedHax/master/Main.lua",
-    "Remote Spy": "https://pastebin.com/raw/ecFzuyD9",
-    "DirectX ESP": "https://pastebin.com/raw/pxGWSbHq",
-    "Anime Fighting Sim": "https://pastebin.com/raw/iXe09k9N",
-    "Flood Escape 2 GUI": "https://pastebin.com/raw/fCjn1E9T",
-    "Kick Off GUI": "https://pastebin.com/raw/76GBeX5k",
-    "Slime Tycoon GUI": "https://raw.githubusercontent.com/radjahfromdiscord/slimetycoon/master/gui",
-    "CMD X": "https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source",
-    "TOH GUI": "https://pastebin.com/raw/sCK12GSe",
-    "Lumber Tycoon 2 GUI": "https://pastebin.com/raw/ek7sR2VR",
-    "Vynixius Ragdoll Engine GUI": "https://raw.githubusercontent.com/RegularVynixu/Scripts/master/Vynixius%20Ragdoll%20Engine",
-    "Infinite Jump": "https://pastebin.com/raw/7jscSsvN",
-    "Owl Hub": "https://raw.githubusercontent.com/ZinityDrops/OwlHubLink/master/OwlHubBack.lua",
-    "Snake GUI Game": "https://pastebin.com/raw/EdpVR2PE",
-    "Zombie Attack GUI": "https://pastebin.com/raw/bME79p05",
-    "Milkshake Legends GUI": "https://pastebin.com/raw/tG5sricY",
-    "Unnamed ESP": "https://ic3w0lf.xyz/rblx/protoesp.lua",
-    "Infinite Yield": "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source",
-    "Prison Life GUI": "https://pastebin.com/raw/hFpEy9DL",
-    "Impulse Hub": "http://impulse-hub.xyz/ImpulseHub",
-    "CounterBlox GUI": "https://pastebin.com/raw/qfadYUtt",
-    "SlipBox GUI": "https://raw.githubusercontent.com/Toxic-Mods/SlipBlox/master/Output.lua",
-    "Online Business Sim": "https://pastebin.com/raw/NDTTzz4L",
-    "Punching Sim GUI": "http://gameovers.net/Scripts/Free/push_simulator/main.lua",
-    "Redwood Prison GUI": "https://pastebin.com/raw/p1UQV7Kr",
-    "Fortress Tycoon GUI": "https://raw.githubusercontent.com/v3rmscripts/scripts-repo/master/scripts/LoadstringMnvnXcE3raYW",
-    "Animation GUI": "https://pastebin.com/raw/tFG99JVu",
-    "FE Animation GUI": "https://pastebin.com/raw/EQE58hq3",
-    "Cords Finder": "https://pastebin.com/raw/VmiMdeVr",
-    "Coco Hub": "https://raw.githubusercontent.com/NGHDDDX/ScriptHubScripts/master/CocoHub.txt",
-    "FE Hub": "https://pastebin.com/raw/9CkmhJj2",
-    "Exploiter Hub": "https://raw.githubusercontent.com/Kelvinouo/Hub/master/Hub_Script",
-    "One Piece Prime GUI": "https://raw.githubusercontent.com/AikaV3rm/Scripts/master/One%20Piece%20Prime",
-    "Imposter GUI": "https://pastebin.com/raw/5pfE51zr",
-    "Zombie Defense GUI": "https://pastebin.com/raw/Av4wsQFu",
-    "Dragon Ball Z FS": "https://pastebin.com/raw/fk998NA4",
-    "Pet Simulator GUI": "https://pastebin.com/raw/gQggy1cw",
-    "RageFlake Hub": "https://gist.githubusercontent.com/RedoGaming/459eb467f3df927b07ca398a68f3b053/raw/6d1f7a2c8fefd072dc53ebbbec38c6f93c7de1ad/Frixon%2520Hub!%2520New%2520OP%2520Exploit%2520Hub%2520for%2520Roblox!",
-    "Rumble Quest GUI": "https://pastebin.com/raw/5KtmRcCe",
-    "Ro Ghoul GUI": "https://raw.githubusercontent.com/z4gs/scripts/master/Ro-Ghoul%20Auto%20Farm.lua",
-    "World Zero GUI": "https://raw.githubusercontent.com/HimikoToga1474/Ahegao-Hub/master/Main.Lua",
-    "Giant Survival GUI": "https://raw.githubusercontent.com/radjahfromdiscord/giantsurvival/master/gui",
-    "Arsenal GUI": "https://raw.githubusercontent.com/NougatBitz/ArsenalHaxx/master/Script",
-    "Dragon Adventures GUI": "https://pastebin.com/raw/vvhr257Z",
-    "Clicker Madness": "https://raw.githubusercontent.com/Ruzzki/Clicker-madness/main/clickermadnesss.txt",
-    "Dragon Ball Ultimate GUI": "https://maxv.ml/uploads/dbu.lua",
-    "Jailbreak Auto Farm": "https://pastebin.com/raw/ZvA7CS8N",
-    "Bee Swarm Simulator": "https://pastebin.com/raw/uGujrkAf",
-    "Animal Sim GUI": "https://pastebin.com/raw/CrKCLcYc",
-    "Lift Legends GUI": "https://raw.githubusercontent.com/bjkefe23/lift-legends-simulator-Update-Gui/main/Lift%20Legends%20Update%20Gui",
-    "Tapping Mania GUI": "https://pastebin.com/raw/7CQxsEVu",
-    "Vynixius Jailbreak GUI": "https://raw.githubusercontent.com/RegularVynixu/Scripts/master/Vynixius%20Jailbreak",
-    "One Punch Man GUI 2": "https://pastebin.com/raw/G675dfew",
-    "Tapping Mania GUI 2": "https://pastebin.com/raw/4J6SQPyh",
-    "Invisible Fling": "https://pastebin.com/raw/tnHxX3jn",
-    "Fishing Simulator GUI": "https://pastebin.com/raw/5r2kwfzn",
-    "Counter Blox": "https://raw.githubusercontent.com/NecessaryPaint/ur-mom/master/CBRO_Modded_Weapons.lua",
-    "Arsenal Kill All": "https://raw.githubusercontent.com/MisterGunXD/yes/main/rolve%3C3.lua",
-    "Boku No Roblox": "https://pastebin.com/raw/R1vA1jee",
-    "Shinobi Life 2": "https://pastebin.com/raw/Kc7XZKbC",
-    "GX SHub": "https://pastebin.com/raw/9NGpam5q",
-    "ShuShiScript Hub": "https://raw.githubusercontent.com/Farn2000/ShuShiScript/master/ShuShiScriptHub",
-    "Vynixius Zombie Rush": "https://raw.githubusercontent.com/RegularVynixu/Scripts/master/Vynixius%20Zombie%20Rush",
-    "Mining Champions": "https://pastebin.com/raw/mzatFRb9",
-    "Dragon Ball Rage": "https://pastebin.com/raw/TZUSvtmd",
-    "Big Paintball Unlock All": "https://raw.githubusercontent.com/Singularity5490/bigpaintball/main/unlockall.lua",
-    "Blox Hunt GUI 2": "https://pastebin.com/raw/ujBkfNam",
-    "Pistol 1v1 GUI": "https://raw.githubusercontent.com/ascaxz/ReleaseScripts/main/Pistol1v1SilentAim.lua",
-    "A Universal Time": "https://pastebin.com/raw/zt1XYrqJ",
-    "Lifting Simulator": "https://pastebin.com/raw/vPFVRR2P",
-    "World Of Magic GUI": "https://pastebin.com/raw/d0itCfPg",
-    "Attack On Titan: Downfall": "https://raw.githubusercontent.com/EuHellscytheLua/AOTV0.01/master/EusAOTUi.lua",
-    "Treasure Quest": "https://pastebin.com/raw/PhtTyT74",
-    "Assasin Silent Aim": "https://raw.githubusercontent.com/bockatta/Atta/main/2",
-    "Destruction Simulator": "https://raw.githubusercontent.com/AquaModz/DestructionSIMModded/main/DestructionSimAqua.lua",
-    "Super Doomspire": "https://pastebin.com/raw/8Bj755Dk",
-    "Arsenal Aimbot": "https://pastebin.com/raw/ggWwd7tu",
-    "Fart Simulator": "https://raw.githubusercontent.com/Dk4Q/Dk4QHub/master/Loader",
-    "Boxing Sim": "https://pastebin.com/raw/mY2qKBWc",
-    "Garfield Hub": "https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/garfield%20hub",
-    "Hero's Legacy GUI": "https://raw.githubusercontent.com/HimikoToga1474/Ahegao-Hub/master/Main.Lua",
-    "Blood Samurai 2 GUI": "https://pastebin.com/raw/BZvM7UbQ",
-    "Tapping Mania GUI 3": "https://raw.githubusercontent.com/quentin452/Cats-Exploitz-HUB/master/Cats%20Exploitz",
-    "Giant Survival": "https://pastebin.com/raw/C5zTZb7Y",
-    "Assassin GUI": "https://raw.githubusercontent.com/bockatta/Shitter/main/Loader",
-    "Destruction Sim GUI": "https://pastebin.com/raw/BZ0FKGvv",
-    "MM2 GUI": "https://pastebin.com/raw/a0ww9Cj4",
-    "Build A Boat For Treasure": "https://raw.githubusercontent.com/S0LDR/proton-development/master/protonbabft.lua",
-    "Albino Hub": "https://raw.githubusercontent.com/albinosenpai/AlbinoHub/master/Hub",
-    "Super Saiyan Sim": "https://raw.githubusercontent.com/BAG0N/OPM_DF/main/saiyan.lua",
-    "Clicking Champions GUI": "https://pastebin.com/raw/9Jki6EfA",
-    "Coin Hero Sim GUI": "https://pastebin.com/raw/eRPQr9ie",
-    "Lucky Blocks Battleground": "https://pastebin.com/raw/YzVmSVF9",
-    "SCP 3008 GUI": "https://raw.githubusercontent.com/Viserromero/Antex/master/SCP3008",
-    "Gods of Glory GUI": "https://scripts.dohmscripts.com/GodsScript",
-    "Blade Throwing Simulator": "https://raw.githubusercontent.com/why-png/scriptstuffz/master/bts25",
-    "Doomspire Brickbattle": "https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/garfield%20hub",
-    "Dragon Ball Z Final Stand": "https://pastebin.com/raw/hApVZvCp",
-    "Adopt Me GUI": "https://raw.githubusercontent.com/Psychiatrist-Colman/Scripts/master/AdoptMeMain.lua",
-    "MM2 GUI 2": "https://raw.githubusercontent.com/Ethanoj1/EclipseMM2/master/Script",
-    "Broken Bones IV": "https://pastebin.com/raw/sQpRuLgQ",
-    "Ninja Legends 2": "https://raw.githubusercontent.com/iTzGerard/NinjaLegends2/main/Script",
-    "Shinobi Life 2 GUI 2": "https://pastebin.com/raw/Av8NMSSq",
-    "Robeats GUI": "https://raw.githubusercontent.com/Introvert1337/Releases/master/RobeatsX.lua",
-    "Science Simulator": "https://raw.githubusercontent.com/Marco8642/science/main/science.lua",
-    "Tiny Tanks": "https://pastebin.com/raw/zbZjLA3S",
-    "Dragon Ball Rage GUI": "https://pastebin.com/raw/DtAT07NE",
-    "The Impossible Obby GUI": "https://pastebin.com/raw/WeXDAnpp",
-    "Ninja Legends 2 GUI": "https://raw.githubusercontent.com/MichaeI825/Ninja-Legends-2-GUI/main/Ninja%20Legends%202%20GUI",
-    "Ninja Tycoon GUI": "https://reativ.ru/Scripts/Free/NT.lua",
-    "Polar Hub": "https://polarhub.xyz/PolarFreeScript/NormalScript.lua",
-    "Guest Infection GUI": "https://raw.githubusercontent.com/2dgeneralspam1/guest-infection/main/GUI",
-    "Vehicle Simulator GUI": "https://raw.githubusercontent.com/1201for/V.G-Hub/main/VehicleSimulator",
-    "Islands GUI": "http://void-scripts.com/Scripts/islands_new.lua",
-    "Bruh Hub": "https://bruh.keshhub.com/main.lua",
-    "Jayhub": "https://jack1214060.xyz/jayhub",
-    "Blood Samurai 2": "https://wulphset.net/scripts/Wulphset_BS2.lua",
-    "Dragon ball rage remastered": "https://raw.githubusercontent.com/sannin9000/scripts/main/dbrage.lua",
-    "A.I Hub": "https://raw.githubusercontent.com/ClairSonata/A.I-Hub/main/Intro.lua",
-    "Adventurer Simulator": "https://raw.githubusercontent.com/blooodlines/scripts/main/Turtle%20Adventurer%20Simulator.lua",
-    "Boxing Simulator": "https://raw.githubusercontent.com/urmomjklol69/BoxingSimulator/main/BoxingSim",
-    "Smash Legends": "https://raw.githubusercontent.com/Not-Alive/smashing/main/main",
-    "Rumble Quest Autofarm": "https://pastebin.com/raw/LsFzhsBW",
-    "Jailbreak GUI": "https://raw.githubusercontent.com/opBandwidth/_Paragon_/main/main.lua",
-    "Ninja Legends Autofarm": "https://pastebin.com/raw/ctZqgA6T",
-    "Ori Hub": "https://pastebin.com/raw/wzYkNBaR",
-    "The Wild West GUI": "https://pastebin.com/raw/69C2rbar",
-    "Loomian Legacy GUI": "https://raw.githubusercontent.com/Introvert1337/Releases/master/LoomianLegacyX.lua",
-    "Counterblox GUI": "https://raw.githubusercontent.com/Allinity/Allinity-Hub/main/AllinityHubv.1.lua",
-    "Prison Life": "https://pastebin.com/raw/3iEC7WgT",
-    "KAT GUI": "https://raw.githubusercontent.com/zReal-King/Knife-Ability-Test-Script/main/Knife%20Ability%20Test%20Script",
-    "Dex Hub": "https://raw.githubusercontent.com/HonestlyDex/DexHub/main/V3.lua",
-    "Monke Hub": "https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua",
-    "Lucky Block BG Unlock All": "https://pastebin.com/raw/igATi9C2",
-    "Ninja Legends Autofarm": "https://pastebin.com/raw/VRkJTshK",
-    "Pistol 1v1 GUI": "https://pastebin.com/raw/UHJ62F71",
-    "Shindo GUI": "https://pastebin.com/raw/J76bpVff",
-    "Dragon Blox Ultimate GUI": "https://pastebin.com/raw/GDaP0iGV",
-    "Fishing Simulator GUI 2": "https://pastebin.com/raw/W2Vm7Hqi",
-    "Pet Simulator X GUI": "https://raw.githubusercontent.com/TurfuGoldy/GoldenScripts/main/EzPets.lua",
-    "Anime Warriors GUI": "https://raw.githubusercontent.com/CosmicHub/HAHAEIEIUU/main/AnimeWarriors.lua",
-    "Bad Business GUI": "https://projectevo.xyz/script/loader.lua",
-    "V.G Hub": "https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub",
-    "Domain Hub V2": "https://raw.githubusercontent.com/shlexsoftworks/Domain/main/source"
+    "Dig it GUI": {
+        "link": "https://pastebin.com/raw/ZNA5nYQM",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "World Of Magic GUI": {
+        "link": "https://pastebin.com/raw/d0itCfPg",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "KAT GUI": {
+        "link": "https://raw.githubusercontent.com/zReal-King/Knife-Ability-Test-Script/main/Knife%20Ability%20Test%20Script",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dex Hub": {
+        "link": "https://raw.githubusercontent.com/HonestlyDex/DexHub/main/V3.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "RageFlake Hub": {
+        "link": "https://gist.githubusercontent.com/RedoGaming/459eb467f3df927b07ca398a68f3b053/raw/6d1f7a2c8fefd072dc53ebbbec38c6f93c7de1ad/Frixon%2520Hub!%2520New%2520OP%2520Exploit%2520Hub%2520for%2520Roblox!",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "A Bizzare Day GUI": {
+        "link": "https://raw.githubusercontent.com/Moddi69/Script/master/ABizarreHackRe",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Flee The Facility GUI": {
+        "link": "https://pastebin.com/raw/mFnVACZ1",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Imposter GUI": {
+        "link": "https://pastebin.com/raw/5pfE51zr",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Blood Samurai 2 GUI": {
+        "link": "https://pastebin.com/raw/BZvM7UbQ",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "SlipBox GUI": {
+        "link": "https://raw.githubusercontent.com/Toxic-Mods/SlipBlox/master/Output.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "SCP 3008 GUI": {
+        "link": "https://raw.githubusercontent.com/Viserromero/Antex/master/SCP3008",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "FE Animation GUI": {
+        "link": "https://pastebin.com/raw/EQE58hq3",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Anime Warriors GUI": {
+        "link": "https://raw.githubusercontent.com/CosmicHub/HAHAEIEIUU/main/AnimeWarriors.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Ro Ghoul GUI": {
+        "link": "https://raw.githubusercontent.com/z4gs/scripts/master/Ro-Ghoul%20Auto%20Farm.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Monke Hub": {
+        "link": "https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Doomspire Brickbattle": {
+        "link": "https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/garfield%20hub",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Pet Simulator GUI": {
+        "link": "https://pastebin.com/raw/gQggy1cw",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Redwood Prison GUI": {
+        "link": "https://pastebin.com/raw/p1UQV7Kr",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Banana Eats GUI": {
+        "link": "https://gist.githubusercontent.com/NovaVanity/131e258977e50e1ec0184c72818b8bfd/raw",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Lumber Tycoon 2 GUI": {
+        "link": "https://pastebin.com/raw/ek7sR2VR",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "FE Trolling GUI": {
+        "link": "https://pastebin.com/raw/RNWgaqCE",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Rumble Quest Autofarm": {
+        "link": "https://pastebin.com/raw/LsFzhsBW",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Fishing Simulator GUI 2": {
+        "link": "https://pastebin.com/raw/W2Vm7Hqi",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "DirectX ESP": {
+        "link": "https://pastebin.com/raw/pxGWSbHq",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Flood Escape 2 GUI": {
+        "link": "https://pastebin.com/raw/fCjn1E9T",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Infinite Yield": {
+        "link": "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Wild West GUI": {
+        "link": "https://thisstuff.xyz/Api/WOAHSCRIPTS/1257821635-9356095531/oOAfkpCWzDWsn4CjuLZLZOs3vCf4rgUMhXaJd32VyHSs2tojOCTUKINNTbAuTTCGFrYTyMeBDEIfdo7C0Sp5EnCyxN80pHf5jpqk2xU7f1LAcx2Nt1cZe",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Legends of Speed GUI": {
+        "link": "https://pastebin.com/raw/aWA8FZ72",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Jayhub": {
+        "link": "https://jack1214060.xyz/jayhub",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Jailbreak Auto Farm": {
+        "link": "https://pastebin.com/raw/ZvA7CS8N",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Prison Life Sound Spam": {
+        "link": "https://pastebin.com/raw/e8Haktbz",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "The Dropper GUI": {
+        "link": "https://pastebin.com/raw/YeE1VDNq",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Attack On Titan: Downfall": {
+        "link": "https://raw.githubusercontent.com/EuHellscytheLua/AOTV0.01/master/EusAOTUi.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "ShuShiScript Hub": {
+        "link": "https://raw.githubusercontent.com/Farn2000/ShuShiScript/master/ShuShiScriptHub",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Giant Survival": {
+        "link": "https://pastebin.com/raw/C5zTZb7Y",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Ice Breaker GUI": {
+        "link": "https://pastebin.com/raw/uAMRxU2M",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "TOH GUI": {
+        "link": "https://pastebin.com/raw/sCK12GSe",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Exploiter Hub": {
+        "link": "https://raw.githubusercontent.com/Kelvinouo/Hub/master/Hub_Script",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Remote Spy": {
+        "link": "https://pastebin.com/raw/ecFzuyD9",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Pistol 1v1 GUI": {
+        "link": "https://pastebin.com/raw/UHJ62F71",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Blood Samurai 2": {
+        "link": "https://wulphset.net/scripts/Wulphset_BS2.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "One Piece Prime GUI": {
+        "link": "https://raw.githubusercontent.com/AikaV3rm/Scripts/master/One%20Piece%20Prime",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Kick Off GUI": {
+        "link": "https://pastebin.com/raw/76GBeX5k",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Zombie Rush GUI": {
+        "link": "https://pastebin.com/raw/cHmscXYK",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Recoil GUI": {
+        "link": "https://pastebin.com/raw/7Wm65yEj",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Jailed Hax (Jailbreak)": {
+        "link": "https://raw.githubusercontent.com/JailedMist/JailedHax/master/Main.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "FE Hub": {
+        "link": "https://pastebin.com/raw/9CkmhJj2",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Invisible Fling": {
+        "link": "https://pastebin.com/raw/tnHxX3jn",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Shaltix's Hub": {
+        "link": "https://raw.githubusercontent.com/Altix-dev/Shaltix-s-Hub/master/Hub.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Lucky Block BG Unlock All": {
+        "link": "https://pastebin.com/raw/igATi9C2",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Boxing Sim": {
+        "link": "https://pastebin.com/raw/mY2qKBWc",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Fishing Simulator GUI": {
+        "link": "https://pastebin.com/raw/5r2kwfzn",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Albino Hub": {
+        "link": "https://raw.githubusercontent.com/albinosenpai/AlbinoHub/master/Hub",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Giant Survival GUI": {
+        "link": "https://raw.githubusercontent.com/radjahfromdiscord/giantsurvival/master/gui",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Boxing Simulator": {
+        "link": "https://raw.githubusercontent.com/urmomjklol69/BoxingSimulator/main/BoxingSim",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Smash Legends": {
+        "link": "https://raw.githubusercontent.com/Not-Alive/smashing/main/main",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Guest Infection GUI": {
+        "link": "https://raw.githubusercontent.com/2dgeneralspam1/guest-infection/main/GUI",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "The Impossible Obby GUI": {
+        "link": "https://pastebin.com/raw/WeXDAnpp",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Robeats GUI": {
+        "link": "https://raw.githubusercontent.com/Introvert1337/Releases/master/RobeatsX.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Ninja Tycoon GUI": {
+        "link": "https://reativ.ru/Scripts/Free/NT.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon Ball Z FS": {
+        "link": "https://pastebin.com/raw/fk998NA4",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Hero's Legacy GUI": {
+        "link": "https://raw.githubusercontent.com/HimikoToga1474/Ahegao-Hub/master/Main.Lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "The Wild West GUI": {
+        "link": "https://pastebin.com/raw/69C2rbar",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Vynixius Zombie Rush": {
+        "link": "https://raw.githubusercontent.com/RegularVynixu/Scripts/master/Vynixius%20Zombie%20Rush",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Polar Hub": {
+        "link": "https://polarhub.xyz/PolarFreeScript/NormalScript.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Arsenal Aimbot": {
+        "link": "https://pastebin.com/raw/ggWwd7tu",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Mining Champions": {
+        "link": "https://pastebin.com/raw/mzatFRb9",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Loomian Legacy GUI": {
+        "link": "https://raw.githubusercontent.com/Introvert1337/Releases/master/LoomianLegacyX.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Fortress Tycoon GUI": {
+        "link": "https://raw.githubusercontent.com/v3rmscripts/scripts-repo/master/scripts/LoadstringMnvnXcE3raYW",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "A Universal Time": {
+        "link": "https://pastebin.com/raw/zt1XYrqJ",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "MM2 GUI 2": {
+        "link": "https://raw.githubusercontent.com/Ethanoj1/EclipseMM2/master/Script",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Destruction Sim GUI": {
+        "link": "https://pastebin.com/raw/BZ0FKGvv",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Build A Boat GUI": {
+        "link": "https://startsploiting.weebly.com/uploads/1/3/1/5/131560940/obfuscated_93d91a9_build_a_boat_for_treasure_free_simple_gui.txt",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Assassin GUI": {
+        "link": "https://raw.githubusercontent.com/bockatta/Shitter/main/Loader",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Tapping Mania GUI 3": {
+        "link": "https://raw.githubusercontent.com/quentin452/Cats-Exploitz-HUB/master/Cats%20Exploitz",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon Ball Z Final Stand": {
+        "link": "https://pastebin.com/raw/hApVZvCp",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "CMD X": {
+        "link": "https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Lift Legends GUI": {
+        "link": "https://raw.githubusercontent.com/bjkefe23/lift-legends-simulator-Update-Gui/main/Lift%20Legends%20Update%20Gui",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Super Saiyan Sim": {
+        "link": "https://raw.githubusercontent.com/BAG0N/OPM_DF/main/saiyan.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Skywars GUI": {
+        "link": "https://pastebin.com/raw/RF4Mr1i7",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Treasure Quest": {
+        "link": "https://pastebin.com/raw/PhtTyT74",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Counter Blox": {
+        "link": "https://raw.githubusercontent.com/NecessaryPaint/ur-mom/master/CBRO_Modded_Weapons.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Blox Hunt GUI": {
+        "link": "https://pastebin.com/raw/XYTFU1VF",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Blade Throwing Simulator": {
+        "link": "https://raw.githubusercontent.com/why-png/scriptstuffz/master/bts25",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Adopt Me GUI": {
+        "link": "https://raw.githubusercontent.com/Psychiatrist-Colman/Scripts/master/AdoptMeMain.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "A.I Hub": {
+        "link": "https://raw.githubusercontent.com/ClairSonata/A.I-Hub/main/Intro.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Zombie Defense GUI": {
+        "link": "https://pastebin.com/raw/Av4wsQFu",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Counterblox GUI": {
+        "link": "https://raw.githubusercontent.com/Allinity/Allinity-Hub/main/AllinityHubv.1.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Tower of Hell GUI": {
+        "link": "https://pastebin.com/raw/k1F9xvs3",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Walk on Walls": {
+        "link": "https://pastebin.com/raw/wenWrJCL",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Prison Life": {
+        "link": "https://pastebin.com/raw/3iEC7WgT",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Bee Swarm Simulator": {
+        "link": "https://pastebin.com/raw/uGujrkAf",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Arsenal Kill All": {
+        "link": "https://raw.githubusercontent.com/MisterGunXD/yes/main/rolve%3C3.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon Ball Ultimate GUI": {
+        "link": "https://maxv.ml/uploads/dbu.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Shindo GUI": {
+        "link": "https://pastebin.com/raw/J76bpVff",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Tapping Mania GUI 2": {
+        "link": "https://pastebin.com/raw/4J6SQPyh",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Chat System Messages": {
+        "link": "https://pastebin.com/raw/1eRAY7eC",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Boku No Roblox": {
+        "link": "https://pastebin.com/raw/R1vA1jee",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Shark Evoloution GUI": {
+        "link": "https://raw.githubusercontent.com/HimikoToga1474/Ahegao-Hub/master/Main.Lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon Adventures GUI": {
+        "link": "https://pastebin.com/raw/vvhr257Z",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon Ball Rage": {
+        "link": "https://pastebin.com/raw/TZUSvtmd",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Pet Simulator X GUI": {
+        "link": "https://raw.githubusercontent.com/TurfuGoldy/GoldenScripts/main/EzPets.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "SharkBite GUI": {
+        "link": "https://pastebin.com/raw/1vQxrjQT",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Domain Hub V2": {
+        "link": "https://raw.githubusercontent.com/shlexsoftworks/Domain/main/source",
+        "info": "No info is currently available on the following script",
+        "type": "gold"
+    },
+    "Build A Boat For Treasure": {
+        "link": "https://raw.githubusercontent.com/S0LDR/proton-development/master/protonbabft.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Vynixius Jailbreak GUI": {
+        "link": "https://raw.githubusercontent.com/RegularVynixu/Scripts/master/Vynixius%20Jailbreak",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "PentaHub": {
+        "link": "https://raw.githubusercontent.com/pentagotherpes/officalpentahaxx/master/Pentahaxx.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Anime Fighting Sim": {
+        "link": "https://pastebin.com/raw/iXe09k9N",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon Ball Rage GUI": {
+        "link": "https://pastebin.com/raw/DtAT07NE",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Ori Hub": {
+        "link": "https://pastebin.com/raw/wzYkNBaR",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "GX SHub": {
+        "link": "https://pastebin.com/raw/9NGpam5q",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Garfield Hub": {
+        "link": "https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/garfield%20hub",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Cords Finder": {
+        "link": "https://pastebin.com/raw/VmiMdeVr",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Ninja Legends Autofarm": {
+        "link": "https://pastebin.com/raw/VRkJTshK",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Rumble Quest GUI": {
+        "link": "https://pastebin.com/raw/5KtmRcCe",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Ninja Legends 2": {
+        "link": "https://raw.githubusercontent.com/iTzGerard/NinjaLegends2/main/Script",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Clicking Champions GUI": {
+        "link": "https://pastebin.com/raw/9Jki6EfA",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "SuperPower Training Sim": {
+        "link": "https://raw.githubusercontent.com/yogurtsss/Practice-Projects-/main/SPFSRemake",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Owl Hub": {
+        "link": "https://raw.githubusercontent.com/ZinityDrops/OwlHubLink/master/OwlHubBack.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "V.G Hub": {
+        "link": "https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "World Zero GUI": {
+        "link": "https://raw.githubusercontent.com/HimikoToga1474/Ahegao-Hub/master/Main.Lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Fart Simulator": {
+        "link": "https://raw.githubusercontent.com/Dk4Q/Dk4QHub/master/Loader",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Punching Sim GUI": {
+        "link": "http://gameovers.net/Scripts/Free/push_simulator/main.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Car Crushers 2 GUI": {
+        "link": "https://pastebin.com/raw/UmkD1gyr",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Snake GUI Game": {
+        "link": "https://pastebin.com/raw/EdpVR2PE",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Tapping Mania GUI": {
+        "link": "https://pastebin.com/raw/7CQxsEVu",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Ninja Legends 2 GUI": {
+        "link": "https://raw.githubusercontent.com/MichaeI825/Ninja-Legends-2-GUI/main/Ninja%20Legends%202%20GUI",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Tiny Tanks": {
+        "link": "https://pastebin.com/raw/zbZjLA3S",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Assasin Silent Aim": {
+        "link": "https://raw.githubusercontent.com/bockatta/Atta/main/2",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Vynixius Ragdoll Engine GUI": {
+        "link": "https://raw.githubusercontent.com/RegularVynixu/Scripts/master/Vynixius%20Ragdoll%20Engine",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Slime Tycoon GUI": {
+        "link": "https://raw.githubusercontent.com/radjahfromdiscord/slimetycoon/master/gui",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Bad Business GUI": {
+        "link": "https://projectevo.xyz/script/loader.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Animation GUI": {
+        "link": "https://pastebin.com/raw/tFG99JVu",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Impulse Hub": {
+        "link": "http://impulse-hub.xyz/ImpulseHub",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Shinobi Life 2": {
+        "link": "https://pastebin.com/raw/Kc7XZKbC",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Infinite Jump": {
+        "link": "https://pastebin.com/raw/7jscSsvN",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Lucky Blocks Battleground": {
+        "link": "https://pastebin.com/raw/YzVmSVF9",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Timer GUI": {
+        "link": "https://pastebin.com/raw/uu4HkJG1",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Shinobi Life 2 GUI 2": {
+        "link": "https://pastebin.com/raw/Av8NMSSq",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Lifting Simulator": {
+        "link": "https://pastebin.com/raw/vPFVRR2P",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Islands GUI": {
+        "link": "http://void-scripts.com/Scripts/islands_new.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "One Punch Man GUI 2": {
+        "link": "https://pastebin.com/raw/G675dfew",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon ball rage remastered": {
+        "link": "https://raw.githubusercontent.com/sannin9000/scripts/main/dbrage.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dungeon Quest GUI": {
+        "link": "https://pastebin.com/raw/F5vSFHZt",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Bruh Hub": {
+        "link": "https://bruh.keshhub.com/main.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Reviz Admin": {
+        "link": "https://pastebin.com/raw/KNUzQPYS",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "CounterBlox GUI": {
+        "link": "https://pastebin.com/raw/qfadYUtt",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Adventurer Simulator": {
+        "link": "https://raw.githubusercontent.com/blooodlines/scripts/main/Turtle%20Adventurer%20Simulator.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Online Business Sim": {
+        "link": "https://pastebin.com/raw/NDTTzz4L",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Milkshake Legends GUI": {
+        "link": "https://pastebin.com/raw/tG5sricY",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "MM2 GUI": {
+        "link": "https://pastebin.com/raw/a0ww9Cj4",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Gods of Glory GUI": {
+        "link": "https://scripts.dohmscripts.com/GodsScript",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Unnamed ESP": {
+        "link": "https://ic3w0lf.xyz/rblx/protoesp.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Blox Hunt GUI 2": {
+        "link": "https://pastebin.com/raw/ujBkfNam",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Coco Hub": {
+        "link": "https://raw.githubusercontent.com/NGHDDDX/ScriptHubScripts/master/CocoHub.txt",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Broken Bones IV": {
+        "link": "https://pastebin.com/raw/sQpRuLgQ",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Zombie Attack GUI": {
+        "link": "https://pastebin.com/raw/bME79p05",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Super Doomspire": {
+        "link": "https://pastebin.com/raw/8Bj755Dk",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Universal Aimbot": {
+        "link": "https://raw.githubusercontent.com/Herrtt/AimHot-v8/master/Main.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Dragon Blox Ultimate GUI": {
+        "link": "https://pastebin.com/raw/GDaP0iGV",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Clicker Madness": {
+        "link": "https://raw.githubusercontent.com/Ruzzki/Clicker-madness/main/clickermadnesss.txt",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Coin Hero Sim GUI": {
+        "link": "https://pastebin.com/raw/eRPQr9ie",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Auratus X": {
+        "link": "https://pastebin.com/raw/SGztxD4k",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Prison Life GUI": {
+        "link": "https://pastebin.com/raw/hFpEy9DL",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Animal Sim GUI": {
+        "link": "https://pastebin.com/raw/CrKCLcYc",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Big Paintball Unlock All": {
+        "link": "https://raw.githubusercontent.com/Singularity5490/bigpaintball/main/unlockall.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Arsenal GUI": {
+        "link": "https://raw.githubusercontent.com/NougatBitz/ArsenalHaxx/master/Script",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Destruction Simulator": {
+        "link": "https://raw.githubusercontent.com/AquaModz/DestructionSIMModded/main/DestructionSimAqua.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Science Simulator": {
+        "link": "https://raw.githubusercontent.com/Marco8642/science/main/science.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Jailbreak GUI": {
+        "link": "https://raw.githubusercontent.com/opBandwidth/_Paragon_/main/main.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Domain X": {
+        "link": "https://raw.githubusercontent.com/shlexsoftworks/Domain/main/source",
+        "info": "No info is currently available on the following script",
+        "type": "gold"
+    }
 }

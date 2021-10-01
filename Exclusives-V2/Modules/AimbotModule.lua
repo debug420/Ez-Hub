@@ -119,7 +119,14 @@ inputService.InputEnded:Connect(function(key)
 	end
 end)
 
-_G.ezhubaimbot = game:GetService("RunService").RenderStepped:Connect(function()
+local updateAimbot = Instance.new("BindableEvent");
+coroutine.wrap(function()
+	while wait() do
+		updateAimbot:Fire();
+	end
+end)();
+
+_G.ezhubaimbot = updateAimbot.Event:Connect(function()
 	_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings) + Vector2.new(0, 36);
 	if aimbotSettings.enabled and aimbotSettings.showfov then
 		_G.Circle.Visible = true;
@@ -136,8 +143,10 @@ _G.ezhubaimbot = game:GetService("RunService").RenderStepped:Connect(function()
 	if target then
 		local aimAt, visible = aimbotSettings.aimAtCallback(aimbotSettings, target);
 		if aimAt and aimAt.X and aimAt.Y then
-			mousemoverel((aimAt.X - aimbotSettings.getMousePos(aimbotSettings).X) / aimbotSettings.smoothness,
-			(aimAt.Y - aimbotSettings.getMousePos(aimbotSettings).Y) / aimbotSettings.smoothness - 2);	-- The 2 pixels is just a little bit of bullet compensation (I could not be bothered making a proper system)
+			mousemoverel(
+			(aimAt.X - aimbotSettings.getMousePos(aimbotSettings).X) / aimbotSettings.smoothness,
+			(aimAt.Y - aimbotSettings.getMousePos(aimbotSettings).Y) / aimbotSettings.smoothness
+			- 2);	-- The 2 pixels is just a little bit of bullet compensation (I could not be bothered making a proper system)
 		end
 	end
 
