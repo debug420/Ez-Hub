@@ -147,7 +147,7 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 	end)();
 
 	espConfig.getESPColor = function(playerinstance)
-		if espConfig.rainbowcolor then return rainbowcs end
+		if espConfig.rainbowcolor then return espConfig.rainbowcs end
 		if not playerinstance then
 		return Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) 
 		or Color3.fromRGB(255,255,255) end
@@ -232,9 +232,9 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 					-- Calculate CFrame
 					-- Variables stand for the corresponding box corner - tl = top left
 					local tl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), espConfig.yoffsetaboveorigin, 0);
-                local tr = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, espConfig.yoffsetaboveorigin, 0);
-                local bl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), -(espConfig.yoffsetbeloworigin), 0);
-                local br = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, -(espConfig.yoffsetbeloworigin), 0);
+					local tr = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, espConfig.yoffsetaboveorigin, 0);
+					local bl = espBoxOriginCFrame * CFrame.new(-(espConfig.xoffset), -(espConfig.yoffsetbeloworigin), 0);
+					local br = espBoxOriginCFrame * CFrame.new(espConfig.xoffset, -(espConfig.yoffsetbeloworigin), 0);
 
 					if espConfig.getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.renderrange > espConfig.getVector3D(player.Head.Position)[3] and espConfig.checkTeam(player) and espmem[player].Up and espmem[player].Down and espmem[player].Right and espmem[player].Left then
 
