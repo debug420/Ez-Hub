@@ -1648,6 +1648,7 @@ end
 -- Missing Functions/Broken Conversion (GUI TO LUA)
 
 EzHub.ExecutedLabel.RichText = true;
+EzHub.ExecutedLabel_2.RichText = true;
 EzHub.ExclusivesFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.ExclusivesV2Frame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.RepostedFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
@@ -1659,7 +1660,6 @@ EzHub.EditorFrame.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 -- Tab positioning, container and handling
 
 local tabs = {EzHub.LoadingFrame, EzHub.HomeFrame, EzHub.ExclusivesFrame, EzHub.RepostedFrame, EzHub.CreditsFrame, EzHub.LocalLibFrame, EzHub.ExclusivesV2Frame, EzHub.ADDFrame, EzHub.REMOVEFrame};
-
 for i,v in pairs(tabs) do
 	if v == EzHub.LoadingFrame then
 		v.Position = UDim2.new(0, 0, 0.1, 0);
@@ -1667,6 +1667,14 @@ for i,v in pairs(tabs) do
 		v.Position = UDim2.new(0,0,1,0);
 	end
 	v.Visible = true;
+
+	-- The following section is done so that Automatic sizing can be done for GUI
+	-- This is because its minimum size is controlled by the object’s Size property,
+	-- meaning the parent object won’t be resized smaller than its size along any axis.
+	if v:FindFirstChild("AnimFrame1") and v.AnimFrame1:IsA("ScrollingFrame") then
+		v.AnimFrame1.CanvasSize = UDim2.new(0, 0, 0, 0);
+	end
+
 end
 
 local function getActiveFrame()
@@ -1717,7 +1725,7 @@ end
 local function tweenGradient(gradient)
 	
 	gradient.Offset = Vector2.new(-2, 0);
-	local tween = game:GetService("TweenService"):Create(gradient, TweenInfo.new(2.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Offset = Vector2.new(2, 0)});
+	local tween = game:GetService("TweenService"):Create(gradient, TweenInfo.new(2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Offset = Vector2.new(2, 0)});
 	tween:Play(); tween.Completed:Wait();
 	
 end
@@ -1743,10 +1751,10 @@ local function addScript(configs)
 			while wait() do
 				-- configs.parent is equal to the scrolling frame, not the "active frame"
 				while getActiveFrame() == configs.parent.Parent and wait() do
-					mainContainer.Frame.UIGradient.Enabled = true;
+					--mainContainer.Frame.UIGradient.Enabled = true;
 					tweenGradient(mainContainer.Frame.UIGradient);
 				end
-				mainContainer.Frame.UIGradient.Enabled = false;
+				--mainContainer.Frame.UIGradient.Enabled = false;
 			end
 		end)();
 
@@ -1869,18 +1877,17 @@ bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
 	
 -- Script Module Resizing
 -- Roblox has now added support for scrolling frames to automatically change size
--- without the need to change manually, however, I will continue to use a manual method because
--- I cannot be bothered changing it.
+-- without the need to change manually, however, I will continue to use a manual method
 
 local function applyFrameResizing(scrollingframe)
 	pcall(function()
-		local function update()
-			local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
-			scrollingframe.CanvasSize = UDim2.new(0, scrollingframe.Size.X, 0, cS.Y + 30);
+		scrollingframe.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+		if not scrollingframe:FindFirstChild("UIPadding") then
+			local padding = Instance.new("UIPadding", scrollingframe);
+			padding.PaddingBottom = UDim.new(0, 20);
+			padding.PaddingLeft = UDim.new(0, 15);
+			padding.PaddingRight = UDim.new(0, 15);
 		end
-		scrollingframe.ChildAdded:Connect(update);
-		scrollingframe.ChildRemoved:Connect(update);
-		update();
 	end)
 end
 
