@@ -58,5 +58,10 @@
         "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Tiny%20Tanks.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
+    },
+    "DDay": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/DDay.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
     }
 }
