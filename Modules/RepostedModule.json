@@ -850,7 +850,7 @@
         "type": "normal"
     },
     "Domain X": {
-        "link": "https://raw.githubusercontent.com/shlexsoftworks/Domain/main/source",
+        "link": "https://shlex.dev/release/domainx/latest.lua",
         "info": "No info is currently available on the following script",
         "type": "gold"
     }
