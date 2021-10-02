@@ -1,7 +1,7 @@
 -- When enabled, it will use the dev branch of Ez Hub.
 -- This may cause an error if set to true as a dev branch may not always exist
 -- Just don't mess with the variable below
-_G.EzHubDevMode = true;
+_G.EzHubDevMode = false;
 
 -- Instances:
 
