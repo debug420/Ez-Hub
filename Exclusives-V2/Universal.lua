@@ -23,7 +23,7 @@ for i,v in pairs(listOfGames) do
         coroutine.wrap(function()
             ezlib.newNotif(ezlib.enum.notifType.longText,
                 "The following game is not recommended for Universal use. Look in the exclusives V2 section for a script specifically made for "..i.."."
-                ).play().delete();
+                ).play(10).delete();
         end)();
     end
 end
