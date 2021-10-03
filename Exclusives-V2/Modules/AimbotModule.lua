@@ -13,7 +13,7 @@ local aimbotSettings = {
 	headshot = true,
 	rightmouse = true,
 	keybind = Enum.KeyCode.E,
-	smoothness = 2
+	smoothness = 1
 }
 
 local players = game:GetService("Players");
