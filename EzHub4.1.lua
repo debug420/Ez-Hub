@@ -2069,6 +2069,30 @@ EzHub.Discord.MouseButton1Click:Connect(function()
 	otherSectionButtonDebounce = true;
 end)
 
+-----------------------------------------------
+-- This section takes care of loading all saved local lib scripts
+
+-- Local Lib Saves
+-- If no file exists make a new one
+-- and also if file cannot be converted to lua table, make a new one
+
+local localLibPathFile = "EzHubLL.txt";
+if not pcall(function() readfile(localLibPathFile); game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile)) end) then 
+	pcall(function() writefile(localLibPathFile, "{}"); end);
+end
+
+-- Load Saved
+pcall(function()
+	for i,v in pairs(game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile))) do
+		addScript({
+			["scriptName"] = i,
+			["function"] = v,
+			["parent"] = EzHub.LocalLibFrame.AnimFrame1,
+			["type"] = "normal"
+		});
+	end
+end)
+
 -------------------------------------------------------------------------------------------------
 
 -- Local Lib (Adding your own scripts)
@@ -2104,11 +2128,15 @@ end
 -- Updates the remove script frame so that only scripts that exist and can be deleted are shown.
 local selectedToDelete;
 local function updateRemoveScriptFrame()
+	
+	-- Remove all remove buttons to start from fresh
 	for i,v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
 		if v.Name == "RemoveContainer" or v.Name == "MessageContainer" then
 			v:Destroy();
 		end
 	end
+
+	-- Make all the remove buttons for all the scripts in the saved file
 	local stat, err = pcall(function()
 		for i,v in pairs(game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile))) do
 			local rcontainer = EzHub.SavedContainers.RemoveContainer:Clone();
@@ -2117,48 +2145,34 @@ local function updateRemoveScriptFrame()
 			rcontainer.Text = i;
 			rcontainer.MouseButton1Click:Connect(function()
 				selectedToDelete = rcontainer.Text;
+
+				-- BorderSizePixel is a visual effect for what button is selected
 				for i, v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
 					if v.Name == "RemoveContainer" then
 						v.BorderSizePixel = 0;
 					end
 				end
+
 				rcontainer.BorderSizePixel = 2;
+
 			end)
 		end
 	end)
+
+	-- Counts number of remove buttons
 	local c = 0;
 	for i,v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
 		if v.Name == "RemoveContainer" then c = c + 1; end
 	end
+
 	if c == 0 then
-		EzHub.SavedContainers.MessageContainer:Clone().Parent = EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame;
-		EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:FindFirstChild("MessageContainer").Visible = true;
-		if not stat then EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:FindFirstChild("MessageContainer").Text = "Incompatible Exploit"; end
+		local message = EzHub.SavedContainers.MessageContainer:Clone()
+		message.Parent = EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame;
+		message.Visible = true;
+		if not stat then message.Text = "Incompatible Exploit"; end
 	end
+
 end
-
------------------------------------------------
--- This section takes care of loading all saved local lib scripts
-
--- Local Lib Saves
--- If no file exists make a new one
-
-local localLibPathFile = "EzHubLL.txt";
-if not pcall(function() readfile(localLibPathFile); end) then 
-	pcall(function() writefile(localLibPathFile, "{}"); end); 
-end
-
--- Load Saved
-pcall(function()
-	for i,v in pairs(game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile))) do
-		addScript({
-			["scriptName"] = i,
-			["function"] = v,
-			["parent"] = EzHub.LocalLibFrame.AnimFrame1
-		});
-	end
-end)
-
 updateRemoveScriptFrame();
 
 -----------------------------------------------
