@@ -1741,9 +1741,7 @@ local function addScript(configs)
 	end
 
 	local mainContainer;
-	if configs.type == "normal" then
-		mainContainer = EzHub.SavedContainers.GameContainer:Clone();
-	elseif configs.type == "gold" then
+	if configs.type == "gold" then
 		mainContainer = EzHub.SavedContainers.GoldGameContainer:Clone();
 		
 		-- Animate UI Gradient for a shiny effect
@@ -1757,7 +1755,8 @@ local function addScript(configs)
 				--mainContainer.Frame.UIGradient.Enabled = false;
 			end
 		end)();
-
+	else
+		mainContainer = EzHub.SavedContainers.GameContainer:Clone();
 	end
 
 	mainContainer.Frame.GameName.Text = configs.scriptName;
@@ -1979,9 +1978,9 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 		["function"] = function()
 
 			local notif = ezlib.newNotif(ezlib.enum.notifType.buttons,
-			"The following exclusive is outdated. Use Exclusive V2s. Continue anyway?",
+			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
 			"Yes", "No",
-			function() loadstring(tostring(v["link"]))() end,
+			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
 			function() return end);
 
 			notif.show();
