@@ -58,5 +58,10 @@
         "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/DDay.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
+    },
+    "Phantom Forces": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Phantom.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
     }
 }
