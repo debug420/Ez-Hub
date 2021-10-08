@@ -192,7 +192,7 @@ drawESP = function(player)
                     espmem[player].Headdot.Position = point;
                     espmem[player].Headdot.Filled = espConfig.headdotfilled;
                     espmem[player].Headdot.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
-                    espmem[player].Headdot.NumSides = 30;
+                    espmem[player].Headdot.NumSides = 15;
                     espmem[player].Headdot.Thickness = 1;
 
                     -- Head dot radius
