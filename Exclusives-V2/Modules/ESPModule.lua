@@ -103,7 +103,12 @@ drawESP = function(player)
         -- Start Updating ESP
         spawn(function()
 
-            conmem[player] = game:GetService("RunService").RenderStepped:Connect(function()
+            local renderESPConnection = Instance.new("BindableEvent");
+            coroutine.wrap(function()
+                while wait() do renderESPConnection:Fire(); end
+            end)()
+
+            conmem[player] = renderESPConnection.Event:Connect(function()
                 
                 -- Initiate Variables
                 local point = espConfig.getVector3D(player.Head.Position)[1];
