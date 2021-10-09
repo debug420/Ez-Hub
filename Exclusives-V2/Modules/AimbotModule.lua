@@ -2,6 +2,11 @@
 -- Disconnect old aimbot connection
 if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
 
+-- Mouse settings
+-- Automatically tweaks mouse sens best for aimbot
+UserSettings():GetService("UserGameSettings").MouseSensitivityFirstPerson = Vector2.new(0.2, 0.2);
+UserSettings():GetService("UserGameSettings").MouseSensitivityThirdPerson = Vector2.new(0.2, 0.2);
+
 -- Aimbot Vars
 
 local aimbotSettings = {
