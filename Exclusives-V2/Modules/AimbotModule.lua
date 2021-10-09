@@ -2,11 +2,6 @@
 -- Disconnect old aimbot connection
 if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
 
--- Mouse settings
--- Automatically tweaks mouse sens best for aimbot
-UserSettings():GetService("UserGameSettings").MouseSensitivityFirstPerson = Vector2.new(0.2, 0.2);
-UserSettings():GetService("UserGameSettings").MouseSensitivityThirdPerson = Vector2.new(0.2, 0.2);
-
 -- Aimbot Vars
 
 local aimbotSettings = {
@@ -18,8 +13,15 @@ local aimbotSettings = {
 	headshot = true,
 	rightmouse = true,
 	keybind = Enum.KeyCode.E,
-	smoothness = 1
+	smoothness = 1,
+	camerasense = 0.2,
+	fovcolor = {255, 0, 0}
 }
+
+-- Mouse settings
+-- Automatically tweaks mouse sens best for aimbot
+UserSettings():GetService("UserGameSettings").MouseSensitivityFirstPerson = Vector2.new(aimbotSettings.camerasense, aimbotSettings.camerasense);
+UserSettings():GetService("UserGameSettings").MouseSensitivityThirdPerson = Vector2.new(aimbotSettings.camerasense, aimbotSettings.camerasense);
 
 local players = game:GetService("Players");
 local client = players.LocalPlayer;
@@ -133,6 +135,7 @@ end)();
 
 _G.ezhubaimbot = updateAimbot.Event:Connect(function()
 	_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings) + Vector2.new(0, 36);
+	_G.Circle.Color = Color3.fromRGB(aimbotSettings.fovcolor[1], aimbotSettings.fovcolor[2], aimbotSettings.fovcolor[3]);
 	if aimbotSettings.enabled and aimbotSettings.showfov then
 		_G.Circle.Visible = true;
 	else

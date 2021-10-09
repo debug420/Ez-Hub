@@ -17,6 +17,8 @@ return {
             aimbotModule.enabled = state;
         end)
 
+        tab.newDiv();
+
         tab.newCheckbox("Free For All", aimbotModule.freeforall, function(state)
             aimbotModule.freeforall = state;
         end)
@@ -28,20 +30,13 @@ return {
         tab.newCheckbox("WallCheck", aimbotModule.wallcheck, function(state)
             aimbotModule.wallcheck = state;
         end)
-    
-        tab.newSlider("Radius", aimbotModule.radius, 10, 400, function(val)
-            aimbotModule.radius = val;
-        end)
 
-        tab.newSlider("Smoothness", aimbotModule.smoothness, 1, 3, function(state)
-            aimbotModule.smoothness = state;
-        end)
-    
-        tab.newCheckbox("Show FOV", aimbotModule.showfov, function(state)
-            aimbotModule.showfov = state;
-        end)
-    
         tab.newDiv();
+        tab.newTitle("Keybind and Smoothness")
+
+        tab.newSlider("Smoothness", aimbotModule.smoothness * 10, 10, 30, function(state)
+            aimbotModule.smoothness = state / 10;
+        end)
     
         tab.newCheckbox("Right-mouse", aimbotModule.rightmouse, function(state)
             aimbotModule.rightmouse = state;
@@ -49,6 +44,29 @@ return {
     
         tab.newKeybind("Keybind", aimbotModule.keybind, function(i)
             aimbotModule.keybind = i.Name;
+        end)
+
+        tab.newDiv();
+        tab.newTitle("FOV");
+
+        tab.newCheckbox("Show FOV", aimbotModule.showfov, function(state)
+            aimbotModule.showfov = state;
+        end)
+
+        tab.newSlider("Radius", aimbotModule.radius, 10, 400, function(val)
+            aimbotModule.radius = val;
+        end)
+
+        tab.newSlider("R", aimbotModule.fovcolor[1], 0, 255, function(state)
+            aimbotModule.fovcolor[1] = state;
+        end)
+
+        tab.newSlider("G", aimbotModule.fovcolor[2], 0, 255, function(state)
+            aimbotModule.fovcolor[2] = state;
+        end)
+
+        tab.newSlider("B", aimbotModule.fovcolor[3], 0, 255, function(state)
+            aimbotModule.fovcolor[3] = state;
         end)
 
         return aimbotModule;
