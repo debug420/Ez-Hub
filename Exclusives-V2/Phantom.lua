@@ -52,7 +52,7 @@ aimbotSettings.getClosestToCursor = function(aimbotSettings)
 	local target = nil;
 	for _, v in pairs(game:GetService("Players"):GetPlayers()) do
 		if aimbotSettings.matchesFreeForAllConditions(aimbotSettings, v) and getBodyparts(v) then
-			if v and v.Character and v.Character:FindFirstChild("Head") and v ~= game.Players.LocalPlayer then
+			if v and v.Character and v.Character:FindFirstChild("Left Arm") and v ~= game.Players.LocalPlayer then
 				local point, onScreen = aimbotSettings.worldToScreen(aimbotSettings, v.Character.Head.Position);
 				local ignoreList =  {
 					game.Players.LocalPlayer.Character,
@@ -74,8 +74,7 @@ aimbotSettings.getClosestToCursor = function(aimbotSettings)
 end
 
 aimbotSettings.aimAtCallback = function(aimbotSettings, target)
-	if target and target.Character:FindFirstChild("Head")
-    and target.Character:FindFirstChild("Left Arm") then
+	if target and target.Character:FindFirstChild("Left Arm") then
         if aimbotSettings.headshot then
             return aimbotSettings.worldToScreen(aimbotSettings, target.Character.Head.Position);
         else
@@ -211,6 +210,9 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
             end)()
 
             conmem[player] = renderESPConnection.Event:Connect(function()
+
+				if not player:FindFirstChild("Head") then return end;
+				
 				-- Initiate Variables
 				local point = espConfig.getVector3D(player.Head.Position)[1];
 
@@ -326,8 +328,7 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 					espmem[player].Tag.Color = espConfig.getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
 					espmem[player].Tag.Outline = true;
 					espmem[player].Tag.Position = Vector2.new(ScreenPositionUpper.X, ScreenPositionUpper.Y) - Vector2.new(0, espmem[player].Tag.TextBounds.Y);
-					local playerName;
-					if getPlayerInstanceFromCharacter(player) then playerName = getPlayerInstanceFromCharacter(player).Name; end
+					local playerName = getPlayerInstanceFromCharacter(player);
 					espmem[player].Tag.Text = (playerName or "Unknown").." | ["..math.floor(getVector3D(player.Head.Position)[3]).."]";
 				elseif espmem[player].Tag then
 					if not pcall(function()
