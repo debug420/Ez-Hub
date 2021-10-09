@@ -853,5 +853,10 @@
         "link": "https://shlex.dev/release/domainx/latest.lua",
         "info": "No info is currently available on the following script",
         "type": "gold"
+    },
+    "Funky Friday Autoplay": { 
+        "link": "https://raw.githubusercontent.com/wally-rblx/funky-friday-autoplay/main/main.lua",
+        "info": "No info is currently available on the following script",
+        "type": "gold"
     }
 }
