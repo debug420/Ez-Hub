@@ -204,8 +204,13 @@ loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI, function(
 
 		-- Start Updating ESP
 		spawn(function()
+			
+			local renderESPConnection = Instance.new("BindableEvent");
+            coroutine.wrap(function()
+                while wait() do renderESPConnection:Fire(); end
+            end)()
 
-			conmem[player] = game:GetService("RunService").RenderStepped:Connect(function()
+            conmem[player] = renderESPConnection.Event:Connect(function()
 				-- Initiate Variables
 				local point = espConfig.getVector3D(player.Head.Position)[1];
 
