@@ -1,66 +1,66 @@
 {
     "Prison Life": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Prison%20Life.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Prison%20Life.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "Arsenal": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Arsenal.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Arsenal.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "Bubble Gum Simulator": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Bubble%20Gum%20Sim.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Bubble%20Gum%20Sim.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "Redwood Prison": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/RedwoodPrison.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/RedwoodPrison.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "MM2": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/MM2.lua",
-        "info": "No info is currently available on the following script",
-        "type": "normal"
-    },
-    "Phantom Forces": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Phantom.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/MM2.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "Universal": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Universal.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Universal.lua",
         "info": "No info is currently available on the following script",
         "type": "gold"
     },
     "Legends Of Speed": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Legends%20of%20Speed.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Legends%20of%20Speed.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "Bitcoin Miner": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Bitcoin%20Miner.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Bitcoin%20Miner.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "Saber Sim": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/SaberSim.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/SaberSim.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "TOH": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/TOH.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/TOH.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "Tiny Tanks": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/Tiny%20Tanks.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Tiny%20Tanks.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     },
     "DDay": {
-        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/dev/Exclusives-V2/DDay.lua",
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/DDay.lua",
+        "info": "No info is currently available on the following script",
+        "type": "normal"
+    },
+    "Phantom Forces": {
+        "link": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Exclusives-V2/Phantom.lua",
         "info": "No info is currently available on the following script",
         "type": "normal"
     }
