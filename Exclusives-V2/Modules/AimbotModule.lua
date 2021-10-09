@@ -128,7 +128,7 @@ end)
 
 local updateAimbot = Instance.new("BindableEvent");
 coroutine.wrap(function()
-	while wait() do
+	while game:GetService("RunService").RenderStepped:Wait() do
 		updateAimbot:Fire();
 	end
 end)();
