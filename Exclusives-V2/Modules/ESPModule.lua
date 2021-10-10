@@ -55,7 +55,7 @@ coroutine.wrap(function()
 end)();
 
 local function getESPColor(playerinstance)
-    if not playerinstance then 
+    if not playerinstance then
         return Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3])
     end
     if espConfig.rainbowcolor then
@@ -173,25 +173,25 @@ drawESP = function(player)
                 espmem[player].Up.From = getVector3D(tl.p)[1];
                 espmem[player].Up.To = getVector3D(tr.p)[1];
                 espmem[player].Up.Thickness = 1;
-                espmem[player].Up.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Up.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
 
                 -- Left Line
                 espmem[player].Left.From = getVector3D(tl.p)[1];
                 espmem[player].Left.To = getVector3D(bl.p)[1];
                 espmem[player].Left.Thickness = 1;
-                espmem[player].Left.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Left.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
 
                 -- Right Line
                 espmem[player].Right.From = getVector3D(tr.p)[1];
                 espmem[player].Right.To = getVector3D(br.p)[1];
                 espmem[player].Right.Thickness = 1;
-                espmem[player].Right.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Right.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
 
                 -- Bottom Line
                 espmem[player].Down.From = getVector3D(bl.p)[1];
                 espmem[player].Down.To = getVector3D(br.p)[1];
                 espmem[player].Down.Thickness = 1;
-                espmem[player].Down.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Down.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
 
                 espmem[player].Down.Visible = true;
                 espmem[player].Right.Visible = true;
@@ -215,7 +215,7 @@ drawESP = function(player)
             if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.headdot and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Headdot then
                 espmem[player].Headdot.Position = point;
                 espmem[player].Headdot.Filled = espConfig.headdotfilled;
-                espmem[player].Headdot.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Headdot.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
                 espmem[player].Headdot.NumSides = 15;
                 espmem[player].Headdot.Thickness = 1;
 
@@ -254,7 +254,7 @@ drawESP = function(player)
 
                 espmem[player].Tag.Visible = true;
                 espmem[player].Tag.Center = true;
-                espmem[player].Tag.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Tag.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
                 espmem[player].Tag.Outline = true;
                 espmem[player].Tag.Position = Vector2.new(ScreenPositionUpper.X, ScreenPositionUpper.Y) - Vector2.new(0, espmem[player].Tag.TextBounds.Y);
                 local playerName;
