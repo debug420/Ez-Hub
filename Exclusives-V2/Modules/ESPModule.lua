@@ -257,7 +257,14 @@ drawESP = function(player)
                 espmem[player].Tag.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
                 espmem[player].Tag.Outline = true;
                 espmem[player].Tag.Position = Vector2.new(ScreenPositionUpper.X, ScreenPositionUpper.Y) - Vector2.new(0, espmem[player].Tag.TextBounds.Y);
-                espmem[player].Tag.Text = (player.Name or "Unknown").." | ["..math.floor(getVector3D(player.Head.Position)[3]).."]";
+                local playerName;
+                if isPhantom then
+                    playerName = _G.getPlayerInstanceFromCharacter(player).Name;
+                else
+                    playerName = player.Name;
+                end
+                
+                espmem[player].Tag.Text = (playerName or "Unknown").." | ["..math.floor(getVector3D(player.Head.Position)[3]).."]";
             elseif espmem[player].Tag then
                 if not pcall(function()
                     espmem[player].Tag.Visible = false;
