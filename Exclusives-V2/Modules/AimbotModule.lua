@@ -10,7 +10,7 @@ local aimbotSettings = {
 	showfov = true,
 	freeforall = true,
 	radius = 150,
-	wallcheck = true,
+	wallcheck = false,
 	headshot = true,
 	rightmouse = true,
 	keybind = Enum.KeyCode.E,
@@ -93,8 +93,10 @@ end
 local function aimAtCallback(target)
 	if target and aimbotSettings.headshot then
 		return worldToScreen(target.Character.Head.Position);
-	else
+	elseif not isPhantom then
 		return worldToScreen(target.Character.HumanoidRootPart.Position);
+	elseif isPhantom then
+		return worldToScreen(target.Character.Torso.Position);
 	end
 end
 
