@@ -6,7 +6,7 @@ _G.getPlayerInstanceFromCharacter and _G.getCharacterFromPlayerInstance);
 -- Aimbot Vars
 
 local aimbotSettings = {
-	enabled = true,
+	enabled = false,
 	showfov = true,
 	freeforall = true,
 	radius = 150,
