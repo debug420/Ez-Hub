@@ -37,7 +37,7 @@ end
 
 local function matchesFreeForAllConditions(targetPlayer)
 	if aimbotSettings.freeforall == false then
-		if client.Team == targetPlayer.Team then
+		if game.Players.LocalPlayer.Team == targetPlayer.Team then
 			return false;
 		else
 			return true;
