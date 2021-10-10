@@ -138,7 +138,7 @@ drawESP = function(player)
                 tracer.Thickness = 1;
                 tracer.From = getTracerPoint();
                 tracer.To = point;
-                tracer.Color = getESPColor(game:GetService("Players"):FindFirstChild(player.Name));
+                tracer.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
                 tracer.Visible = true;
             elseif espmem[player].Tracer then
                 if not pcall(function()
