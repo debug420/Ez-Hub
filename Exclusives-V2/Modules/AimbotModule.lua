@@ -1,19 +1,20 @@
-
 -- Disconnect old aimbot connection
 if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
+local isPhantom = (game.PlaceId == 292439477 and _G.getBodyparts and
+_G.getPlayerInstanceFromCharacter and _G.getCharacterFromPlayerInstance);
 
 -- Aimbot Vars
 
 local aimbotSettings = {
-	enabled = false,
+	enabled = true,
 	showfov = true,
 	freeforall = true,
 	radius = 150,
-	wallcheck = false,
+	wallcheck = true,
 	headshot = true,
 	rightmouse = true,
 	keybind = Enum.KeyCode.E,
-	smoothness = 1,
+	smoothness = 1.5,
 	camerasense = 0.2,
 	fovcolor = {255, 0, 0}
 }
@@ -23,22 +24,18 @@ local aimbotSettings = {
 UserSettings():GetService("UserGameSettings").MouseSensitivityFirstPerson = Vector2.new(aimbotSettings.camerasense, aimbotSettings.camerasense);
 UserSettings():GetService("UserGameSettings").MouseSensitivityThirdPerson = Vector2.new(aimbotSettings.camerasense, aimbotSettings.camerasense);
 
-local players = game:GetService("Players");
-local client = players.LocalPlayer;
 local inputService = game:GetService("UserInputService");
 local aim = false;
 
 -------------------------------------------------------------------------------------------------
 
 -- Aimbot funcs
--- The following settings are places outside of the original aimbotSettings
--- table as they ned to access content inside it.
 
-aimbotSettings.getMousePos = function(aimbotSettings)
+local function getMousePos()
 	return inputService:GetMouseLocation() - Vector2.new(0, 36);
 end
 
-aimbotSettings.matchesFreeForAllConditions = function(aimbotSettings, targetPlayer)
+local function matchesFreeForAllConditions(targetPlayer)
 	if aimbotSettings.freeforall == false then
 		if client.Team == targetPlayer.Team then
 			return false;
@@ -50,7 +47,7 @@ aimbotSettings.matchesFreeForAllConditions = function(aimbotSettings, targetPlay
 	end
 end
 
-aimbotSettings.notObstructing = function(aimbotSettings, destination, ignore)
+local function notObstructing(destination, ignore)
 	if aimbotSettings.wallcheck then
 		local parts = workspace.CurrentCamera:GetPartsObscuringTarget({destination}, ignore);
 		for i,v in pairs(parts) do
@@ -62,23 +59,24 @@ aimbotSettings.notObstructing = function(aimbotSettings, destination, ignore)
 	return true;
 end
 
-aimbotSettings.worldToScreen = function(aimbotSettings, pos)
+local function worldToScreen(pos)
 	return workspace.CurrentCamera:WorldToScreenPoint(pos);
 end
 
-aimbotSettings.getClosestToCursor = function(aimbotSettings)
-	local mousePos = aimbotSettings.getMousePos(aimbotSettings);
+local function getClosestToCursor()
+	local mousePos = getMousePos();
 	local radius = aimbotSettings.radius;
 	local closest = math.huge;
 	local target = nil;
 	for _, v in pairs(game:GetService("Players"):GetPlayers()) do
-		if aimbotSettings.matchesFreeForAllConditions(aimbotSettings, v) then
-			if v and v.Character and v.Character:FindFirstChild("Head") and v ~= game.Players.LocalPlayer then
-				local point, onScreen = aimbotSettings.worldToScreen(aimbotSettings, v.Character.Head.Position);
-				if onScreen and aimbotSettings.notObstructing(aimbotSettings, v.Character.Head.Position, {
-					client.Character,
-					v.Character,
-                    workspace.CurrentCamera
+		if matchesFreeForAllConditions(v) and (isPhantom and _G.getBodyparts(v) or true) then
+			if v and v.Character and (isPhantom and v.Character:FindFirstChild("Left Arm") or v.Character:FindFirstChild("Head"))
+			and v ~= game.Players.LocalPlayer then
+				local point, onScreen = worldToScreen(v.Character.Head.Position);
+				if onScreen and notObstructing(v.Character.Head.Position, {
+					game.Players.LocalPlayer.Character,
+					v.Character,	-- Ignore the target's player model
+                    workspace.CurrentCamera	-- Ignore things like gun model of client
 				}) then
 					local distance = (Vector2.new(point.X, point.Y) - mousePos).magnitude;
 					if distance < math.min(radius, closest) then
@@ -92,11 +90,11 @@ aimbotSettings.getClosestToCursor = function(aimbotSettings)
 	return target;
 end
 
-aimbotSettings.aimAtCallback = function(aimbotSettings, target)
-	if aimbotSettings.headshot then
-		return aimbotSettings.worldToScreen(aimbotSettings, target.Character.Head.Position);
+local function aimAtCallback(target)
+	if target and aimbotSettings.headshot then
+		return worldToScreen(target.Character.Head.Position);
 	else
-		return aimbotSettings.worldToScreen(aimbotSettings, target.Character.HumanoidRootPart.Position);
+		return worldToScreen(target.Character.HumanoidRootPart.Position);
 	end
 end
 
@@ -108,7 +106,7 @@ _G.Circle.Radius = 150;
 _G.Circle.NumSides = 20;
 _G.Circle.Color = Color3.fromRGB(255,0,0);
 _G.Circle.Thickness = 1;
-_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings) + Vector2.new(0, 36);
+_G.Circle.Position = getMousePos() + Vector2.new(0, 36);
 
 inputService.InputBegan:Connect(function(key)
 	if aimbotSettings.rightmouse and key.UserInputType == Enum.UserInputType.MouseButton2 then
@@ -134,7 +132,7 @@ coroutine.wrap(function()
 end)();
 
 _G.ezhubaimbot = updateAimbot.Event:Connect(function()
-	_G.Circle.Position = aimbotSettings.getMousePos(aimbotSettings) + Vector2.new(0, 36);
+	_G.Circle.Position = getMousePos() + Vector2.new(0, 36);
 	_G.Circle.Color = Color3.fromRGB(aimbotSettings.fovcolor[1], aimbotSettings.fovcolor[2], aimbotSettings.fovcolor[3]);
 	if aimbotSettings.enabled and aimbotSettings.showfov then
 		_G.Circle.Visible = true;
@@ -147,13 +145,13 @@ _G.ezhubaimbot = updateAimbot.Event:Connect(function()
 		return;
 	end
 
-	local target = aimbotSettings.getClosestToCursor(aimbotSettings);
-	if target then
-		local aimAt, visible = aimbotSettings.aimAtCallback(aimbotSettings, target);
+	local target = getClosestToCursor();
+	if target and (isPhantom and target:FindFirstChild("Left Arm") or true) then
+		local aimAt, visible = aimAtCallback(target);
 		if aimAt and aimAt.X and aimAt.Y then
 			mousemoverel(
-			(aimAt.X - aimbotSettings.getMousePos(aimbotSettings).X) / aimbotSettings.smoothness,
-			(aimAt.Y - aimbotSettings.getMousePos(aimbotSettings).Y) / aimbotSettings.smoothness
+			(aimAt.X - getMousePos().X) / aimbotSettings.smoothness,
+			(aimAt.Y - getMousePos().Y) / aimbotSettings.smoothness
 			- 2);	-- The 2 pixels is just a little bit of bullet compensation (I could not be bothered making a proper system)
 		end
 	end

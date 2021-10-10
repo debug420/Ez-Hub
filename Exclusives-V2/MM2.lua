@@ -192,20 +192,7 @@ end)
 
 -- ESP Section
 
-local espConfig = loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
-
-espConfig.getESPColor = function(playerinstance)
-    if not playerinstance then return Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255) end 
-    if espConfig.rainbowcolor then
-        return espConfig.rainbowcs or Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255);
-    elseif espConfig.teamcolor then
-        return (findMurder() == playerinstance and Color3.fromRGB(255, 0, 0)) 
-        or (findSheriff() == playerinstance and Color3.fromRGB(0, 0, 255))
-        or Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255);
-    elseif espConfig.setcolor then
-        return Color3.fromRGB(espConfig.setcolor[1], espConfig.setcolor[2], espConfig.setcolor[3]) or Color3.fromRGB(255,255,255);
-    end
-end
+loadstring(_G["EzHubModules"]["createespmodule"])().newESPTab(mainGUI);
 
 ----------------------------------------------------------------------
 
