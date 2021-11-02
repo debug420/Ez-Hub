@@ -24,7 +24,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
 	end
 end)
 
-coreVars.colors = {
+coreVars.colors = _G.EzHubTheme or {
 	Primary = Color3.fromRGB(41, 53, 68),
 	Secondary = Color3.fromRGB(35, 47, 62),
 	Tertiary = Color3.fromRGB(28, 41, 56),

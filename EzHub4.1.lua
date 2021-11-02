@@ -1955,8 +1955,53 @@ end);
 
 loadToStage(0.95, "Finalising and Cleaning Up...");
 
+-- load theme
+
+local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
+local defaultTheme = launcherData["Themes"]["Default"];
+local chosenTheme = _G.EzHubTheme or defaultTheme;
+
+local function doesEqualAnyThemeColor(color3)
+	for i,v in pairs(defaultTheme) do
+		if color3 == v then
+			return i;
+		end
+	end
+end
+
+if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
+	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
+		if v:IsA("GuiObject") then
+			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
+				local themeColorType = doesEqualAnyThemeColor(v.ImageColor3);
+				if themeColorType then
+					v.ImageColor3 = chosenTheme[themeColorType];
+				end
+			end
+			local themeColorType = doesEqualAnyThemeColor(v.BackgroundColor3);
+			if themeColorType then
+				v.BackgroundColor3 = chosenTheme[themeColorType];
+			end
+		end
+	end
+end
+
+-- load player thumbnail
+
 EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
-EzHub.SponsorText.Text = "There is currently no news to display.";
+
+-- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
+EzHub.SponsorText.Text = (function()
+	local highestIndex = 0;
+	local highestIndexNewsString;
+	for i,v in pairs(launcherData["NewsData"]) do
+		if v[1] > highestIndex then highestIndex = v[1];
+			highestIndexNewsString = v[2];
+		end
+	end
+	return highestIndexNewsString;
+end)();
+
 EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
@@ -2004,6 +2049,17 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 		["type"] = v["type"]
 	});
 end
+
+-- preload images
+
+local preloadImages = {};
+for i,v in pairs(EzHub) do
+	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+		table.insert(preloadImages, 1, tostring(v.Image));
+	end
+end
+
+game:GetService("ContentProvider"):PreloadAsync(preloadImages);
 
 -----------------------------------------------
 -- Display how long it took to load Ez Hub
