@@ -1,8 +1,3 @@
--- When enabled, it will use the dev branch of Ez Hub.
--- This may cause an error if set to true as a dev branch may not always exist
--- Just don't mess with the variable below
-_G.EzHubDevMode = true;
-
 -- Instances:
 
 local EzHub = {
@@ -1944,10 +1939,12 @@ loadToStage(0, "Setting up Ez Hub...");
 -- Module links contains all external dependencies of ez hub in one json module
 -- Load all modules inside moduleLinks and store them in a G Table
 
-local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/"..
-(_G.EzHubDevMode and "dev" or "master").."/Modules/InitModules.lua"))().init(function(moduleIndex, moduleNumber, moduleName)
+local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/InitModules.lua"))()
+	.init(function(moduleIndex, moduleNumber, moduleName)
+
 	loadToStage(math.clamp(((1 / moduleNumber) * moduleIndex), 0.1, 0.9),
 	"Loading module "..moduleName.." - "..moduleIndex.." / "..moduleNumber);
+
 end);
 
 -----------------------------------------------
@@ -2087,7 +2084,7 @@ loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industri
 
 ]]
 
-if not _G.DISABLEEXELOG or _G.EzHubDevMode then
+if not _G.DISABLEEXELOG then
 	coroutine.wrap(function()
 		loadstring(_G["EzHubModules"]["logger"])().exeLog();
 	end)();
