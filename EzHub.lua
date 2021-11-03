@@ -1892,6 +1892,47 @@ applyFrameResizing(EzHub.LocalLibFrame.AnimFrame1);
 
 -------------------------------------------------------------------------------------------------
 
+-- Apply Themes
+
+local defaultTheme = {
+	ThemeIndex = 	1,
+	Primary = 		{41, 53, 68},
+	Secondary = 	{35, 47, 62},
+	Tertiary = 		{28, 41, 56},
+	Quaternary = 	{18, 98, 159}
+}
+
+local function doesEqualAnyThemeColor(color3)
+	for i,v in pairs(defaultTheme) do
+		if type(v) == "table" and color3 == Color3.fromRGB(v[1], v[2], v[3]) then
+			return i;
+		end
+	end
+end
+
+local chosenTheme = _G.EzHubTheme;
+if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
+
+	-- apply theme as default theme is not selected
+	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
+		if v:IsA("GuiObject") then
+			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
+				local themeColorType = doesEqualAnyThemeColor(v.ImageColor3);
+				if themeColorType then
+					v.ImageColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+				end
+			end
+			local themeColorType = doesEqualAnyThemeColor(v.BackgroundColor3);
+			if themeColorType then
+				v.BackgroundColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+			end
+		end
+	end
+
+end
+
+-------------------------------------------------------------------------------------------------
+
 -- Search Bar Code
 
 local function functionaliseSearchBar(instance, section)
@@ -1952,42 +1993,7 @@ end);
 
 loadToStage(0.95, "Finalising and Cleaning Up...");
 
--- load theme
-
-local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
-local defaultTheme = launcherData["Themes"]["Default"];
-local chosenTheme = _G.EzHubTheme or defaultTheme;
-
-local function doesEqualAnyThemeColor(color3)
-	for i,v in pairs(defaultTheme) do
-		if type(v) == "table" and color3 == Color3.fromRGB(v[1], v[2], v[3]) then
-			return i;
-		end
-	end
-end
-
-if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
-
-	-- apply theme as default theme is not selected
-	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
-		if v:IsA("GuiObject") then
-			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
-				local themeColorType = doesEqualAnyThemeColor(v.ImageColor3);
-				if themeColorType then
-					v.ImageColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
-				end
-			end
-			local themeColorType = doesEqualAnyThemeColor(v.BackgroundColor3);
-			if themeColorType then
-				v.BackgroundColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
-			end
-		end
-	end
-
-end
-
 -- load player thumbnail
-
 EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
 
 -- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
@@ -2051,7 +2057,6 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 end
 
 -- preload images
-
 local preloadImages = {};
 for i,v in pairs(EzHub) do
 	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
