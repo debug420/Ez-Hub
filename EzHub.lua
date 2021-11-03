@@ -2051,6 +2051,7 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 	addScript({
 		["scriptName"] = tostring(i),
 		["function"] = function()
+			print("executing...", v["link"])
 			loadstring(game:HttpGet(tostring(v["link"])))();
 		end,
 		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1,

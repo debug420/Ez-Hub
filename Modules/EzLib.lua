@@ -23,13 +23,27 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
 		coreVars.awaitingInput = nil;
 	end
 end)
-
-coreVars.colors = _G.EzHubTheme or {
+coreVars.colors = {
 	Primary = Color3.fromRGB(41, 53, 68),
 	Secondary = Color3.fromRGB(35, 47, 62),
 	Tertiary = Color3.fromRGB(28, 41, 56),
 	Quaternary = Color3.fromRGB(18, 98, 159)
 };
+
+if _G.EzHubTheme then
+
+	local p = _G.EzHubTheme["Primary"];
+	local s = _G.EzHubTheme["Secondary"];
+	local t = _G.EzHubTheme["Tertiary"];
+	local q = _G.EzHubTheme["Quaternary"];
+
+	coreVars.colors = {
+		Primary = Color3.fromRGB(p[1], p[2], p[3]),
+		Secondary = Color3.fromRGB(s[1], s[2], s[3]),
+		Tertiary = Color3.fromRGB(t[1], t[2], t[3]),
+		Quaternary = Color3.fromRGB(q[1], q[2], q[3])
+	}
+end
 
 ------------------------------------------------------------------------------
 -- Corefuncs definitions
