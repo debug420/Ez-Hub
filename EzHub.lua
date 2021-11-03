@@ -1,7 +1,7 @@
 -- When enabled, it will use the dev branch of Ez Hub.
 -- This may cause an error if set to true as a dev branch may not always exist
 -- Just don't mess with the variable below
-_G.EzHubDevMode = false;
+_G.EzHubDevMode = true;
 
 -- Instances:
 
@@ -169,13 +169,22 @@ local EzHub = {
 	UICorner_34 = Instance.new("UICorner"),
 	SavedContainers = Instance.new("Folder"),
 	GameContainer = Instance.new("Frame"),
-	Frame_22 = Instance.new("ImageLabel"),
-	GameName_3 = Instance.new("TextLabel"),
-	ImageLabel_7 = Instance.new("ImageLabel"),
+	Frame_22 = Instance.new("Frame"),
 	Trigger_3 = Instance.new("TextButton"),
+	ImageLabel_7 = Instance.new("ImageLabel"),
 	ExecutedLabel = Instance.new("TextLabel"),
+	GameName_3 = Instance.new("TextLabel"),
+	UICorner_35 = Instance.new("UICorner"),
 	MessageContainer = Instance.new("TextLabel"),
 	RemoveContainer = Instance.new("TextButton"),
+	GoldGameContainer = Instance.new("Frame"),
+	Frame_23 = Instance.new("Frame"),
+	UIGradient = Instance.new("UIGradient"),
+	Trigger_4 = Instance.new("TextButton"),
+	ImageLabel_8 = Instance.new("ImageLabel"),
+	ExecutedLabel_2 = Instance.new("TextLabel"),
+	GameName_4 = Instance.new("TextLabel"),
+	UICorner_36 = Instance.new("UICorner")
 }
 
 -----------------------------------------------
@@ -738,7 +747,7 @@ do
 	EzHub.TextLabel_8.Position = UDim2.new(0.367984951, 0, 0.145299152, 0)
 	EzHub.TextLabel_8.Size = UDim2.new(0, 239, 0, 83)
 	EzHub.TextLabel_8.Font = Enum.Font.SourceSans
-	EzHub.TextLabel_8.Text = "Hello playerName, Thank you for using Ez Hub"
+	EzHub.TextLabel_8.Text = "Hello happygeneral2015, Thank you for using Ez Hub"
 	EzHub.TextLabel_8.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.TextLabel_8.TextSize = 16.000
 	EzHub.TextLabel_8.TextWrapped = true
@@ -1474,42 +1483,17 @@ do
 	EzHub.GameContainer.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
 	EzHub.GameContainer.BackgroundTransparency = 1.000
 	EzHub.GameContainer.BorderSizePixel = 0
-	EzHub.GameContainer.Position = UDim2.new(-0.765458405, 0, 0.0249110311, 0)
+	EzHub.GameContainer.Position = UDim2.new(0.764999986, 0, 0.0250000004, 0)
 	EzHub.GameContainer.Size = UDim2.new(0, 100, 0, 100)
+	EzHub.GameContainer.Visible = false
 
-	EzHub.Frame_22.Name = "Frame"
 	EzHub.Frame_22.Parent = EzHub.GameContainer
 	EzHub.Frame_22.AnchorPoint = Vector2.new(0.5, 0.5)
-	EzHub.Frame_22.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.Frame_22.BackgroundTransparency = 1.000
+	EzHub.Frame_22.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.Frame_22.BorderSizePixel = 0
 	EzHub.Frame_22.ClipsDescendants = true
 	EzHub.Frame_22.Position = UDim2.new(0.5, 0, 0.5, 0)
 	EzHub.Frame_22.Size = UDim2.new(1, 0, 1, 0)
-	EzHub.Frame_22.Image = "rbxassetid://3570695787"
-	EzHub.Frame_22.ImageColor3 = Color3.fromRGB(35, 47, 62)
-	EzHub.Frame_22.ScaleType = Enum.ScaleType.Slice
-	EzHub.Frame_22.SliceCenter = Rect.new(100, 100, 100, 100)
-	EzHub.Frame_22.SliceScale = 0.040
-
-	EzHub.GameName_3.Name = "GameName"
-	EzHub.GameName_3.Parent = EzHub.Frame_22
-	EzHub.GameName_3.AnchorPoint = Vector2.new(0.5, 0)
-	EzHub.GameName_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.GameName_3.BackgroundTransparency = 1.000
-	EzHub.GameName_3.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
-	EzHub.GameName_3.Size = UDim2.new(0, 75, 0, 31)
-	EzHub.GameName_3.Font = Enum.Font.SourceSans
-	EzHub.GameName_3.Text = "Redwood Prison GUI"
-	EzHub.GameName_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.GameName_3.TextSize = 13.000
-	EzHub.GameName_3.TextWrapped = true
-
-	EzHub.ImageLabel_7.Parent = EzHub.Frame_22
-	EzHub.ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.ImageLabel_7.BackgroundTransparency = 1.000
-	EzHub.ImageLabel_7.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
-	EzHub.ImageLabel_7.Size = UDim2.new(0, 72, 0, 54)
-	EzHub.ImageLabel_7.Image = "rbxassetid://4030893123"
 
 	EzHub.Trigger_3.Name = "Trigger"
 	EzHub.Trigger_3.Parent = EzHub.Frame_22
@@ -1522,6 +1506,14 @@ do
 	EzHub.Trigger_3.TextSize = 14.000
 	EzHub.Trigger_3.TextTransparency = 1.000
 
+	EzHub.ImageLabel_7.Parent = EzHub.Frame_22
+	EzHub.ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ImageLabel_7.BackgroundTransparency = 1.000
+	EzHub.ImageLabel_7.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
+	EzHub.ImageLabel_7.Size = UDim2.new(0, 72, 0, 54)
+	EzHub.ImageLabel_7.ZIndex = 2
+	EzHub.ImageLabel_7.Image = "rbxassetid://4030893123"
+
 	EzHub.ExecutedLabel.Name = "ExecutedLabel"
 	EzHub.ExecutedLabel.Parent = EzHub.Frame_22
 	EzHub.ExecutedLabel.AnchorPoint = Vector2.new(0.5, 1)
@@ -1530,11 +1522,29 @@ do
 	EzHub.ExecutedLabel.BorderSizePixel = 0
 	EzHub.ExecutedLabel.Position = UDim2.new(0.5, 0, 2, 0)
 	EzHub.ExecutedLabel.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.ExecutedLabel.ZIndex = 3
 	EzHub.ExecutedLabel.Font = Enum.Font.Ubuntu
 	EzHub.ExecutedLabel.Text = "<b>Executed Script!</b>"
 	EzHub.ExecutedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ExecutedLabel.TextSize = 16.000
 	EzHub.ExecutedLabel.TextWrapped = true
+
+	EzHub.GameName_3.Name = "GameName"
+	EzHub.GameName_3.Parent = EzHub.Frame_22
+	EzHub.GameName_3.AnchorPoint = Vector2.new(0.5, 0)
+	EzHub.GameName_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.GameName_3.BackgroundTransparency = 1.000
+	EzHub.GameName_3.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
+	EzHub.GameName_3.Size = UDim2.new(0, 75, 0, 31)
+	EzHub.GameName_3.ZIndex = 2
+	EzHub.GameName_3.Font = Enum.Font.SourceSans
+	EzHub.GameName_3.Text = "Redwood Prison GUI"
+	EzHub.GameName_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.GameName_3.TextSize = 13.000
+	EzHub.GameName_3.TextWrapped = true
+
+	EzHub.UICorner_35.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_35.Parent = EzHub.Frame_22
 
 	EzHub.MessageContainer.Name = "MessageContainer"
 	EzHub.MessageContainer.Parent = EzHub.SavedContainers
@@ -1559,6 +1569,78 @@ do
 	EzHub.RemoveContainer.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.RemoveContainer.TextSize = 14.000
 
+	EzHub.GoldGameContainer.Name = "GoldGameContainer"
+	EzHub.GoldGameContainer.Parent = EzHub.SavedContainers
+	EzHub.GoldGameContainer.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.GoldGameContainer.BackgroundTransparency = 1.000
+	EzHub.GoldGameContainer.BorderSizePixel = 0
+	EzHub.GoldGameContainer.Position = UDim2.new(0.764999986, 0, 0.200000003, 0)
+	EzHub.GoldGameContainer.Size = UDim2.new(0, 100, 0, 100)
+	EzHub.GoldGameContainer.Visible = false
+
+	EzHub.Frame_23.Parent = EzHub.GoldGameContainer
+	EzHub.Frame_23.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.Frame_23.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Frame_23.BorderSizePixel = 0
+	EzHub.Frame_23.ClipsDescendants = true
+	EzHub.Frame_23.Position = UDim2.new(0.5, 0, 0.5, 0)
+	EzHub.Frame_23.Size = UDim2.new(1, 0, 1, 0)
+
+	EzHub.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(222, 179, 6)), ColorSequenceKeypoint.new(0.00, Color3.fromRGB(222, 179, 6)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(241, 241, 4)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(222, 179, 6))}
+	EzHub.UIGradient.Rotation = 45
+	EzHub.UIGradient.Parent = EzHub.Frame_23
+
+	EzHub.Trigger_4.Name = "Trigger"
+	EzHub.Trigger_4.Parent = EzHub.Frame_23
+	EzHub.Trigger_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Trigger_4.BackgroundTransparency = 1.000
+	EzHub.Trigger_4.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.Trigger_4.Font = Enum.Font.SourceSans
+	EzHub.Trigger_4.Text = ""
+	EzHub.Trigger_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+	EzHub.Trigger_4.TextSize = 14.000
+	EzHub.Trigger_4.TextTransparency = 1.000
+
+	EzHub.ImageLabel_8.Parent = EzHub.Frame_23
+	EzHub.ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ImageLabel_8.BackgroundTransparency = 1.000
+	EzHub.ImageLabel_8.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
+	EzHub.ImageLabel_8.Size = UDim2.new(0, 72, 0, 54)
+	EzHub.ImageLabel_8.ZIndex = 2
+	EzHub.ImageLabel_8.Image = "rbxassetid://4030893123"
+
+	EzHub.ExecutedLabel_2.Name = "ExecutedLabel"
+	EzHub.ExecutedLabel_2.Parent = EzHub.Frame_23
+	EzHub.ExecutedLabel_2.AnchorPoint = Vector2.new(0.5, 1)
+	EzHub.ExecutedLabel_2.BackgroundColor3 = Color3.fromRGB(57, 198, 55)
+	EzHub.ExecutedLabel_2.BackgroundTransparency = 0.450
+	EzHub.ExecutedLabel_2.BorderSizePixel = 0
+	EzHub.ExecutedLabel_2.Position = UDim2.new(0.5, 0, 2, 0)
+	EzHub.ExecutedLabel_2.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.ExecutedLabel_2.ZIndex = 3
+	EzHub.ExecutedLabel_2.Font = Enum.Font.Ubuntu
+	EzHub.ExecutedLabel_2.Text = "<b>Executed Script!</b>"
+	EzHub.ExecutedLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ExecutedLabel_2.TextSize = 16.000
+	EzHub.ExecutedLabel_2.TextWrapped = true
+
+	EzHub.GameName_4.Name = "GameName"
+	EzHub.GameName_4.Parent = EzHub.Frame_23
+	EzHub.GameName_4.AnchorPoint = Vector2.new(0.5, 0)
+	EzHub.GameName_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.GameName_4.BackgroundTransparency = 1.000
+	EzHub.GameName_4.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
+	EzHub.GameName_4.Size = UDim2.new(0, 75, 0, 31)
+	EzHub.GameName_4.ZIndex = 2
+	EzHub.GameName_4.Font = Enum.Font.SourceSans
+	EzHub.GameName_4.Text = "Redwood Prison GUI"
+	EzHub.GameName_4.TextColor3 = Color3.fromRGB(28, 41, 56)
+	EzHub.GameName_4.TextSize = 13.000
+	EzHub.GameName_4.TextWrapped = true
+
+	EzHub.UICorner_36.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_36.Parent = EzHub.Frame_23
+
 end
 
 -------------------------------------------------------------------------------------------------
@@ -1566,6 +1648,7 @@ end
 -- Missing Functions/Broken Conversion (GUI TO LUA)
 
 EzHub.ExecutedLabel.RichText = true;
+EzHub.ExecutedLabel_2.RichText = true;
 EzHub.ExclusivesFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.ExclusivesV2Frame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.RepostedFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
@@ -1584,6 +1667,22 @@ for i,v in pairs(tabs) do
 		v.Position = UDim2.new(0,0,1,0);
 	end
 	v.Visible = true;
+
+	-- The following section is done so that Automatic sizing can be done for GUI
+	-- This is because its minimum size is controlled by the object’s Size property,
+	-- meaning the parent object won’t be resized smaller than its size along any axis.
+	if v:FindFirstChild("AnimFrame1") and v.AnimFrame1:IsA("ScrollingFrame") then
+		v.AnimFrame1.CanvasSize = UDim2.new(0, 0, 0, 0);
+	end
+
+end
+
+local function getActiveFrame()
+	for i,v in pairs(tabs) do
+		if v.Position == UDim2.new(0, 0, 0.1, 0) or v.Position == UDim2.new(0.27,0,0.1,0) then
+			return v;
+		end
+	end
 end
 
 local function openTab(tabInstance)
@@ -1623,16 +1722,43 @@ local function applyContainerSelectAnimation(con)
 	end)
 end
 
+local function tweenGradient(gradient)
+	
+	gradient.Offset = Vector2.new(-2, 0);
+	local tween = game:GetService("TweenService"):Create(gradient, TweenInfo.new(2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Offset = Vector2.new(2, 0)});
+	tween:Play(); tween.Completed:Wait();
+	
+end
+
 local function addScript(configs)
 	if not configs then
 		configs = {
 			["scriptName"] = "Script",
 			["function"] = "function() end",
-			["parent"] = game.CoreGui
+			["parent"] = nil,
+			["type"] = "normal"
 		};
 	end
 
-	local mainContainer = EzHub.SavedContainers.GameContainer:Clone();
+	local mainContainer;
+	if configs.type == "gold" then
+		mainContainer = EzHub.SavedContainers.GoldGameContainer:Clone();
+		
+		-- Animate UI Gradient for a shiny effect
+		coroutine.wrap(function()
+			while wait() do
+				-- configs.parent is equal to the scrolling frame, not the "active frame"
+				while getActiveFrame() == configs.parent.Parent and wait() do
+					--mainContainer.Frame.UIGradient.Enabled = true;
+					tweenGradient(mainContainer.Frame.UIGradient);
+				end
+				--mainContainer.Frame.UIGradient.Enabled = false;
+			end
+		end)();
+	else
+		mainContainer = EzHub.SavedContainers.GameContainer:Clone();
+	end
+
 	mainContainer.Frame.GameName.Text = configs.scriptName;
 	mainContainer.Visible = true;
 	mainContainer.Parent = configs.parent;
@@ -1669,14 +1795,6 @@ local function addScript(configs)
 
 	end)
 
-end
-
-local function getActiveFrame()
-	for i,v in pairs(tabs) do
-		if v.Position == UDim2.new(0, 0, 0.1, 0) or v.Position == UDim2.new(0.27,0,0.1,0) then
-			return v;
-		end
-	end
 end
 
 local navDebounce = true;
@@ -1758,18 +1876,17 @@ bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
 	
 -- Script Module Resizing
 -- Roblox has now added support for scrolling frames to automatically change size
--- without the need to change manually, however, I will continue to use a manual method because
--- I cannot be bothered changing it.
+-- without the need to change manually, however, I will continue to use a manual method
 
 local function applyFrameResizing(scrollingframe)
 	pcall(function()
-		local function update()
-			local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
-			scrollingframe.CanvasSize = UDim2.new(0, scrollingframe.Size.X, 0, cS.Y + 30);
+		scrollingframe.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+		if not scrollingframe:FindFirstChild("UIPadding") then
+			local padding = Instance.new("UIPadding", scrollingframe);
+			padding.PaddingBottom = UDim.new(0, 20);
+			padding.PaddingLeft = UDim.new(0, 15);
+			padding.PaddingRight = UDim.new(0, 15);
 		end
-		scrollingframe.ChildAdded:Connect(update);
-		scrollingframe.ChildRemoved:Connect(update);
-		update();
 	end)
 end
 
@@ -1800,6 +1917,8 @@ local function functionaliseSearchBar(instance, section)
 				end
 			end
 		end
+
+		section.CanvasPosition = Vector2.new(0, 0);	-- bringing scrolling frame back to the top
 	end)
 end
 
@@ -1836,8 +1955,56 @@ end);
 
 loadToStage(0.95, "Finalising and Cleaning Up...");
 
+-- load theme
+
+local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
+local defaultTheme = launcherData["Themes"]["Default"];
+local chosenTheme = _G.EzHubTheme or defaultTheme;
+
+local function doesEqualAnyThemeColor(color3)
+	for i,v in pairs(defaultTheme) do
+		if type(v) == "table" and color3 == Color3.fromRGB(v[1], v[2], v[3]) then
+			return i;
+		end
+	end
+end
+
+if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
+
+	-- apply theme as default theme is not selected
+	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
+		if v:IsA("GuiObject") then
+			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
+				local themeColorType = doesEqualAnyThemeColor(v.ImageColor3);
+				if themeColorType then
+					v.ImageColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+				end
+			end
+			local themeColorType = doesEqualAnyThemeColor(v.BackgroundColor3);
+			if themeColorType then
+				v.BackgroundColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+			end
+		end
+	end
+
+end
+
+-- load player thumbnail
+
 EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
-EzHub.SponsorText.Text = "There is currently no news to display.";
+
+-- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
+EzHub.SponsorText.Text = (function()
+	local highestIndex = 0;
+	local highestIndexNewsString;
+	for i,v in pairs(launcherData["NewsData"]) do
+		if v[1] > highestIndex then highestIndex = v[1];
+			highestIndexNewsString = v[2];
+		end
+	end
+	return highestIndexNewsString;
+end)();
+
 EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
@@ -1846,9 +2013,10 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["r
 	addScript({
 		["scriptName"] = tostring(i),
 		["function"] = function()
-			loadstring(game:HttpGet(tostring(v)))();
+			loadstring(game:HttpGet(tostring(v["link"])))();
 		end,
-		["parent"] = EzHub.RepostedFrame.AnimFrame1
+		["parent"] = EzHub.RepostedFrame.AnimFrame1,
+		["type"] = v["type"]
 	});
 end
 
@@ -1858,9 +2026,9 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 		["function"] = function()
 
 			local notif = ezlib.newNotif(ezlib.enum.notifType.buttons,
-			"The following exclusive is outdated. Use Exclusive V2s. Continue anyway?",
+			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
 			"Yes", "No",
-			function() loadstring(tostring(v))() end,
+			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
 			function() return end);
 
 			notif.show();
@@ -1869,7 +2037,8 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 			notif.delete();
 
 		end,
-		["parent"] = EzHub.ExclusivesFrame.AnimFrame1
+		["parent"] = EzHub.ExclusivesFrame.AnimFrame1,
+		["type"] = v["type"]
 	});
 end
 
@@ -1877,11 +2046,23 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 	addScript({
 		["scriptName"] = tostring(i),
 		["function"] = function()
-			loadstring(game:HttpGet(tostring(v)))();
+			loadstring(game:HttpGet(tostring(v["link"])))();
 		end,
-		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1
+		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1,
+		["type"] = v["type"]
 	});
 end
+
+-- preload images
+
+local preloadImages = {};
+for i,v in pairs(EzHub) do
+	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+		table.insert(preloadImages, 1, tostring(v.Image));
+	end
+end
+
+game:GetService("ContentProvider"):PreloadAsync(preloadImages);
 
 -----------------------------------------------
 -- Display how long it took to load Ez Hub
@@ -1906,8 +2087,8 @@ loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industri
 
 ]]
 
-if not _G.DISABLEEXELOG then
-	coroutine.wrap(function() 
+if not _G.DISABLEEXELOG or _G.EzHubDevMode then
+	coroutine.wrap(function()
 		loadstring(_G["EzHubModules"]["logger"])().exeLog();
 	end)();
 else
@@ -1947,6 +2128,30 @@ EzHub.Discord.MouseButton1Click:Connect(function()
 	otherSectionButtonDebounce = true;
 end)
 
+-----------------------------------------------
+-- This section takes care of loading all saved local lib scripts
+
+-- Local Lib Saves
+-- If no file exists make a new one
+-- and also if file cannot be converted to lua table, make a new one
+
+local localLibPathFile = "EzHubLL.txt";
+if not pcall(function() readfile(localLibPathFile); game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile)) end) then 
+	pcall(function() writefile(localLibPathFile, "{}"); end);
+end
+
+-- Load Saved
+pcall(function()
+	for i,v in pairs(game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile))) do
+		addScript({
+			["scriptName"] = i,
+			["function"] = v,
+			["parent"] = EzHub.LocalLibFrame.AnimFrame1,
+			["type"] = "normal"
+		});
+	end
+end)
+
 -------------------------------------------------------------------------------------------------
 
 -- Local Lib (Adding your own scripts)
@@ -1982,11 +2187,15 @@ end
 -- Updates the remove script frame so that only scripts that exist and can be deleted are shown.
 local selectedToDelete;
 local function updateRemoveScriptFrame()
+	
+	-- Remove all remove buttons to start from fresh
 	for i,v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
 		if v.Name == "RemoveContainer" or v.Name == "MessageContainer" then
 			v:Destroy();
 		end
 	end
+
+	-- Make all the remove buttons for all the scripts in the saved file
 	local stat, err = pcall(function()
 		for i,v in pairs(game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile))) do
 			local rcontainer = EzHub.SavedContainers.RemoveContainer:Clone();
@@ -1995,48 +2204,34 @@ local function updateRemoveScriptFrame()
 			rcontainer.Text = i;
 			rcontainer.MouseButton1Click:Connect(function()
 				selectedToDelete = rcontainer.Text;
-				for i,v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
+
+				-- BorderSizePixel is a visual effect for what button is selected
+				for i, v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
 					if v.Name == "RemoveContainer" then
 						v.BorderSizePixel = 0;
 					end
 				end
+
 				rcontainer.BorderSizePixel = 2;
+
 			end)
 		end
 	end)
+
+	-- Counts number of remove buttons
 	local c = 0;
 	for i,v in pairs(EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:GetChildren()) do
 		if v.Name == "RemoveContainer" then c = c + 1; end
 	end
+
 	if c == 0 then
-		EzHub.SavedContainers.MessageContainer:Clone().Parent = EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame;
-		EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:FindFirstChild("MessageContainer").Visible = true;
-		if not stat then EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame:FindFirstChild("MessageContainer").Text = "Incompatible Exploit"; end
+		local message = EzHub.SavedContainers.MessageContainer:Clone()
+		message.Parent = EzHub.REMOVEFrame.AnimFrame1.Frame.ScrollingFrame;
+		message.Visible = true;
+		if not stat then message.Text = "Incompatible Exploit"; end
 	end
+
 end
-
------------------------------------------------
--- This section takes care of loading all saved local lib scripts
-
--- Local Lib Saves
--- If no file exists make a new one
-
-local localLibPathFile = "EzHubLL.txt";
-if not pcall(function() readfile(localLibPathFile); end) then 
-	pcall(function() writefile(localLibPathFile, "{}"); end); 
-end
-
--- Load Saved
-pcall(function()
-	for i,v in pairs(game:GetService("HttpService"):JSONDecode(readfile(localLibPathFile))) do
-		addScript({
-			["scriptName"] = i,
-			["function"] = v,
-			["parent"] = EzHub.LocalLibFrame.AnimFrame1
-		});
-	end
-end)
-
 updateRemoveScriptFrame();
 
 -----------------------------------------------
