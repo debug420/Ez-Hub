@@ -1996,6 +1996,8 @@ loadToStage(0.95, "Finalising and Cleaning Up...");
 -- load player thumbnail
 EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
 
+local launcherData = game:GetService("HttpService"):JSONDecode(moduleLinks["launcherdata"]);
+
 -- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
 EzHub.SponsorText.Text = (function()
 	local highestIndex = 0;
