@@ -1,8 +1,3 @@
--- When enabled, it will use the dev branch of Ez Hub.
--- This may cause an error if set to true as a dev branch may not always exist
--- Just don't mess with the variable below
-_G.EzHubDevMode = false;
-
 -- Instances:
 
 local EzHub = {
@@ -1944,10 +1939,12 @@ loadToStage(0, "Setting up Ez Hub...");
 -- Module links contains all external dependencies of ez hub in one json module
 -- Load all modules inside moduleLinks and store them in a G Table
 
-local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/"..
-(_G.EzHubDevMode and "dev" or "master").."/Modules/InitModules.lua"))().init(function(moduleIndex, moduleNumber, moduleName)
+local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/InitModules.lua"))()
+	.init(function(moduleIndex, moduleNumber, moduleName)
+
 	loadToStage(math.clamp(((1 / moduleNumber) * moduleIndex), 0.1, 0.9),
 	"Loading module "..moduleName.." - "..moduleIndex.." / "..moduleNumber);
+
 end);
 
 -----------------------------------------------
@@ -1955,8 +1952,56 @@ end);
 
 loadToStage(0.95, "Finalising and Cleaning Up...");
 
+-- load theme
+
+local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
+local defaultTheme = launcherData["Themes"]["Default"];
+local chosenTheme = _G.EzHubTheme or defaultTheme;
+
+local function doesEqualAnyThemeColor(color3)
+	for i,v in pairs(defaultTheme) do
+		if type(v) == "table" and color3 == Color3.fromRGB(v[1], v[2], v[3]) then
+			return i;
+		end
+	end
+end
+
+if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
+
+	-- apply theme as default theme is not selected
+	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
+		if v:IsA("GuiObject") then
+			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
+				local themeColorType = doesEqualAnyThemeColor(v.ImageColor3);
+				if themeColorType then
+					v.ImageColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+				end
+			end
+			local themeColorType = doesEqualAnyThemeColor(v.BackgroundColor3);
+			if themeColorType then
+				v.BackgroundColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+			end
+		end
+	end
+
+end
+
+-- load player thumbnail
+
 EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
-EzHub.SponsorText.Text = "There is currently no news to display.";
+
+-- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
+EzHub.SponsorText.Text = (function()
+	local highestIndex = 0;
+	local highestIndexNewsString;
+	for i,v in pairs(launcherData["NewsData"]) do
+		if v[1] > highestIndex then highestIndex = v[1];
+			highestIndexNewsString = v[2];
+		end
+	end
+	return highestIndexNewsString;
+end)();
+
 EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
@@ -2005,6 +2050,17 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 	});
 end
 
+-- preload images
+
+local preloadImages = {};
+for i,v in pairs(EzHub) do
+	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+		table.insert(preloadImages, 1, tostring(v.Image));
+	end
+end
+
+game:GetService("ContentProvider"):PreloadAsync(preloadImages);
+
 -----------------------------------------------
 -- Display how long it took to load Ez Hub
 local loadTimerEnd = tick() - loadTimerStart;
@@ -2029,7 +2085,7 @@ loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industri
 ]]
 
 if not _G.DISABLEEXELOG then
-	coroutine.wrap(function() 
+	coroutine.wrap(function()
 		loadstring(_G["EzHubModules"]["logger"])().exeLog();
 	end)();
 else
