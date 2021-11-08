@@ -282,7 +282,7 @@ drawESP = function(player)
             
             if not player
             or not (isPhantom and player:FindFirstChild("Left Arm") or player:FindFirstChild("HumanoidRootPart"))
-            or player.Parent ~= cachedparent 
+            or player.Parent ~= cachedparent
             or (not isPhantom and player.Humanoid.Health == 0)
             or not espmem[player] then break end
 
@@ -292,6 +292,7 @@ drawESP = function(player)
         for _,v in pairs(espmem[player]) do
             if v then pcall(function() v:Remove() end) end
         end
+        espmem[player] = nil;
 
     end)
 

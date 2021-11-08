@@ -1910,7 +1910,7 @@ local function doesEqualAnyThemeColor(color3)
 	end
 end
 
-local chosenTheme = _G.EzHubTheme;
+local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
 if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
 
 	-- apply theme as default theme is not selected
