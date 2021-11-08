@@ -1872,16 +1872,32 @@ bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
 -- Script Module Resizing
 -- Roblox has now added support for scrolling frames to automatically change size
 -- without the need to change manually, however, I will continue to use a manual method
+-- This is because it is still inconsistent according to my testing.
+
+-- Here is the code implementation that was removed and replaced with the previous manual method:
+-- local function applyFrameResizing(scrollingframe)
+-- 	pcall(function()
+-- 		local function update()
+-- 			local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
+-- 			scrollingframe.CanvasSize = UDim2.new(0, scrollingframe.Size.X, 0, cS.Y + 30);
+-- 		end
+-- 		scrollingframe.ChildAdded:Connect(update);
+-- 		scrollingframe.ChildRemoved:Connect(update);
+-- 		update();
+-- 	end)
+-- end
 
 local function applyFrameResizing(scrollingframe)
 	pcall(function()
-		scrollingframe.AutomaticCanvasSize = Enum.AutomaticSize.Y;
-		if not scrollingframe:FindFirstChild("UIPadding") then
-			local padding = Instance.new("UIPadding", scrollingframe);
-			padding.PaddingBottom = UDim.new(0, 20);
-			padding.PaddingLeft = UDim.new(0, 15);
-			padding.PaddingRight = UDim.new(0, 15);
+
+		local function update()
+			local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
+			scrollingframe.CanvasSize = UDim2.new(0, scrollingframe.Size.X, 0, cS.Y + 30);
 		end
+
+		scrollingframe.Changed:Connect(update);
+		update();
+
 	end)
 end
 
@@ -2009,6 +2025,10 @@ EzHub.SponsorText.Text = (function()
 	end
 	return highestIndexNewsString;
 end)();
+
+if not EzHub.SponsorText.TextFits then
+	EzHub.SponsorText.Text = "News message too long. Please use the launcher to view this news data.";
+end
 
 EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
 
