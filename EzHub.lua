@@ -196,7 +196,7 @@ elseif get_hidden_gui then EzHub.EzHub.Parent = get_hidden_gui(); end
 do
 
 	EzHub.EzHub.Name = "EzHub"
-	EzHub.EzHub.Parent = game.CoreGui
+	EzHub.EzHub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 	EzHub.MainFrame.Name = "MainFrame"
 	EzHub.MainFrame.Parent = EzHub.EzHub
@@ -211,7 +211,7 @@ do
 	EzHub.TopFrame.Parent = EzHub.MainFrame
 	EzHub.TopFrame.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.TopFrame.BorderSizePixel = 0
-	EzHub.TopFrame.Size = UDim2.new(0, 469, 0, 34)
+	EzHub.TopFrame.Size = UDim2.new(1, 0, 0, 34)
 	EzHub.TopFrame.ZIndex = 3
 
 	EzHub.CloseNavButton.Name = "CloseNavButton"
@@ -697,7 +697,6 @@ do
 	EzHub.HomeFrame.BackgroundTransparency = 1.000
 	EzHub.HomeFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
 	EzHub.HomeFrame.Size = UDim2.new(0, 469, 0, 281)
-	EzHub.HomeFrame.Visible = false
 
 	EzHub.AnimFrame1_4.Name = "AnimFrame1"
 	EzHub.AnimFrame1_4.Parent = EzHub.HomeFrame
@@ -709,8 +708,8 @@ do
 	EzHub.ProfileFrame.Parent = EzHub.AnimFrame1_4
 	EzHub.ProfileFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ProfileFrame.BackgroundTransparency = 1.000
-	EzHub.ProfileFrame.Position = UDim2.new(0.0383795314, 0, 0.0498220623, 0)
-	EzHub.ProfileFrame.Size = UDim2.new(0, 430, 0, 117)
+	EzHub.ProfileFrame.Position = UDim2.new(0, 20, 0.0500000007, 0)
+	EzHub.ProfileFrame.Size = UDim2.new(1, -40, 0, 120)
 	EzHub.ProfileFrame.Image = "rbxassetid://3570695787"
 	EzHub.ProfileFrame.ImageColor3 = Color3.fromRGB(35, 47, 62)
 	EzHub.ProfileFrame.ScaleType = Enum.ScaleType.Slice
@@ -747,34 +746,34 @@ do
 	EzHub.TextLabel_8.TextSize = 16.000
 	EzHub.TextLabel_8.TextWrapped = true
 
-	EzHub.SponsorFrame.Name = "SponsorFrame"
-	EzHub.SponsorFrame.Parent = EzHub.AnimFrame1_4
-	EzHub.SponsorFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.SponsorFrame.BackgroundTransparency = 1.000
-	EzHub.SponsorFrame.Position = UDim2.new(0.0380000472, 0, 0.5, 0)
-	EzHub.SponsorFrame.Size = UDim2.new(0, 256, 0, 125)
-	EzHub.SponsorFrame.Image = "rbxassetid://3570695787"
-	EzHub.SponsorFrame.ImageColor3 = Color3.fromRGB(35, 47, 62)
-	EzHub.SponsorFrame.ScaleType = Enum.ScaleType.Slice
-	EzHub.SponsorFrame.SliceCenter = Rect.new(100, 100, 100, 100)
-	EzHub.SponsorFrame.SliceScale = 0.040
+	EzHub.NewsFrame.Name = "NewsFrame"
+	EzHub.NewsFrame.Parent = EzHub.AnimFrame1_4
+	EzHub.NewsFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.NewsFrame.BackgroundTransparency = 1.000
+	EzHub.NewsFrame.Position = UDim2.new(0, 20, 0.5, 0)
+	EzHub.NewsFrame.Size = UDim2.new(0, 260, 0, 125)
+	EzHub.NewsFrame.Image = "rbxassetid://3570695787"
+	EzHub.NewsFrame.ImageColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.NewsFrame.ScaleType = Enum.ScaleType.Slice
+	EzHub.NewsFrame.SliceCenter = Rect.new(100, 100, 100, 100)
+	EzHub.NewsFrame.SliceScale = 0.040
 
-	EzHub.SponsorText.Name = "SponsorText"
-	EzHub.SponsorText.Parent = EzHub.SponsorFrame
-	EzHub.SponsorText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.SponsorText.BackgroundTransparency = 1.000
-	EzHub.SponsorText.Position = UDim2.new(0.0454685688, 0, 0.391094238, 0)
-	EzHub.SponsorText.Size = UDim2.new(0, 231, 0, 68)
-	EzHub.SponsorText.Font = Enum.Font.SourceSans
-	EzHub.SponsorText.Text = "There is currently no news to display."
-	EzHub.SponsorText.TextColor3 = Color3.fromRGB(195, 195, 195)
-	EzHub.SponsorText.TextSize = 15.000
-	EzHub.SponsorText.TextWrapped = true
-	EzHub.SponsorText.TextXAlignment = Enum.TextXAlignment.Left
-	EzHub.SponsorText.TextYAlignment = Enum.TextYAlignment.Top
+	EzHub.NewsText.Name = "NewsText"
+	EzHub.NewsText.Parent = EzHub.NewsFrame
+	EzHub.NewsText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.NewsText.BackgroundTransparency = 1.000
+	EzHub.NewsText.Position = UDim2.new(0.0454685688, 0, 0.391094238, 0)
+	EzHub.NewsText.Size = UDim2.new(0, 231, 0, 68)
+	EzHub.NewsText.Font = Enum.Font.SourceSans
+	EzHub.NewsText.Text = "There is currently no news to display."
+	EzHub.NewsText.TextColor3 = Color3.fromRGB(195, 195, 195)
+	EzHub.NewsText.TextSize = 15.000
+	EzHub.NewsText.TextWrapped = true
+	EzHub.NewsText.TextXAlignment = Enum.TextXAlignment.Left
+	EzHub.NewsText.TextYAlignment = Enum.TextYAlignment.Top
 
 	EzHub.SectionEs.Name = "SectionEs"
-	EzHub.SectionEs.Parent = EzHub.SponsorFrame
+	EzHub.SectionEs.Parent = EzHub.NewsFrame
 
 	EzHub.Frame_8.Parent = EzHub.SectionEs
 	EzHub.Frame_8.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
@@ -803,9 +802,10 @@ do
 
 	EzHub.OtherFrame.Name = "OtherFrame"
 	EzHub.OtherFrame.Parent = EzHub.AnimFrame1_4
+	EzHub.OtherFrame.AnchorPoint = Vector2.new(1, 0)
 	EzHub.OtherFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.OtherFrame.BackgroundTransparency = 1.000
-	EzHub.OtherFrame.Position = UDim2.new(0.610257983, 0, 0.5, 0)
+	EzHub.OtherFrame.Position = UDim2.new(1, -20, 0.5, 0)
 	EzHub.OtherFrame.Size = UDim2.new(0, 161, 0, 125)
 	EzHub.OtherFrame.Image = "rbxassetid://3570695787"
 	EzHub.OtherFrame.ImageColor3 = Color3.fromRGB(35, 47, 62)
@@ -2007,7 +2007,7 @@ EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnai
 local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
 
 -- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
-EzHub.SponsorText.Text = (function()
+EzHub.NewsText.Text = (function()
 	local highestIndex = 0;
 	local highestIndexNewsString;
 	for i,v in pairs(launcherData["NewsData"]) do
@@ -2018,8 +2018,8 @@ EzHub.SponsorText.Text = (function()
 	return highestIndexNewsString;
 end)();
 
-if not EzHub.SponsorText.TextFits then
-	EzHub.SponsorText.Text = "News message too long. Please use the launcher to view this news data.";
+if not EzHub.NewsText.TextFits then
+	EzHub.NewsText.Text = "News message too long. Please use the launcher to view this news data.";
 end
 
 EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
