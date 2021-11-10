@@ -131,6 +131,7 @@ drawESP = function(player)
 
             -- Initiate Variables
             local point = getVector3D(player.Head.Position)[1];
+            local espColor = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
 
             -- Tracer
             if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.tracer and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Tracer then
@@ -138,7 +139,7 @@ drawESP = function(player)
                 tracer.Thickness = 1;
                 tracer.From = getTracerPoint();
                 tracer.To = point;
-                tracer.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
+                tracer.Color = espColor;
                 tracer.Visible = true;
             elseif espmem[player].Tracer then
                 if not pcall(function()
@@ -152,8 +153,9 @@ drawESP = function(player)
 
             -- ESP Box
             local espBoxOriginCFrame;
-            if player:FindFirstChild("Torso") then espBoxOriginCFrame = player:FindFirstChild("Torso").CFrame:ToWorldSpace();
-            elseif player:FindFirstChild("LowerTorso") and player:FindFirstChild("UpperTorso") then
+            if player:FindFirstChild("Torso") and player.Torso:IsA("BasePart") then espBoxOriginCFrame = player.Torso.CFrame:ToWorldSpace();
+            elseif player:FindFirstChild("LowerTorso") and player.LowerTorso:IsA("BasePart")
+                and player:FindFirstChild("UpperTorso") and player.UpperTorso:IsA("BasePart") then
                 espBoxOriginCFrame = CFrame.new(((player:FindFirstChild("LowerTorso").Position) + (player:FindFirstChild("UpperTorso").Position)) / 2):ToWorldSpace();
             elseif player:FindFirstChild("Head") then espBoxOriginCFrame = player:FindFirstChild("Head").CFrame:ToWorldSpace();
             else
@@ -173,25 +175,25 @@ drawESP = function(player)
                 espmem[player].Up.From = getVector3D(tl.p)[1];
                 espmem[player].Up.To = getVector3D(tr.p)[1];
                 espmem[player].Up.Thickness = 1;
-                espmem[player].Up.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Up.Color = espColor;
 
                 -- Left Line
                 espmem[player].Left.From = getVector3D(tl.p)[1];
                 espmem[player].Left.To = getVector3D(bl.p)[1];
                 espmem[player].Left.Thickness = 1;
-                espmem[player].Left.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Left.Color = espColor;
 
                 -- Right Line
                 espmem[player].Right.From = getVector3D(tr.p)[1];
                 espmem[player].Right.To = getVector3D(br.p)[1];
                 espmem[player].Right.Thickness = 1;
-                espmem[player].Right.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Right.Color = espColor;
 
                 -- Bottom Line
                 espmem[player].Down.From = getVector3D(bl.p)[1];
                 espmem[player].Down.To = getVector3D(br.p)[1];
                 espmem[player].Down.Thickness = 1;
-                espmem[player].Down.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Down.Color = espColor;
 
                 espmem[player].Down.Visible = true;
                 espmem[player].Right.Visible = true;
@@ -215,7 +217,7 @@ drawESP = function(player)
             if getVector3D(player.Head.Position)[2] and espConfig.enabled and espConfig.headdot and espConfig.renderrange > getVector3D(player.Head.Position)[3] and checkTeam(player) and espmem[player].Headdot then
                 espmem[player].Headdot.Position = point;
                 espmem[player].Headdot.Filled = espConfig.headdotfilled;
-                espmem[player].Headdot.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Headdot.Color = espColor;
                 espmem[player].Headdot.NumSides = 15;
                 espmem[player].Headdot.Thickness = 1;
 
@@ -223,8 +225,10 @@ drawESP = function(player)
                 local Scale = player.Head.Size.Y / espConfig.headdotscale;
                 local Top = workspace.CurrentCamera:WorldToViewportPoint((player.Head.CFrame * CFrame.new(0, Scale, 0)).Position);
                 local Bottom = workspace.CurrentCamera:WorldToViewportPoint((player.Head.CFrame * CFrame.new(0, -Scale, 0)).Position);
-                espmem[player].Headdot.Radius = math.abs((Top - Bottom).y); -- Synapse gets absolute value by default by exploits like KRNL and Scriptware don't
+
+                -- Synapse gets absolute value by default but exploits like KRNL and Scriptware don't
                 -- Causing the circle to not be rendered if radius is a negative value (which makes sense)
+                espmem[player].Headdot.Radius = math.abs((Top - Bottom).y);
 
                 espmem[player].Headdot.Visible = true;
             elseif espmem[player].Headdot then
@@ -254,17 +258,13 @@ drawESP = function(player)
 
                 espmem[player].Tag.Visible = true;
                 espmem[player].Tag.Center = true;
-                espmem[player].Tag.Color = getESPColor(isPhantom and _G.getPlayerInstanceFromCharacter(player) or game:GetService("Players"):FindFirstChild(player.Name));
+                espmem[player].Tag.Color = espColor;
                 espmem[player].Tag.Outline = true;
                 espmem[player].Tag.Position = Vector2.new(ScreenPositionUpper.X, ScreenPositionUpper.Y) - Vector2.new(0, espmem[player].Tag.TextBounds.Y);
-                local playerName;
-                if isPhantom then
-                    playerName = _G.getPlayerInstanceFromCharacter(player).Name;
-                else
-                    playerName = player.Name;
-                end
                 
+                playerName = isPhantom and _G.getPlayerInstanceFromCharacter(player).Name or player.Name;
                 espmem[player].Tag.Text = (playerName or "Unknown").." | ["..math.floor(getVector3D(player.Head.Position)[3]).."]";
+                
             elseif espmem[player].Tag then
                 if not pcall(function()
                     espmem[player].Tag.Visible = false;
@@ -282,7 +282,7 @@ drawESP = function(player)
             
             if not player
             or not (isPhantom and player:FindFirstChild("Left Arm") or player:FindFirstChild("HumanoidRootPart"))
-            or player.Parent ~= cachedparent
+            or player.Parent ~= cachedparent or not player:IsDescendantOf(workspace)
             or (not isPhantom and player.Humanoid.Health == 0)
             or not espmem[player] then break end
 

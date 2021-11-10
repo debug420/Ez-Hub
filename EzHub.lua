@@ -1874,19 +1874,6 @@ bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
 -- without the need to change manually, however, I will continue to use a manual method
 -- This is because it is still inconsistent according to my testing.
 
--- Here is the code implementation that was removed and replaced with the previous manual method:
--- local function applyFrameResizing(scrollingframe)
--- 	pcall(function()
--- 		local function update()
--- 			local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
--- 			scrollingframe.CanvasSize = UDim2.new(0, scrollingframe.Size.X, 0, cS.Y + 30);
--- 		end
--- 		scrollingframe.ChildAdded:Connect(update);
--- 		scrollingframe.ChildRemoved:Connect(update);
--- 		update();
--- 	end)
--- end
-
 local function applyFrameResizing(scrollingframe)
 	pcall(function()
 
@@ -1918,30 +1905,35 @@ local defaultTheme = {
 	Quaternary = 	{18, 98, 159}
 }
 
-local function doesEqualAnyThemeColor(color3)
+local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
+
+local function handleThemeColoring(instance, property)
+
+	local themeColorType;
 	for i,v in pairs(defaultTheme) do
-		if type(v) == "table" and color3 == Color3.fromRGB(v[1], v[2], v[3]) then
-			return i;
+		if type(v) == "table" and instance[property] == Color3.fromRGB(v[1], v[2], v[3]) then
+			themeColorType = i;
 		end
 	end
+	
+	if themeColorType then
+		instance[property] =  Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+	end
+
 end
 
-local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
 if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
 
 	-- apply theme as default theme is not selected
 	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
 		if v:IsA("GuiObject") then
 			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
-				local themeColorType = doesEqualAnyThemeColor(v.ImageColor3);
-				if themeColorType then
-					v.ImageColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
-				end
-			end
-			local themeColorType = doesEqualAnyThemeColor(v.BackgroundColor3);
-			if themeColorType then
-				v.BackgroundColor3 = Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
-			end
+				handleThemeColoring(v, "ImageColor3") end
+			if pcall(function() local _ = v.TextColor3 end) then
+				handleThemeColoring(v, "TextColor3") end
+				
+			handleThemeColoring(v, "BackgroundColor3");
+
 		end
 	end
 

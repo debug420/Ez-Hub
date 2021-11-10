@@ -43,6 +43,7 @@ if _G.EzHubTheme then
 		Tertiary = Color3.fromRGB(t[1], t[2], t[3]),
 		Quaternary = Color3.fromRGB(q[1], q[2], q[3])
 	}
+
 end
 
 ------------------------------------------------------------------------------
@@ -560,14 +561,16 @@ coreGUIFuncs.newDropdown = function(tabWindow, dropdownContainer, name, colors, 
 		["BackgroundColor3"] = colors.Primary,
 		["BorderSizePixel"] = 0,
 		["Position"] = UDim2.new(1, -10, 0.5, 0),
-		["Size"] = UDim2.new(0, 87, 0, 20),
+		["Size"] = UDim2.new(0, 90, 0, 20),
 		["AutoButtonColor"] = false,
 		["Font"] = Enum.Font.SourceSans,
 		["Text"] = name,
 		["TextColor3"] = Color3.fromRGB(255, 255, 255),
-		["TextSize"] = 14.000,
+		["TextSize"] = 12.000,
 		["Parent"] = frame
 	});
+
+    coreFuncs.roundify(toggle);
 
 	-------------------------------------
 	-- Actual dropdown instance
