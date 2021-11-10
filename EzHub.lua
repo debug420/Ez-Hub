@@ -73,8 +73,8 @@ local EzHub = {
 	ImageLabel_3 = Instance.new("ImageLabel"),
 	ImageLabel_4 = Instance.new("ImageLabel"),
 	TextLabel_8 = Instance.new("TextLabel"),
-	SponsorFrame = Instance.new("ImageLabel"),
-	SponsorText = Instance.new("TextLabel"),
+	NewsFrame = Instance.new("ImageLabel"),
+	NewsText = Instance.new("TextLabel"),
 	SectionEs = Instance.new("Folder"),
 	Frame_8 = Instance.new("Frame"),
 	UICorner_16 = Instance.new("UICorner"),
@@ -179,7 +179,7 @@ local EzHub = {
 	ImageLabel_8 = Instance.new("ImageLabel"),
 	ExecutedLabel_2 = Instance.new("TextLabel"),
 	GameName_4 = Instance.new("TextLabel"),
-	UICorner_36 = Instance.new("UICorner")
+	UICorner_36 = Instance.new("UICorner"),
 }
 
 -----------------------------------------------
