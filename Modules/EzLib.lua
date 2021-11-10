@@ -680,9 +680,11 @@ coreGUIFuncs.newTextbox = function(tabWindow, name, state, colors)
 		["PlaceholderText"] = "Click to type...",
 		["Text"] = state or "",
 		["TextColor3"] = Color3.fromRGB(255,255,255),
-		["TextSize"] = 13.000,
+		["TextSize"] = 12.000,
 		["Parent"] = frame
 	});
+	
+	coreFuncs.roundify(textbox);
 
 	return ({["textbox"] = textbox, ["frame"] = frame});
 
