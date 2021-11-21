@@ -1767,6 +1767,7 @@ do
 	EzHub.TerminalTextContainer.Font = Enum.Font.SourceSans
 	EzHub.TerminalTextContainer.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.TerminalTextContainer.TextSize = 14.000
+	EzHub.TerminalTextContainer.TextWrapped = true
 	EzHub.TerminalTextContainer.TextXAlignment = Enum.TextXAlignment.Left
 
 	EzHub.TerminalDividerContainer.Name = "TerminalDividerContainer"
@@ -2522,7 +2523,7 @@ local terminalPrintType = {
 -- command type tags enum
 local commandType = {
 	General = 0,
-	Cheats = 1,
+	Cheat = 1,
 	Custom = 2
 }
 
@@ -2571,66 +2572,147 @@ terminalPrint("Loading Ez Hub Terminal...", "y");
 
 local commands = {};	-- stores all commands and their functions
 local tips = {
-	"Ez Terminal is Ez CMD merged with Ez Hub.",
-	"Ez Terminal allows you to access many functions of Ez Hub.",
+	"Ez Terminal is Ez CMD merged with Ez Hub. This was only done because of the amount of users that wished to see Ez CMD being worked on again.",
+	"Ez Terminal allows you to access many functions of Ez Hub that you won't be able to access with a GUI button.",
 	"Type cmdlist or one of it's aliases to view all the possible commands.",
-	"Ez Hub and the terminal is fully open source!"
+	"Ez Hub and the terminal is fully open source! Go to the Github repo to view the source."
 };
 
 local function addCommand(aliases, func, desc, cmndType)
-	table.insert(commands, {aliases, func, desc, cmndType});
+	table.insert(commands, {aliases, func, desc, cmndType or commandType.Custom});
+end
+
+local awaitingRequestFunction = Instance.new("BindableFunction");
+local awaitingRequest = false;
+local awaitingRequestInputTypes = {
+	numberOnly = 1,
+	boolOnly = 2,
+	playerOnly = 3,
+	any = 4
+}
+
+local awaitingRequestInputType = awaitingRequestInputTypes.any;
+
+local function awaitRequest(inputType, callback)
+	awaitingRequest = true;
+	awaitingRequestInputType = inputType;
+	awaitingRequestFunction.OnInvoke = callback;
 end
 
 local function handleRequest(request)
 
-	-- Print user input
-	terminalPrint(request, "g");
-
-	(function()
-
-		local structuredRequest = string.split(request, " "); 
-		local command = structuredRequest[1];
+	-- Print user input. Not required when in console mode as the user already types into the command line
+	if not isRConsoleMode then
+		terminalPrint(request, "g");
+	end
 	
-		for _, commandData in pairs(commands) do
-			for _, alias in pairs(commandData[1]) do
-				if alias == command then
-					commandData[2](table.unpack(structuredRequest));
-					return;
+	if awaitingRequest then
+
+		-- Converts and checks the input to match the desired input that the function desires
+		local function call(modifiedReq) 
+			awaitingRequest = false; 
+			awaitingRequestFunction:Invoke(modifiedReq or request); 
+		end
+
+		if awaitingRequestInputType == awaitingRequestInputTypes.any then call();
+		elseif awaitingRequestInputType == awaitingRequestInputTypes.boolOnly then
+			if request == "true" 
+				or request == "on" 
+				or request == "1" then
+
+				call(true);
+
+			elseif request == "false"
+				or request == "off" 
+				or request == "0" then
+
+				call(false);
+
+			else
+				terminalPrint("You must enter a valid boolean value for this function.", "r");
+			end
+		elseif awaitingRequestInputType == awaitingRequestInputTypes.numberOnly then
+			if tonumber(request) then
+				call(tonumber(request));
+			else
+				terminalPrint("You must enter a valid number value for this function.", "r");
+			end
+		elseif awaitingRequestInputType == awaitingRequestInputTypes.playerOnly then
+			local foundPlayer;
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v.Name == request then
+					call();
+					foundPlayer = v;
+					break;
 				end
 			end
+
+			if foundPlayer then
+				call(foundPlayer);
+			else
+				terminalPrint("You must enter a valid player name for this function.", "r");
+			end
+
 		end
+
+		awaitingRequest = false;
+
+	else
+
+		-- If no function is awaiting further input, user input is then interpreted as command search
+		(function()
+
+			local structuredRequest = string.split(request, " "); 
+			local command = structuredRequest[1];
+		
+			for _, commandData in pairs(commands) do
+				for _, alias in pairs(commandData[1]) do
+					if alias == command then
+						commandData[2](table.unpack(structuredRequest));
+						return;
+					end
+				end
+			end
+		
+			terminalPrint("Unable to find the requested command...", "r");
 	
-		terminalPrint("Unable to find the requested command...", "r");
+		end)();
 
-	end)();
-
+	end
+	
 	-- randomized tip sent
 	if math.random(1, 5) == 1 then
 		terminalDivide();
-		terminalPrint("Tip: "..tips[math.random(#tips)], "b");
+		terminalPrint("Fun Fact: "..tips[math.random(#tips)], "b");
 		terminalDivide();
 	end
 
 	EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = "";
 	EzHub.TerminalFrame.AnimFrame1.CanvasPosition = Vector2.new(0, EzHub.TerminalFrame.AnimFrame1.UIListLayout.AbsoluteContentSize.Y);
-	
+	if isRConsoleMode then rconsoleprint("@@GREEN@@"); handleRequest(rconsoleinput()); end
+
 end
 
 -----------------------------------------------
--- Add the commands to the command list
 
+addCommand({"test"}, function()
+	terminalPrint("Ez Hub Terminal is currently functional...", "y");
+end, "Test command to ensure that the terminal is accepting user requests.", commandType.General);
+
+-------------------------
+
+-- prints the commands to the command list
 addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, function()
 
 	terminalPrint("Ez Hub Terminal command list:", "b");
 
 	for cmndType, cmdInt in pairs(commandType) do
 		
-		terminalPrint(cmndType.." commands:", "y");
+		terminalPrint(cmndType.." commands:", "b");
 
 		local commandCount = 0;
 		for _, commandData in pairs(commands) do
 			if commandData[4] == cmdInt then
-				game:GetService("RunService").Heartbeat:Wait();	-- More pleasant to the eye
 				terminalPrint(commandData[1][1]..": "..commandData[3]);
 				commandCount = commandCount + 1;
 			end
@@ -2640,11 +2722,11 @@ addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, function()
 
 	end
 
-end, "Prints all of the command lists onto the Ez Hub terminal.", commandType.General);
+end, "Prints all of the command lists into the Ez Hub terminal.", commandType.General);
 
 -------------------------
 
-addCommand({"close", "quit"}, function()
+addCommand({"quit", "close"}, function()
 
 	terminalPrint("Closing Ez Hub in 3 seconds...", "r");
 	spawn(function()
@@ -2675,8 +2757,6 @@ addCommand({"close", "quit"}, function()
 
 end, "Closes Ez Hub and unloads all of it's dependencies.", commandType.General);
 
--------------------------
-
 addCommand({"hide", "hidegui"}, function()
 
 	terminalPrint("Hiding main panel in 3 seconds...", "y");
@@ -2690,14 +2770,62 @@ addCommand({"hide", "hidegui"}, function()
 end, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.", commandType.General);
 
 -------------------------
+-- Commands for enabling/disabling rconsole mode
 
-addCommand({"test"}, function()
+addCommand({"consolemode", "rconsolemode"}, function()
+	if not isRConsoleMode then
+		if rconsoleprint and rconsoleclear then
+			terminalPrint("Enabling rconsole mode...", "y");
+			isRConsoleMode = true;
+			terminalPrint("Enabled rconsole mode", "b");
+		else
+			terminalPrint("Your exploit does not support the following function.", "r");
+		end
+	else
+		terminalPrint("You are already in rconsole mode. To return back to gui mode type guimode.", "r");
+	end
+end, "Outputs and accepts input only from the rconsole.", commandType.General);
 
-	terminalPrint("Ez Hub Terminal is currently functional...", "y");
-
-end, "Test command to ensure that the terminal is accepting user requests.", commandType.General);
+addCommand({"guimode"}, function()
+	if isRConsoleMode then
+		terminalPrint("Enabling gui mode...", "y");
+		rconsoleclear();
+		isRConsoleMode = false;
+		terminalPrint("Enabled gui mode", "b");
+	else
+		terminalPrint("You are already in gui mode. To enter console mode, type consolemode", "r");
+	end
+end, "Outputs and accepts input only from the main Ez Hub Terminal GUI.", commandType.General);
 
 -------------------------
+
+addCommand({"setwalkspeed", "setws"}, function(speed)
+	
+	local function set(v) 
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v; 
+		terminalPrint("Set player speed to "..v, "b");
+	end
+
+	terminalPrint("Enter walkspeed value:", "y");
+	awaitRequest(awaitingRequestInputTypes.numberOnly, function(speed)
+		set(speed)
+	end);
+
+end, "Sets the walkspeed of the user to the requested speed.", commandType.Cheat);
+
+addCommand({"setjumppower", "setjp"}, function(speed)
+	
+	local function set(v) 
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v; 
+		terminalPrint("Set player jump power to "..v, "b");
+	end
+
+	terminalPrint("Enter jumppower value:", "y");
+	awaitRequest(awaitingRequestInputTypes.numberOnly, function(speed)
+		set(speed)
+	end);
+
+end, "Sets the jumppower of the user to the requested jumppower.", commandType.Cheat);
 
 -----------------------------------------------
 -- Events to accept requests from user and Intellisense/Autocomplete
@@ -2735,9 +2863,11 @@ end)
 game:GetService("UserInputService").InputBegan:Connect(function(input)
 
 	if input.KeyCode == Enum.KeyCode.Tab and #autocompleteTextbox.Text > 0 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() then
-		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox = autocompleteTextbox.Text;
+		local filledText = autocompleteTextbox.Text;
+		game:GetService("RunService").RenderStepped:Wait();	-- Wait for tab space to be rendered
+		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = filledText;
 		autocompleteTextbox.Text = "";
-		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.CursorPosition = #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text;
+		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.CursorPosition = #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text + 1;
 	end
 
 end)
