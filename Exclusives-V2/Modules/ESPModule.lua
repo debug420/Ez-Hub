@@ -15,8 +15,8 @@ local espConfig = {
     setcolor = {255, 255, 255},
     teamcolor = true,
     -- ESP offsets
-    xoffset = 2,
-    yoffsetaboveorigin = 3,
+    xoffset = 1.6,
+    yoffsetaboveorigin = 2.5,
     yoffsetbeloworigin = 3.5,
     tagoffset = 8,
     -- Headdot Settings
