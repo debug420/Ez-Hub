@@ -2505,12 +2505,6 @@ applyContainerSelectAnimation(EzHub.LocalLibFrame.AnimFrame1.ADD);
 applyContainerSelectAnimation(EzHub.LocalLibFrame.AnimFrame1.REMOVE);
 
 -------------------------------------------------------------------------------------------------
-
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 -- Terminal Code
 
 local terminalTextContainer = EzHub.TerminalTextContainer;
@@ -2527,15 +2521,9 @@ local terminalPrintType = {
 
 -- command type tags enum
 local commandType = {
-<<<<<<< Updated upstream
-	General = 0,
-	Cheat = 1,
-	Custom = 2
-=======
 	["General Commands"] = 0,
 	["Basic Cheats"] = 1,
 	["Custom"] = 2
->>>>>>> Stashed changes
 }
 
 local function terminalPrint(msg, printType)
@@ -2590,11 +2578,7 @@ local tips = {
 };
 
 local function addCommand(aliases, func, desc, cmndType)
-<<<<<<< Updated upstream
-	table.insert(commands, {aliases, func, desc, cmndType or commandType.Custom});
-=======
 	table.insert(commands, {aliases, func, desc, cmndType or commandType["Custom"]});
->>>>>>> Stashed changes
 end
 
 local awaitingRequestFunction = Instance.new("BindableFunction");
@@ -2608,12 +2592,8 @@ local awaitingRequestInputTypes = {
 
 local awaitingRequestInputType = awaitingRequestInputTypes.any;
 
-<<<<<<< Updated upstream
-local function awaitRequest(inputType, callback)
-=======
 local function awaitRequest(termPrint, inputType, callback)
 	terminalPrint(termPrint, "y");
->>>>>>> Stashed changes
 	awaitingRequest = true;
 	awaitingRequestInputType = inputType;
 	awaitingRequestFunction.OnInvoke = callback;
@@ -2672,10 +2652,6 @@ local function handleRequest(request)
 			else
 				terminalPrint("You must enter a valid player name for this function.", "r");
 			end
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 		end
 
 		awaitingRequest = false;
@@ -2717,12 +2693,11 @@ local function handleRequest(request)
 end
 
 -----------------------------------------------
-<<<<<<< Updated upstream
 
 addCommand({"test"}, function()
 	terminalPrint("Ez Hub Terminal is currently functional...", "y");
 end, "Test command to ensure that the terminal is accepting user requests.", commandType.General);
-=======
+
 -- Events to accept requests from user and Intellisense/Autocomplete
 
 local autocompleteTextbox = EzHub.IntellisenseLabel;
@@ -2796,7 +2771,6 @@ end)
 addCommand({"test"}, function()
 	terminalPrint("Ez Hub Terminal is currently functional...", "y");
 end, "Test command to ensure that the terminal is accepting user requests.", commandType["General Commands"]);
->>>>>>> Stashed changes
 
 -------------------------
 
@@ -2821,11 +2795,7 @@ addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, function()
 
 	end
 
-<<<<<<< Updated upstream
-end, "Prints all of the command lists into the Ez Hub terminal.", commandType.General);
-=======
 end, "Prints all of the command lists into the Ez Hub terminal.", commandType["General Commands"]);
->>>>>>> Stashed changes
 
 -------------------------
 
@@ -2858,11 +2828,7 @@ addCommand({"quit", "close"}, function()
 		_G.EzHubTheme = nil;
 	end)
 
-<<<<<<< Updated upstream
-end, "Closes Ez Hub and unloads all of it's dependencies.", commandType.General);
-=======
 end, "Closes Ez Hub and unloads all of it's dependencies.", commandType["General Commands"]);
->>>>>>> Stashed changes
 
 addCommand({"hide", "hidegui"}, function()
 
@@ -2874,11 +2840,7 @@ addCommand({"hide", "hidegui"}, function()
 		terminalPrint("Ez Hub main panel is now hiding.", "b");
 	end)
 	
-<<<<<<< Updated upstream
-end, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.", commandType.General);
-=======
 end, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.", commandType["General Commands"]);
->>>>>>> Stashed changes
 
 -------------------------
 -- Commands for enabling/disabling rconsole mode
@@ -2895,11 +2857,7 @@ addCommand({"consolemode", "rconsolemode"}, function()
 	else
 		terminalPrint("You are already in rconsole mode. To return back to gui mode type guimode.", "r");
 	end
-<<<<<<< Updated upstream
-end, "Outputs and accepts input only from the rconsole.", commandType.General);
-=======
 end, "Outputs and accepts input only from the rconsole.", commandType["General Commands"]);
->>>>>>> Stashed changes
 
 addCommand({"guimode"}, function()
 	if isRConsoleMode then
@@ -2910,13 +2868,6 @@ addCommand({"guimode"}, function()
 	else
 		terminalPrint("You are already in gui mode. To enter console mode, type consolemode", "r");
 	end
-<<<<<<< Updated upstream
-end, "Outputs and accepts input only from the main Ez Hub Terminal GUI.", commandType.General);
-
--------------------------
-
-addCommand({"setwalkspeed", "setws"}, function(speed)
-=======
 end, "Outputs and accepts input only from the main Ez Hub Terminal GUI.", commandType["General Commands"]);
 
 -------------------------
@@ -2952,23 +2903,12 @@ end, "Launches a script from the library of Ez Hub (Exclusives V2).", commandTyp
 -------------------------
 
 addCommand({"setwalkspeed", "setws"}, function()
->>>>>>> Stashed changes
 	
 	local function set(v) 
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v; 
 		terminalPrint("Set player speed to "..v, "b");
 	end
 
-<<<<<<< Updated upstream
-	terminalPrint("Enter walkspeed value:", "y");
-	awaitRequest(awaitingRequestInputTypes.numberOnly, function(speed)
-		set(speed)
-	end);
-
-end, "Sets the walkspeed of the user to the requested speed.", commandType.Cheat);
-
-addCommand({"setjumppower", "setjp"}, function(speed)
-=======
 	awaitRequest("Enter walkspeed value:", awaitingRequestInputTypes.numberOnly, function(speed)
 		set(speed)
 	end);
@@ -2976,87 +2916,17 @@ addCommand({"setjumppower", "setjp"}, function(speed)
 end, "Sets the walkspeed of the user to the requested speed.", commandType["Basic Cheats"]);
 
 addCommand({"setjumppower", "setjp"}, function()
->>>>>>> Stashed changes
 	
 	local function set(v) 
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v; 
 		terminalPrint("Set player jump power to "..v, "b");
 	end
 
-<<<<<<< Updated upstream
-	terminalPrint("Enter jumppower value:", "y");
-	awaitRequest(awaitingRequestInputTypes.numberOnly, function(speed)
-		set(speed)
-	end);
-
-end, "Sets the jumppower of the user to the requested jumppower.", commandType.Cheat);
-
------------------------------------------------
--- Events to accept requests from user and Intellisense/Autocomplete
-
-local autocompleteTextbox = EzHub.IntellisenseLabel;
-
--- Returns a command based on the first few letters of the command that the user has inputted
-local function getSuggestedCommand(cmd)
-	for _, commandData in pairs(commands) do
-		local aliases = commandData[1];
-		for _, alias in pairs(aliases) do
-			-- 1 indicates the position of string pattern start. This is so that we only search for similarities from the beginning of the command name
-			if string.find(alias, EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text) == 1 then
-				return alias;
-			end
-		end
-	end
-end
-
-EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:GetPropertyChangedSignal("Text"):Connect(function()
-	
-	local newText = EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text;
-	
-	-- Check if the user is actually attempting to type a command
-	if #newText > 2 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() and not string.find(newText, " ")
-		and getSuggestedCommand(autocompleteTextbox.Text) then
-		-- Find commands that match the command the user has typed so far
-		autocompleteTextbox.Text = getSuggestedCommand(newText);
-	else
-		autocompleteTextbox.Text = "";
-	end
-
-end)
-
-game:GetService("UserInputService").InputBegan:Connect(function(input)
-
-	if input.KeyCode == Enum.KeyCode.Tab and #autocompleteTextbox.Text > 0 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() then
-		local filledText = autocompleteTextbox.Text;
-		game:GetService("RunService").RenderStepped:Wait();	-- Wait for tab space to be rendered
-		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = filledText;
-		autocompleteTextbox.Text = "";
-		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.CursorPosition = #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text + 1;
-	end
-
-end)
-
-EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.FocusLost:Connect(function(enterPressed)
-	if enterPressed and #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text > 0 then
-		handleRequest(EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text);
-		-- recapture focus on the textbox prior to a frame render
-		game:GetService("RunService").RenderStepped:Wait()
-		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:CaptureFocus();
-	end
-end)
-
-EzHub.TerminalFrame.ExecuteFrame.ExecuteButton.MouseButton1Click:Connect(function()
-	if #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text > 0 then
-		handleRequest(EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text);
-	end
-end)
-=======
 	awaitRequest("Enter jumppower value:", awaitingRequestInputTypes.numberOnly, function(speed)
 		set(speed)
 	end);
 
 end, "Sets the jumppower of the user to the requested jumppower.", commandType["Basic Cheats"]);
->>>>>>> Stashed changes
 
 -----------------------------------------------
 
@@ -3066,10 +2936,6 @@ terminalDivide();
 
 -------------------------------------------------------------------------------------------------
 
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 -- Toggle GUI
 game:GetService("UserInputService").InputBegan:Connect(function(input)
 	if input.KeyCode == Enum.KeyCode.RightControl then EzHub.EzHub.Enabled = not EzHub.EzHub.Enabled; end
