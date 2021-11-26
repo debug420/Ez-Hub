@@ -1795,6 +1795,7 @@ end
 
 EzHub.ExecutedLabel.RichText = true;
 EzHub.ExecutedLabel_2.RichText = true;
+EzHub.TerminalTextContainer.RichText = true;
 
 -- Missing scrollbarimagecolor
 
@@ -2519,12 +2520,9 @@ local terminalPrintType = {
 	g = Color3.fromRGB(0, 240, 0)
 }
 
--- command type tags enum
-local commandType = {
-	["General Commands"] = 0,
-	["Basic Cheats"] = 1,
-	["Custom"] = 2
-}
+local function autoScroll()
+	EzHub.TerminalFrame.AnimFrame1.CanvasPosition = Vector2.new(0, EzHub.TerminalFrame.AnimFrame1.UIListLayout.AbsoluteContentSize.Y);
+end
 
 local function terminalPrint(msg, printType)
 	if isRConsoleMode then
@@ -2553,6 +2551,7 @@ local function terminalPrint(msg, printType)
 		clone.Text = msg;
 		clone.Visible = true;
 		clone.Parent = EzHub.TerminalFrame.AnimFrame1;
+		autoScroll();
 
 	end
 end
@@ -2564,6 +2563,7 @@ local function terminalDivide()
 		local clone = EzHub.TerminalDividerContainer:Clone();
 		clone.Visible = true;
 		clone.Parent = EzHub.TerminalFrame.AnimFrame1;
+		autoScroll();
 	end
 end
 
@@ -2577,8 +2577,8 @@ local tips = {
 	"Ez Hub and the terminal is fully open source! Go to the Github repo to view the source."
 };
 
-local function addCommand(aliases, func, desc, cmndType)
-	table.insert(commands, {aliases, func, desc, cmndType or commandType["Custom"]});
+local function addCommand(aliases, func, desc)
+	table.insert(commands, {aliases, func, desc});
 end
 
 local awaitingRequestFunction = Instance.new("BindableFunction");
@@ -2661,12 +2661,13 @@ local function handleRequest(request)
 		-- If no function is awaiting further input, user input is then interpreted as command search
 		(function()
 
-			local structuredRequest = string.split(request, " "); 
+			local structuredRequest = string.split(request, " ");
 			local command = structuredRequest[1];
 		
 			for _, commandData in pairs(commands) do
 				for _, alias in pairs(commandData[1]) do
 					if alias == command then
+						table.remove(structuredRequest, 1);
 						commandData[2](table.unpack(structuredRequest));
 						return;
 					end
@@ -2687,16 +2688,11 @@ local function handleRequest(request)
 	end
 
 	EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = "";
-	EzHub.TerminalFrame.AnimFrame1.CanvasPosition = Vector2.new(0, EzHub.TerminalFrame.AnimFrame1.UIListLayout.AbsoluteContentSize.Y);
 	if isRConsoleMode then rconsoleprint("@@GREEN@@"); handleRequest(rconsoleinput()); end
 
 end
 
 -----------------------------------------------
-
-addCommand({"test"}, function()
-	terminalPrint("Ez Hub Terminal is currently functional...", "y");
-end, "Test command to ensure that the terminal is accepting user requests.", commandType.General);
 
 -- Events to accept requests from user and Intellisense/Autocomplete
 
@@ -2770,7 +2766,7 @@ end)
 
 addCommand({"test"}, function()
 	terminalPrint("Ez Hub Terminal is currently functional...", "y");
-end, "Test command to ensure that the terminal is accepting user requests.", commandType["General Commands"]);
+end, "Test command to ensure that the terminal is accepting user requests.");
 
 -------------------------
 
@@ -2779,23 +2775,11 @@ addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, function()
 
 	terminalPrint("Ez Hub Terminal command list:", "b");
 
-	for cmndType, cmdInt in pairs(commandType) do
-		
-		terminalPrint(cmndType.." commands:", "b");
-
-		local commandCount = 0;
-		for _, commandData in pairs(commands) do
-			if commandData[4] == cmdInt then
-				terminalPrint(commandData[1][1]..": "..commandData[3]);
-				commandCount = commandCount + 1;
-			end
-		end
-
-		if commandCount == 0 then terminalPrint("No commands found for the following category..."); end
-
+	for _, commandData in pairs(commands) do
+		terminalPrint("<font color=\"rgb(0, 100, 255)\">"..commandData[1][1].."</font>: "..commandData[3]);
 	end
 
-end, "Prints all of the command lists into the Ez Hub terminal.", commandType["General Commands"]);
+end, "Prints all of the command lists into the Ez Hub terminal.");
 
 -------------------------
 
@@ -2826,9 +2810,10 @@ addCommand({"quit", "close"}, function()
 		-- Unload all other variables from global env
 		_G.DISABLEEXELOG = nil;
 		_G.EzHubTheme = nil;
+		_G.EzHubTerminal = nil;
 	end)
 
-end, "Closes Ez Hub and unloads all of it's dependencies.", commandType["General Commands"]);
+end, "Closes Ez Hub and unloads all of it's dependencies.");
 
 addCommand({"hide", "hidegui"}, function()
 
@@ -2840,7 +2825,7 @@ addCommand({"hide", "hidegui"}, function()
 		terminalPrint("Ez Hub main panel is now hiding.", "b");
 	end)
 	
-end, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.", commandType["General Commands"]);
+end, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.");
 
 -------------------------
 -- Commands for enabling/disabling rconsole mode
@@ -2857,7 +2842,7 @@ addCommand({"consolemode", "rconsolemode"}, function()
 	else
 		terminalPrint("You are already in rconsole mode. To return back to gui mode type guimode.", "r");
 	end
-end, "Outputs and accepts input only from the rconsole.", commandType["General Commands"]);
+end, "Outputs and accepts input only from the rconsole.");
 
 addCommand({"guimode"}, function()
 	if isRConsoleMode then
@@ -2868,22 +2853,22 @@ addCommand({"guimode"}, function()
 	else
 		terminalPrint("You are already in gui mode. To enter console mode, type consolemode", "r");
 	end
-end, "Outputs and accepts input only from the main Ez Hub Terminal GUI.", commandType["General Commands"]);
+end, "Outputs and accepts input only from the main Ez Hub Terminal GUI.");
 
 -------------------------
 
-addCommand({"launch", "launchscript"}, function()
+addCommand({"launch", "launchscript"}, function(scriptName)
+	
+	local exclusiveV2s = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"]);
+	customIntellisenseList = (function()
+		local t = {};
+		for i,v in pairs(exclusiveV2s) do
+			table.insert(t, i);
+		end
+		return t;
+	end)();
 
-	awaitRequest("Enter script name:", awaitingRequestInputTypes.any, function(scriptName)
-		local exclusiveV2s = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"]);
-		customIntellisenseList = (function()
-			local t = {};
-			for i,v in pairs(exclusiveV2s) do
-				table.insert(t, i);
-			end
-			return t;
-		end)();
-
+	local function execute(scriptName)
 		for i,v in pairs(exclusiveV2s) do
 			if i == scriptName then
 				terminalPrint("Executing "..i.."...", "y");
@@ -2893,46 +2878,37 @@ addCommand({"launch", "launchscript"}, function()
 			end
 		end
 
-		customIntellisenseList = {};
 		terminalPrint("Invalid script. "..scriptName.." is not part of the exclusive V2s.", "r");
-
-	end)
-
-end, "Launches a script from the library of Ez Hub (Exclusives V2).", commandType["General Commands"]);
-
--------------------------
-
-addCommand({"setwalkspeed", "setws"}, function()
-	
-	local function set(v) 
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v; 
-		terminalPrint("Set player speed to "..v, "b");
 	end
 
-	awaitRequest("Enter walkspeed value:", awaitingRequestInputTypes.numberOnly, function(speed)
-		set(speed)
-	end);
-
-end, "Sets the walkspeed of the user to the requested speed.", commandType["Basic Cheats"]);
-
-addCommand({"setjumppower", "setjp"}, function()
-	
-	local function set(v) 
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v; 
-		terminalPrint("Set player jump power to "..v, "b");
+	if not scriptName then
+		awaitRequest("Enter script name:", awaitingRequestInputTypes.any, function(scriptName)
+			execute(scriptName);
+			customIntellisenseList = {};	-- resets the custom intellisense
+		end)
+	else
+		execute(scriptName);
+		customIntellisenseList = {};	-- resets the custom intellisense
 	end
 
-	awaitRequest("Enter jumppower value:", awaitingRequestInputTypes.numberOnly, function(speed)
-		set(speed)
-	end);
-
-end, "Sets the jumppower of the user to the requested jumppower.", commandType["Basic Cheats"]);
+end, "Launches a script from the library of Ez Hub (Exclusives V2).");
 
 -----------------------------------------------
 
 terminalPrint("Loaded Ez Hub Terminal successfully...", "b");
 terminalPrint("To get a list of all of the commands that are available, execute cmdlist or list", "b");
 terminalDivide();
+
+-----------------------------------------------
+
+-- Setup the terminal API
+-- This means that external scripts/services 
+
+_G.EzHubTerminal = {
+	print = terminalPrint,
+	addCommand = addCommand,
+	awaitRequest = awaitRequest	
+}
 
 -------------------------------------------------------------------------------------------------
 
