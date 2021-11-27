@@ -1890,119 +1890,6 @@ end);
 
 loadToStage(0.95, "Finalising and Cleaning Up...");
 
--- load player thumbnail
-EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
-
-local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
-
--- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
-EzHub.NewsText.Text = (function()
-	local highestIndex = 0;
-	local highestIndexNewsString;
-	for i,v in pairs(launcherData["NewsData"]) do
-		if v[1] > highestIndex then highestIndex = v[1];
-			highestIndexNewsString = v[2];
-		end
-	end
-	return highestIndexNewsString;
-end)();
-
-if not EzHub.NewsText.TextFits then
-	EzHub.NewsText.Text = "News message too long. Please use the launcher to view this news data.";
-end
-
-EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
-
-local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
-
-for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["repostedmodule"])) do
-	addScript({
-		["scriptName"] = tostring(i),
-		["function"] = function()
-			loadstring(game:HttpGet(tostring(v["link"])))();
-		end,
-		["parent"] = EzHub.RepostedFrame.AnimFrame1,
-		["type"] = v["type"]
-	});
-end
-
-for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesmodule"])) do
-	addScript({
-		["scriptName"] = tostring(i),
-		["function"] = function()
-
-			local notif = ezlib.newNotif(ezlib.enum.notifType.buttons,
-			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
-			"Yes", "No",
-			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
-			function() return end);
-
-			notif.show();
-			notif.buttonClicked.Event:Wait();
-			notif.hide();
-			notif.delete();
-
-		end,
-		["parent"] = EzHub.ExclusivesFrame.AnimFrame1,
-		["type"] = v["type"]
-	});
-end
-
-for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"])) do
-	addScript({
-		["scriptName"] = tostring(i),
-		["function"] = function()
-			loadstring(game:HttpGet(tostring(v["link"])))();
-		end,
-		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1,
-		["type"] = v["type"]
-	});
-end
-
------------------------------------------------
--- Preload images
-
-local preloadImages = {};
-for i,v in pairs(EzHub) do
-	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
-		table.insert(preloadImages, 1, tostring(v.Image));
-	end
-end
-
-if not _G.EzHubExclusives then
-	_G.EzHubExclusives = {};
-end
-
-game:GetService("ContentProvider"):PreloadAsync(preloadImages);
-
------------------------------------------------
--- Close ez hub function
-
-local function closeEzHub()
-	-- Close Ez Hub
-	EzHub.EzHub:Destroy();
-
-	-- unload aimbot and esp if they have been ran
-	if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
-	if _G.unloadESP then _G.unloadESP(); end
-
-	-- Close all exclusives
-	if _G.EzHubExclusives then
-		for i,v in pairs(_G.EzHubExclusives) do
-			if v:IsA("ScreenGui") then
-				v:Destroy();
-			end
-		end
-	end
-
-	_G.EzHubExclusives = nil;
-
-	-- Unload all other variables from global env
-	_G.DISABLEEXELOG = nil;
-	_G.EzHubTheme = nil;
-	_G.EzHubTerminal = nil;
-end
-
 -----------------------------------------------
 -- Tab positioning, container and handling
 
@@ -2242,6 +2129,121 @@ functionaliseSearchBar(EzHub.ExclusivesFrame.SearchFrame.SearchBar, EzHub.Exclus
 functionaliseSearchBar(EzHub.RepostedFrame.SearchFrame.SearchBar, EzHub.RepostedFrame.AnimFrame1);
 functionaliseSearchBar(EzHub.ExclusivesV2Frame.SearchFrame.SearchBar, EzHub.ExclusivesV2Frame.AnimFrame1);
 functionaliseSearchBar(EzHub.LocalLibFrame.SearchFrame.SearchBar, EzHub.LocalLibFrame.AnimFrame1);
+
+-----------------------------------------------
+
+-- load player thumbnail
+EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
+
+local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
+
+-- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
+EzHub.NewsText.Text = (function()
+	local highestIndex = 0;
+	local highestIndexNewsString;
+	for i,v in pairs(launcherData["NewsData"]) do
+		if v[1] > highestIndex then highestIndex = v[1];
+			highestIndexNewsString = v[2];
+		end
+	end
+	return highestIndexNewsString;
+end)();
+
+if not EzHub.NewsText.TextFits then
+	EzHub.NewsText.Text = "News message too long. Please use the launcher to view this news data.";
+end
+
+EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
+
+local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
+
+for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["repostedmodule"])) do
+	addScript({
+		["scriptName"] = tostring(i),
+		["function"] = function()
+			loadstring(game:HttpGet(tostring(v["link"])))();
+		end,
+		["parent"] = EzHub.RepostedFrame.AnimFrame1,
+		["type"] = v["type"]
+	});
+end
+
+for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesmodule"])) do
+	addScript({
+		["scriptName"] = tostring(i),
+		["function"] = function()
+
+			local notif = ezlib.newNotif(ezlib.enum.notifType.buttons,
+			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
+			"Yes", "No",
+			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
+			function() return end);
+
+			notif.show();
+			notif.buttonClicked.Event:Wait();
+			notif.hide();
+			notif.delete();
+
+		end,
+		["parent"] = EzHub.ExclusivesFrame.AnimFrame1,
+		["type"] = v["type"]
+	});
+end
+
+for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"])) do
+	addScript({
+		["scriptName"] = tostring(i),
+		["function"] = function()
+			loadstring(game:HttpGet(tostring(v["link"])))();
+		end,
+		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1,
+		["type"] = v["type"]
+	});
+end
+
+-----------------------------------------------
+-- Preload images
+
+local preloadImages = {};
+for i,v in pairs(EzHub) do
+	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+		table.insert(preloadImages, 1, tostring(v.Image));
+	end
+end
+
+if not _G.EzHubExclusives then
+	_G.EzHubExclusives = {};
+end
+
+game:GetService("ContentProvider"):PreloadAsync(preloadImages);
+
+-----------------------------------------------
+-- Close ez hub function
+
+local function closeEzHub()
+	-- Close Ez Hub
+	EzHub.EzHub:Destroy();
+
+	-- unload aimbot and esp if they have been ran
+	if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
+	if _G.unloadESP then _G.unloadESP(); end
+
+	-- Close all exclusives
+	if _G.EzHubExclusives then
+		for i,v in pairs(_G.EzHubExclusives) do
+			if v:IsA("ScreenGui") then
+				v:Destroy();
+			end
+		end
+	end
+
+	_G.EzHubExclusives = nil;
+
+	-- Unload all other variables from global env
+	_G.DISABLEEXELOG = nil;
+	_G.EzHubTheme = nil;
+	_G.EzHubTerminal = nil;
+end
 
 -----------------------------------------------
 -- Display how long it took to load Ez Hub
@@ -2902,6 +2904,18 @@ addCommand({"loadfile"}, function()
 		end
 	end)
 end)
+
+-----------------------------------------------
+-- Load ESP command
+-- TODO
+
+
+
+-----------------------------------------------
+-- Load Aimbot command
+-- TODO
+
+
 
 -----------------------------------------------
 
