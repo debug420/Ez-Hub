@@ -1817,7 +1817,193 @@ EzHub.NavFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y;
 EzHub.SavedContainers.TerminalTextContainer.AutomaticSize = Enum.AutomaticSize.Y;
 
 -------------------------------------------------------------------------------------------------
+-- Apply Themes
 
+local defaultTheme = {
+	ThemeIndex = 	1,
+	Primary = 		{41, 53, 68},
+	Secondary = 	{35, 47, 62},
+	Tertiary = 		{28, 41, 56},
+	Quaternary = 	{18, 98, 159}
+}
+
+local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
+
+local function handleThemeColoring(instance, property)
+
+	local themeColorType;
+	for i,v in pairs(defaultTheme) do
+		if type(v) == "table" and instance[property] == Color3.fromRGB(v[1], v[2], v[3]) then
+			themeColorType = i;
+		end
+	end
+	
+	if themeColorType then
+		instance[property] =  Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+	end
+
+end
+
+if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
+
+	-- apply theme as default theme is not selected
+	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
+		if v:IsA("GuiObject") then
+			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
+				handleThemeColoring(v, "ImageColor3") end
+			if pcall(function() local _ = v.TextColor3 end) then
+				handleThemeColoring(v, "TextColor3") end
+				
+			handleThemeColoring(v, "BackgroundColor3");
+
+		end
+	end
+
+end
+
+-------------------------------------------------------------------------------------------------
+-- Loading And Preloading
+
+local function loadToStage(scaleUdim, status)
+	EzHub.LoadingBar:TweenSize(UDim2.new(scaleUdim, 0,0,9), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true);
+	EzHub.LoadingInfo.Text = status;
+end
+
+-----------------------------------------------
+
+local loadTimerStart = tick();
+loadToStage(0, "Setting up Ez Hub...");
+
+-- Module links contains all external dependencies of ez hub in one json module
+-- Load all modules inside moduleLinks and store them in a G Table
+
+local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/InitModules.lua"))()
+	.init(function(moduleIndex, moduleNumber, moduleName)
+
+	loadToStage(math.clamp(((1 / moduleNumber) * moduleIndex), 0.1, 0.9),
+	"Loading module "..moduleName.." - "..moduleIndex.." / "..moduleNumber);
+
+end);
+
+-----------------------------------------------
+-- Finalize loading
+
+loadToStage(0.95, "Finalising and Cleaning Up...");
+
+-- load player thumbnail
+EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
+
+local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
+
+-- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
+EzHub.NewsText.Text = (function()
+	local highestIndex = 0;
+	local highestIndexNewsString;
+	for i,v in pairs(launcherData["NewsData"]) do
+		if v[1] > highestIndex then highestIndex = v[1];
+			highestIndexNewsString = v[2];
+		end
+	end
+	return highestIndexNewsString;
+end)();
+
+if not EzHub.NewsText.TextFits then
+	EzHub.NewsText.Text = "News message too long. Please use the launcher to view this news data.";
+end
+
+EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
+
+local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
+
+for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["repostedmodule"])) do
+	addScript({
+		["scriptName"] = tostring(i),
+		["function"] = function()
+			loadstring(game:HttpGet(tostring(v["link"])))();
+		end,
+		["parent"] = EzHub.RepostedFrame.AnimFrame1,
+		["type"] = v["type"]
+	});
+end
+
+for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesmodule"])) do
+	addScript({
+		["scriptName"] = tostring(i),
+		["function"] = function()
+
+			local notif = ezlib.newNotif(ezlib.enum.notifType.buttons,
+			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
+			"Yes", "No",
+			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
+			function() return end);
+
+			notif.show();
+			notif.buttonClicked.Event:Wait();
+			notif.hide();
+			notif.delete();
+
+		end,
+		["parent"] = EzHub.ExclusivesFrame.AnimFrame1,
+		["type"] = v["type"]
+	});
+end
+
+for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"])) do
+	addScript({
+		["scriptName"] = tostring(i),
+		["function"] = function()
+			loadstring(game:HttpGet(tostring(v["link"])))();
+		end,
+		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1,
+		["type"] = v["type"]
+	});
+end
+
+-----------------------------------------------
+-- Preload images
+
+local preloadImages = {};
+for i,v in pairs(EzHub) do
+	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+		table.insert(preloadImages, 1, tostring(v.Image));
+	end
+end
+
+if not _G.EzHubExclusives then
+	_G.EzHubExclusives = {};
+end
+
+game:GetService("ContentProvider"):PreloadAsync(preloadImages);
+
+-----------------------------------------------
+-- Close ez hub function
+
+local function closeEzHub()
+	-- Close Ez Hub
+	EzHub.EzHub:Destroy();
+
+	-- unload aimbot and esp if they have been ran
+	if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
+	if _G.unloadESP then _G.unloadESP(); end
+
+	-- Close all exclusives
+	if _G.EzHubExclusives then
+		for i,v in pairs(_G.EzHubExclusives) do
+			if v:IsA("ScreenGui") then
+				v:Destroy();
+			end
+		end
+	end
+
+	_G.EzHubExclusives = nil;
+
+	-- Unload all other variables from global env
+	_G.DISABLEEXELOG = nil;
+	_G.EzHubTheme = nil;
+	_G.EzHubTerminal = nil;
+end
+
+-----------------------------------------------
 -- Tab positioning, container and handling
 
 local tabs = {EzHub.LoadingFrame, EzHub.HomeFrame, EzHub.ExclusivesFrame, EzHub.RepostedFrame, EzHub.CreditsFrame, EzHub.LocalLibFrame, EzHub.ExclusivesV2Frame, EzHub.ADDFrame, EzHub.REMOVEFrame, EzHub.TerminalFrame};
@@ -1856,8 +2042,7 @@ local function openTab(tabInstance)
 	
 end
 
--------------------------------------------------------------------------------------------------
-
+-----------------------------------------------
 -- Script container and animation handling functions
 
 local originalPosition, afterPosition = {}, {};
@@ -2027,54 +2212,7 @@ bindTabButton(EzHub.LocalLibBtn, EzHub.LocalLibFrame);
 bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
 bindTabButton(EzHub.TerminalBtn, EzHub.TerminalFrame);
 
--------------------------------------------------------------------------------------------------
-
--- Apply Themes
-
-local defaultTheme = {
-	ThemeIndex = 	1,
-	Primary = 		{41, 53, 68},
-	Secondary = 	{35, 47, 62},
-	Tertiary = 		{28, 41, 56},
-	Quaternary = 	{18, 98, 159}
-}
-
-local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
-
-local function handleThemeColoring(instance, property)
-
-	local themeColorType;
-	for i,v in pairs(defaultTheme) do
-		if type(v) == "table" and instance[property] == Color3.fromRGB(v[1], v[2], v[3]) then
-			themeColorType = i;
-		end
-	end
-	
-	if themeColorType then
-		instance[property] =  Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
-	end
-
-end
-
-if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
-
-	-- apply theme as default theme is not selected
-	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
-		if v:IsA("GuiObject") then
-			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
-				handleThemeColoring(v, "ImageColor3") end
-			if pcall(function() local _ = v.TextColor3 end) then
-				handleThemeColoring(v, "TextColor3") end
-				
-			handleThemeColoring(v, "BackgroundColor3");
-
-		end
-	end
-
-end
-
--------------------------------------------------------------------------------------------------
-
+-----------------------------------------------
 -- Search Bar Code
 
 local function functionaliseSearchBar(instance, section)
@@ -2105,121 +2243,9 @@ functionaliseSearchBar(EzHub.RepostedFrame.SearchFrame.SearchBar, EzHub.Reposted
 functionaliseSearchBar(EzHub.ExclusivesV2Frame.SearchFrame.SearchBar, EzHub.ExclusivesV2Frame.AnimFrame1);
 functionaliseSearchBar(EzHub.LocalLibFrame.SearchFrame.SearchBar, EzHub.LocalLibFrame.AnimFrame1);
 
--------------------------------------------------------------------------------------------------
-
--- Loading And Preloading
-
-local function loadToStage(scaleUdim, status)
-	EzHub.LoadingBar:TweenSize(UDim2.new(scaleUdim, 0,0,9), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true);
-	EzHub.LoadingInfo.Text = status;
-end
-
------------------------------------------------
-
-local loadTimerStart = tick();
-loadToStage(0, "Setting up Ez Hub...");
-
--- Module links contains all external dependencies of ez hub in one json module
--- Load all modules inside moduleLinks and store them in a G Table
-
-local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/InitModules.lua"))()
-	.init(function(moduleIndex, moduleNumber, moduleName)
-
-	loadToStage(math.clamp(((1 / moduleNumber) * moduleIndex), 0.1, 0.9),
-	"Loading module "..moduleName.." - "..moduleIndex.." / "..moduleNumber);
-
-end);
-
------------------------------------------------
--- Finalize
-
-loadToStage(0.95, "Finalising and Cleaning Up...");
-
--- load player thumbnail
-EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
-
-local launcherData = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["launcherdata"]);
-
--- Usually used as the sponsor box, however, after Ez Hub 4.2, it is used as a news display for the latest news
-EzHub.NewsText.Text = (function()
-	local highestIndex = 0;
-	local highestIndexNewsString;
-	for i,v in pairs(launcherData["NewsData"]) do
-		if v[1] > highestIndex then highestIndex = v[1];
-			highestIndexNewsString = v[2];
-		end
-	end
-	return highestIndexNewsString;
-end)();
-
-if not EzHub.NewsText.TextFits then
-	EzHub.NewsText.Text = "News message too long. Please use the launcher to view this news data.";
-end
-
-EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
-
-local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
-
-for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["repostedmodule"])) do
-	addScript({
-		["scriptName"] = tostring(i),
-		["function"] = function()
-			loadstring(game:HttpGet(tostring(v["link"])))();
-		end,
-		["parent"] = EzHub.RepostedFrame.AnimFrame1,
-		["type"] = v["type"]
-	});
-end
-
-for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesmodule"])) do
-	addScript({
-		["scriptName"] = tostring(i),
-		["function"] = function()
-
-			local notif = ezlib.newNotif(ezlib.enum.notifType.buttons,
-			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
-			"Yes", "No",
-			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
-			function() return end);
-
-			notif.show();
-			notif.buttonClicked.Event:Wait();
-			notif.hide();
-			notif.delete();
-
-		end,
-		["parent"] = EzHub.ExclusivesFrame.AnimFrame1,
-		["type"] = v["type"]
-	});
-end
-
-for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"])) do
-	addScript({
-		["scriptName"] = tostring(i),
-		["function"] = function()
-			loadstring(game:HttpGet(tostring(v["link"])))();
-		end,
-		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1,
-		["type"] = v["type"]
-	});
-end
-
--- preload images
-local preloadImages = {};
-for i,v in pairs(EzHub) do
-	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
-		table.insert(preloadImages, 1, tostring(v.Image));
-	end
-end
-
-if not _G.EzHubExclusives then
-	_G.EzHubExclusives = {};
-end
-
-game:GetService("ContentProvider"):PreloadAsync(preloadImages);
-
 -----------------------------------------------
 -- Display how long it took to load Ez Hub
+
 local loadTimerEnd = tick() - loadTimerStart;
 loadToStage(1, "Loaded in "..math.floor(loadTimerEnd * 100) / 100);	-- Round to 2 decimal places by multiplying for floor and then undoing it.
 
@@ -2250,7 +2276,6 @@ else
 end
 
 -------------------------------------------------------------------------------------------------
-
 -- Other Section Buttons (HOME)
 
 local otherSectionButtonDebounce = true;
@@ -2307,7 +2332,6 @@ pcall(function()
 end)
 
 -------------------------------------------------------------------------------------------------
-
 -- Local Lib (Adding your own scripts)
 -- This section will contain all functions required for local lib to function
 
@@ -2389,9 +2413,9 @@ end
 updateRemoveScriptFrame();
 
 -----------------------------------------------
-
 -- This event handles the deletion of already existing scripts in the local lib
 -- It handles saving and everything
+
 EzHub.REMOVEFrame.AnimFrame1.Frame.RemoveButton.MouseButton1Click:Connect(function()
 	if selectedToDelete then
 		for i,v in pairs(EzHub.LocalLibFrame.AnimFrame1:GetChildren()) do
@@ -2452,7 +2476,6 @@ EzHub.ADDFrame.AnimFrame1.CreateButton.MouseButton1Click:Connect(function()
 end)
 
 -----------------------------------------------
-
 -- Add Button and Remove Button Events and functionality
 
 EzHub.ADDFrame.AnimFrame1.TestExecButton.MouseButton1Click:Connect(function()
@@ -2693,7 +2716,6 @@ local function handleRequest(request)
 end
 
 -----------------------------------------------
-
 -- Events to accept requests from user and Intellisense/Autocomplete
 
 local autocompleteTextbox = EzHub.IntellisenseLabel;
@@ -2725,9 +2747,9 @@ EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:GetPropertyChangedSignal("Text")
 	local newText = EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text;
 	
 	-- Check if the user is actually attempting to type a command
-	if #newText > 2 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() then
+	if #newText > 1 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() then
 		-- Find commands that match the command the user has typed so far
-		autocompleteTextbox.Text = (string.find(newText, " ") and getSuggestedString() or getSuggestedCommand() or "");
+		autocompleteTextbox.Text = getSuggestedString() or getSuggestedCommand();
 	else
 		autocompleteTextbox.Text = "";
 	end
@@ -2788,29 +2810,7 @@ addCommand({"quit", "close"}, function()
 	terminalPrint("Closing Ez Hub in 3 seconds...", "r");
 	spawn(function()
 		wait(3);
-		
-		-- Close Ez Hub
-		EzHub.EzHub:Destroy();
-
-		-- unload aimbot and esp if they have been ran
-		if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
-		if _G.unloadESP then _G.unloadESP(); end
-
-		-- Close all exclusives
-		if _G.EzHubExclusives then
-			for i,v in pairs(_G.EzHubExclusives) do
-				if v:IsA("ScreenGui") then
-					v:Destroy();
-				end
-			end
-		end
-
-		_G.EzHubExclusives = nil;
-
-		-- Unload all other variables from global env
-		_G.DISABLEEXELOG = nil;
-		_G.EzHubTheme = nil;
-		_G.EzHubTerminal = nil;
+		closeEzHub();
 	end)
 
 end, "Closes Ez Hub and unloads all of it's dependencies.");
@@ -2870,7 +2870,7 @@ addCommand({"launch", "launchscript"}, function(scriptName)
 
 	local function execute(scriptName)
 		for i,v in pairs(exclusiveV2s) do
-			if i == scriptName then
+			if string.lower(i) == string.lower(scriptName) then
 				terminalPrint("Executing "..i.."...", "y");
 				loadstring(game:HttpGet(tostring(v["link"])))();
 				terminalPrint("Executed "..i..".", "b");
@@ -2893,6 +2893,16 @@ addCommand({"launch", "launchscript"}, function(scriptName)
 
 end, "Launches a script from the library of Ez Hub (Exclusives V2).");
 
+addCommand({"loadfile"}, function()
+	awaitRequest("Enter file path in workspace directory of your exploit:", awaitingRequestInputTypes.any, function(path)
+		if isfile and isfile(path) then
+			loadstring(readfile(path))();	-- executes the plugin file at that path
+		else
+			terminalPrint("Your exploit may be incompatible with the following feature.", "r");
+		end
+	end)
+end)
+
 -----------------------------------------------
 
 terminalPrint("Loaded Ez Hub Terminal successfully...", "b");
@@ -2900,7 +2910,6 @@ terminalPrint("To get a list of all of the commands that are available, execute 
 terminalDivide();
 
 -----------------------------------------------
-
 -- Setup the terminal API
 -- This means that external scripts/services 
 
@@ -2911,14 +2920,13 @@ _G.EzHubTerminal = {
 }
 
 -------------------------------------------------------------------------------------------------
-
 -- Toggle GUI
+
 game:GetService("UserInputService").InputBegan:Connect(function(input)
 	if input.KeyCode == Enum.KeyCode.RightControl then EzHub.EzHub.Enabled = not EzHub.EzHub.Enabled; end
 end)
 
 -------------------------------------------------------------------------------------------------
-
 -- Draggability
 -- This is the only function that is not made by me
 -- No idea who made this as I had this code ages ago.
