@@ -1817,80 +1817,6 @@ EzHub.NavFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y;
 EzHub.SavedContainers.TerminalTextContainer.AutomaticSize = Enum.AutomaticSize.Y;
 
 -------------------------------------------------------------------------------------------------
--- Apply Themes
-
-local defaultTheme = {
-	ThemeIndex = 	1,
-	Primary = 		{41, 53, 68},
-	Secondary = 	{35, 47, 62},
-	Tertiary = 		{28, 41, 56},
-	Quaternary = 	{18, 98, 159}
-}
-
-local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
-
-local function handleThemeColoring(instance, property)
-
-	local themeColorType;
-	for i,v in pairs(defaultTheme) do
-		if type(v) == "table" and instance[property] == Color3.fromRGB(v[1], v[2], v[3]) then
-			themeColorType = i;
-		end
-	end
-	
-	if themeColorType then
-		instance[property] =  Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
-	end
-
-end
-
-if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
-
-	-- apply theme as default theme is not selected
-	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
-		if v:IsA("GuiObject") then
-			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
-				handleThemeColoring(v, "ImageColor3") end
-			if pcall(function() local _ = v.TextColor3 end) then
-				handleThemeColoring(v, "TextColor3") end
-				
-			handleThemeColoring(v, "BackgroundColor3");
-
-		end
-	end
-
-end
-
--------------------------------------------------------------------------------------------------
--- Loading And Preloading
-
-local function loadToStage(scaleUdim, status)
-	EzHub.LoadingBar:TweenSize(UDim2.new(scaleUdim, 0,0,9), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true);
-	EzHub.LoadingInfo.Text = status;
-end
-
------------------------------------------------
-
-local loadTimerStart = tick();
-loadToStage(0, "Setting up Ez Hub...");
-
--- Module links contains all external dependencies of ez hub in one json module
--- Load all modules inside moduleLinks and store them in a G Table
-
-local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/InitModules.lua"))()
-	.init(function(moduleIndex, moduleNumber, moduleName)
-
-	loadToStage(math.clamp(((1 / moduleNumber) * moduleIndex), 0.1, 0.9),
-	"Loading module "..moduleName.." - "..moduleIndex.." / "..moduleNumber);
-
-end);
-
------------------------------------------------
--- Finalize loading
-
-loadToStage(0.95, "Finalising and Cleaning Up...");
-
------------------------------------------------
 -- Tab positioning, container and handling
 
 local tabs = {EzHub.LoadingFrame, EzHub.HomeFrame, EzHub.ExclusivesFrame, EzHub.RepostedFrame, EzHub.CreditsFrame, EzHub.LocalLibFrame, EzHub.ExclusivesV2Frame, EzHub.ADDFrame, EzHub.REMOVEFrame, EzHub.TerminalFrame};
@@ -2099,7 +2025,7 @@ bindTabButton(EzHub.LocalLibBtn, EzHub.LocalLibFrame);
 bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
 bindTabButton(EzHub.TerminalBtn, EzHub.TerminalFrame);
 
------------------------------------------------
+-------------------------------------------------------------------------------------------------
 -- Search Bar Code
 
 local function functionaliseSearchBar(instance, section)
@@ -2130,7 +2056,79 @@ functionaliseSearchBar(EzHub.RepostedFrame.SearchFrame.SearchBar, EzHub.Reposted
 functionaliseSearchBar(EzHub.ExclusivesV2Frame.SearchFrame.SearchBar, EzHub.ExclusivesV2Frame.AnimFrame1);
 functionaliseSearchBar(EzHub.LocalLibFrame.SearchFrame.SearchBar, EzHub.LocalLibFrame.AnimFrame1);
 
+-------------------------------------------------------------------------------------------------
+-- Apply Themes
+
+local defaultTheme = {
+	ThemeIndex = 	1,
+	Primary = 		{41, 53, 68},
+	Secondary = 	{35, 47, 62},
+	Tertiary = 		{28, 41, 56},
+	Quaternary = 	{18, 98, 159}
+}
+
+local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
+
+local function handleThemeColoring(instance, property)
+
+	local themeColorType;
+	for i,v in pairs(defaultTheme) do
+		if type(v) == "table" and instance[property] == Color3.fromRGB(v[1], v[2], v[3]) then
+			themeColorType = i;
+		end
+	end
+	
+	if themeColorType then
+		instance[property] =  Color3.fromRGB(chosenTheme[themeColorType][1], chosenTheme[themeColorType][2], chosenTheme[themeColorType][3]);
+	end
+
+end
+
+if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
+
+	-- apply theme as default theme is not selected
+	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
+		if v:IsA("GuiObject") then
+			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
+				handleThemeColoring(v, "ImageColor3") end
+			if pcall(function() local _ = v.TextColor3 end) then
+				handleThemeColoring(v, "TextColor3") end
+				
+			handleThemeColoring(v, "BackgroundColor3");
+
+		end
+	end
+
+end
+
+-------------------------------------------------------------------------------------------------
+-- Loading And Preloading
+
+local function loadToStage(scaleUdim, status)
+	EzHub.LoadingBar:TweenSize(UDim2.new(scaleUdim, 0,0,9), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true);
+	EzHub.LoadingInfo.Text = status;
+end
+
 -----------------------------------------------
+
+local loadTimerStart = tick();
+loadToStage(0, "Setting up Ez Hub...");
+
+-- Module links contains all external dependencies of ez hub in one json module
+-- Load all modules inside moduleLinks and store them in a G Table
+
+local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/InitModules.lua"))()
+	.init(function(moduleIndex, moduleNumber, moduleName)
+
+	loadToStage(math.clamp(((1 / moduleNumber) * moduleIndex), 0.1, 0.9),
+	"Loading module "..moduleName.." - "..moduleIndex.." / "..moduleNumber);
+
+end);
+
+-----------------------------------------------
+-- Finalize loading
+
+loadToStage(0.95, "Finalising and Cleaning Up...");
 
 -- load player thumbnail
 EzHub.ProfileFrame.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game:GetService("Players").LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
@@ -2177,7 +2175,7 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
 			"Yes", "No",
 			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
-			function() return end);
+			function() end);
 
 			notif.show();
 			notif.buttonClicked.Event:Wait();
@@ -2643,13 +2641,17 @@ local function handleRequest(request)
 		elseif awaitingRequestInputType == awaitingRequestInputTypes.boolOnly then
 			if request == "true" 
 				or request == "on" 
-				or request == "1" then
+				or request == "1"
+				or request == "yes"
+				or  request == "y" then
 
 				call(true);
 
 			elseif request == "false"
 				or request == "off" 
-				or request == "0" then
+				or request == "0"
+				or request == "no"
+				or request == "n" then
 
 				call(false);
 
@@ -2751,7 +2753,7 @@ EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:GetPropertyChangedSignal("Text")
 	-- Check if the user is actually attempting to type a command
 	if #newText > 1 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() then
 		-- Find commands that match the command the user has typed so far
-		autocompleteTextbox.Text = getSuggestedString() or getSuggestedCommand();
+		autocompleteTextbox.Text = getSuggestedString() or getSuggestedCommand() or "";
 	else
 		autocompleteTextbox.Text = "";
 	end
@@ -2903,7 +2905,7 @@ addCommand({"loadfile"}, function()
 			terminalPrint("Your exploit may be incompatible with the following feature.", "r");
 		end
 	end)
-end)
+end, "Loads a file from the workspace of your exploit.");
 
 -----------------------------------------------
 -- Load ESP command
