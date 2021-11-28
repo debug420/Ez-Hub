@@ -2695,7 +2695,7 @@ local function handleRequest(request)
 				for _, alias in pairs(commandData[1]) do
 					if alias == command then
 						table.remove(structuredRequest, 1);
-						commandData[2](table.unpack(structuredRequest));
+						commandData[3](table.unpack(structuredRequest));
 						return;
 					end
 				end
@@ -2790,26 +2790,27 @@ end)
 
 -----------------------------------------------
 
-addCommand({"test"}, function()
+-- Commands allow aliases so that the user can call the same function with different names. This helps the user remember the commands easier.
+-- When executing cmdlist, only the first alias is shown. This means that the primary alias is index 1 in the table
+addCommand({"test"}, "Test command to ensure that the terminal is accepting user requests.", function()
 	terminalPrint("Ez Hub Terminal is currently functional...", "y");
-end, "Test command to ensure that the terminal is accepting user requests.");
+end);
 
 -------------------------
 
 -- prints the commands to the command list
-addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, function()
+addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, "Prints all of the command lists into the Ez Hub terminal.", function()
 
 	terminalPrint("Ez Hub Terminal command list:", "b");
-
 	for _, commandData in pairs(commands) do
-		terminalPrint("<font color=\"rgb(0, 100, 255)\">"..commandData[1][1].."</font>: "..commandData[3]);
+		terminalPrint("<font color=\"rgb(0, 100, 255)\">"..commandData[1][1].."</font>: "..commandData[2]);
 	end
 
-end, "Prints all of the command lists into the Ez Hub terminal.");
+end);
 
 -------------------------
 
-addCommand({"quit", "close"}, function()
+addCommand({"quit", "close"}, "Closes Ez Hub and unloads all of it's dependencies.", function()
 
 	terminalPrint("Closing Ez Hub in 3 seconds...", "r");
 	spawn(function()
@@ -2817,9 +2818,9 @@ addCommand({"quit", "close"}, function()
 		closeEzHub();
 	end)
 
-end, "Closes Ez Hub and unloads all of it's dependencies.");
+end);
 
-addCommand({"hide", "hidegui"}, function()
+addCommand({"hide", "hidegui"}, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.", function()
 
 	terminalPrint("Hiding main panel in 3 seconds...", "y");
 	terminalPrint("To re-open it, press the associated keybind: right-control", "y");
@@ -2829,12 +2830,12 @@ addCommand({"hide", "hidegui"}, function()
 		terminalPrint("Ez Hub main panel is now hiding.", "b");
 	end)
 	
-end, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.");
+end);
 
 -------------------------
 -- Commands for enabling/disabling rconsole mode
 
-addCommand({"consolemode", "rconsolemode"}, function()
+addCommand({"consolemode", "Outputs and accepts input only from the rconsole.", "rconsolemode"}, function()
 	if not isRConsoleMode then
 		if rconsoleprint and rconsoleclear then
 			terminalPrint("Enabling rconsole mode...", "y");
@@ -2846,9 +2847,9 @@ addCommand({"consolemode", "rconsolemode"}, function()
 	else
 		terminalPrint("You are already in rconsole mode. To return back to gui mode type guimode.", "r");
 	end
-end, "Outputs and accepts input only from the rconsole.");
+end);
 
-addCommand({"guimode"}, function()
+addCommand({"guimode"}, "Outputs and accepts input only from the main Ez Hub Terminal GUI.", function()
 	if isRConsoleMode then
 		terminalPrint("Enabling gui mode...", "y");
 		rconsoleclear();
@@ -2857,11 +2858,11 @@ addCommand({"guimode"}, function()
 	else
 		terminalPrint("You are already in gui mode. To enter console mode, type consolemode", "r");
 	end
-end, "Outputs and accepts input only from the main Ez Hub Terminal GUI.");
+end);
 
 -------------------------
 
-addCommand({"launch", "launchscript"}, function(scriptName)
+addCommand({"launch", "launchscript"}, "Launches a script from the library of Ez Hub (Exclusives V2).", function(scriptNameArg)
 	
 	local exclusiveV2s = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"]);
 	customIntellisenseList = (function()
@@ -2885,39 +2886,61 @@ addCommand({"launch", "launchscript"}, function(scriptName)
 		terminalPrint("Invalid script. "..scriptName.." is not part of the exclusive V2s.", "r");
 	end
 
-	if not scriptName then
+	if scriptNameArg then
+		execute(scriptNameArg);
+		customIntellisenseList = {};
+	else
 		awaitRequest("Enter script name:", awaitingRequestInputTypes.any, function(scriptName)
 			execute(scriptName);
 			customIntellisenseList = {};	-- resets the custom intellisense
 		end)
-	else
-		execute(scriptName);
-		customIntellisenseList = {};	-- resets the custom intellisense
 	end
 
-end, "Launches a script from the library of Ez Hub (Exclusives V2).");
+end);
 
-addCommand({"loadfile"}, function()
-	awaitRequest("Enter file path in workspace directory of your exploit:", awaitingRequestInputTypes.any, function(path)
+addCommand({"loadfile"}, "Loads a file from the workspace of your exploit. This can be used to load local plugins.", function(argPath)
+	local function load(path)
 		if isfile and isfile(path) then
 			loadstring(readfile(path))();	-- executes the plugin file at that path
 		else
 			terminalPrint("Your exploit may be incompatible with the following feature.", "r");
 		end
-	end)
-end, "Loads a file from the workspace of your exploit.");
+	end
+	
+	if argPath then
+		load(argPath);
+	else
+		awaitRequest("Enter file path in workspace directory of your exploit:", awaitingRequestInputTypes.any, load);
+	end
+end);
 
------------------------------------------------
--- Load ESP command
--- TODO
+local pluginLinks = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["pluginLinks"]);
+addCommand({"listplugins", "listplugin"}, "Prints a list of verified plugins from the EzHub repository.", function()
+	terminalPrint("List of available plugins:", "b");
+	for i,v in pairs(pluginLinks) do
+		terminalPrint(i);
+	end
+end)
 
+addCommand({"loadplugin"}, "Loads a verified plugin from the EzHub repository. To view the list, execute listplugins.", function(pluginNameArg)
+	
+	local function loadPlugin(pluginName)
+		if pluginLinks[pluginName] then
+			terminalPrint("Fetching and loading plugin...", "y");
+			loadstring(game:HttpGet(pluginLinks[pluginName]))();
+			terminalPrint("Loaded plugin successfully...", "b");	
+		else
+			terminalPrint("The following plugin does not exist...", "r");
+		end
+	end
+	
+	if pluginNameArg then
+		loadPlugin(pluginName);
+	else
+		awaitRequest("Enter plugin name:", awaitingRequestInputTypes.any, loadPlugin);
+	end
 
-
------------------------------------------------
--- Load Aimbot command
--- TODO
-
-
+end)
 
 -----------------------------------------------
 
