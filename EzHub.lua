@@ -2600,8 +2600,8 @@ local tips = {
 	"Ez Hub and the terminal is fully open source! Go to the Github repo to view the source."
 };
 
-local function addCommand(aliases, func, desc)
-	table.insert(commands, {aliases, func, desc});
+local function addCommand(aliases, desc, func)
+	table.insert(commands, {aliases, desc, func});
 end
 
 local awaitingRequestFunction = Instance.new("BindableFunction");
@@ -2946,6 +2946,24 @@ addCommand({"loadplugin"}, "Loads a verified plugin from the EzHub repository. T
 	else
 		awaitRequest("Enter plugin name:", awaitingRequestInputTypes.any, loadPlugin);
 	end
+
+end)
+
+-------------------------
+
+addCommand({"execute", "exec"}, "Runs lua code directly from the terminal.", function()
+
+	awaitRequest("Type out the code you would like to execute:", awaitingRequestInputTypes.any, function(code)
+		local status, err = pcall(function()
+			loadstring(code)();
+		end);
+
+		if status then
+			terminalPrint("Ran code successfully.", "b");
+		else
+			terminalPrint("An error occured when running your code: "..err, "r");
+		end
+	end)
 
 end)
 
