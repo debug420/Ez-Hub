@@ -2803,7 +2803,7 @@ addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, "Prints all of the co
 
 	terminalPrint("Ez Hub Terminal command list:", "b");
 	for _, commandData in pairs(commands) do
-		terminalPrint("<font color=\"rgb(0, 100, 255)\">"..commandData[1][1].."</font>: "..commandData[2]);
+		terminalPrint("<font color=\"rgb(0, 100, 255)\">"..commandData[1][1].."</font>: "..(commandData[2] or "No description is available on the following command."));
 	end
 
 end);
@@ -2835,7 +2835,7 @@ end);
 -------------------------
 -- Commands for enabling/disabling rconsole mode
 
-addCommand({"consolemode", "Outputs and accepts input only from the rconsole.", "rconsolemode"}, function()
+addCommand({"consolemode", "rconsolemode"}, "Outputs and accepts input only from the rconsole.", function()
 	if not isRConsoleMode then
 		if rconsoleprint and rconsoleclear then
 			terminalPrint("Enabling rconsole mode...", "y");
@@ -2900,8 +2900,13 @@ end);
 
 addCommand({"loadfile"}, "Loads a file from the workspace of your exploit. This can be used to load local plugins.", function(argPath)
 	local function load(path)
-		if isfile and isfile(path) then
-			loadstring(readfile(path))();	-- executes the plugin file at that path
+		if isfile then
+			if isfile(path) then
+				terminalPrint("Loading file...", "y");
+				loadstring(readfile(path))();	-- executes the plugin file at that path
+			else
+				terminalPrint("Invalid path has been provided. Ensure that the file exists in the workspace directory of your exploit. Make sure to also include the file type at the end. Example: loadfile espterminal.lua", "r");
+			end
 		else
 			terminalPrint("Your exploit may be incompatible with the following feature.", "r");
 		end
@@ -2926,9 +2931,11 @@ addCommand({"loadplugin"}, "Loads a verified plugin from the EzHub repository. T
 	
 	local function loadPlugin(pluginName)
 		if pluginLinks[pluginName] then
+			terminalDivide();
 			terminalPrint("Fetching and loading plugin...", "y");
 			loadstring(game:HttpGet(pluginLinks[pluginName]))();
-			terminalPrint("Loaded plugin successfully...", "b");	
+			terminalPrint("Loaded plugin successfully...", "b");
+			terminalDivide();
 		else
 			terminalPrint("The following plugin does not exist...", "r");
 		end
@@ -2954,8 +2961,10 @@ terminalDivide();
 
 _G.EzHubTerminal = {
 	print = terminalPrint,
+	divide = terminalDivide,
 	addCommand = addCommand,
-	awaitRequest = awaitRequest	
+	awaitRequest = awaitRequest,
+	awaitingRequestInputTypes = awaitingRequestInputTypes
 }
 
 -------------------------------------------------------------------------------------------------
