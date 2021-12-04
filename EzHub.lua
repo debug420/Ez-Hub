@@ -1962,7 +1962,10 @@ local function rotateInstanceBy(instance, rotationAngle, isCounterClockwise)
 	end
 end
 
-local navDebounce = true;
+-- Debounce will start off as false so that the user cannot open the nav menu when hub is still loading
+-- This is to avoid bugs
+
+local navDebounce = false;
 local function handleNavBtn()
 	if navDebounce then
 		navDebounce = false;
@@ -2252,6 +2255,9 @@ loadToStage(1, "Loaded in "..math.floor(loadTimerEnd * 100) / 100);	-- Round to 
 
 wait(1.5);
 openTab(EzHub.HomeFrame);
+
+-- Allow the user to open the navigation frame again after the hub has laoded
+navDebounce = true;
 
 -------------------------------------------------------------------------------------------------
 
