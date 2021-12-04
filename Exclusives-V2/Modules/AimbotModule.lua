@@ -1,5 +1,6 @@
 -- Disconnect old aimbot connection
-if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
+if _G.unloadAimbot then _G.unloadAimbot() end
+
 local isPhantom = (game.PlaceId == 292439477 and _G.getBodyparts and
 _G.getPlayerInstanceFromCharacter and _G.getCharacterFromPlayerInstance);
 
@@ -133,7 +134,8 @@ coroutine.wrap(function()
 	end
 end)();
 
-_G.ezhubaimbot = updateAimbot.Event:Connect(function()
+_G.ezhubAimbot = updateAimbot.Event:Connect(function()
+
 	_G.Circle.Position = getMousePos() + Vector2.new(0, 36);
 	_G.Circle.Color = Color3.fromRGB(aimbotSettings.fovcolor[1], aimbotSettings.fovcolor[2], aimbotSettings.fovcolor[3]);
 	if aimbotSettings.enabled and aimbotSettings.showfov then
@@ -159,6 +161,11 @@ _G.ezhubaimbot = updateAimbot.Event:Connect(function()
 	end
 
 end)
+
+_G.unloadAimbot = function()
+	if _G.ezhubAimbot then _G.ezhubAimbot:Disconnect() end
+	if _G.Circle then _G.Circle:Remove() end
+end
 
 _G.change = function(p, v)
 	aimbotSettings[p] = v;

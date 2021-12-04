@@ -2226,7 +2226,7 @@ local function closeEzHub()
 	EzHub.EzHub:Destroy();
 
 	-- unload aimbot and esp if they have been ran
-	if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
+	if _G.unloadAimbot then _G.unloadAimbot() end
 	if _G.unloadESP then _G.unloadESP(); end
 
 	-- Close all exclusives

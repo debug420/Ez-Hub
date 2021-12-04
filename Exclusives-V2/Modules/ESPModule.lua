@@ -1,3 +1,6 @@
+-- unload old esp (if it exists)
+if _G.unloadESP then _G.unloadESP(); end
+
 local espConfig = {
     -- Toggle
     enabled = false,
@@ -346,8 +349,6 @@ end
 _G.change = function(p, v)
     espConfig[p] = v;
 end
-
-if _G.unloadESP then _G.unloadESP(); end
 
 _G.unloadESP = function()
     drawESP = function() return; end
