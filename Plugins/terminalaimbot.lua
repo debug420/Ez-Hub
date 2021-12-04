@@ -14,7 +14,7 @@ addCommand({"loadaimbot"}, "Loads the Aimbot. Can also be used to reload the Aim
 end)
 
 addCommand({"unloadaimbot"}, "Unloads the Aimbot.", function()
-    if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
+    if _G.unloadAimbot then _G.unloadAimbot() end
     terminalPrint("Unloaded Aimbot module...", "r");
 end);
 
