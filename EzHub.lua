@@ -36,7 +36,7 @@ local EzHub = {
 	UICorner_12 = Instance.new("UICorner"),
 	Frame_7 = Instance.new("Frame"),
 	UICorner_13 = Instance.new("UICorner"),
-	TerminalBtn = Instance.new("TextButton"),
+	--TerminalBtn = Instance.new("TextButton"),
 	UICorner_14 = Instance.new("UICorner"),
 	Frame_8 = Instance.new("Frame"),
 	UICorner_15 = Instance.new("UICorner"),
@@ -427,17 +427,17 @@ do
 
 	EzHub.UICorner_13.Parent = EzHub.Frame_7
 
-	EzHub.TerminalBtn.Name = "TerminalBtn"
-	EzHub.TerminalBtn.Parent = EzHub.NavFrame
-	EzHub.TerminalBtn.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
-	EzHub.TerminalBtn.BorderSizePixel = 0
-	EzHub.TerminalBtn.LayoutOrder = 6
-	EzHub.TerminalBtn.Size = UDim2.new(0, 200, 0, 50)
-	EzHub.TerminalBtn.ZIndex = 3
-	EzHub.TerminalBtn.Font = Enum.Font.SourceSans
-	EzHub.TerminalBtn.Text = "Terminal"
-	EzHub.TerminalBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.TerminalBtn.TextSize = 14.000
+	-- EzHub.TerminalBtn.Name = "TerminalBtn"
+	-- EzHub.TerminalBtn.Parent = EzHub.NavFrame
+	-- EzHub.TerminalBtn.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
+	-- EzHub.TerminalBtn.BorderSizePixel = 0
+	-- EzHub.TerminalBtn.LayoutOrder = 6
+	-- EzHub.TerminalBtn.Size = UDim2.new(0, 200, 0, 50)
+	-- EzHub.TerminalBtn.ZIndex = 3
+	-- EzHub.TerminalBtn.Font = Enum.Font.SourceSans
+	-- EzHub.TerminalBtn.Text = "Terminal"
+	-- EzHub.TerminalBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	-- EzHub.TerminalBtn.TextSize = 14.000
 
 	EzHub.UICorner_14.CornerRadius = UDim.new(0, 3)
 	EzHub.UICorner_14.Parent = EzHub.TerminalBtn
