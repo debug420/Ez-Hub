@@ -2292,10 +2292,15 @@ EzHub.Docs.MouseButton1Click:Connect(function()
 	if not otherSectionButtonDebounce then return end
 	otherSectionButtonDebounce = false;
 
-	EzHub.Docs.Text = "Copied to clipboard...";
-	ezlib.newNotif(ezlib.enum.notifType.longText, "Copied to clipboard. Paste link in browser to view the docs...").play().delete();
-	wait(2);
-	EzHub.Docs.Text = oldTextDocs;
+	if setclipboard then
+		EzHub.Docs.Text = "Copied Docs...";
+		setclipboard("https://app.archbee.io/public/PTplYowLy93mKanJeS7F9/qxmDPajUw89sP9HbZuWnt");
+		ezlib.newNotif(ezlib.enum.notifType.longText, "Copied to clipboard. Paste link in browser to view the docs...").play().delete();
+		wait(1);
+		EzHub.Docs.Text = oldTextDocs;
+	else
+		ezlib.newNotif(ezlib.enum.notifType.longText, "Incompatible exploit. Please ensure that your exploit supports the function setclipboard.").play().delete();
+	end
 
 	otherSectionButtonDebounce = true;
 end)
