@@ -440,7 +440,7 @@ do
 	EzHub.TerminalBtn.TextSize = 14.000
 
 	-- Core implementation merged into master branch. Not yet ready for release therefore the terminal button will remain invisible
-	EzHub.TerminalBtn.Visible = false
+	EzHub.TerminalBtn.Visible = true
 
 	EzHub.UICorner_14.CornerRadius = UDim.new(0, 3)
 	EzHub.UICorner_14.Parent = EzHub.TerminalBtn
@@ -2945,7 +2945,7 @@ addCommand({"loadplugin"}, "Loads a verified plugin from the EzHub repository. T
 	end
 	
 	if pluginNameArg then
-		loadPlugin(pluginName);
+		loadPlugin(pluginNameArg);
 	else
 		awaitRequest("Enter plugin name:", awaitingRequestInputTypes.any, loadPlugin);
 	end
