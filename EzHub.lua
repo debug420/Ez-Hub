@@ -36,6 +36,10 @@ local EzHub = {
 	UICorner_12 = Instance.new("UICorner"),
 	Frame_7 = Instance.new("Frame"),
 	UICorner_13 = Instance.new("UICorner"),
+	--TerminalBtn = Instance.new("TextButton"),
+	UICorner_14 = Instance.new("UICorner"),
+	Frame_8 = Instance.new("Frame"),
+	UICorner_15 = Instance.new("UICorner"),
 	ExclusivesFrame = Instance.new("Frame"),
 	AnimFrame1 = Instance.new("ScrollingFrame"),
 	UIGridLayout_2 = Instance.new("UIGridLayout"),
@@ -43,7 +47,7 @@ local EzHub = {
 	SearchFrame = Instance.new("Frame"),
 	ImageButton = Instance.new("ImageButton"),
 	SearchBar = Instance.new("TextBox"),
-	UICorner_14 = Instance.new("UICorner"),
+	UICorner_16 = Instance.new("UICorner"),
 	LoadingFrame = Instance.new("Frame"),
 	TextLabel_2 = Instance.new("TextLabel"),
 	TextLabel_3 = Instance.new("TextLabel"),
@@ -66,7 +70,7 @@ local EzHub = {
 	SearchFrame_2 = Instance.new("Frame"),
 	ImageButton_2 = Instance.new("ImageButton"),
 	SearchBar_2 = Instance.new("TextBox"),
-	UICorner_15 = Instance.new("UICorner"),
+	UICorner_17 = Instance.new("UICorner"),
 	HomeFrame = Instance.new("Frame"),
 	AnimFrame1_4 = Instance.new("Frame"),
 	ProfileFrame = Instance.new("ImageLabel"),
@@ -76,43 +80,43 @@ local EzHub = {
 	NewsFrame = Instance.new("ImageLabel"),
 	NewsText = Instance.new("TextLabel"),
 	SectionEs = Instance.new("Folder"),
-	Frame_8 = Instance.new("Frame"),
-	UICorner_16 = Instance.new("UICorner"),
 	Frame_9 = Instance.new("Frame"),
+	UICorner_18 = Instance.new("UICorner"),
+	Frame_10 = Instance.new("Frame"),
 	TextLabel_9 = Instance.new("TextLabel"),
 	OtherFrame = Instance.new("ImageLabel"),
 	Donate = Instance.new("TextButton"),
-	UICorner_17 = Instance.new("UICorner"),
-	Discord = Instance.new("TextButton"),
-	UICorner_18 = Instance.new("UICorner"),
-	SectionEs_2 = Instance.new("Folder"),
-	Frame_10 = Instance.new("Frame"),
 	UICorner_19 = Instance.new("UICorner"),
+	Discord = Instance.new("TextButton"),
+	UICorner_20 = Instance.new("UICorner"),
+	SectionEs_2 = Instance.new("Folder"),
 	Frame_11 = Instance.new("Frame"),
+	UICorner_21 = Instance.new("UICorner"),
+	Frame_12 = Instance.new("Frame"),
 	TextLabel_10 = Instance.new("TextLabel"),
 	LocalLibFrame = Instance.new("Frame"),
 	AnimFrame1_5 = Instance.new("ScrollingFrame"),
 	UIGridLayout_4 = Instance.new("UIGridLayout"),
 	UIPadding_4 = Instance.new("UIPadding"),
 	ADD = Instance.new("Frame"),
-	Frame_12 = Instance.new("ImageLabel"),
+	Frame_13 = Instance.new("ImageLabel"),
 	GameName = Instance.new("TextLabel"),
 	ImageLabel_5 = Instance.new("ImageLabel"),
 	Trigger = Instance.new("TextButton"),
 	REMOVE = Instance.new("Frame"),
-	Frame_13 = Instance.new("ImageLabel"),
+	Frame_14 = Instance.new("ImageLabel"),
 	GameName_2 = Instance.new("TextLabel"),
 	ImageLabel_6 = Instance.new("ImageLabel"),
 	Trigger_2 = Instance.new("TextButton"),
 	SearchFrame_3 = Instance.new("Frame"),
 	ImageButton_3 = Instance.new("ImageButton"),
 	SearchBar_3 = Instance.new("TextBox"),
-	UICorner_20 = Instance.new("UICorner"),
+	UICorner_22 = Instance.new("UICorner"),
 	ExclusivesV2Frame = Instance.new("Frame"),
 	SearchFrame_4 = Instance.new("Frame"),
 	ImageButton_4 = Instance.new("ImageButton"),
 	SearchBar_4 = Instance.new("TextBox"),
-	UICorner_21 = Instance.new("UICorner"),
+	UICorner_23 = Instance.new("UICorner"),
 	AnimFrame1_6 = Instance.new("ScrollingFrame"),
 	UIGridLayout_5 = Instance.new("UIGridLayout"),
 	UIPadding_5 = Instance.new("UIPadding"),
@@ -120,20 +124,20 @@ local EzHub = {
 	AnimFrame1_7 = Instance.new("Frame"),
 	Namer = Instance.new("Frame"),
 	ScriptNamer = Instance.new("TextBox"),
-	Frame_14 = Instance.new("Frame"),
-	UICorner_22 = Instance.new("UICorner"),
-	BackButton = Instance.new("TextButton"),
-	UICorner_23 = Instance.new("UICorner"),
 	Frame_15 = Instance.new("Frame"),
 	UICorner_24 = Instance.new("UICorner"),
-	CreateButton = Instance.new("TextButton"),
+	BackButton = Instance.new("TextButton"),
 	UICorner_25 = Instance.new("UICorner"),
 	Frame_16 = Instance.new("Frame"),
 	UICorner_26 = Instance.new("UICorner"),
-	TestExecButton = Instance.new("TextButton"),
+	CreateButton = Instance.new("TextButton"),
 	UICorner_27 = Instance.new("UICorner"),
 	Frame_17 = Instance.new("Frame"),
 	UICorner_28 = Instance.new("UICorner"),
+	TestExecButton = Instance.new("TextButton"),
+	UICorner_29 = Instance.new("UICorner"),
+	Frame_18 = Instance.new("Frame"),
+	UICorner_30 = Instance.new("UICorner"),
 	Editor = Instance.new("ScrollingFrame"),
 	EditorFrame = Instance.new("ScrollingFrame"),
 	Source = Instance.new("TextBox"),
@@ -145,41 +149,54 @@ local EzHub = {
 	Tokens_ = Instance.new("TextLabel"),
 	Numbers_ = Instance.new("TextLabel"),
 	Lines = Instance.new("TextLabel"),
-	Frame_18 = Instance.new("Frame"),
-	UICorner_29 = Instance.new("UICorner"),
+	Frame_19 = Instance.new("Frame"),
+	UICorner_31 = Instance.new("UICorner"),
 	REMOVEFrame = Instance.new("Frame"),
 	AnimFrame1_8 = Instance.new("Frame"),
-	Frame_19 = Instance.new("Frame"),
-	RemoveButton = Instance.new("TextButton"),
-	UICorner_30 = Instance.new("UICorner"),
 	Frame_20 = Instance.new("Frame"),
-	UICorner_31 = Instance.new("UICorner"),
-	BackButton_2 = Instance.new("TextButton"),
+	RemoveButton = Instance.new("TextButton"),
 	UICorner_32 = Instance.new("UICorner"),
 	Frame_21 = Instance.new("Frame"),
 	UICorner_33 = Instance.new("UICorner"),
+	BackButton_2 = Instance.new("TextButton"),
+	UICorner_34 = Instance.new("UICorner"),
+	Frame_22 = Instance.new("Frame"),
+	UICorner_35 = Instance.new("UICorner"),
 	ScrollingFrame = Instance.new("ScrollingFrame"),
 	UIGridLayout_6 = Instance.new("UIGridLayout"),
 	UIPadding_6 = Instance.new("UIPadding"),
-	UICorner_34 = Instance.new("UICorner"),
+	UICorner_36 = Instance.new("UICorner"),
+	TerminalFrame = Instance.new("Frame"),
+	AnimFrame1_9 = Instance.new("ScrollingFrame"),
+	UIPadding_7 = Instance.new("UIPadding"),
+	UIListLayout = Instance.new("UIListLayout"),
+	ExecuteFrame = Instance.new("Frame"),
+	ExecuteButton = Instance.new("ImageButton"),
+	ExecuteTextBox = Instance.new("TextBox"),
+	IntellisenseLabel = Instance.new("TextLabel"),
+	UICorner_37 = Instance.new("UICorner"),
 	SavedContainers = Instance.new("Folder"),
 	GameContainer = Instance.new("Frame"),
-	Frame_22 = Instance.new("Frame"),
+	Frame_23 = Instance.new("Frame"),
 	Trigger_3 = Instance.new("TextButton"),
 	ImageLabel_7 = Instance.new("ImageLabel"),
 	ExecutedLabel = Instance.new("TextLabel"),
 	GameName_3 = Instance.new("TextLabel"),
-	UICorner_35 = Instance.new("UICorner"),
+	UICorner_38 = Instance.new("UICorner"),
 	MessageContainer = Instance.new("TextLabel"),
 	RemoveContainer = Instance.new("TextButton"),
 	GoldGameContainer = Instance.new("Frame"),
-	Frame_23 = Instance.new("Frame"),
+	Frame_24 = Instance.new("Frame"),
 	UIGradient = Instance.new("UIGradient"),
 	Trigger_4 = Instance.new("TextButton"),
 	ImageLabel_8 = Instance.new("ImageLabel"),
 	ExecutedLabel_2 = Instance.new("TextLabel"),
 	GameName_4 = Instance.new("TextLabel"),
-	UICorner_36 = Instance.new("UICorner"),
+	UICorner_39 = Instance.new("UICorner"),
+	TerminalTextContainer = Instance.new("TextLabel"),
+	TerminalDividerContainer = Instance.new("Frame"),
+	Divider = Instance.new("Frame"),
+	UICorner_40 = Instance.new("UICorner"),
 }
 
 -----------------------------------------------
@@ -196,7 +213,7 @@ elseif get_hidden_gui then EzHub.EzHub.Parent = get_hidden_gui(); end
 do
 
 	EzHub.EzHub.Name = "EzHub"
-	EzHub.EzHub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	EzHub.EzHub.Parent = game.CoreGui
 
 	EzHub.MainFrame.Name = "MainFrame"
 	EzHub.MainFrame.Parent = EzHub.EzHub
@@ -392,7 +409,7 @@ do
 	EzHub.CreditsBtn.Parent = EzHub.NavFrame
 	EzHub.CreditsBtn.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
 	EzHub.CreditsBtn.BorderSizePixel = 0
-	EzHub.CreditsBtn.LayoutOrder = 6
+	EzHub.CreditsBtn.LayoutOrder = 7
 	EzHub.CreditsBtn.Size = UDim2.new(0, 200, 0, 50)
 	EzHub.CreditsBtn.ZIndex = 3
 	EzHub.CreditsBtn.Font = Enum.Font.SourceSans
@@ -409,6 +426,28 @@ do
 	EzHub.Frame_7.ZIndex = 4
 
 	EzHub.UICorner_13.Parent = EzHub.Frame_7
+
+	-- EzHub.TerminalBtn.Name = "TerminalBtn"
+	-- EzHub.TerminalBtn.Parent = EzHub.NavFrame
+	-- EzHub.TerminalBtn.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
+	-- EzHub.TerminalBtn.BorderSizePixel = 0
+	-- EzHub.TerminalBtn.LayoutOrder = 6
+	-- EzHub.TerminalBtn.Size = UDim2.new(0, 200, 0, 50)
+	-- EzHub.TerminalBtn.ZIndex = 3
+	-- EzHub.TerminalBtn.Font = Enum.Font.SourceSans
+	-- EzHub.TerminalBtn.Text = "Terminal"
+	-- EzHub.TerminalBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	-- EzHub.TerminalBtn.TextSize = 14.000
+
+	EzHub.UICorner_14.CornerRadius = UDim.new(0, 3)
+	EzHub.UICorner_14.Parent = EzHub.TerminalBtn
+
+	EzHub.Frame_8.Parent = EzHub.TerminalBtn
+	EzHub.Frame_8.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_8.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_8.ZIndex = 4
+
+	EzHub.UICorner_15.Parent = EzHub.Frame_8
 
 	EzHub.ExclusivesFrame.Name = "ExclusivesFrame"
 	EzHub.ExclusivesFrame.Parent = EzHub.MainFrame
@@ -427,6 +466,7 @@ do
 	EzHub.AnimFrame1.BorderSizePixel = 0
 	EzHub.AnimFrame1.Position = UDim2.new(0, 0, 1, 0)
 	EzHub.AnimFrame1.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_2.Parent = EzHub.AnimFrame1
 	EzHub.UIGridLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
@@ -471,8 +511,8 @@ do
 	EzHub.SearchBar.TextWrapped = true
 	EzHub.SearchBar.TextXAlignment = Enum.TextXAlignment.Left
 
-	EzHub.UICorner_14.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_14.Parent = EzHub.SearchFrame
+	EzHub.UICorner_16.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_16.Parent = EzHub.SearchFrame
 
 	EzHub.LoadingFrame.Name = "LoadingFrame"
 	EzHub.LoadingFrame.Parent = EzHub.MainFrame
@@ -644,6 +684,7 @@ do
 	EzHub.AnimFrame1_3.BorderSizePixel = 0
 	EzHub.AnimFrame1_3.Position = UDim2.new(0, 0, 1, 0)
 	EzHub.AnimFrame1_3.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_3.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_3.Parent = EzHub.AnimFrame1_3
 	EzHub.UIGridLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
@@ -688,8 +729,8 @@ do
 	EzHub.SearchBar_2.TextWrapped = true
 	EzHub.SearchBar_2.TextXAlignment = Enum.TextXAlignment.Left
 
-	EzHub.UICorner_15.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_15.Parent = EzHub.SearchFrame_2
+	EzHub.UICorner_17.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_17.Parent = EzHub.SearchFrame_2
 
 	EzHub.HomeFrame.Name = "HomeFrame"
 	EzHub.HomeFrame.Parent = EzHub.MainFrame
@@ -697,6 +738,7 @@ do
 	EzHub.HomeFrame.BackgroundTransparency = 1.000
 	EzHub.HomeFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
 	EzHub.HomeFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.HomeFrame.Visible = false
 
 	EzHub.AnimFrame1_4.Name = "AnimFrame1"
 	EzHub.AnimFrame1_4.Parent = EzHub.HomeFrame
@@ -775,18 +817,18 @@ do
 	EzHub.SectionEs.Name = "SectionEs"
 	EzHub.SectionEs.Parent = EzHub.NewsFrame
 
-	EzHub.Frame_8.Parent = EzHub.SectionEs
-	EzHub.Frame_8.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_8.Size = UDim2.new(0, 2, 0, 36)
-
-	EzHub.UICorner_16.Parent = EzHub.Frame_8
-
 	EzHub.Frame_9.Parent = EzHub.SectionEs
-	EzHub.Frame_9.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
-	EzHub.Frame_9.BackgroundTransparency = 0.750
-	EzHub.Frame_9.BorderSizePixel = 0
-	EzHub.Frame_9.Position = UDim2.new(0, 0, 0.294290125, 0)
-	EzHub.Frame_9.Size = UDim2.new(1, 0, 0, 1)
+	EzHub.Frame_9.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_9.Size = UDim2.new(0, 2, 0, 36)
+
+	EzHub.UICorner_18.Parent = EzHub.Frame_9
+
+	EzHub.Frame_10.Parent = EzHub.SectionEs
+	EzHub.Frame_10.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
+	EzHub.Frame_10.BackgroundTransparency = 0.750
+	EzHub.Frame_10.BorderSizePixel = 0
+	EzHub.Frame_10.Position = UDim2.new(0, 0, 0.294290125, 0)
+	EzHub.Frame_10.Size = UDim2.new(1, 0, 0, 1)
 
 	EzHub.TextLabel_9.Parent = EzHub.SectionEs
 	EzHub.TextLabel_9.AnchorPoint = Vector2.new(1, 0)
@@ -824,8 +866,8 @@ do
 	EzHub.Donate.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.Donate.TextSize = 14.000
 
-	EzHub.UICorner_17.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_17.Parent = EzHub.Donate
+	EzHub.UICorner_19.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_19.Parent = EzHub.Donate
 
 	EzHub.Discord.Name = "Discord"
 	EzHub.Discord.Parent = EzHub.OtherFrame
@@ -838,24 +880,24 @@ do
 	EzHub.Discord.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.Discord.TextSize = 14.000
 
-	EzHub.UICorner_18.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_18.Parent = EzHub.Discord
+	EzHub.UICorner_20.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_20.Parent = EzHub.Discord
 
 	EzHub.SectionEs_2.Name = "SectionEs"
 	EzHub.SectionEs_2.Parent = EzHub.OtherFrame
 
-	EzHub.Frame_10.Parent = EzHub.SectionEs_2
-	EzHub.Frame_10.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_10.Size = UDim2.new(0, 2, 0, 36)
-
-	EzHub.UICorner_19.Parent = EzHub.Frame_10
-
 	EzHub.Frame_11.Parent = EzHub.SectionEs_2
-	EzHub.Frame_11.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
-	EzHub.Frame_11.BackgroundTransparency = 0.750
-	EzHub.Frame_11.BorderSizePixel = 0
-	EzHub.Frame_11.Position = UDim2.new(0, 0, 0.294290125, 0)
-	EzHub.Frame_11.Size = UDim2.new(1, 0, 0, 1)
+	EzHub.Frame_11.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_11.Size = UDim2.new(0, 2, 0, 36)
+
+	EzHub.UICorner_21.Parent = EzHub.Frame_11
+
+	EzHub.Frame_12.Parent = EzHub.SectionEs_2
+	EzHub.Frame_12.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
+	EzHub.Frame_12.BackgroundTransparency = 0.750
+	EzHub.Frame_12.BorderSizePixel = 0
+	EzHub.Frame_12.Position = UDim2.new(0, 0, 0.294290125, 0)
+	EzHub.Frame_12.Size = UDim2.new(1, 0, 0, 1)
 
 	EzHub.TextLabel_10.Parent = EzHub.SectionEs_2
 	EzHub.TextLabel_10.AnchorPoint = Vector2.new(1, 0)
@@ -886,6 +928,7 @@ do
 	EzHub.AnimFrame1_5.BorderSizePixel = 0
 	EzHub.AnimFrame1_5.Position = UDim2.new(0, 0, 1, 0)
 	EzHub.AnimFrame1_5.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_5.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_4.Parent = EzHub.AnimFrame1_5
 	EzHub.UIGridLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
@@ -905,22 +948,22 @@ do
 	EzHub.ADD.Position = UDim2.new(-0.765458405, 0, 0.0249110311, 0)
 	EzHub.ADD.Size = UDim2.new(0, 100, 0, 100)
 
-	EzHub.Frame_12.Name = "Frame"
-	EzHub.Frame_12.Parent = EzHub.ADD
-	EzHub.Frame_12.AnchorPoint = Vector2.new(0.5, 0.5)
-	EzHub.Frame_12.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.Frame_12.BackgroundTransparency = 1.000
-	EzHub.Frame_12.ClipsDescendants = true
-	EzHub.Frame_12.Position = UDim2.new(0.5, 0, 0.5, 0)
-	EzHub.Frame_12.Size = UDim2.new(1, 0, 1, 0)
-	EzHub.Frame_12.Image = "rbxassetid://3570695787"
-	EzHub.Frame_12.ImageColor3 = Color3.fromRGB(35, 47, 62)
-	EzHub.Frame_12.ScaleType = Enum.ScaleType.Slice
-	EzHub.Frame_12.SliceCenter = Rect.new(100, 100, 100, 100)
-	EzHub.Frame_12.SliceScale = 0.040
+	EzHub.Frame_13.Name = "Frame"
+	EzHub.Frame_13.Parent = EzHub.ADD
+	EzHub.Frame_13.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.Frame_13.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Frame_13.BackgroundTransparency = 1.000
+	EzHub.Frame_13.ClipsDescendants = true
+	EzHub.Frame_13.Position = UDim2.new(0.5, 0, 0.5, 0)
+	EzHub.Frame_13.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.Frame_13.Image = "rbxassetid://3570695787"
+	EzHub.Frame_13.ImageColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.Frame_13.ScaleType = Enum.ScaleType.Slice
+	EzHub.Frame_13.SliceCenter = Rect.new(100, 100, 100, 100)
+	EzHub.Frame_13.SliceScale = 0.040
 
 	EzHub.GameName.Name = "GameName"
-	EzHub.GameName.Parent = EzHub.Frame_12
+	EzHub.GameName.Parent = EzHub.Frame_13
 	EzHub.GameName.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.GameName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.GameName.BackgroundTransparency = 1.000
@@ -932,7 +975,7 @@ do
 	EzHub.GameName.TextSize = 13.000
 	EzHub.GameName.TextWrapped = true
 
-	EzHub.ImageLabel_5.Parent = EzHub.Frame_12
+	EzHub.ImageLabel_5.Parent = EzHub.Frame_13
 	EzHub.ImageLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ImageLabel_5.BackgroundTransparency = 1.000
 	EzHub.ImageLabel_5.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
@@ -942,7 +985,7 @@ do
 	EzHub.ImageLabel_5.ImageRectSize = Vector2.new(55, 50)
 
 	EzHub.Trigger.Name = "Trigger"
-	EzHub.Trigger.Parent = EzHub.Frame_12
+	EzHub.Trigger.Parent = EzHub.Frame_13
 	EzHub.Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.Trigger.BackgroundTransparency = 1.000
 	EzHub.Trigger.Size = UDim2.new(1, 0, 1, 0)
@@ -961,22 +1004,22 @@ do
 	EzHub.REMOVE.Position = UDim2.new(-0.765458405, 0, 0.0249110311, 0)
 	EzHub.REMOVE.Size = UDim2.new(0, 100, 0, 100)
 
-	EzHub.Frame_13.Name = "Frame"
-	EzHub.Frame_13.Parent = EzHub.REMOVE
-	EzHub.Frame_13.AnchorPoint = Vector2.new(0.5, 0.5)
-	EzHub.Frame_13.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.Frame_13.BackgroundTransparency = 1.000
-	EzHub.Frame_13.ClipsDescendants = true
-	EzHub.Frame_13.Position = UDim2.new(0.5, 0, 0.5, 0)
-	EzHub.Frame_13.Size = UDim2.new(1, 0, 1, 0)
-	EzHub.Frame_13.Image = "rbxassetid://3570695787"
-	EzHub.Frame_13.ImageColor3 = Color3.fromRGB(35, 47, 62)
-	EzHub.Frame_13.ScaleType = Enum.ScaleType.Slice
-	EzHub.Frame_13.SliceCenter = Rect.new(100, 100, 100, 100)
-	EzHub.Frame_13.SliceScale = 0.040
+	EzHub.Frame_14.Name = "Frame"
+	EzHub.Frame_14.Parent = EzHub.REMOVE
+	EzHub.Frame_14.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.Frame_14.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Frame_14.BackgroundTransparency = 1.000
+	EzHub.Frame_14.ClipsDescendants = true
+	EzHub.Frame_14.Position = UDim2.new(0.5, 0, 0.5, 0)
+	EzHub.Frame_14.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.Frame_14.Image = "rbxassetid://3570695787"
+	EzHub.Frame_14.ImageColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.Frame_14.ScaleType = Enum.ScaleType.Slice
+	EzHub.Frame_14.SliceCenter = Rect.new(100, 100, 100, 100)
+	EzHub.Frame_14.SliceScale = 0.040
 
 	EzHub.GameName_2.Name = "GameName"
-	EzHub.GameName_2.Parent = EzHub.Frame_13
+	EzHub.GameName_2.Parent = EzHub.Frame_14
 	EzHub.GameName_2.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.GameName_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.GameName_2.BackgroundTransparency = 1.000
@@ -988,7 +1031,7 @@ do
 	EzHub.GameName_2.TextSize = 13.000
 	EzHub.GameName_2.TextWrapped = true
 
-	EzHub.ImageLabel_6.Parent = EzHub.Frame_13
+	EzHub.ImageLabel_6.Parent = EzHub.Frame_14
 	EzHub.ImageLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ImageLabel_6.BackgroundTransparency = 1.000
 	EzHub.ImageLabel_6.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
@@ -998,7 +1041,7 @@ do
 	EzHub.ImageLabel_6.ImageRectSize = Vector2.new(55, 50)
 
 	EzHub.Trigger_2.Name = "Trigger"
-	EzHub.Trigger_2.Parent = EzHub.Frame_13
+	EzHub.Trigger_2.Parent = EzHub.Frame_14
 	EzHub.Trigger_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.Trigger_2.BackgroundTransparency = 1.000
 	EzHub.Trigger_2.Size = UDim2.new(1, 0, 1, 0)
@@ -1042,8 +1085,8 @@ do
 	EzHub.SearchBar_3.TextWrapped = true
 	EzHub.SearchBar_3.TextXAlignment = Enum.TextXAlignment.Left
 
-	EzHub.UICorner_20.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_20.Parent = EzHub.SearchFrame_3
+	EzHub.UICorner_22.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_22.Parent = EzHub.SearchFrame_3
 
 	EzHub.ExclusivesV2Frame.Name = "ExclusivesV2Frame"
 	EzHub.ExclusivesV2Frame.Parent = EzHub.MainFrame
@@ -1087,8 +1130,8 @@ do
 	EzHub.SearchBar_4.TextWrapped = true
 	EzHub.SearchBar_4.TextXAlignment = Enum.TextXAlignment.Left
 
-	EzHub.UICorner_21.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_21.Parent = EzHub.SearchFrame_4
+	EzHub.UICorner_23.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_23.Parent = EzHub.SearchFrame_4
 
 	EzHub.AnimFrame1_6.Name = "AnimFrame1"
 	EzHub.AnimFrame1_6.Parent = EzHub.ExclusivesV2Frame
@@ -1099,6 +1142,7 @@ do
 	EzHub.AnimFrame1_6.BorderSizePixel = 0
 	EzHub.AnimFrame1_6.Position = UDim2.new(0, 0, 1, 0)
 	EzHub.AnimFrame1_6.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_6.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_5.Parent = EzHub.AnimFrame1_6
 	EzHub.UIGridLayout_5.SortOrder = Enum.SortOrder.LayoutOrder
@@ -1150,12 +1194,12 @@ do
 	EzHub.ScriptNamer.TextWrapped = true
 	EzHub.ScriptNamer.TextXAlignment = Enum.TextXAlignment.Left
 
-	EzHub.Frame_14.Parent = EzHub.Namer
-	EzHub.Frame_14.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_14.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_14.ZIndex = 4
+	EzHub.Frame_15.Parent = EzHub.Namer
+	EzHub.Frame_15.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_15.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_15.ZIndex = 4
 
-	EzHub.UICorner_22.Parent = EzHub.Frame_14
+	EzHub.UICorner_24.Parent = EzHub.Frame_15
 
 	EzHub.BackButton.Name = "BackButton"
 	EzHub.BackButton.Parent = EzHub.AnimFrame1_7
@@ -1170,15 +1214,15 @@ do
 	EzHub.BackButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.BackButton.TextSize = 14.000
 
-	EzHub.UICorner_23.CornerRadius = UDim.new(0, 3)
-	EzHub.UICorner_23.Parent = EzHub.BackButton
+	EzHub.UICorner_25.CornerRadius = UDim.new(0, 3)
+	EzHub.UICorner_25.Parent = EzHub.BackButton
 
-	EzHub.Frame_15.Parent = EzHub.BackButton
-	EzHub.Frame_15.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_15.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_15.ZIndex = 4
+	EzHub.Frame_16.Parent = EzHub.BackButton
+	EzHub.Frame_16.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_16.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_16.ZIndex = 4
 
-	EzHub.UICorner_24.Parent = EzHub.Frame_15
+	EzHub.UICorner_26.Parent = EzHub.Frame_16
 
 	EzHub.CreateButton.Name = "CreateButton"
 	EzHub.CreateButton.Parent = EzHub.AnimFrame1_7
@@ -1193,15 +1237,15 @@ do
 	EzHub.CreateButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.CreateButton.TextSize = 14.000
 
-	EzHub.UICorner_25.CornerRadius = UDim.new(0, 3)
-	EzHub.UICorner_25.Parent = EzHub.CreateButton
+	EzHub.UICorner_27.CornerRadius = UDim.new(0, 3)
+	EzHub.UICorner_27.Parent = EzHub.CreateButton
 
-	EzHub.Frame_16.Parent = EzHub.CreateButton
-	EzHub.Frame_16.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_16.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_16.ZIndex = 4
+	EzHub.Frame_17.Parent = EzHub.CreateButton
+	EzHub.Frame_17.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_17.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_17.ZIndex = 4
 
-	EzHub.UICorner_26.Parent = EzHub.Frame_16
+	EzHub.UICorner_28.Parent = EzHub.Frame_17
 
 	EzHub.TestExecButton.Name = "TestExecButton"
 	EzHub.TestExecButton.Parent = EzHub.AnimFrame1_7
@@ -1216,15 +1260,15 @@ do
 	EzHub.TestExecButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.TestExecButton.TextSize = 14.000
 
-	EzHub.UICorner_27.CornerRadius = UDim.new(0, 3)
-	EzHub.UICorner_27.Parent = EzHub.TestExecButton
+	EzHub.UICorner_29.CornerRadius = UDim.new(0, 3)
+	EzHub.UICorner_29.Parent = EzHub.TestExecButton
 
-	EzHub.Frame_17.Parent = EzHub.TestExecButton
-	EzHub.Frame_17.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_17.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_17.ZIndex = 4
+	EzHub.Frame_18.Parent = EzHub.TestExecButton
+	EzHub.Frame_18.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_18.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_18.ZIndex = 4
 
-	EzHub.UICorner_28.Parent = EzHub.Frame_17
+	EzHub.UICorner_30.Parent = EzHub.Frame_18
 
 	EzHub.Editor.Name = "Editor"
 	EzHub.Editor.Parent = EzHub.AnimFrame1_7
@@ -1372,12 +1416,12 @@ do
 	EzHub.Lines.TextWrapped = true
 	EzHub.Lines.TextYAlignment = Enum.TextYAlignment.Top
 
-	EzHub.Frame_18.Parent = EzHub.Editor
-	EzHub.Frame_18.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_18.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_18.ZIndex = 4
+	EzHub.Frame_19.Parent = EzHub.Editor
+	EzHub.Frame_19.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_19.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_19.ZIndex = 4
 
-	EzHub.UICorner_29.Parent = EzHub.Frame_18
+	EzHub.UICorner_31.Parent = EzHub.Frame_19
 
 	EzHub.REMOVEFrame.Name = "REMOVEFrame"
 	EzHub.REMOVEFrame.Parent = EzHub.MainFrame
@@ -1393,15 +1437,15 @@ do
 	EzHub.AnimFrame1_8.BackgroundTransparency = 1.000
 	EzHub.AnimFrame1_8.Size = UDim2.new(0, 469, 0, 281)
 
-	EzHub.Frame_19.Parent = EzHub.AnimFrame1_8
-	EzHub.Frame_19.AnchorPoint = Vector2.new(0.5, 0.5)
-	EzHub.Frame_19.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.Frame_19.BackgroundTransparency = 1.000
-	EzHub.Frame_19.Position = UDim2.new(0.504808128, 0, 0.5, 0)
-	EzHub.Frame_19.Size = UDim2.new(0, 463, 0, 273)
+	EzHub.Frame_20.Parent = EzHub.AnimFrame1_8
+	EzHub.Frame_20.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.Frame_20.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Frame_20.BackgroundTransparency = 1.000
+	EzHub.Frame_20.Position = UDim2.new(0.504808128, 0, 0.5, 0)
+	EzHub.Frame_20.Size = UDim2.new(0, 463, 0, 273)
 
 	EzHub.RemoveButton.Name = "RemoveButton"
-	EzHub.RemoveButton.Parent = EzHub.Frame_19
+	EzHub.RemoveButton.Parent = EzHub.Frame_20
 	EzHub.RemoveButton.AnchorPoint = Vector2.new(0, 1)
 	EzHub.RemoveButton.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.RemoveButton.BorderSizePixel = 0
@@ -1414,18 +1458,18 @@ do
 	EzHub.RemoveButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.RemoveButton.TextSize = 14.000
 
-	EzHub.UICorner_30.CornerRadius = UDim.new(0, 3)
-	EzHub.UICorner_30.Parent = EzHub.RemoveButton
+	EzHub.UICorner_32.CornerRadius = UDim.new(0, 3)
+	EzHub.UICorner_32.Parent = EzHub.RemoveButton
 
-	EzHub.Frame_20.Parent = EzHub.RemoveButton
-	EzHub.Frame_20.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_20.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_20.ZIndex = 4
+	EzHub.Frame_21.Parent = EzHub.RemoveButton
+	EzHub.Frame_21.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_21.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_21.ZIndex = 4
 
-	EzHub.UICorner_31.Parent = EzHub.Frame_20
+	EzHub.UICorner_33.Parent = EzHub.Frame_21
 
 	EzHub.BackButton_2.Name = "BackButton"
-	EzHub.BackButton_2.Parent = EzHub.Frame_19
+	EzHub.BackButton_2.Parent = EzHub.Frame_20
 	EzHub.BackButton_2.AnchorPoint = Vector2.new(1, 1)
 	EzHub.BackButton_2.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.BackButton_2.BorderSizePixel = 0
@@ -1438,23 +1482,23 @@ do
 	EzHub.BackButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.BackButton_2.TextSize = 14.000
 
-	EzHub.UICorner_32.CornerRadius = UDim.new(0, 3)
-	EzHub.UICorner_32.Parent = EzHub.BackButton_2
+	EzHub.UICorner_34.CornerRadius = UDim.new(0, 3)
+	EzHub.UICorner_34.Parent = EzHub.BackButton_2
 
-	EzHub.Frame_21.Parent = EzHub.BackButton_2
-	EzHub.Frame_21.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_21.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_21.ZIndex = 4
+	EzHub.Frame_22.Parent = EzHub.BackButton_2
+	EzHub.Frame_22.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_22.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_22.ZIndex = 4
 
-	EzHub.UICorner_33.Parent = EzHub.Frame_21
+	EzHub.UICorner_35.Parent = EzHub.Frame_22
 
-	EzHub.ScrollingFrame.Parent = EzHub.Frame_19
+	EzHub.ScrollingFrame.Parent = EzHub.Frame_20
 	EzHub.ScrollingFrame.Active = true
 	EzHub.ScrollingFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	EzHub.ScrollingFrame.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.ScrollingFrame.BorderSizePixel = 0
-	EzHub.ScrollingFrame.Position = UDim2.new(0.5, 0, 0.412820548, 0)
-	EzHub.ScrollingFrame.Size = UDim2.new(1, -60, 1.02564108, -90)
+	EzHub.ScrollingFrame.Position = UDim2.new(0.5, 0, 0, 112)
+	EzHub.ScrollingFrame.Size = UDim2.new(1, -60, 0, 200)
 	EzHub.ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_6.Parent = EzHub.ScrollingFrame
@@ -1467,8 +1511,86 @@ do
 	EzHub.UIPadding_6.PaddingBottom = UDim.new(0, 14)
 	EzHub.UIPadding_6.PaddingTop = UDim.new(0, 14)
 
-	EzHub.UICorner_34.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_34.Parent = EzHub.MainFrame
+	EzHub.UICorner_36.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_36.Parent = EzHub.MainFrame
+
+	EzHub.TerminalFrame.Name = "TerminalFrame"
+	EzHub.TerminalFrame.Parent = EzHub.MainFrame
+	EzHub.TerminalFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.TerminalFrame.BackgroundTransparency = 1.000
+	EzHub.TerminalFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
+	EzHub.TerminalFrame.Size = UDim2.new(0, 469, 0, 281)
+
+	EzHub.AnimFrame1_9.Name = "AnimFrame1"
+	EzHub.AnimFrame1_9.Parent = EzHub.TerminalFrame
+	EzHub.AnimFrame1_9.Active = true
+	EzHub.AnimFrame1_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.AnimFrame1_9.BackgroundTransparency = 1.000
+	EzHub.AnimFrame1_9.BorderSizePixel = 0
+	EzHub.AnimFrame1_9.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_9.CanvasSize = UDim2.new(0, 0, 0, 0)
+
+	EzHub.UIPadding_7.Parent = EzHub.AnimFrame1_9
+	EzHub.UIPadding_7.PaddingBottom = UDim.new(0, 10)
+	EzHub.UIPadding_7.PaddingLeft = UDim.new(0, 15)
+	EzHub.UIPadding_7.PaddingRight = UDim.new(0, 15)
+	EzHub.UIPadding_7.PaddingTop = UDim.new(0, 10)
+
+	EzHub.UIListLayout.Parent = EzHub.AnimFrame1_9
+	EzHub.UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	EzHub.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	EzHub.ExecuteFrame.Name = "ExecuteFrame"
+	EzHub.ExecuteFrame.Parent = EzHub.TerminalFrame
+	EzHub.ExecuteFrame.AnchorPoint = Vector2.new(0.5, 1)
+	EzHub.ExecuteFrame.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.ExecuteFrame.Position = UDim2.new(0.5, 0, 1, -10)
+	EzHub.ExecuteFrame.Size = UDim2.new(0, 430, 0, 34)
+
+	EzHub.ExecuteButton.Name = "ExecuteButton"
+	EzHub.ExecuteButton.Parent = EzHub.ExecuteFrame
+	EzHub.ExecuteButton.AnchorPoint = Vector2.new(0, 0.5)
+	EzHub.ExecuteButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ExecuteButton.BackgroundTransparency = 1.000
+	EzHub.ExecuteButton.BorderSizePixel = 0
+	EzHub.ExecuteButton.ClipsDescendants = true
+	EzHub.ExecuteButton.Position = UDim2.new(0.0240000002, 0, 0.5, 0)
+	EzHub.ExecuteButton.Size = UDim2.new(0, 22, 0, 22)
+	EzHub.ExecuteButton.Image = "http://www.roblox.com/asset/?id=2876994160"
+
+	EzHub.ExecuteTextBox.Name = "ExecuteTextBox"
+	EzHub.ExecuteTextBox.Parent = EzHub.ExecuteFrame
+	EzHub.ExecuteTextBox.AnchorPoint = Vector2.new(0, 0.5)
+	EzHub.ExecuteTextBox.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.ExecuteTextBox.BackgroundTransparency = 1
+	EzHub.ExecuteTextBox.BorderColor3 = Color3.fromRGB(28, 41, 56)
+	EzHub.ExecuteTextBox.BorderSizePixel = 0
+	EzHub.ExecuteTextBox.Position = UDim2.new(0.116999999, 0, 0.5, 0)
+	EzHub.ExecuteTextBox.Size = UDim2.new(0, 364, 0, 22)
+	EzHub.ExecuteTextBox.ClearTextOnFocus = false
+	EzHub.ExecuteTextBox.Font = Enum.Font.SourceSans
+	EzHub.ExecuteTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+	EzHub.ExecuteTextBox.PlaceholderText = "Type command..."
+	EzHub.ExecuteTextBox.Text = ""
+	EzHub.ExecuteTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.ExecuteTextBox.TextSize = 14.000
+	EzHub.ExecuteTextBox.TextWrapped = true
+	EzHub.ExecuteTextBox.TextXAlignment = Enum.TextXAlignment.Left
+	EzHub.ExecuteTextBox.ZIndex = 2
+
+	EzHub.IntellisenseLabel.Name = "IntellisenseLabel"
+	EzHub.IntellisenseLabel.Parent = EzHub.ExecuteTextBox
+	EzHub.IntellisenseLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.IntellisenseLabel.BackgroundTransparency = 1.000
+	EzHub.IntellisenseLabel.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.IntellisenseLabel.Font = Enum.Font.SourceSans
+	EzHub.IntellisenseLabel.Text = ""
+	EzHub.IntellisenseLabel.TextColor3 = Color3.fromRGB(178, 178, 178)
+	EzHub.IntellisenseLabel.TextSize = 14.000
+	EzHub.IntellisenseLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+	EzHub.UICorner_37.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_37.Parent = EzHub.ExecuteFrame
 
 	EzHub.SavedContainers.Name = "SavedContainers"
 	EzHub.SavedContainers.Parent = EzHub.EzHub
@@ -1482,16 +1604,16 @@ do
 	EzHub.GameContainer.Size = UDim2.new(0, 100, 0, 100)
 	EzHub.GameContainer.Visible = false
 
-	EzHub.Frame_22.Parent = EzHub.GameContainer
-	EzHub.Frame_22.AnchorPoint = Vector2.new(0.5, 0.5)
-	EzHub.Frame_22.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
-	EzHub.Frame_22.BorderSizePixel = 0
-	EzHub.Frame_22.ClipsDescendants = true
-	EzHub.Frame_22.Position = UDim2.new(0.5, 0, 0.5, 0)
-	EzHub.Frame_22.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.Frame_23.Parent = EzHub.GameContainer
+	EzHub.Frame_23.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.Frame_23.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
+	EzHub.Frame_23.BorderSizePixel = 0
+	EzHub.Frame_23.ClipsDescendants = true
+	EzHub.Frame_23.Position = UDim2.new(0.5, 0, 0.5, 0)
+	EzHub.Frame_23.Size = UDim2.new(1, 0, 1, 0)
 
 	EzHub.Trigger_3.Name = "Trigger"
-	EzHub.Trigger_3.Parent = EzHub.Frame_22
+	EzHub.Trigger_3.Parent = EzHub.Frame_23
 	EzHub.Trigger_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.Trigger_3.BackgroundTransparency = 1.000
 	EzHub.Trigger_3.Size = UDim2.new(1, 0, 1, 0)
@@ -1501,7 +1623,7 @@ do
 	EzHub.Trigger_3.TextSize = 14.000
 	EzHub.Trigger_3.TextTransparency = 1.000
 
-	EzHub.ImageLabel_7.Parent = EzHub.Frame_22
+	EzHub.ImageLabel_7.Parent = EzHub.Frame_23
 	EzHub.ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ImageLabel_7.BackgroundTransparency = 1.000
 	EzHub.ImageLabel_7.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
@@ -1510,7 +1632,7 @@ do
 	EzHub.ImageLabel_7.Image = "rbxassetid://4030893123"
 
 	EzHub.ExecutedLabel.Name = "ExecutedLabel"
-	EzHub.ExecutedLabel.Parent = EzHub.Frame_22
+	EzHub.ExecutedLabel.Parent = EzHub.Frame_23
 	EzHub.ExecutedLabel.AnchorPoint = Vector2.new(0.5, 1)
 	EzHub.ExecutedLabel.BackgroundColor3 = Color3.fromRGB(57, 198, 55)
 	EzHub.ExecutedLabel.BackgroundTransparency = 0.450
@@ -1525,7 +1647,7 @@ do
 	EzHub.ExecutedLabel.TextWrapped = true
 
 	EzHub.GameName_3.Name = "GameName"
-	EzHub.GameName_3.Parent = EzHub.Frame_22
+	EzHub.GameName_3.Parent = EzHub.Frame_23
 	EzHub.GameName_3.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.GameName_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.GameName_3.BackgroundTransparency = 1.000
@@ -1538,8 +1660,8 @@ do
 	EzHub.GameName_3.TextSize = 13.000
 	EzHub.GameName_3.TextWrapped = true
 
-	EzHub.UICorner_35.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_35.Parent = EzHub.Frame_22
+	EzHub.UICorner_38.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_38.Parent = EzHub.Frame_23
 
 	EzHub.MessageContainer.Name = "MessageContainer"
 	EzHub.MessageContainer.Parent = EzHub.SavedContainers
@@ -1573,20 +1695,20 @@ do
 	EzHub.GoldGameContainer.Size = UDim2.new(0, 100, 0, 100)
 	EzHub.GoldGameContainer.Visible = false
 
-	EzHub.Frame_23.Parent = EzHub.GoldGameContainer
-	EzHub.Frame_23.AnchorPoint = Vector2.new(0.5, 0.5)
-	EzHub.Frame_23.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.Frame_23.BorderSizePixel = 0
-	EzHub.Frame_23.ClipsDescendants = true
-	EzHub.Frame_23.Position = UDim2.new(0.5, 0, 0.5, 0)
-	EzHub.Frame_23.Size = UDim2.new(1, 0, 1, 0)
+	EzHub.Frame_24.Parent = EzHub.GoldGameContainer
+	EzHub.Frame_24.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.Frame_24.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Frame_24.BorderSizePixel = 0
+	EzHub.Frame_24.ClipsDescendants = true
+	EzHub.Frame_24.Position = UDim2.new(0.5, 0, 0.5, 0)
+	EzHub.Frame_24.Size = UDim2.new(1, 0, 1, 0)
 
 	EzHub.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(222, 179, 6)), ColorSequenceKeypoint.new(0.00, Color3.fromRGB(222, 179, 6)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(241, 241, 4)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(222, 179, 6))}
 	EzHub.UIGradient.Rotation = 45
-	EzHub.UIGradient.Parent = EzHub.Frame_23
+	EzHub.UIGradient.Parent = EzHub.Frame_24
 
 	EzHub.Trigger_4.Name = "Trigger"
-	EzHub.Trigger_4.Parent = EzHub.Frame_23
+	EzHub.Trigger_4.Parent = EzHub.Frame_24
 	EzHub.Trigger_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.Trigger_4.BackgroundTransparency = 1.000
 	EzHub.Trigger_4.Size = UDim2.new(1, 0, 1, 0)
@@ -1596,7 +1718,7 @@ do
 	EzHub.Trigger_4.TextSize = 14.000
 	EzHub.Trigger_4.TextTransparency = 1.000
 
-	EzHub.ImageLabel_8.Parent = EzHub.Frame_23
+	EzHub.ImageLabel_8.Parent = EzHub.Frame_24
 	EzHub.ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ImageLabel_8.BackgroundTransparency = 1.000
 	EzHub.ImageLabel_8.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
@@ -1605,7 +1727,7 @@ do
 	EzHub.ImageLabel_8.Image = "rbxassetid://4030893123"
 
 	EzHub.ExecutedLabel_2.Name = "ExecutedLabel"
-	EzHub.ExecutedLabel_2.Parent = EzHub.Frame_23
+	EzHub.ExecutedLabel_2.Parent = EzHub.Frame_24
 	EzHub.ExecutedLabel_2.AnchorPoint = Vector2.new(0.5, 1)
 	EzHub.ExecutedLabel_2.BackgroundColor3 = Color3.fromRGB(57, 198, 55)
 	EzHub.ExecutedLabel_2.BackgroundTransparency = 0.450
@@ -1620,7 +1742,7 @@ do
 	EzHub.ExecutedLabel_2.TextWrapped = true
 
 	EzHub.GameName_4.Name = "GameName"
-	EzHub.GameName_4.Parent = EzHub.Frame_23
+	EzHub.GameName_4.Parent = EzHub.Frame_24
 	EzHub.GameName_4.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.GameName_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.GameName_4.BackgroundTransparency = 1.000
@@ -1633,28 +1755,71 @@ do
 	EzHub.GameName_4.TextSize = 13.000
 	EzHub.GameName_4.TextWrapped = true
 
-	EzHub.UICorner_36.CornerRadius = UDim.new(0, 4)
-	EzHub.UICorner_36.Parent = EzHub.Frame_23
+	EzHub.UICorner_39.CornerRadius = UDim.new(0, 4)
+	EzHub.UICorner_39.Parent = EzHub.Frame_24
+
+	EzHub.TerminalTextContainer.Name = "TerminalTextContainer"
+	EzHub.TerminalTextContainer.Parent = EzHub.SavedContainers
+	EzHub.TerminalTextContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.TerminalTextContainer.BackgroundTransparency = 1.000
+	EzHub.TerminalTextContainer.Size = UDim2.new(1, -20, 0, 22)
+	EzHub.TerminalTextContainer.Visible = false
+	EzHub.TerminalTextContainer.Font = Enum.Font.SourceSans
+	EzHub.TerminalTextContainer.TextColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.TerminalTextContainer.TextSize = 14.000
+	EzHub.TerminalTextContainer.TextWrapped = true
+	EzHub.TerminalTextContainer.TextXAlignment = Enum.TextXAlignment.Left
+
+	EzHub.TerminalDividerContainer.Name = "TerminalDividerContainer"
+	EzHub.TerminalDividerContainer.Parent = EzHub.SavedContainers
+	EzHub.TerminalDividerContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.TerminalDividerContainer.BackgroundTransparency = 1.000
+	EzHub.TerminalDividerContainer.Size = UDim2.new(1, -16, 0, 14)
+	EzHub.TerminalDividerContainer.Visible = false
+
+	EzHub.Divider.Name = "Divider"
+	EzHub.Divider.Parent = EzHub.TerminalDividerContainer
+	EzHub.Divider.AnchorPoint = Vector2.new(0, 0.5)
+	EzHub.Divider.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
+	EzHub.Divider.Position = UDim2.new(0, 0, 0.5, 0)
+	EzHub.Divider.Size = UDim2.new(1, 0, 0, 4)
+
+	EzHub.UICorner_40.Parent = EzHub.Divider
 
 end
 
 -------------------------------------------------------------------------------------------------
-
 -- Missing Functions/Broken Conversion (GUI TO LUA)
+
+-- Missing richtext
 
 EzHub.ExecutedLabel.RichText = true;
 EzHub.ExecutedLabel_2.RichText = true;
+EzHub.TerminalTextContainer.RichText = true;
+
+-- Missing scrollbarimagecolor
+
 EzHub.ExclusivesFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.ExclusivesV2Frame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.RepostedFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.LocalLibFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
+EzHub.TerminalFrame.AnimFrame1.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 EzHub.EditorFrame.ScrollBarImageColor3 = Color3.fromRGB(14, 21, 30);
 
--------------------------------------------------------------------------------------------------
+-- Missing automatic sizing
+EzHub.ExclusivesFrame.AnimFrame1.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+EzHub.ExclusivesV2Frame.AnimFrame1.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+EzHub.RepostedFrame.AnimFrame1.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+EzHub.LocalLibFrame.AnimFrame1.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+EzHub.TerminalFrame.AnimFrame1.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+EzHub.NavFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y;
 
+EzHub.SavedContainers.TerminalTextContainer.AutomaticSize = Enum.AutomaticSize.Y;
+
+-------------------------------------------------------------------------------------------------
 -- Tab positioning, container and handling
 
-local tabs = {EzHub.LoadingFrame, EzHub.HomeFrame, EzHub.ExclusivesFrame, EzHub.RepostedFrame, EzHub.CreditsFrame, EzHub.LocalLibFrame, EzHub.ExclusivesV2Frame, EzHub.ADDFrame, EzHub.REMOVEFrame};
+local tabs = {EzHub.LoadingFrame, EzHub.HomeFrame, EzHub.ExclusivesFrame, EzHub.RepostedFrame, EzHub.CreditsFrame, EzHub.LocalLibFrame, EzHub.ExclusivesV2Frame, EzHub.ADDFrame, EzHub.REMOVEFrame, EzHub.TerminalFrame};
 for i,v in pairs(tabs) do
 	if v == EzHub.LoadingFrame then
 		v.Position = UDim2.new(0, 0, 0.1, 0);
@@ -1662,13 +1827,6 @@ for i,v in pairs(tabs) do
 		v.Position = UDim2.new(0,0,1,0);
 	end
 	v.Visible = true;
-
-	-- The following section is done so that Automatic sizing can be done for GUI
-	-- This is because its minimum size is controlled by the object’s Size property,
-	-- meaning the parent object won’t be resized smaller than its size along any axis.
-	if v:FindFirstChild("AnimFrame1") and v.AnimFrame1:IsA("ScrollingFrame") then
-		v.AnimFrame1.CanvasSize = UDim2.new(0, 0, 0, 0);
-	end
 
 end
 
@@ -1697,8 +1855,7 @@ local function openTab(tabInstance)
 	
 end
 
--------------------------------------------------------------------------------------------------
-
+-----------------------------------------------
 -- Script container and animation handling functions
 
 local originalPosition, afterPosition = {}, {};
@@ -1866,35 +2023,40 @@ bindTabButton(EzHub.HomeBtn, EzHub.HomeFrame);
 bindTabButton(EzHub.CreditsBtn, EzHub.CreditsFrame);
 bindTabButton(EzHub.LocalLibBtn, EzHub.LocalLibFrame);
 bindTabButton(EzHub.ExclusivesV2Btn, EzHub.ExclusivesV2Frame);
+bindTabButton(EzHub.TerminalBtn, EzHub.TerminalFrame);
 
 -------------------------------------------------------------------------------------------------
-	
--- Script Module Resizing
--- Roblox has now added support for scrolling frames to automatically change size
--- without the need to change manually, however, I will continue to use a manual method
--- This is because it is still inconsistent according to my testing.
+-- Search Bar Code
 
-local function applyFrameResizing(scrollingframe)
-	pcall(function()
-
-		local function update()
-			local cS = scrollingframe.UIGridLayout.AbsoluteContentSize;
-			scrollingframe.CanvasSize = UDim2.new(0, scrollingframe.Size.X, 0, cS.Y + 30);
+local function functionaliseSearchBar(instance, section)
+	instance.PlaceholderText = "Type to search...";
+	instance:GetPropertyChangedSignal("Text"):Connect(function()
+		if instance.Text == "" then
+			for i,v in pairs(section:GetChildren()) do
+				if v:IsA("Frame") then
+					v.Visible = true;
+				end
+			end
+		else
+			for i,v in pairs(section:GetChildren()) do
+				if v:IsA("Frame") and string.find(v.Frame.GameName.Text:lower(), instance.Text:lower()) then
+					v.Visible = true;
+				elseif v:IsA("Frame") then
+					v.Visible = false;
+				end
+			end
 		end
 
-		scrollingframe.Changed:Connect(update);
-		update();
-
+		section.CanvasPosition = Vector2.new(0, 0);	-- bringing scrolling frame back to the top
 	end)
 end
 
-applyFrameResizing(EzHub.ExclusivesFrame.AnimFrame1);
-applyFrameResizing(EzHub.RepostedFrame.AnimFrame1);
-applyFrameResizing(EzHub.ExclusivesV2Frame.AnimFrame1);
-applyFrameResizing(EzHub.LocalLibFrame.AnimFrame1);
+functionaliseSearchBar(EzHub.ExclusivesFrame.SearchFrame.SearchBar, EzHub.ExclusivesFrame.AnimFrame1);
+functionaliseSearchBar(EzHub.RepostedFrame.SearchFrame.SearchBar, EzHub.RepostedFrame.AnimFrame1);
+functionaliseSearchBar(EzHub.ExclusivesV2Frame.SearchFrame.SearchBar, EzHub.ExclusivesV2Frame.AnimFrame1);
+functionaliseSearchBar(EzHub.LocalLibFrame.SearchFrame.SearchBar, EzHub.LocalLibFrame.AnimFrame1);
 
 -------------------------------------------------------------------------------------------------
-
 -- Apply Themes
 
 local defaultTheme = {
@@ -1940,39 +2102,6 @@ if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
 end
 
 -------------------------------------------------------------------------------------------------
-
--- Search Bar Code
-
-local function functionaliseSearchBar(instance, section)
-	instance.PlaceholderText = "Type to search...";
-	instance:GetPropertyChangedSignal("Text"):Connect(function()
-		if instance.Text == "" then
-			for i,v in pairs(section:GetChildren()) do
-				if v:IsA("Frame") then
-					v.Visible = true;
-				end
-			end
-		else
-			for i,v in pairs(section:GetChildren()) do
-				if v:IsA("Frame") and string.find(v.Frame.GameName.Text:lower(), instance.Text:lower()) then
-					v.Visible = true;
-				elseif v:IsA("Frame") then
-					v.Visible = false;
-				end
-			end
-		end
-
-		section.CanvasPosition = Vector2.new(0, 0);	-- bringing scrolling frame back to the top
-	end)
-end
-
-functionaliseSearchBar(EzHub.ExclusivesFrame.SearchFrame.SearchBar, EzHub.ExclusivesFrame.AnimFrame1);
-functionaliseSearchBar(EzHub.RepostedFrame.SearchFrame.SearchBar, EzHub.RepostedFrame.AnimFrame1);
-functionaliseSearchBar(EzHub.ExclusivesV2Frame.SearchFrame.SearchBar, EzHub.ExclusivesV2Frame.AnimFrame1);
-functionaliseSearchBar(EzHub.LocalLibFrame.SearchFrame.SearchBar, EzHub.LocalLibFrame.AnimFrame1);
-
--------------------------------------------------------------------------------------------------
-
 -- Loading And Preloading
 
 local function loadToStage(scaleUdim, status)
@@ -1997,7 +2126,7 @@ local moduleLinks = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 end);
 
 -----------------------------------------------
--- Finalize
+-- Finalize loading
 
 loadToStage(0.95, "Finalising and Cleaning Up...");
 
@@ -2046,7 +2175,7 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 			"Requested script is outdated. Use Exclusive V2s. Continue anyway?",
 			"Yes", "No",
 			function() loadstring(game:HttpGet(tostring(v["link"])))() end,
-			function() return end);
+			function() end);
 
 			notif.show();
 			notif.buttonClicked.Event:Wait();
@@ -2063,7 +2192,6 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 	addScript({
 		["scriptName"] = tostring(i),
 		["function"] = function()
-			print("executing...", v["link"])
 			loadstring(game:HttpGet(tostring(v["link"])))();
 		end,
 		["parent"] = EzHub.ExclusivesV2Frame.AnimFrame1,
@@ -2071,7 +2199,9 @@ for i,v in pairs(game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["e
 	});
 end
 
--- preload images
+-----------------------------------------------
+-- Preload images
+
 local preloadImages = {};
 for i,v in pairs(EzHub) do
 	if v:IsA("ImageLabel") or v:IsA("ImageButton") then
@@ -2079,10 +2209,43 @@ for i,v in pairs(EzHub) do
 	end
 end
 
+if not _G.EzHubExclusives then
+	_G.EzHubExclusives = {};
+end
+
 game:GetService("ContentProvider"):PreloadAsync(preloadImages);
 
 -----------------------------------------------
+-- Close ez hub function
+
+local function closeEzHub()
+	-- Close Ez Hub
+	EzHub.EzHub:Destroy();
+
+	-- unload aimbot and esp if they have been ran
+	if _G.ezhubaimbot then _G.ezhubaimbot:Disconnect() end
+	if _G.unloadESP then _G.unloadESP(); end
+
+	-- Close all exclusives
+	if _G.EzHubExclusives then
+		for i,v in pairs(_G.EzHubExclusives) do
+			if v:IsA("ScreenGui") then
+				v:Destroy();
+			end
+		end
+	end
+
+	_G.EzHubExclusives = nil;
+
+	-- Unload all other variables from global env
+	_G.DISABLEEXELOG = nil;
+	_G.EzHubTheme = nil;
+	_G.EzHubTerminal = nil;
+end
+
+-----------------------------------------------
 -- Display how long it took to load Ez Hub
+
 local loadTimerEnd = tick() - loadTimerStart;
 loadToStage(1, "Loaded in "..math.floor(loadTimerEnd * 100) / 100);	-- Round to 2 decimal places by multiplying for floor and then undoing it.
 
@@ -2113,7 +2276,6 @@ else
 end
 
 -------------------------------------------------------------------------------------------------
-
 -- Other Section Buttons (HOME)
 
 local otherSectionButtonDebounce = true;
@@ -2170,7 +2332,6 @@ pcall(function()
 end)
 
 -------------------------------------------------------------------------------------------------
-
 -- Local Lib (Adding your own scripts)
 -- This section will contain all functions required for local lib to function
 
@@ -2252,9 +2413,9 @@ end
 updateRemoveScriptFrame();
 
 -----------------------------------------------
-
 -- This event handles the deletion of already existing scripts in the local lib
 -- It handles saving and everything
+
 EzHub.REMOVEFrame.AnimFrame1.Frame.RemoveButton.MouseButton1Click:Connect(function()
 	if selectedToDelete then
 		for i,v in pairs(EzHub.LocalLibFrame.AnimFrame1:GetChildren()) do
@@ -2315,7 +2476,6 @@ EzHub.ADDFrame.AnimFrame1.CreateButton.MouseButton1Click:Connect(function()
 end)
 
 -----------------------------------------------
-
 -- Add Button and Remove Button Events and functionality
 
 EzHub.ADDFrame.AnimFrame1.TestExecButton.MouseButton1Click:Connect(function()
@@ -2369,14 +2529,470 @@ applyContainerSelectAnimation(EzHub.LocalLibFrame.AnimFrame1.ADD);
 applyContainerSelectAnimation(EzHub.LocalLibFrame.AnimFrame1.REMOVE);
 
 -------------------------------------------------------------------------------------------------
+-- Terminal Code
 
+local terminalTextContainer = EzHub.TerminalTextContainer;
+local isRConsoleMode = false;
+
+-- Different colors for printing in the terminal
+local terminalPrintType = {
+	w = Color3.fromRGB(255, 255, 255),
+	y = Color3.fromRGB(255,255,0),
+	r = Color3.fromRGB(255,0,0),
+	b = Color3.fromRGB(0,100,255),
+	g = Color3.fromRGB(0, 240, 0)
+}
+
+local function autoScroll()
+	EzHub.TerminalFrame.AnimFrame1.CanvasPosition = Vector2.new(0, EzHub.TerminalFrame.AnimFrame1.UIListLayout.AbsoluteContentSize.Y);
+end
+
+local function terminalPrint(msg, printType)
+	if isRConsoleMode then
+		-- If the user has activated native console, exploit functions for rconsole will be used
+		-- This has only been tested with synapse. Other exploits may or may not work
+		
+		if printType == "y" then
+			rconsoleprint("@@YELLOW@@");
+		elseif printType == "r" then
+			rconsoleprint("@@RED@@");
+		elseif printType == "b" then
+			rconsoleprint("@@BLUE@@");
+		elseif printType == "g" then
+			rconsoleprint("@@GREEN@@");
+		else
+			rconsoleprint("@@WHITE@@");
+		end
+
+		rconsoleprint(msg.."\n");
+
+	else
+		-- If not, terminal text container will be cloned and adjusted
+
+		local clone = terminalTextContainer:Clone();
+		clone.TextColor3 = terminalPrintType[printType or "w"];
+		clone.Text = msg;
+		clone.Visible = true;
+		clone.Parent = EzHub.TerminalFrame.AnimFrame1;
+		autoScroll();
+
+	end
+end
+
+local function terminalDivide()
+	if isRConsoleMode then
+		terminalPrint("\n"..string.rep("-", 30).."\n");
+	else
+		local clone = EzHub.TerminalDividerContainer:Clone();
+		clone.Visible = true;
+		clone.Parent = EzHub.TerminalFrame.AnimFrame1;
+		autoScroll();
+	end
+end
+
+terminalPrint("Loading Ez Hub Terminal...", "y");
+
+local commands = {};	-- stores all commands and their functions
+local tips = {
+	"Ez Terminal is Ez CMD merged with Ez Hub. This was only done because of the amount of users that wished to see Ez CMD being worked on again.",
+	"Ez Terminal allows you to access many functions of Ez Hub that you won't be able to access with a GUI button.",
+	"Type cmdlist or one of it's aliases to view all the possible commands.",
+	"Ez Hub and the terminal is fully open source! Go to the Github repo to view the source."
+};
+
+local function addCommand(aliases, desc, func)
+	table.insert(commands, {aliases, desc, func});
+end
+
+local awaitingRequestFunction = Instance.new("BindableFunction");
+local awaitingRequest = false;
+local awaitingRequestInputTypes = {
+	numberOnly = 1,
+	boolOnly = 2,
+	playerOnly = 3,
+	any = 4
+}
+
+local awaitingRequestInputType = awaitingRequestInputTypes.any;
+
+local function awaitRequest(termPrint, inputType, callback)
+	terminalPrint(termPrint, "y");
+	awaitingRequest = true;
+	awaitingRequestInputType = inputType;
+	awaitingRequestFunction.OnInvoke = callback;
+end
+
+local function handleRequest(request)
+
+	-- Print user input. Not required when in console mode as the user already types into the command line
+	if not isRConsoleMode then
+		terminalPrint(request, "g");
+	end
+	
+	if awaitingRequest then
+
+		-- Converts and checks the input to match the desired input that the function desires
+		local function call(modifiedReq) 
+			awaitingRequest = false; 
+			awaitingRequestFunction:Invoke(modifiedReq or request); 
+		end
+
+		if awaitingRequestInputType == awaitingRequestInputTypes.any then call();
+		elseif awaitingRequestInputType == awaitingRequestInputTypes.boolOnly then
+			if request == "true" 
+				or request == "on" 
+				or request == "1"
+				or request == "yes"
+				or  request == "y" then
+
+				call(true);
+
+			elseif request == "false"
+				or request == "off" 
+				or request == "0"
+				or request == "no"
+				or request == "n" then
+
+				call(false);
+
+			else
+				terminalPrint("You must enter a valid boolean value for this function.", "r");
+			end
+		elseif awaitingRequestInputType == awaitingRequestInputTypes.numberOnly then
+			if tonumber(request) then
+				call(tonumber(request));
+			else
+				terminalPrint("You must enter a valid number value for this function.", "r");
+			end
+		elseif awaitingRequestInputType == awaitingRequestInputTypes.playerOnly then
+			local foundPlayer;
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v.Name == request then
+					call();
+					foundPlayer = v;
+					break;
+				end
+			end
+
+			if foundPlayer then
+				call(foundPlayer);
+			else
+				terminalPrint("You must enter a valid player name for this function.", "r");
+			end
+		end
+
+		awaitingRequest = false;
+
+	else
+
+		-- If no function is awaiting further input, user input is then interpreted as command search
+		(function()
+
+			local structuredRequest = string.split(request, " ");
+			local command = structuredRequest[1];
+		
+			for _, commandData in pairs(commands) do
+				for _, alias in pairs(commandData[1]) do
+					if alias == command then
+						table.remove(structuredRequest, 1);
+						commandData[3](table.unpack(structuredRequest));
+						return;
+					end
+				end
+			end
+		
+			terminalPrint("Unable to find the requested command...", "r");
+	
+		end)();
+
+	end
+	
+	-- randomized tip sent
+	if math.random(1, 5) == 1 then
+		terminalDivide();
+		terminalPrint("Fun Fact: "..tips[math.random(#tips)], "b");
+		terminalDivide();
+	end
+
+	EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = "";
+	if isRConsoleMode then rconsoleprint("@@GREEN@@"); handleRequest(rconsoleinput()); end
+
+end
+
+-----------------------------------------------
+-- Events to accept requests from user and Intellisense/Autocomplete
+
+local autocompleteTextbox = EzHub.IntellisenseLabel;
+
+-- Returns a command based on the first few letters of the command that the user has inputted
+local function getSuggestedCommand()
+	for _, commandData in pairs(commands) do
+		local aliases = commandData[1];
+		for _, alias in pairs(aliases) do
+			-- 1 indicates the position of string pattern start. This is so that we only search for similarities from the beginning of the command name
+			if string.find(alias, EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text) == 1 then
+				return alias;
+			end
+		end
+	end
+end
+
+local customIntellisenseList = {};
+local function getSuggestedString()
+	for i,v in pairs(customIntellisenseList) do
+		if string.find(v, EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text) == 1 then
+			return v;
+		end
+	end
+end
+
+EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	
+	local newText = EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text;
+	
+	-- Check if the user is actually attempting to type a command
+	if #newText > 1 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() then
+		-- Find commands that match the command the user has typed so far
+		autocompleteTextbox.Text = getSuggestedString() or getSuggestedCommand() or "";
+	else
+		autocompleteTextbox.Text = "";
+	end
+
+end)
+
+-- The input for filling the execution textbox with the suggested string provided by the autocomplete/intellisense
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+
+	if input.KeyCode == Enum.KeyCode.Tab and #autocompleteTextbox.Text > 0 and EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:IsFocused() then
+		local filledText = autocompleteTextbox.Text;
+		game:GetService("RunService").RenderStepped:Wait();	-- Wait for tab space to be rendered
+		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = filledText;
+		autocompleteTextbox.Text = "";
+		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.CursorPosition = #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text + 1;
+	end
+
+end)
+
+EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.FocusLost:Connect(function(enterPressed)
+	if enterPressed and #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text > 0 then
+		handleRequest(EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text);
+		-- recapture focus on the textbox prior to a frame render
+		game:GetService("RunService").RenderStepped:Wait()
+		EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox:CaptureFocus();
+	end
+end)
+
+EzHub.TerminalFrame.ExecuteFrame.ExecuteButton.MouseButton1Click:Connect(function()
+	if #EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text > 0 then
+		handleRequest(EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text);
+	end
+end)
+
+-----------------------------------------------
+
+-- Commands allow aliases so that the user can call the same function with different names. This helps the user remember the commands easier.
+-- When executing cmdlist, only the first alias is shown. This means that the primary alias is index 1 in the table
+addCommand({"test"}, "Test command to ensure that the terminal is accepting user requests.", function()
+	terminalPrint("Ez Hub Terminal is currently functional...", "y");
+end);
+
+-------------------------
+
+-- prints the commands to the command list
+addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, "Prints all of the command lists into the Ez Hub terminal.", function()
+
+	terminalPrint("Ez Hub Terminal command list:", "b");
+	for _, commandData in pairs(commands) do
+		terminalPrint("<font color=\"rgb(0, 100, 255)\">"..commandData[1][1].."</font>: "..(commandData[2] or "No description is available on the following command."));
+	end
+
+end);
+
+-------------------------
+
+addCommand({"quit", "close"}, "Closes Ez Hub and unloads all of it's dependencies.", function()
+
+	terminalPrint("Closing Ez Hub in 3 seconds...", "r");
+	spawn(function()
+		wait(3);
+		closeEzHub();
+	end)
+
+end);
+
+addCommand({"hide", "hidegui"}, "Hides Ez Hub main panel. Does the same thing as pressing the toggle gui keybind.", function()
+
+	terminalPrint("Hiding main panel in 3 seconds...", "y");
+	terminalPrint("To re-open it, press the associated keybind: right-control", "y");
+	spawn(function()
+		wait(3);
+		EzHub.EzHub.Enabled = not EzHub.EzHub.Enabled;
+		terminalPrint("Ez Hub main panel is now hiding.", "b");
+	end)
+	
+end);
+
+-------------------------
+-- Commands for enabling/disabling rconsole mode
+
+addCommand({"consolemode", "rconsolemode"}, "Outputs and accepts input only from the rconsole.", function()
+	if not isRConsoleMode then
+		if rconsoleprint and rconsoleclear then
+			terminalPrint("Enabling rconsole mode...", "y");
+			isRConsoleMode = true;
+			terminalPrint("Enabled rconsole mode", "b");
+		else
+			terminalPrint("Your exploit does not support the following function.", "r");
+		end
+	else
+		terminalPrint("You are already in rconsole mode. To return back to gui mode type guimode.", "r");
+	end
+end);
+
+addCommand({"guimode"}, "Outputs and accepts input only from the main Ez Hub Terminal GUI.", function()
+	if isRConsoleMode then
+		terminalPrint("Enabling gui mode...", "y");
+		rconsoleclear();
+		isRConsoleMode = false;
+		terminalPrint("Enabled gui mode", "b");
+	else
+		terminalPrint("You are already in gui mode. To enter console mode, type consolemode", "r");
+	end
+end);
+
+-------------------------
+
+addCommand({"launch", "launchscript"}, "Launches a script from the library of Ez Hub (Exclusives V2).", function(scriptNameArg)
+	
+	local exclusiveV2s = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["exclusivesv2module"]);
+	customIntellisenseList = (function()
+		local t = {};
+		for i,v in pairs(exclusiveV2s) do
+			table.insert(t, i);
+		end
+		return t;
+	end)();
+
+	local function execute(scriptName)
+		for i,v in pairs(exclusiveV2s) do
+			if string.lower(i) == string.lower(scriptName) then
+				terminalPrint("Executing "..i.."...", "y");
+				loadstring(game:HttpGet(tostring(v["link"])))();
+				terminalPrint("Executed "..i..".", "b");
+				return;
+			end
+		end
+
+		terminalPrint("Invalid script. "..scriptName.." is not part of the exclusive V2s.", "r");
+	end
+
+	if scriptNameArg then
+		execute(scriptNameArg);
+		customIntellisenseList = {};
+	else
+		awaitRequest("Enter script name:", awaitingRequestInputTypes.any, function(scriptName)
+			execute(scriptName);
+			customIntellisenseList = {};	-- resets the custom intellisense
+		end)
+	end
+
+end);
+
+addCommand({"loadfile"}, "Loads a file from the workspace of your exploit. This can be used to load local plugins.", function(argPath)
+	local function load(path)
+		if isfile then
+			if isfile(path) then
+				terminalPrint("Loading file...", "y");
+				loadstring(readfile(path))();	-- executes the plugin file at that path
+			else
+				terminalPrint("Invalid path has been provided. Ensure that the file exists in the workspace directory of your exploit. Make sure to also include the file type at the end. Example: loadfile espterminal.lua", "r");
+			end
+		else
+			terminalPrint("Your exploit may be incompatible with the following feature.", "r");
+		end
+	end
+	
+	if argPath then
+		load(argPath);
+	else
+		awaitRequest("Enter file path in workspace directory of your exploit:", awaitingRequestInputTypes.any, load);
+	end
+end);
+
+local pluginLinks = game:GetService("HttpService"):JSONDecode(_G["EzHubModules"]["pluginLinks"]);
+addCommand({"listplugins", "listplugin"}, "Prints a list of verified plugins from the EzHub repository.", function()
+	terminalPrint("List of available plugins:", "b");
+	for i,v in pairs(pluginLinks) do
+		terminalPrint(i);
+	end
+end)
+
+addCommand({"loadplugin"}, "Loads a verified plugin from the EzHub repository. To view the list, execute listplugins.", function(pluginNameArg)
+	
+	local function loadPlugin(pluginName)
+		if pluginLinks[pluginName] then
+			terminalDivide();
+			terminalPrint("Fetching and loading plugin...", "y");
+			loadstring(game:HttpGet(pluginLinks[pluginName]))();
+			terminalPrint("Loaded plugin successfully...", "b");
+			terminalDivide();
+		else
+			terminalPrint("The following plugin does not exist...", "r");
+		end
+	end
+	
+	if pluginNameArg then
+		loadPlugin(pluginName);
+	else
+		awaitRequest("Enter plugin name:", awaitingRequestInputTypes.any, loadPlugin);
+	end
+
+end)
+
+-------------------------
+
+addCommand({"execute", "exec"}, "Runs lua code directly from the terminal.", function()
+
+	awaitRequest("Type out the code you would like to execute:", awaitingRequestInputTypes.any, function(code)
+		local status, err = pcall(function()
+			loadstring(code)();
+		end);
+
+		if status then
+			terminalPrint("Ran code successfully.", "b");
+		else
+			terminalPrint("An error occured when running your code: "..err, "r");
+		end
+	end)
+
+end)
+
+-----------------------------------------------
+
+terminalPrint("Loaded Ez Hub Terminal successfully...", "b");
+terminalPrint("To get a list of all of the commands that are available, execute cmdlist or list", "b");
+terminalDivide();
+
+-----------------------------------------------
+-- Setup the terminal API
+-- This means that external scripts/services 
+
+_G.EzHubTerminal = {
+	print = terminalPrint,
+	divide = terminalDivide,
+	addCommand = addCommand,
+	awaitRequest = awaitRequest,
+	awaitingRequestInputTypes = awaitingRequestInputTypes
+}
+
+-------------------------------------------------------------------------------------------------
 -- Toggle GUI
+
 game:GetService("UserInputService").InputBegan:Connect(function(input)
 	if input.KeyCode == Enum.KeyCode.RightControl then EzHub.EzHub.Enabled = not EzHub.EzHub.Enabled; end
 end)
 
 -------------------------------------------------------------------------------------------------
-
 -- Draggability
 -- This is the only function that is not made by me
 -- No idea who made this as I had this code ages ago.

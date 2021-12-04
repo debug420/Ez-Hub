@@ -10,5 +10,6 @@
     "exclusivesmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/ExclusivesV1.json",
     "exclusivesv2module": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/ExclusivesV2.json",
     "repostedmodule": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/RepostedModule.json",
-    "logger": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/Logger.lua"
+    "logger": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Modules/Logger.lua",
+    "pluginLinks": "https://raw.githubusercontent.com/debug420/Ez-Hub/master/Plugins/pluginLinks.json"
 }

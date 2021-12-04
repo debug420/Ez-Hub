@@ -347,9 +347,9 @@ _G.change = function(p, v)
     espConfig[p] = v;
 end
 
-if _G.unload then _G.unload(); end
+if _G.unloadESP then _G.unloadESP(); end
 
-_G.unload = function()
+_G.unloadESP = function()
     drawESP = function() return; end
     for i,v in pairs(conmem) do
         v:Disconnect();
