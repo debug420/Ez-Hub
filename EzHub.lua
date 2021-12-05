@@ -738,6 +738,7 @@ do
 	EzHub.HomeFrame.BackgroundTransparency = 1.000
 	EzHub.HomeFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
 	EzHub.HomeFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.HomeFrame.Visible = false
 
 	EzHub.AnimFrame1_4.Name = "AnimFrame1"
 	EzHub.AnimFrame1_4.Parent = EzHub.HomeFrame
@@ -966,7 +967,7 @@ do
 	EzHub.GameName.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.GameName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.GameName.BackgroundTransparency = 1.000
-	EzHub.GameName.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
+	EzHub.GameName.Position = UDim2.new(0.5, 0, 0.666999996, 0)
 	EzHub.GameName.Size = UDim2.new(0, 75, 0, 31)
 	EzHub.GameName.Font = Enum.Font.SourceSans
 	EzHub.GameName.Text = "Add"
@@ -975,13 +976,15 @@ do
 	EzHub.GameName.TextWrapped = true
 
 	EzHub.ImageLabel_5.Parent = EzHub.Frame_13
+	EzHub.ImageLabel_5.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.ImageLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ImageLabel_5.BackgroundTransparency = 1.000
-	EzHub.ImageLabel_5.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
+	EzHub.ImageLabel_5.Position = UDim2.new(0.5, 0, 0.100000001, 0)
 	EzHub.ImageLabel_5.Size = UDim2.new(0, 72, 0, 54)
 	EzHub.ImageLabel_5.Image = "http://www.roblox.com/asset/?id=4873174937"
-	EzHub.ImageLabel_5.ImageRectOffset = Vector2.new(12, 12)
-	EzHub.ImageLabel_5.ImageRectSize = Vector2.new(55, 50)
+	EzHub.ImageLabel_5.ImageRectOffset = Vector2.new(9, 8)
+	EzHub.ImageLabel_5.ImageRectSize = Vector2.new(60, 60)
+	EzHub.ImageLabel_5.ScaleType = Enum.ScaleType.Fit
 
 	EzHub.Trigger.Name = "Trigger"
 	EzHub.Trigger.Parent = EzHub.Frame_13
@@ -1022,7 +1025,7 @@ do
 	EzHub.GameName_2.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.GameName_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.GameName_2.BackgroundTransparency = 1.000
-	EzHub.GameName_2.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
+	EzHub.GameName_2.Position = UDim2.new(0.5, 0, 0.666999996, 0)
 	EzHub.GameName_2.Size = UDim2.new(0, 75, 0, 31)
 	EzHub.GameName_2.Font = Enum.Font.SourceSans
 	EzHub.GameName_2.Text = "Remove"
@@ -1031,13 +1034,15 @@ do
 	EzHub.GameName_2.TextWrapped = true
 
 	EzHub.ImageLabel_6.Parent = EzHub.Frame_14
+	EzHub.ImageLabel_6.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.ImageLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ImageLabel_6.BackgroundTransparency = 1.000
-	EzHub.ImageLabel_6.Position = UDim2.new(0.130769044, 0, 0.100000001, 0)
+	EzHub.ImageLabel_6.Position = UDim2.new(0.5, 0, 0.100000001, 0)
 	EzHub.ImageLabel_6.Size = UDim2.new(0, 72, 0, 54)
 	EzHub.ImageLabel_6.Image = "http://www.roblox.com/asset/?id=4873174703"
 	EzHub.ImageLabel_6.ImageRectOffset = Vector2.new(12, 12)
 	EzHub.ImageLabel_6.ImageRectSize = Vector2.new(55, 50)
+	EzHub.ImageLabel_6.ScaleType = Enum.ScaleType.Fit
 
 	EzHub.Trigger_2.Name = "Trigger"
 	EzHub.Trigger_2.Parent = EzHub.Frame_14
@@ -1651,7 +1656,7 @@ do
 	EzHub.GameName_3.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.GameName_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.GameName_3.BackgroundTransparency = 1.000
-	EzHub.GameName_3.Position = UDim2.new(0.483800054, 0, 0.666842163, 0)
+	EzHub.GameName_3.Position = UDim2.new(0.5, 0, 0.666999996, 0)
 	EzHub.GameName_3.Size = UDim2.new(0, 75, 0, 31)
 	EzHub.GameName_3.ZIndex = 2
 	EzHub.GameName_3.Font = Enum.Font.SourceSans
@@ -2061,7 +2066,7 @@ functionaliseSearchBar(EzHub.LocalLibFrame.SearchFrame.SearchBar, EzHub.LocalLib
 -- Apply Themes
 
 local defaultTheme = {
-	
+
 	ThemeIndex = 	1,
 
 	Primary = 		{41, 53, 68},
