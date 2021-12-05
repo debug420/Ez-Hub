@@ -1113,7 +1113,7 @@ ezlib.create = function(name, parent, pos, theme, gameID, deleteOldGUI)
 	-- Create main GUI and handle events
 	local mainGUI = coreGUIFuncs.newCreateGUI(name, pos, parent, theme);
 	if _G.EzHubExclusives and type(_G.EzHubExclusives) == "table" then
-		table.insert(_G.EzHubExclusives, mainGUI);
+		table.insert(_G.EzHubExclusives, mainGUI.screengui);
 	end
 
 	mainGUI.opennav.MouseButton1Click:Connect(function() coreFuncs.handleNavLib(mainGUI.navframe, mainGUI.opennav, mainGUI.closenav, activeTab) end)
