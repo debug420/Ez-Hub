@@ -2061,11 +2061,17 @@ functionaliseSearchBar(EzHub.LocalLibFrame.SearchFrame.SearchBar, EzHub.LocalLib
 -- Apply Themes
 
 local defaultTheme = {
+	
 	ThemeIndex = 	1,
+
 	Primary = 		{41, 53, 68},
 	Secondary = 	{35, 47, 62},
 	Tertiary = 		{28, 41, 56},
-	Quaternary = 	{18, 98, 159}
+	Quaternary = 	{18, 98, 159},
+
+	ScrollBarColor = {14, 21, 30},
+	DefaultTextColor = {255, 255, 255}
+
 }
 
 local chosenTheme = _G.EzHubTheme or {ThemeIndex = 1};	-- ThemeIndex = 1 signifies that default theme has been chosen
@@ -2090,10 +2096,22 @@ if chosenTheme["ThemeIndex"] ~= defaultTheme["ThemeIndex"] then
 	-- apply theme as default theme is not selected
 	for i,v in pairs(EzHub.EzHub:GetDescendants()) do
 		if v:IsA("GuiObject") then
+			
 			if v:IsA("ImageButton") or v:IsA("ImageLabel") then
-				handleThemeColoring(v, "ImageColor3") end
+				handleThemeColoring(v, "ImageColor3");
+			end
+
+			if pcall(function() local _ = v.BorderColor3 end) then
+				handleThemeColoring(v, "BorderColor3");
+			end
+
+			if v:IsA("ScrollingFrame") then
+				handleThemeColoring(v, "ScrollBarImageColor3");
+			end
+
 			if pcall(function() local _ = v.TextColor3 end) then
-				handleThemeColoring(v, "TextColor3") end
+				handleThemeColoring(v, "TextColor3");
+			end
 				
 			handleThemeColoring(v, "BackgroundColor3");
 
