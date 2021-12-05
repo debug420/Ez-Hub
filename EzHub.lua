@@ -439,9 +439,6 @@ do
 	EzHub.TerminalBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.TerminalBtn.TextSize = 14.000
 
-	-- Core implementation merged into master branch. Not yet ready for release therefore the terminal button will remain invisible
-	EzHub.TerminalBtn.Visible = false
-
 	EzHub.UICorner_14.CornerRadius = UDim.new(0, 3)
 	EzHub.UICorner_14.Parent = EzHub.TerminalBtn
 
