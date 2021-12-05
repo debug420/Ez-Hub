@@ -1782,7 +1782,7 @@ do
 	EzHub.Divider.AnchorPoint = Vector2.new(0, 0.5)
 	EzHub.Divider.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.Divider.Position = UDim2.new(0, 0, 0.5, 0)
-	EzHub.Divider.Size = UDim2.new(1, 0, 4, 0)
+	EzHub.Divider.Size = UDim2.new(1, 0, 0, 4)
 
 	EzHub.UICorner_40.Parent = EzHub.Divider
 
