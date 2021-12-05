@@ -1952,11 +1952,11 @@ local function addScript(configs)
 
 end
 
--- A function for smoothly rotating an instance in increments of 40
+-- A function for smoothly rotating an instance in increments of 90
 -- Mainly made for the navigation 3 bar spinning animation
-local function rotateInstanceBy(instance, rotationAngle, isCounterClockwise)
+local function rotateInstanceBy(instance, rotationAngle, delay, isCounterClockwise)
 	for i = 1, rotationAngle / 40 do
-		local tween = game:GetService("TweenService"):Create(instance, TweenInfo.new(0.03, Enum.EasingStyle.Linear), {Rotation = instance.Rotation + (isCounterClockwise and -20 or 20)});
+		local tween = game:GetService("TweenService"):Create(instance, TweenInfo.new(delay or 0.03, Enum.EasingStyle.Linear), {Rotation = instance.Rotation + (isCounterClockwise and -40 or 40)});
 		tween:Play();
 		tween.Completed:Wait();
 	end
@@ -1983,19 +1983,19 @@ local function handleNavBtn()
 
 		if EzHub.NavButton.Visible then
 
-			rotateInstanceBy(EzHub.NavButton, 200);
+			rotateInstanceBy(EzHub.NavButton, 180);
 			EzHub.NavButton.Visible = false;
 			EzHub.CloseNavButton.Rotation = EzHub.NavButton.Rotation;
 			EzHub.CloseNavButton.Visible = true;
-			rotateInstanceBy(EzHub.CloseNavButton, 160);
+			rotateInstanceBy(EzHub.CloseNavButton, 200);
 
 		else
 
-			rotateInstanceBy(EzHub.CloseNavButton, 160, true);
+			rotateInstanceBy(EzHub.CloseNavButton, 180, nil, true);
 			EzHub.NavButton.Visible = true;
 			EzHub.NavButton.Rotation = EzHub.CloseNavButton.Rotation;
 			EzHub.CloseNavButton.Visible = false;
-			rotateInstanceBy(EzHub.NavButton, 200, true);
+			rotateInstanceBy(EzHub.NavButton, 200, nil, true);
 
 		end
 		
