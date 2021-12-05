@@ -2555,6 +2555,12 @@ local function autoScroll()
 	EzHub.TerminalFrame.AnimFrame1.CanvasPosition = Vector2.new(0, EzHub.TerminalFrame.AnimFrame1.UIListLayout.AbsoluteContentSize.Y);
 end
 
+-- Function made by Blockzez (I will not be bothering with regex)
+-- Removes rich text annotations and tags. Example: "<b>hello</b>" becomes "hello"
+local function removeTags(str)
+    return (str:gsub("(\\?)<[^<>]->", { [''] = '' }))
+end
+
 local function terminalPrint(msg, printType)
 	if isRConsoleMode then
 		-- If the user has activated native console, exploit functions for rconsole will be used
@@ -2572,7 +2578,7 @@ local function terminalPrint(msg, printType)
 			rconsoleprint("@@WHITE@@");
 		end
 
-		rconsoleprint(msg.."\n");
+		rconsoleprint(removeTags(msg).."\n");
 
 	else
 		-- If not, terminal text container will be cloned and adjusted
