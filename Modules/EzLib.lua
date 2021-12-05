@@ -114,6 +114,16 @@ coreFuncs.dragifyLib = function(mainFrame)
 	end)
 end
 
+-- Function for rotating instances. More info in main Ez Hub file
+coreFuncs.rotateInstanceBy = function(instance, rotationAngle, delay, isCounterClockwise)
+	for i = 1, rotationAngle / 40 do
+		local tween = game:GetService("TweenService"):Create(instance, TweenInfo.new(delay or 0.03, Enum.EasingStyle.Linear), {Rotation = instance.Rotation + (isCounterClockwise and -40 or 40)});
+		tween:Play();
+		tween.Completed:Wait();
+	end
+end
+
+-- Handles the navigation tab opening and closing
 coreFuncs.handleNavLib = function(frame, nav, close, activeFrame)
 	if coreVars.navDebounce then
 		coreVars.navDebounce = false;
@@ -132,31 +142,19 @@ coreFuncs.handleNavLib = function(frame, nav, close, activeFrame)
 
 		if nav.Visible then
 
-			for i = 1, 10 do
-				game:GetService("RunService").RenderStepped:Wait();
-				nav.Rotation = nav.Rotation - 20;
-			end
+			coreFuncs.rotateInstanceBy(nav, 180);
 			nav.Visible = false;
 			close.Rotation = nav.Rotation;
 			close.Visible = true;
-			for i = 1, 8 do
-				game:GetService("RunService").RenderStepped:Wait();
-				close.Rotation = close.Rotation - 20;
-			end
+			coreFuncs.rotateInstanceBy(close, 200);
 
 		else
 
-			for i = 1, 8 do
-				game:GetService("RunService").RenderStepped:Wait();
-				close.Rotation = close.Rotation + 20;
-			end
+			coreFuncs.rotateInstanceBy(close, 180, nil, true);
 			nav.Visible = true;
 			nav.Rotation = close.Rotation;
 			close.Visible = false;
-			for i = 1,10 do
-				game:GetService("RunService").RenderStepped:Wait();
-				nav.Rotation = nav.Rotation + 20;
-			end
+			coreFuncs.rotateInstanceBy(nav, 200, nil, true);
 
 		end
 
