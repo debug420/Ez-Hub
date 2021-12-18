@@ -2331,7 +2331,7 @@ EzHub.Discord.MouseButton1Click:Connect(function()
 	otherSectionButtonDebounce = false;
 
 	EzHub.Discord.Text = "Copied";
-	pcall(function() setclipboard("https://discord.gg/tuWcU7Q") end);
+	pcall(function() setclipboard("https://discord.gg/Zgau6767u8") end);
 	wait(2);
 	EzHub.Discord.Text = oldTextDiscord;
 
