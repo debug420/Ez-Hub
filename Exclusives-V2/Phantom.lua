@@ -1,5 +1,8 @@
 -- Phantom Forces Script
 
+getgenv().text = "Gamesense"
+loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/gamesensewatermark.lua")()
+
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
 local mainGUI = ezlib.create("Phantom Forces", nil, nil, nil, 292439477);
 
