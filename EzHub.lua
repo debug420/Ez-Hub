@@ -87,7 +87,7 @@ local EzHub = {
 	OtherFrame = Instance.new("ImageLabel"),
 	Docs = Instance.new("TextButton"),
 	UICorner_19 = Instance.new("UICorner"),
-	Discord = Instance.new("TextButton"),
+	Github = Instance.new("TextButton"),
 	UICorner_20 = Instance.new("UICorner"),
 	SectionEs_2 = Instance.new("Folder"),
 	Frame_11 = Instance.new("Frame"),
@@ -869,19 +869,19 @@ do
 	EzHub.UICorner_19.CornerRadius = UDim.new(0, 3)
 	EzHub.UICorner_19.Parent = EzHub.Docs
 
-	EzHub.Discord.Name = "Discord"
-	EzHub.Discord.Parent = EzHub.OtherFrame
-	EzHub.Discord.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Discord.BorderSizePixel = 0
-	EzHub.Discord.Position = UDim2.new(0, 10, 0.5, -15)
-	EzHub.Discord.Size = UDim2.new(0, 110, 0, 28)
-	EzHub.Discord.Font = Enum.Font.SourceSans
-	EzHub.Discord.Text = "Discord"
-	EzHub.Discord.TextColor3 = Color3.fromRGB(255, 255, 255)
-	EzHub.Discord.TextSize = 14.000
+	EzHub.Github.Name = "Github"
+	EzHub.Github.Parent = EzHub.OtherFrame
+	EzHub.Github.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Github.BorderSizePixel = 0
+	EzHub.Github.Position = UDim2.new(0, 10, 0.5, -15)
+	EzHub.Github.Size = UDim2.new(0, 110, 0, 28)
+	EzHub.Github.Font = Enum.Font.SourceSans
+	EzHub.Github.Text = "Github"
+	EzHub.Github.TextColor3 = Color3.fromRGB(255, 255, 255)
+	EzHub.Github.TextSize = 14.000
 
 	EzHub.UICorner_20.CornerRadius = UDim.new(0, 3)
-	EzHub.UICorner_20.Parent = EzHub.Discord
+	EzHub.UICorner_20.Parent = EzHub.Github
 
 	EzHub.SectionEs_2.Name = "SectionEs"
 	EzHub.SectionEs_2.Parent = EzHub.OtherFrame
@@ -2283,6 +2283,8 @@ navDebounce = true;
 
 -------------------------------------------------------------------------------------------------
 
+-- NOTE: DISREGARD THE BELOW AS EZ HUB NO LONGER LOGS ANY INFORMATION AS IT IS NOW DISCONTINUED
+
 -- The following section is obfuscated as it handles the sending of the user's data to the Discord webhooks for better user experience
 -- If you wish to not get logged, add the following code to the start of the launcher code you execute:
 -- By using Ez Hub, you automatically agreed to having certain information logged (nothing sensitive)
@@ -2296,6 +2298,7 @@ loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industri
 
 ]]
 
+--[[
 if not _G.DISABLEEXELOG then
 	coroutine.wrap(function()
 		loadstring(_G["EzHubModules"]["logger"])().exeLog();
@@ -2303,6 +2306,7 @@ if not _G.DISABLEEXELOG then
 else
 	spawn(function() ezlib.newNotif(ezlib.enum.notifType.text, "Ez Hub blocked EXE Logger.").play().delete(); end)
 end
+]]
 
 -------------------------------------------------------------------------------------------------
 -- Other Section Buttons (HOME)
@@ -2327,15 +2331,15 @@ EzHub.Docs.MouseButton1Click:Connect(function()
 	otherSectionButtonDebounce = true;
 end)
 
-local oldTextDiscord = EzHub.Discord.Text;
-EzHub.Discord.MouseButton1Click:Connect(function()
+local oldTextGithub = EzHub.Github.Text;
+EzHub.Github.MouseButton1Click:Connect(function()
 	if not otherSectionButtonDebounce then return end
 	otherSectionButtonDebounce = false;
 
-	EzHub.Discord.Text = "Copied";
-	pcall(function() setclipboard("https://discord.gg/Zgau6767u8") end);
+	EzHub.Github.Text = "Copied";
+	pcall(function() setclipboard("https://github.com/debug420/Ez-Hub") end);
 	wait(2);
-	EzHub.Discord.Text = oldTextDiscord;
+	EzHub.Github.Text = oldTextGithub;
 
 	otherSectionButtonDebounce = true;
 end)
