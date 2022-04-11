@@ -139,6 +139,8 @@ local EzHub = {
 	Frame_18 = Instance.new("Frame"),
 	UICorner_30 = Instance.new("UICorner"),
 	Editor = Instance.new("ScrollingFrame"),
+	Frame_19 = Instance.new("Frame"),
+	UICorner_31 = Instance.new("UICorner"),
 	EditorFrame = Instance.new("ScrollingFrame"),
 	Source = Instance.new("TextBox"),
 	Comments_ = Instance.new("TextLabel"),
@@ -149,8 +151,6 @@ local EzHub = {
 	Tokens_ = Instance.new("TextLabel"),
 	Numbers_ = Instance.new("TextLabel"),
 	Lines = Instance.new("TextLabel"),
-	Frame_19 = Instance.new("Frame"),
-	UICorner_31 = Instance.new("UICorner"),
 	REMOVEFrame = Instance.new("Frame"),
 	AnimFrame1_8 = Instance.new("Frame"),
 	Frame_20 = Instance.new("Frame"),
@@ -280,7 +280,7 @@ do
 	EzHub.NavFrame.Active = true
 	EzHub.NavFrame.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.NavFrame.BorderSizePixel = 0
-	EzHub.NavFrame.Position = UDim2.new(-0.5, 0, 0.108000003, 0)
+	EzHub.NavFrame.Position = UDim2.new(0, -125, 0, 34)
 	EzHub.NavFrame.Size = UDim2.new(0, 125, 0, 281)
 	EzHub.NavFrame.ZIndex = 2
 	EzHub.NavFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -453,8 +453,8 @@ do
 	EzHub.ExclusivesFrame.Parent = EzHub.MainFrame
 	EzHub.ExclusivesFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ExclusivesFrame.BackgroundTransparency = 1.000
-	EzHub.ExclusivesFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.ExclusivesFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.ExclusivesFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.ExclusivesFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.ExclusivesFrame.Visible = false
 
 	EzHub.AnimFrame1.Name = "AnimFrame1"
@@ -465,7 +465,7 @@ do
 	EzHub.AnimFrame1.BackgroundTransparency = 1.000
 	EzHub.AnimFrame1.BorderSizePixel = 0
 	EzHub.AnimFrame1.Position = UDim2.new(0, 0, 1, 0)
-	EzHub.AnimFrame1.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1.Size = UDim2.new(1, 0, 1, -55)
 	EzHub.AnimFrame1.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_2.Parent = EzHub.AnimFrame1
@@ -518,8 +518,8 @@ do
 	EzHub.LoadingFrame.Parent = EzHub.MainFrame
 	EzHub.LoadingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.LoadingFrame.BackgroundTransparency = 1.000
-	EzHub.LoadingFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.LoadingFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.LoadingFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.LoadingFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.LoadingFrame.Visible = false
 
 	EzHub.TextLabel_2.Parent = EzHub.LoadingFrame
@@ -596,15 +596,15 @@ do
 	EzHub.CreditsFrame.Parent = EzHub.MainFrame
 	EzHub.CreditsFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.CreditsFrame.BackgroundTransparency = 1.000
-	EzHub.CreditsFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.CreditsFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.CreditsFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.CreditsFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.CreditsFrame.Visible = false
 
 	EzHub.AnimFrame1_2.Name = "AnimFrame1"
 	EzHub.AnimFrame1_2.Parent = EzHub.CreditsFrame
 	EzHub.AnimFrame1_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.AnimFrame1_2.BackgroundTransparency = 1.000
-	EzHub.AnimFrame1_2.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.AnimFrame1_2.Size = UDim2.new(1, 0, 1, 0)
 
 	EzHub.TextLabel_4.Parent = EzHub.AnimFrame1_2
 	EzHub.TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -671,8 +671,8 @@ do
 	EzHub.RepostedFrame.Parent = EzHub.MainFrame
 	EzHub.RepostedFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.RepostedFrame.BackgroundTransparency = 1.000
-	EzHub.RepostedFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.RepostedFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.RepostedFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.RepostedFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.RepostedFrame.Visible = false
 
 	EzHub.AnimFrame1_3.Name = "AnimFrame1"
@@ -683,7 +683,7 @@ do
 	EzHub.AnimFrame1_3.BackgroundTransparency = 1.000
 	EzHub.AnimFrame1_3.BorderSizePixel = 0
 	EzHub.AnimFrame1_3.Position = UDim2.new(0, 0, 1, 0)
-	EzHub.AnimFrame1_3.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_3.Size = UDim2.new(1, 0, 1, -55)
 	EzHub.AnimFrame1_3.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_3.Parent = EzHub.AnimFrame1_3
@@ -736,15 +736,15 @@ do
 	EzHub.HomeFrame.Parent = EzHub.MainFrame
 	EzHub.HomeFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.HomeFrame.BackgroundTransparency = 1.000
-	EzHub.HomeFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.HomeFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.HomeFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.HomeFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.HomeFrame.Visible = false
 
 	EzHub.AnimFrame1_4.Name = "AnimFrame1"
 	EzHub.AnimFrame1_4.Parent = EzHub.HomeFrame
 	EzHub.AnimFrame1_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.AnimFrame1_4.BackgroundTransparency = 1.000
-	EzHub.AnimFrame1_4.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.AnimFrame1_4.Size = UDim2.new(1, 0, 1, 0)
 
 	EzHub.ProfileFrame.Name = "ProfileFrame"
 	EzHub.ProfileFrame.Parent = EzHub.AnimFrame1_4
@@ -915,8 +915,8 @@ do
 	EzHub.LocalLibFrame.Parent = EzHub.MainFrame
 	EzHub.LocalLibFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.LocalLibFrame.BackgroundTransparency = 1.000
-	EzHub.LocalLibFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.LocalLibFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.LocalLibFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.LocalLibFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.LocalLibFrame.Visible = false
 
 	EzHub.AnimFrame1_5.Name = "AnimFrame1"
@@ -927,7 +927,7 @@ do
 	EzHub.AnimFrame1_5.BackgroundTransparency = 1.000
 	EzHub.AnimFrame1_5.BorderSizePixel = 0
 	EzHub.AnimFrame1_5.Position = UDim2.new(0, 0, 1, 0)
-	EzHub.AnimFrame1_5.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_5.Size = UDim2.new(1, 0, 1, -55)
 	EzHub.AnimFrame1_5.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_4.Parent = EzHub.AnimFrame1_5
@@ -1096,8 +1096,8 @@ do
 	EzHub.ExclusivesV2Frame.Parent = EzHub.MainFrame
 	EzHub.ExclusivesV2Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ExclusivesV2Frame.BackgroundTransparency = 1.000
-	EzHub.ExclusivesV2Frame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.ExclusivesV2Frame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.ExclusivesV2Frame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.ExclusivesV2Frame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.ExclusivesV2Frame.Visible = false
 
 	EzHub.SearchFrame_4.Name = "SearchFrame"
@@ -1145,7 +1145,7 @@ do
 	EzHub.AnimFrame1_6.BackgroundTransparency = 1.000
 	EzHub.AnimFrame1_6.BorderSizePixel = 0
 	EzHub.AnimFrame1_6.Position = UDim2.new(0, 0, 1, 0)
-	EzHub.AnimFrame1_6.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_6.Size = UDim2.new(1, 0, 1, -55)
 	EzHub.AnimFrame1_6.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIGridLayout_5.Parent = EzHub.AnimFrame1_6
@@ -1161,32 +1161,33 @@ do
 	EzHub.ADDFrame.Parent = EzHub.MainFrame
 	EzHub.ADDFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.ADDFrame.BackgroundTransparency = 1.000
-	EzHub.ADDFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.ADDFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.ADDFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.ADDFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.ADDFrame.Visible = false
 
 	EzHub.AnimFrame1_7.Name = "AnimFrame1"
 	EzHub.AnimFrame1_7.Parent = EzHub.ADDFrame
 	EzHub.AnimFrame1_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.AnimFrame1_7.BackgroundTransparency = 1.000
-	EzHub.AnimFrame1_7.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.AnimFrame1_7.Size = UDim2.new(1, 0, 1, 0)
 
 	EzHub.Namer.Name = "Namer"
 	EzHub.Namer.Parent = EzHub.AnimFrame1_7
+	EzHub.Namer.AnchorPoint = Vector2.new(0.5, 0)
 	EzHub.Namer.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.Namer.BorderSizePixel = 0
-	EzHub.Namer.Position = UDim2.new(0.0554370992, 0, 0.0533807799, 0)
-	EzHub.Namer.Size = UDim2.new(0, 417, 0, 35)
+	EzHub.Namer.Position = UDim2.new(0.5, 0, 0, 14)
+	EzHub.Namer.Size = UDim2.new(1, -50, 0, 35)
 
 	EzHub.ScriptNamer.Name = "ScriptNamer"
 	EzHub.ScriptNamer.Parent = EzHub.Namer
-	EzHub.ScriptNamer.AnchorPoint = Vector2.new(0.5, 0.5)
+	EzHub.ScriptNamer.AnchorPoint = Vector2.new(0, 0.5)
 	EzHub.ScriptNamer.BackgroundColor3 = Color3.fromRGB(35, 47, 62)
 	EzHub.ScriptNamer.BackgroundTransparency = 1.000
 	EzHub.ScriptNamer.BorderColor3 = Color3.fromRGB(35, 47, 62)
 	EzHub.ScriptNamer.BorderSizePixel = 0
-	EzHub.ScriptNamer.Position = UDim2.new(0.513189435, 0, 0.5, 0)
-	EzHub.ScriptNamer.Size = UDim2.new(0.97362113, -12, 1, -12)
+	EzHub.ScriptNamer.Position = UDim2.new(0, 16, 0, 17)
+	EzHub.ScriptNamer.Size = UDim2.new(1, -25, 1, -12)
 	EzHub.ScriptNamer.ZIndex = 2
 	EzHub.ScriptNamer.ClearTextOnFocus = false
 	EzHub.ScriptNamer.Font = Enum.Font.Code
@@ -1210,7 +1211,7 @@ do
 	EzHub.BackButton.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.BackButton.BorderSizePixel = 0
 	EzHub.BackButton.LayoutOrder = 6
-	EzHub.BackButton.Position = UDim2.new(0, 280, 0, 231)
+	EzHub.BackButton.Position = UDim2.new(0, 275, 0, 228)
 	EzHub.BackButton.Size = UDim2.new(0, 120, 0, 31)
 	EzHub.BackButton.ZIndex = 3
 	EzHub.BackButton.Font = Enum.Font.SourceSans
@@ -1233,7 +1234,7 @@ do
 	EzHub.CreateButton.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.CreateButton.BorderSizePixel = 0
 	EzHub.CreateButton.LayoutOrder = 6
-	EzHub.CreateButton.Position = UDim2.new(0, 26, 0, 231)
+	EzHub.CreateButton.Position = UDim2.new(0, 25, 0, 228)
 	EzHub.CreateButton.Size = UDim2.new(0, 120, 0, 31)
 	EzHub.CreateButton.ZIndex = 3
 	EzHub.CreateButton.Font = Enum.Font.SourceSans
@@ -1256,7 +1257,7 @@ do
 	EzHub.TestExecButton.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.TestExecButton.BorderSizePixel = 0
 	EzHub.TestExecButton.LayoutOrder = 6
-	EzHub.TestExecButton.Position = UDim2.new(0, 153, 0, 231)
+	EzHub.TestExecButton.Position = UDim2.new(0, 150, 0, 228)
 	EzHub.TestExecButton.Size = UDim2.new(0, 120, 0, 31)
 	EzHub.TestExecButton.ZIndex = 3
 	EzHub.TestExecButton.Font = Enum.Font.SourceSans
@@ -1280,10 +1281,17 @@ do
 	EzHub.Editor.AnchorPoint = Vector2.new(0.5, 0.5)
 	EzHub.Editor.BackgroundColor3 = Color3.fromRGB(28, 41, 56)
 	EzHub.Editor.BorderSizePixel = 0
-	EzHub.Editor.Position = UDim2.new(0.5, 0, 0.501999974, 0)
-	EzHub.Editor.Size = UDim2.new(0, 417, 0, 169)
+	EzHub.Editor.Position = UDim2.new(0.5, 0, 0.5, -2)
+	EzHub.Editor.Size = UDim2.new(1, -50, 0, 169)
 	EzHub.Editor.CanvasSize = UDim2.new(0, 0, 0, 0)
 	EzHub.Editor.ScrollBarThickness = 8
+
+	EzHub.Frame_19.Parent = EzHub.Editor
+	EzHub.Frame_19.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
+	EzHub.Frame_19.Size = UDim2.new(0, 2, 1, 0)
+	EzHub.Frame_19.ZIndex = 4
+
+	EzHub.UICorner_31.Parent = EzHub.Frame_19
 
 	EzHub.EditorFrame.Name = "EditorFrame"
 	EzHub.EditorFrame.Parent = EzHub.Editor
@@ -1294,7 +1302,7 @@ do
 	EzHub.EditorFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 	EzHub.EditorFrame.Size = UDim2.new(1, -12, 1, -12)
 	EzHub.EditorFrame.ZIndex = 3
-	EzHub.EditorFrame.CanvasSize = UDim2.new(4, 0, 2, 0)
+	EzHub.EditorFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 	EzHub.EditorFrame.HorizontalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 	EzHub.EditorFrame.ScrollBarThickness = 5
 
@@ -1304,7 +1312,7 @@ do
 	EzHub.Source.BackgroundTransparency = 1.000
 	EzHub.Source.ClipsDescendants = true
 	EzHub.Source.Position = UDim2.new(0, 30, 0, 0)
-	EzHub.Source.Size = UDim2.new(0.928057551, 0, 1, 0)
+	EzHub.Source.Size = UDim2.new(0, 390, 1, 0)
 	EzHub.Source.ZIndex = 3
 	EzHub.Source.ClearTextOnFocus = false
 	EzHub.Source.Font = Enum.Font.Code
@@ -1420,26 +1428,19 @@ do
 	EzHub.Lines.TextWrapped = true
 	EzHub.Lines.TextYAlignment = Enum.TextYAlignment.Top
 
-	EzHub.Frame_19.Parent = EzHub.Editor
-	EzHub.Frame_19.BackgroundColor3 = Color3.fromRGB(18, 98, 159)
-	EzHub.Frame_19.Size = UDim2.new(0, 2, 1, 0)
-	EzHub.Frame_19.ZIndex = 4
-
-	EzHub.UICorner_31.Parent = EzHub.Frame_19
-
 	EzHub.REMOVEFrame.Name = "REMOVEFrame"
 	EzHub.REMOVEFrame.Parent = EzHub.MainFrame
 	EzHub.REMOVEFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.REMOVEFrame.BackgroundTransparency = 1.000
-	EzHub.REMOVEFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.REMOVEFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.REMOVEFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.REMOVEFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.REMOVEFrame.Visible = false
 
 	EzHub.AnimFrame1_8.Name = "AnimFrame1"
 	EzHub.AnimFrame1_8.Parent = EzHub.REMOVEFrame
 	EzHub.AnimFrame1_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.AnimFrame1_8.BackgroundTransparency = 1.000
-	EzHub.AnimFrame1_8.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.AnimFrame1_8.Size = UDim2.new(1, 0, 1, 0)
 
 	EzHub.Frame_20.Parent = EzHub.AnimFrame1_8
 	EzHub.Frame_20.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -1522,8 +1523,8 @@ do
 	EzHub.TerminalFrame.Parent = EzHub.MainFrame
 	EzHub.TerminalFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.TerminalFrame.BackgroundTransparency = 1.000
-	EzHub.TerminalFrame.Position = UDim2.new(0, 0, 0.107936509, 0)
-	EzHub.TerminalFrame.Size = UDim2.new(0, 469, 0, 281)
+	EzHub.TerminalFrame.Position = UDim2.new(0, 0, 0, 34)
+	EzHub.TerminalFrame.Size = UDim2.new(1, 0, 0, 281)
 	EzHub.TerminalFrame.Visible = false
 
 	EzHub.AnimFrame1_9.Name = "AnimFrame1"
@@ -1532,7 +1533,7 @@ do
 	EzHub.AnimFrame1_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	EzHub.AnimFrame1_9.BackgroundTransparency = 1.000
 	EzHub.AnimFrame1_9.BorderSizePixel = 0
-	EzHub.AnimFrame1_9.Size = UDim2.new(0, 469, 0, 228)
+	EzHub.AnimFrame1_9.Size = UDim2.new(1, 0, 1, -55)
 	EzHub.AnimFrame1_9.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 	EzHub.UIPadding_7.Parent = EzHub.AnimFrame1_9
@@ -1973,14 +1974,15 @@ local function handleNavBtn()
 		navDebounce = false;
 
 		local navslidethread = coroutine.create(function()
-			if EzHub.NavFrame.Position ~= UDim2.new(-0.5, 0, 0.108, 0) then
-				EzHub.NavFrame:TweenPosition(UDim2.new(-0.5, 0, 0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true);	-- Hide
+			if EzHub.NavFrame.Position ~= UDim2.new(0, -125, 0, 34) then
+				EzHub.NavFrame:TweenPosition(UDim2.new(0, -125, 0, 34),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);	-- Hide
 				getActiveFrame():TweenPosition(getActiveFrame().Position - UDim2.new(0.27,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
 			else
-				EzHub.NavFrame:TweenPosition(UDim2.new(0, 0,0.108, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true);		-- Show
+				EzHub.NavFrame:TweenPosition(UDim2.new(0, 0, 0, 34),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true);		-- Show
 				getActiveFrame():TweenPosition(getActiveFrame().Position + UDim2.new(0.27,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true);
 			end
 		end)
+
 		coroutine.resume(navslidethread);
 
 		if EzHub.NavButton.Visible then
@@ -2015,7 +2017,7 @@ local navButtonDebounce = true;
 
 local function bindTabButton(button, tab)
 	button.MouseButton1Click:Connect(function()
-		if navButtonDebounce == false then return end
+		if navButtonDebounce == false or navDebounce == false then return end
 		navButtonDebounce = false;
 		openTab(tab);
 		handleNavBtn();
@@ -2752,7 +2754,8 @@ local function handleRequest(request)
 	end
 
 	EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = "";
-	if isRConsoleMode then rconsoleprint("@@GREEN@@"); handleRequest(rconsoleinput()); end
+	if isRConsoleMode then rconsoleprint("@@GREEN@@"); handleRequest(rconsoleinput()); 
+	else terminalPrint(""); end	-- Acts as padding between each request
 
 end
 
@@ -2839,9 +2842,12 @@ end);
 addCommand({"cmdlist", "list", "cmds", "commands", "cmd"}, "Prints all of the command lists into the Ez Hub terminal.", function()
 
 	terminalPrint("Ez Hub Terminal command list:", "b");
+
 	for _, commandData in pairs(commands) do
 		terminalPrint("<font color=\"rgb(0, 100, 255)\">"..commandData[1][1].."</font>: "..(commandData[2] or "No description is available on the following command."));
 	end
+
+	terminalPrint("End of list", "b");
 
 end);
 
