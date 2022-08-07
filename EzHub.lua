@@ -2320,7 +2320,7 @@ EzHub.Docs.MouseButton1Click:Connect(function()
 
 	if setclipboard then
 		EzHub.Docs.Text = "Copied Docs...";
-		setclipboard("https://app.archbee.io/public/PTplYowLy93mKanJeS7F9/qxmDPajUw89sP9HbZuWnt");
+		setclipboard("https://app.archbee.com/public/PTplYowLy93mKanJeS7F9");
 		ezlib.newNotif(ezlib.enum.notifType.longText, "Copied to clipboard. Paste link in browser to view the docs...").play().delete();
 		wait(1);
 		EzHub.Docs.Text = oldTextDocs;
