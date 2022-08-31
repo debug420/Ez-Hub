@@ -1,7 +1,7 @@
 #Ez-Hub
 
 Welcome to the repository of Ez Hub. Ez Hub is open source. Please use this as a way to learn.<br/>
-Changelog and Docs: https://app.archbee.io/public/PTplYowLy93mKanJeS7F9/qxmDPajUw89sP9HbZuWnt
+Changelog and Docs: https://app.archbee.com/public/PTplYowLy93mKanJeS7F9
 
 Showcases of Ez Hub by other users:
 
