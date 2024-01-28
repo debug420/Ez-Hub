@@ -19,6 +19,6 @@ If you wish to contact me, you can do so on Discord: cottient<br/>
 <br/>
 Showcases of Ez Hub by other users:<br/>
 <br/>
-[![Showcase #1](http://img.youtube.com/vi/uKDxKKKSr1c/0.jpg)](http://www.youtube.com/watch?v=uKDxKKKSr1c "Video Title")<br/>
-[![Showcase #2](http://img.youtube.com/vi/l9PhPh3yjYo/0.jpg)](http://www.youtube.com/watch?v=l9PhPh3yjYo "Video Title")<br/>
-[![Showcase #3](http://img.youtube.com/vi/9-DpdBgDwVc/0.jpg)](http://www.youtube.com/watch?v=9-DpdBgDwVc "Video Title")<br/>
+http://www.youtube.com/watch?v=uKDxKKKSr1c<br/>
+http://www.youtube.com/watch?v=l9PhPh3yjYo<br/>
+http://www.youtube.com/watch?v=9-DpdBgDwVc<br/>
