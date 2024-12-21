@@ -31,6 +31,12 @@ return {
             aimbotModule.wallcheck = state;
         end)
 
+        tab.newSlider("Y Offset", aimbotModule.aimoffsety * 10, -30, 30, function(state)
+            aimbotModule.aimoffsety = state / 10;
+        end)
+
+        tab.newDesc("Y Offset defines how far up/down the mouse should aim relative to the player's head");
+
         tab.newDiv();
         tab.newTitle("Keybind and Smoothness")
 
@@ -38,8 +44,12 @@ return {
             aimbotModule.smoothness = state / 10;
         end)
     
-        tab.newCheckbox("Right-mouse", aimbotModule.rightmouse, function(state)
-            aimbotModule.rightmouse = state;
+        tab.newDropdown("Activation Bind", aimbotModule.rightmouse and "Right-mouse" or "Keybind", {"Right-mouse", "Keybind"}, function(state)
+            if state == "Right-mouse" then
+                aimbotModule.rightmouse = true;
+            else
+                aimbotModule.rightmouse = false;
+            end
         end)
     
         tab.newKeybind("Keybind", aimbotModule.keybind, function(i)
@@ -47,9 +57,9 @@ return {
         end)
 
         tab.newDiv();
-        tab.newTitle("FOV");
+        tab.newTitle("Aimbot Activation Circle");
 
-        tab.newCheckbox("Show FOV", aimbotModule.showfov, function(state)
+        tab.newCheckbox("Show Circle", aimbotModule.showfov, function(state)
             aimbotModule.showfov = state;
         end)
 

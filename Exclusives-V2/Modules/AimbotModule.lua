@@ -17,7 +17,8 @@ local aimbotSettings = {
 	keybind = Enum.KeyCode.E,
 	smoothness = 1.5,
 	camerasense = 0.2,
-	fovcolor = {255, 0, 0}
+	fovcolor = {255, 0, 0},
+	aimoffsety = 1
 }
 
 -- Mouse settings
@@ -156,7 +157,7 @@ _G.ezhubAimbot = updateAimbot.Event:Connect(function()
 			mousemoverel(
 			(aimAt.X - getMousePos().X) / aimbotSettings.smoothness,
 			(aimAt.Y - getMousePos().Y) / aimbotSettings.smoothness
-			- 2);	-- The 2 pixels is just a little bit of bullet compensation (I could not be bothered making a proper system)
+			- aimoffsety);	-- The pixels is just a little bit of bullet compensation (I could not be bothered making a proper system)
 		end
 	end
 
