@@ -2668,7 +2668,10 @@ local function awaitRequest(termPrint, inputType, callback)
 	terminalPrint(termPrint, "y");
 	awaitingRequest = true;
 	awaitingRequestInputType = inputType;
-	awaitingRequestFunction.OnInvoke = callback;
+	awaitingRequestFunction.OnInvoke = function(...)
+		callback(...);
+		terminalDivide();
+	end;
 end
 
 local function handleRequest(request)
@@ -2754,18 +2757,21 @@ local function handleRequest(request)
 	
 		end)();
 
-	end
-	
-	-- randomized tip sent
-	if math.random(1, 5) == 1 then
-		terminalDivide();
-		terminalPrint("Fun Fact: "..tips[math.random(#tips)], "b");
-		terminalDivide();
+		if not awaitingRequest then
+			-- randomized tip sent
+			if math.random(1, 5) == 1 then
+				terminalDivide();
+				terminalPrint("Fun Fact: "..tips[math.random(#tips)], "b");
+				terminalDivide();
+			else
+				terminalDivide();
+			end
+		end
+
 	end
 
 	EzHub.TerminalFrame.ExecuteFrame.ExecuteTextBox.Text = "";
-	if isRConsoleMode then rconsoleprint("@@GREEN@@"); handleRequest(rconsoleinput()); 
-	else terminalPrint(""); end	-- Acts as padding between each request
+	if isRConsoleMode then rconsoleprint("@@GREEN@@"); handleRequest(rconsoleinput()); end
 
 end
 
@@ -2984,11 +2990,9 @@ addCommand({"loadplugin"}, "Loads a verified plugin from the EzHub repository. T
 	
 	local function loadPlugin(pluginName)
 		if pluginLinks[pluginName] then
-			terminalDivide();
 			terminalPrint("Fetching and loading plugin...", "y");
 			loadstring(game:HttpGet(pluginLinks[pluginName]))();
 			terminalPrint("Loaded plugin successfully...", "b");
-			terminalDivide();
 		else
 			terminalPrint("The following plugin does not exist...", "r");
 		end
