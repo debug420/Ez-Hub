@@ -30,7 +30,30 @@ local espConfig = {
 local isPhantom = (game.PlaceId == 292439477 and _G.getBodyparts and
 _G.getPlayerInstanceFromCharacter and _G.getCharacterFromPlayerInstance);
 
+----------------------------------------------------------
+
 local isMM2 = (game.PlaceId == 142823291);
+
+local function findMurder()
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if v.Character and v.Character:FindFirstChild("Knife") or v.Backpack:FindFirstChild("Knife") then
+            return v;
+        end
+    end
+end
+
+local function findSheriff()
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if v.Character and v.Character:FindFirstChild("Revolver") or v.Backpack:FindFirstChild("Revolver") then
+            return v;
+        end
+        if v.Character and v.Character:FindFirstChild("Gun") or v.Backpack:FindFirstChild("Gun") then
+            return v;
+        end
+    end
+end
+
+----------------------------------------------------------
 
 local drawESP;
 local espmem = {};

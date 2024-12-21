@@ -37,6 +37,8 @@ main.newButton("Find Murderer", function()
     if findMurder() then 
         ezlib.newNotif(ezlib.enum.notifType.text, "Murderer: "..findMurder().Name)
         .play().delete();
+        ezlib.newNotif(ezlib.enum.notifType.text, "Tip: Enable ESP to visually see the murderer")
+        .play().delete();
     else
         ezlib.newNotif(ezlib.enum.notifType.text, "Unable to find murderer").play().delete();
     end
