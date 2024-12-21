@@ -35,7 +35,7 @@ return {
             aimbotModule.aimoffsety = state / 10;
         end)
 
-        tab.newDesc("Y Offset defines how far up/down the mouse should aim relative to the player's head");
+        tab.newDesc("Y Offset defines how far up/down the mouse should aim relative to the target");
 
         tab.newDiv();
         tab.newTitle("Keybind and Smoothness")
