@@ -2869,6 +2869,37 @@ end);
 
 -------------------------
 
+local cloneConsole = false;
+game:GetService("LogService").MessageOut:Connect(function(message, messageType)
+	
+	if not cloneConsole then return; end
+
+	local outputColor = "w";
+	if messageType == Enum.MessageType.MessageInfo then
+		outputColor = "b";
+	elseif messageType == Enum.MessageType.MessageWarning then
+		outputColor = "y";
+	elseif messageType == Enum.MessageType.MessageError then
+		outputColor = "r";
+	end
+	terminalPrint("[CONSOLE]: " .. message, outputColor);
+
+end)
+
+addCommand({"cloneconsole", "replicateconsole"}, "Outputs everything printed in the console within the terminal as well. Differs from hookconsole command", function(arg)
+	if cloneConsole then
+		terminalPrint("Disabling console cloning...");
+		cloneConsole = false;
+		terminalPrint("Console cloning is disabled", "b");
+	else
+		terminalPrint("Enabling console cloning...");
+		cloneConsole = true;
+		terminalPrint("Console cloning is enabled", "b");
+	end
+end)
+
+-------------------------
+
 addCommand({"quit", "close"}, "Closes Ez Hub and unloads all of it's dependencies.", function()
 
 	terminalPrint("Closing Ez Hub in 3 seconds...", "r");
