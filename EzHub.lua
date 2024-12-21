@@ -2177,7 +2177,7 @@ if not EzHub.NewsText.TextFits then
 	EzHub.NewsText.Text = "News message too long. Please use the launcher to view this news data.";
 end
 
-EzHub.TextLabel_8.Text = "Hello "..game.Players.LocalPlayer.Name..", Thank you for using Ez Hub";
+EzHub.TextLabel_8.Text = "Hello "..game:GetService("Players").LocalPlayer.Name..", Thank you for using Ez Hub";
 
 local ezlib = loadstring(_G["EzHubModules"]["ezlib"])();
 
