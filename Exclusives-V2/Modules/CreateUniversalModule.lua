@@ -260,6 +260,7 @@ return {
             waypoints[waypointNameInput.getState()] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame;
             waypointDropdown.changeData(waypoints);
             waypointDropdown.changeState(waypointNameInput.getState());
+            selectedWaypoint = waypointNameInput.getState();
             coroutine.wrap(function() ezlib.newNotif(ezlib.enum.notifType.longText, "Created waypoint at current user position. Use waypoint selector to teleport.").play().delete(); end)();
         end);
 
