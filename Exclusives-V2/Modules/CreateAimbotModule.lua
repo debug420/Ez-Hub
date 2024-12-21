@@ -31,11 +31,12 @@ return {
             aimbotModule.wallcheck = state;
         end)
 
+        tab.newDiv();
+
+        tab.newDesc("Y Offset defines how far up/down the mouse should aim relative to the target");
         tab.newSlider("Y Offset", aimbotModule.aimoffsety * 10, -30, 30, function(state)
             aimbotModule.aimoffsety = state / 10;
         end)
-
-        tab.newDesc("Y Offset defines how far up/down the mouse should aim relative to the target");
 
         tab.newDiv();
         tab.newTitle("Keybind and Smoothness")
