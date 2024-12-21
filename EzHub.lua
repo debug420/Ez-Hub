@@ -2314,6 +2314,8 @@ end
 local otherSectionButtonDebounce = true;
 
 local oldTextDocs = EzHub.Docs.Text;
+local oldTextGithub = EzHub.Github.Text;
+
 EzHub.Docs.MouseButton1Click:Connect(function()
 	if not otherSectionButtonDebounce then return end
 	otherSectionButtonDebounce = false;
@@ -2331,15 +2333,19 @@ EzHub.Docs.MouseButton1Click:Connect(function()
 	otherSectionButtonDebounce = true;
 end)
 
-local oldTextGithub = EzHub.Github.Text;
 EzHub.Github.MouseButton1Click:Connect(function()
 	if not otherSectionButtonDebounce then return end
 	otherSectionButtonDebounce = false;
 
-	EzHub.Github.Text = "Copied";
-	pcall(function() setclipboard("https://github.com/debug420/Ez-Hub") end);
-	wait(2);
-	EzHub.Github.Text = oldTextGithub;
+	if setclipboard then
+		EzHub.Github.Text = "Copied Github...";
+		setclipboard("https://github.com/debug420/Ez-Hub");
+		ezlib.newNotif(ezlib.enum.notifType.longText, "Copied to clipboard. Paste link in browser to view the Github rep...").play().delete();
+		wait(1);
+		EzHub.Github.Text = oldTextGithub;
+	else
+		ezlib.newNotif(ezlib.enum.notifType.longText, "Incompatible exploit. Please ensure that your exploit supports the function setclipboard.").play().delete();
+	end
 
 	otherSectionButtonDebounce = true;
 end)
