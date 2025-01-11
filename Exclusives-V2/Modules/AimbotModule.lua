@@ -157,7 +157,7 @@ _G.ezhubAimbot = updateAimbot.Event:Connect(function()
 			mousemoverel(
 			(aimAt.X - getMousePos().X) / aimbotSettings.smoothness,
 			(aimAt.Y - getMousePos().Y) / aimbotSettings.smoothness
-			- aimoffsety);	-- The pixels is just a little bit of bullet compensation (I could not be bothered making a proper system)
+			- aimbotSettings.aimoffsety);	-- The pixels is just a little bit of bullet compensation (I could not be bothered making a proper system)
 		end
 	end
 
